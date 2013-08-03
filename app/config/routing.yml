@@ -1,0 +1,6 @@
+vm_blog:
+    resource: "@VMBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
