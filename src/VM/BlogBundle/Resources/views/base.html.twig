@@ -1,0 +1,14 @@
+{# empty Twig template #}
+{% extends "::base.html.twig" %}
+
+{% block title %}
+  Blog - {{ parent() }}
+{% endblock %}
+  
+{% block body %}
+ <h1>Le monstre du Médoc</h1>
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block vmblog_body %}
+  {% endblock %}
+ 
+{% endblock %}
