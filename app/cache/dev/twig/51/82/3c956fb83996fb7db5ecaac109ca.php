@@ -63,17 +63,22 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         // line 34
         echo "                     </div>
                      
-
+                <div id=\"footer\" class=\"hero-unit\">
+                    <h1>Pied-de-page du site Le monstre du Médoc</h1>
+                    <h3>WEBMESTRE : ";
+        // line 38
+        echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
+        echo "</h3>
+                </div>  
                  <!--</div>-->
-                   
-
-         
+              
+        
             </div>
              
                ";
-        // line 43
+        // line 45
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 48
+        // line 50
         echo "                
                 
        
@@ -105,15 +110,15 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "                        ";
     }
 
-    // line 43
+    // line 45
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 44
+        // line 46
         echo "                ";
-        // line 45
+        // line 47
         echo "                <!--<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>-->
                 <script type=\"text/javascript\" src=\"";
-        // line 46
+        // line 48
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootstrap.js"), "html", null, true);
         echo "\"></script>
               ";
@@ -131,6 +136,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  117 => 46,  114 => 45,  112 => 44,  109 => 43,  105 => 33,  102 => 32,  95 => 7,  92 => 6,  86 => 5,  77 => 48,  75 => 43,  64 => 34,  62 => 32,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  122 => 48,  119 => 47,  117 => 46,  114 => 45,  110 => 33,  107 => 32,  100 => 7,  97 => 6,  91 => 5,  82 => 50,  80 => 45,  70 => 38,  64 => 34,  62 => 32,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

@@ -35,6 +35,8 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="webmaster_nom">Vincent Mauget</parameter>
+    <parameter key="webmaster_email">vincent.mauget@gmail.com</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -1990,6 +1992,14 @@
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
+      </call>
+      <call method="addGlobal">
+        <argument>webmaster_nom</argument>
+        <argument>Vincent Mauget</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>webmaster_email</argument>
+        <argument>vincent.mauget@gmail.com</argument>
       </call>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">

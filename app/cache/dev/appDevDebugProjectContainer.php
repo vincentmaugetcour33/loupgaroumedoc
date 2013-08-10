@@ -2794,6 +2794,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addGlobal('app', $this->get('templating.globals'));
+        $instance->addGlobal('webmaster_nom', 'Vincent Mauget');
+        $instance->addGlobal('webmaster_email', 'vincent.mauget@gmail.com');
 
         return $instance;
     }
@@ -3293,6 +3295,8 @@ class appDevDebugProjectContainer extends Container
             'mailer_password' => NULL,
             'locale' => 'en',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'webmaster_nom' => 'Vincent Mauget',
+            'webmaster_email' => 'vincent.mauget@gmail.com',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',

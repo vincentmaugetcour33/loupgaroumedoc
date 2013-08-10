@@ -12,3 +12,10 @@ parameters:
     mailer_password: null
     locale: en
     secret: ThisTokenIsNotSoSecretChangeIt
+    
+    #
+    #valeurs des variables globales relatives à l'identité du webmaster
+    webmaster_nom : Vincent Mauget
+    webmaster_email : vincent.mauget@gmail.com
+     
+    

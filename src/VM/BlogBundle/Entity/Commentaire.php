@@ -15,6 +15,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Commentaire
 {
     /**
+     * @ORM\ManyToOne(targetEntity="VM\BlogBundle\Entity\Livre")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $livre;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -48,14 +54,14 @@ class Commentaire
      * @var string
      * @ORM\Column(name="statut", type="string")
      * 
-     * @Assert\Choice(choices= {"accepte", "modere", "refuse"), message="Vous ne pouvez choisir qu'une des trois valeurs.")
+     * @Assert\Choice(choices= {"accepte", "modere", "refuse"}, message="Vous ne pouvez choisir qu'une des trois valeurs.")
      */
     private $statut;
     
    public function __construct()
   {
     $this->date = new \Datetime(); // Par défaut, la date du commentaire est la date d'aujourd'hui
-    $this->statut= "modere";
+    $this->statut= "modere"; // par défaut, le commentaire est en état de modération avant d'être validé par l'administrateur.
     
     
   }
@@ -137,5 +143,51 @@ class Commentaire
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param string $statut
+     * @return Commentaire
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return string 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set livre
+     *
+     * @param \VM\BlogBundle\Entity\Livre $livre
+     * @return Commentaire
+     */
+    public function setLivre(\VM\BlogBundle\Entity\Livre $livre)
+    {
+        $this->livre = $livre;
+    
+        return $this;
+    }
+
+    /**
+     * Get livre
+     *
+     * @return \VM\BlogBundle\Entity\Livre 
+     */
+    public function getLivre()
+    {
+        return $this->livre;
     }
 }

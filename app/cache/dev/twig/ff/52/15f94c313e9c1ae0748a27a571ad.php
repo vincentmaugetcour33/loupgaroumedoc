@@ -40,7 +40,7 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 9
-        echo " <h1>Le monstre du Médoc</h1>
+        echo " <h1>Blog - Le monstre du Médoc</h1>
   ";
         // line 11
         echo "  ";
@@ -69,6 +69,6 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  57 => 12,  54 => 11,  49 => 13,  46 => 11,  43 => 9,  40 => 8,  33 => 5,  30 => 4,  31 => 4,  28 => 3,);
+        return array (  57 => 12,  54 => 11,  49 => 13,  46 => 11,  43 => 9,  40 => 8,  33 => 5,  30 => 4,);
     }
 }
