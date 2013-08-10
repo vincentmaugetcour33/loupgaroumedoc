@@ -1,3 +1,7 @@
 vm_blog_homepage:
-    pattern:  /
+    path:  /
     defaults: { _controller: VMBlogBundle:Default:index }
+
+vm_blog_biographie:
+    path:  /biographie
+    defaults: { _controller: VMBlogBundle:Default:bio }

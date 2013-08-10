@@ -1,8 +1,8 @@
 ## YAML Template.
 
 # chaines relatives à l'identité de l'auteur
-auteur :
-  biographie : >
+biographie:
+  vie_auteur: >
             Auteur de la Genèse Interdite, recueil de poèmes au souffle 
             rimbaldien qui exhorte à la quête de l’absolu, Patrice Mauget n’a 
             depuis jamais cessé d’écrire. Il laisse sur des carnets la mémoire 
@@ -12,4 +12,5 @@ auteur :
             est l’héritière des chants sacrés de la haute Antiquité. 
             Par la musicalité des mots, par le rythme de l’expression imposée 
             par la forme, le poème est plus qu’un Dire. Il est un chant.
-  
+
+  mail_auteur: Envoyer un mail à Patrice Mauget          

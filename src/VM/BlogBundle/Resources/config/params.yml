@@ -1,0 +1,5 @@
+#valeurs des variables globales relatives à l'auteur
+parameters:  
+  auteur_nom : Patrice Mauget
+  auteur_email : pathrv@free.fr
+

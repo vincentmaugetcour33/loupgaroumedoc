@@ -19,9 +19,9 @@
                           <div class="navbar-inner">
                               <div class="container">
                               <ul class="nav nav-pills nav-justified">
-                                <li class="active "><a href="#">Accueil</a></li>
-                                <li><a href="#">Galleries</a></li>
-                                <li><a href="#">Biographie</a></li>
+                                <li class="active "><a href="/">Accueil</a></li>
+                                <li><a href="">Galleries</a></li>
+                                <li><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
                                 <li><a href="#">Commentaires</a></li>
                               </ul>
                                       </div>
@@ -35,7 +35,7 @@
                      
                 <div id="footer" class="hero-unit">
                     <h1>Pied-de-page du site Le monstre du Médoc</h1>
-                    <h3>WEBMESTRE : {{webmaster_nom ~" - "~ webmaster_email}}</h3>
+                    <h3>WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</h3>
                 </div>  
                  <!--</div>-->
               

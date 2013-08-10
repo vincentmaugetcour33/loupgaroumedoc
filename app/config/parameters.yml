@@ -10,12 +10,14 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: null
     mailer_password: null
-    locale: en
+    locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
     
-    #
+    
     #valeurs des variables globales relatives à l'identité du webmaster
     webmaster_nom : Vincent Mauget
     webmaster_email : vincent.mauget@gmail.com
+    
+  
      
     

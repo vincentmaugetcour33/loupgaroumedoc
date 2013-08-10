@@ -1,10 +1,12 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: "@VMBlogBundle/Resources/config/params.yml" }
     - { resource: security.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
+       
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -28,6 +30,9 @@ twig:
     globals:
       webmaster_nom : %webmaster_nom%
       webmaster_email : %webmaster_email%
+      auteur_nom : %auteur_nom%
+      auteur_email : %auteur_email%
+      
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%

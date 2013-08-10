@@ -47,9 +47,12 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                           <div class=\"navbar-inner\">
                               <div class=\"container\">
                               <ul class=\"nav nav-pills nav-justified\">
-                                <li class=\"active \"><a href=\"#\">Accueil</a></li>
-                                <li><a href=\"#\">Galleries</a></li>
-                                <li><a href=\"#\">Biographie</a></li>
+                                <li class=\"active \"><a href=\"/\">Accueil</a></li>
+                                <li><a href=\"\">Galleries</a></li>
+                                <li><a href=\"";
+        // line 24
+        echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
+        echo "\">Biographie</a></li>
                                 <li><a href=\"#\">Commentaires</a></li>
                               </ul>
                                       </div>
@@ -136,6 +139,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  122 => 48,  119 => 47,  117 => 46,  114 => 45,  110 => 33,  107 => 32,  100 => 7,  97 => 6,  91 => 5,  82 => 50,  80 => 45,  70 => 38,  64 => 34,  62 => 32,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  125 => 48,  122 => 47,  120 => 46,  117 => 45,  113 => 33,  110 => 32,  103 => 7,  100 => 6,  94 => 5,  85 => 50,  83 => 45,  73 => 38,  67 => 34,  65 => 32,  54 => 24,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

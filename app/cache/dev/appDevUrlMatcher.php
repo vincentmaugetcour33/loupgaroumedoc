@@ -142,6 +142,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::indexAction',  '_route' => 'vm_blog_homepage',);
         }
 
+        // vm_blog_biographie
+        if ($pathinfo === '/biographie') {
+            return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::bioAction',  '_route' => 'vm_blog_biographie',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

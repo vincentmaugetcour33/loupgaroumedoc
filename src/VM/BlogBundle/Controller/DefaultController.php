@@ -13,4 +13,9 @@ class DefaultController extends Controller
         
         return $this->render('VMBlogBundle:Default:index.html.twig', array('livre' => $livre_principal));
     }
+    
+    public function bioAction()
+    {
+        return $this->render('VMBlogBundle:Default:biographie.html.twig');
+    }
 }
