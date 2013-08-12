@@ -5,3 +5,16 @@ vm_blog_homepage:
 vm_blog_biographie:
     path:  /biographie
     defaults: { _controller: VMBlogBundle:Default:bio }
+
+    
+vm_blog_commentaire_list:
+   path:  /commentaire
+   defaults: { _controller: VMBlogBundle:Default:com }
+
+#vm_blog_commentaire_list:
+#    path:  /commentaire/{page}
+ #    defaults: { _controller: VMBlogBundle:Default:comlist }
+    
+vm_blog_commentaire_show:
+    path:  /commentaire/{id}
+    defaults: { _controller: VMBlogBundle:Default:comshow }

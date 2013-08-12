@@ -53,7 +53,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         // line 24
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
-                                <li><a href=\"#\">Commentaires</a></li>
+                                <li><a href=\"";
+        // line 25
+        echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
+        echo "\">Commentaires</a></li>
                               </ul>
                                       </div>
                            </div>
@@ -139,6 +142,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  125 => 48,  122 => 47,  120 => 46,  117 => 45,  113 => 33,  110 => 32,  103 => 7,  100 => 6,  94 => 5,  85 => 50,  83 => 45,  73 => 38,  67 => 34,  65 => 32,  54 => 24,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  128 => 48,  125 => 47,  123 => 46,  120 => 45,  116 => 33,  113 => 32,  106 => 7,  103 => 6,  97 => 5,  88 => 50,  86 => 45,  76 => 38,  70 => 34,  68 => 32,  58 => 25,  54 => 24,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

@@ -12,4 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentaireRepository extends EntityRepository
 {
+    /**
+     * 
+     * @return Commentaire
+     */
+    public function getCommentairesAcceptes()
+    {
+     $query_builder = $this->createQueryBuilder('c');
+     $query_builder->leftJoin('c.livre', 'l')
+             ->addSelect('l')->where( $query_builder->expr()->like('l.titre', '"le monstre du Médoc%"'));
+     
+     //$this->_em->createQueryBuilder()->select('c')->from($this->_entityName, 'c');
+     //$query_builder->join('c.livre', 'l', 'ON', 'l.titre like "Le monstre du%"');
+     $query_builder->where($query_builder->expr()->like('c.statut', "'accepte%'"))->orderBy('c.date', 'DESC');
+     return $query_builder->getQuery()->getResult();
+     }   
+
+
 }

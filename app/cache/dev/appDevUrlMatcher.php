@@ -147,6 +147,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::bioAction',  '_route' => 'vm_blog_biographie',);
         }
 
+        if (0 === strpos($pathinfo, '/commentaire')) {
+            // vm_blog_commentaire_list
+            if ($pathinfo === '/commentaire') {
+                return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comAction',  '_route' => 'vm_blog_commentaire_list',);
+            }
+
+            // vm_blog_commentaire_show
+            if (preg_match('#^/commentaire/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comshowAction',));
+            }
+
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

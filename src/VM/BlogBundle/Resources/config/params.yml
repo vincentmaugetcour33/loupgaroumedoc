@@ -2,4 +2,6 @@
 parameters:  
   auteur_nom : Patrice Mauget
   auteur_email : pathrv@free.fr
+  webmaster_nom : Vincent Mauget
+  webmaster_email : vincent.mauget@gmail.com
 

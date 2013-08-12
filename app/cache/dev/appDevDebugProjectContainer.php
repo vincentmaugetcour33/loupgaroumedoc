@@ -113,9 +113,16 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
+            'knp_paginator' => 'getKnpPaginatorService',
+            'knp_paginator.helper.processor' => 'getKnpPaginator_Helper_ProcessorService',
+            'knp_paginator.subscriber.filtration' => 'getKnpPaginator_Subscriber_FiltrationService',
+            'knp_paginator.subscriber.paginate' => 'getKnpPaginator_Subscriber_PaginateService',
+            'knp_paginator.subscriber.sliding_pagination' => 'getKnpPaginator_Subscriber_SlidingPaginationService',
+            'knp_paginator.subscriber.sortable' => 'getKnpPaginator_Subscriber_SortableService',
+            'knp_paginator.templating.helper.pagination' => 'getKnpPaginator_Templating_Helper_PaginationService',
+            'knp_paginator.twig.extension.pagination' => 'getKnpPaginator_Twig_Extension_PaginationService',
             'locale_listener' => 'getLocaleListenerService',
             'logger' => 'getLoggerService',
-            'mailer' => 'getMailerService',
             'monolog.handler.chromephp' => 'getMonolog_Handler_ChromephpService',
             'monolog.handler.debug' => 'getMonolog_Handler_DebugService',
             'monolog.handler.firephp' => 'getMonolog_Handler_FirephpService',
@@ -169,11 +176,12 @@ class appDevDebugProjectContainer extends Container
             'session_listener' => 'getSessionListenerService',
             'streamed_response_listener' => 'getStreamedResponseListenerService',
             'swiftmailer.email_sender.listener' => 'getSwiftmailer_EmailSender_ListenerService',
-            'swiftmailer.plugin.messagelogger' => 'getSwiftmailer_Plugin_MessageloggerService',
-            'swiftmailer.spool' => 'getSwiftmailer_SpoolService',
-            'swiftmailer.transport' => 'getSwiftmailer_TransportService',
-            'swiftmailer.transport.eventdispatcher' => 'getSwiftmailer_Transport_EventdispatcherService',
-            'swiftmailer.transport.real' => 'getSwiftmailer_Transport_RealService',
+            'swiftmailer.mailer.default' => 'getSwiftmailer_Mailer_DefaultService',
+            'swiftmailer.mailer.default.plugin.messagelogger' => 'getSwiftmailer_Mailer_Default_Plugin_MessageloggerService',
+            'swiftmailer.mailer.default.spool' => 'getSwiftmailer_Mailer_Default_SpoolService',
+            'swiftmailer.mailer.default.transport' => 'getSwiftmailer_Mailer_Default_TransportService',
+            'swiftmailer.mailer.default.transport.eventdispatcher' => 'getSwiftmailer_Mailer_Default_Transport_EventdispatcherService',
+            'swiftmailer.mailer.default.transport.real' => 'getSwiftmailer_Mailer_Default_Transport_RealService',
             'templating' => 'getTemplatingService',
             'templating.asset.package_factory' => 'getTemplating_Asset_PackageFactoryService',
             'templating.filename_parser' => 'getTemplating_FilenameParserService',
@@ -233,8 +241,14 @@ class appDevDebugProjectContainer extends Container
             'database_connection' => 'doctrine.dbal.default_connection',
             'debug.templating.engine.twig' => 'templating',
             'doctrine.orm.entity_manager' => 'doctrine.orm.default_entity_manager',
+            'mailer' => 'swiftmailer.mailer.default',
             'sensio.distribution.webconfigurator' => 'sensio_distribution.webconfigurator',
             'session.storage' => 'session.storage.native',
+            'swiftmailer.mailer' => 'swiftmailer.mailer.default',
+            'swiftmailer.plugin.messagelogger' => 'swiftmailer.mailer.default.plugin.messagelogger',
+            'swiftmailer.spool' => 'swiftmailer.mailer.default.spool',
+            'swiftmailer.transport' => 'swiftmailer.mailer.default.transport',
+            'swiftmailer.transport.real' => 'swiftmailer.mailer.default.transport.real',
             'translator' => 'translator.default',
         );
     }
@@ -462,7 +476,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['debug.templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('debug.stopwatch'), $this->get('templating.globals'));
 
-        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic'));
+        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic', 'knp_pagination' => 'knp_paginator.templating.helper.pagination'));
 
         return $instance;
     }
@@ -606,10 +620,16 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['event_dispatcher'] = $instance = new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this);
 
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.paginate', 1 => 'before'), 0);
+        $instance->addListenerService('knp_pager.pagination', array(0 => 'knp_paginator.subscriber.paginate', 1 => 'pagination'), 0);
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.sortable', 1 => 'before'), 1);
+        $instance->addListenerService('knp_pager.before', array(0 => 'knp_paginator.subscriber.filtration', 1 => 'before'), 1);
+        $instance->addListenerService('knp_pager.pagination', array(0 => 'knp_paginator.subscriber.sliding_pagination', 1 => 'pagination'), 1);
         $instance->addListenerService('kernel.controller', array(0 => 'data_collector.router', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'monolog.handler.firephp', 1 => 'onKernelResponse'), 0);
         $instance->addListenerService('kernel.response', array(0 => 'monolog.handler.chromephp', 1 => 'onKernelResponse'), 0);
         $instance->addListenerService('kernel.request', array(0 => 'assetic.request_listener', 1 => 'onKernelRequest'), 0);
+        $instance->addListenerService('kernel.request', array(0 => 'knp_paginator.subscriber.sliding_pagination', 1 => 'onKernelRequest'), 0);
         $instance->addSubscriberService('response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener');
         $instance->addSubscriberService('streamed_response_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\StreamedResponseListener');
         $instance->addSubscriberService('locale_listener', 'Symfony\\Component\\HttpKernel\\EventListener\\LocaleListener');
@@ -1298,6 +1318,114 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'knp_paginator' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Paginator A Knp\Component\Pager\Paginator instance.
+     */
+    protected function getKnpPaginatorService()
+    {
+        $this->services['knp_paginator'] = $instance = new \Knp\Component\Pager\Paginator($this->get('event_dispatcher'));
+
+        $instance->setDefaultPaginatorOptions(array('pageParameterName' => 'page', 'sortFieldParameterName' => 'sort', 'sortDirectionParameterName' => 'direction', 'filterFieldParameterName' => 'filterField', 'filterValueParameterName' => 'filterValue', 'distinct' => true));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'knp_paginator.helper.processor' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Helper\Processor A Knp\Bundle\PaginatorBundle\Helper\Processor instance.
+     */
+    protected function getKnpPaginator_Helper_ProcessorService()
+    {
+        return $this->services['knp_paginator.helper.processor'] = new \Knp\Bundle\PaginatorBundle\Helper\Processor($this->get('templating.helper.router'), $this->get('translator.default'));
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.filtration' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber A Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_FiltrationService()
+    {
+        return $this->services['knp_paginator.subscriber.filtration'] = new \Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.paginate' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber A Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_PaginateService()
+    {
+        return $this->services['knp_paginator.subscriber.paginate'] = new \Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.sliding_pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber A Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_SlidingPaginationService()
+    {
+        return $this->services['knp_paginator.subscriber.sliding_pagination'] = new \Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber(array('defaultPaginationTemplate' => 'KnpPaginatorBundle:Pagination:sliding.html.twig', 'defaultSortableTemplate' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig', 'defaultFiltrationTemplate' => 'KnpPaginatorBundle:Pagination:filtration.html.twig', 'defaultPageRange' => 5));
+    }
+
+    /**
+     * Gets the 'knp_paginator.subscriber.sortable' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber A Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber instance.
+     */
+    protected function getKnpPaginator_Subscriber_SortableService()
+    {
+        return $this->services['knp_paginator.subscriber.sortable'] = new \Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber();
+    }
+
+    /**
+     * Gets the 'knp_paginator.templating.helper.pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Templating\PaginationHelper A Knp\Bundle\PaginatorBundle\Templating\PaginationHelper instance.
+     */
+    protected function getKnpPaginator_Templating_Helper_PaginationService()
+    {
+        return $this->services['knp_paginator.templating.helper.pagination'] = new \Knp\Bundle\PaginatorBundle\Templating\PaginationHelper($this->get('knp_paginator.helper.processor'), $this->get('debug.templating.engine.php'));
+    }
+
+    /**
+     * Gets the 'knp_paginator.twig.extension.pagination' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension A Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension instance.
+     */
+    protected function getKnpPaginator_Twig_Extension_PaginationService()
+    {
+        return $this->services['knp_paginator.twig.extension.pagination'] = new \Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension($this->get('knp_paginator.helper.processor'));
+    }
+
+    /**
      * Gets the 'locale_listener' service.
      *
      * This service is shared.
@@ -1332,19 +1460,6 @@ class appDevDebugProjectContainer extends Container
         $instance->pushHandler($this->get('monolog.handler.debug'));
 
         return $instance;
-    }
-
-    /**
-     * Gets the 'mailer' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Swift_Mailer A Swift_Mailer instance.
-     */
-    protected function getMailerService()
-    {
-        return $this->services['mailer'] = new \Swift_Mailer($this->get('swiftmailer.transport'));
     }
 
     /**
@@ -1611,7 +1726,7 @@ class appDevDebugProjectContainer extends Container
         $instance->add(new \Symfony\Component\HttpKernel\DataCollector\MemoryDataCollector());
         $instance->add($this->get('data_collector.router'));
         $instance->add(new \Symfony\Bundle\SecurityBundle\DataCollector\SecurityDataCollector($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
-        $instance->add(new \Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector($this, true));
+        $instance->add(new \Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector($this));
         $instance->add($d);
 
         return $instance;
@@ -2108,59 +2223,72 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'swiftmailer.plugin.messagelogger' service.
+     * Gets the 'swiftmailer.mailer.default' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Swift_Mailer A Swift_Mailer instance.
+     */
+    protected function getSwiftmailer_Mailer_DefaultService()
+    {
+        return $this->services['swiftmailer.mailer.default'] = new \Swift_Mailer($this->get('swiftmailer.mailer.default.transport'));
+    }
+
+    /**
+     * Gets the 'swiftmailer.mailer.default.plugin.messagelogger' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
      * @return Swift_Plugins_MessageLogger A Swift_Plugins_MessageLogger instance.
      */
-    protected function getSwiftmailer_Plugin_MessageloggerService()
+    protected function getSwiftmailer_Mailer_Default_Plugin_MessageloggerService()
     {
-        return $this->services['swiftmailer.plugin.messagelogger'] = new \Swift_Plugins_MessageLogger();
+        return $this->services['swiftmailer.mailer.default.plugin.messagelogger'] = new \Swift_Plugins_MessageLogger();
     }
 
     /**
-     * Gets the 'swiftmailer.spool' service.
+     * Gets the 'swiftmailer.mailer.default.spool' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
      * @return Swift_MemorySpool A Swift_MemorySpool instance.
      */
-    protected function getSwiftmailer_SpoolService()
+    protected function getSwiftmailer_Mailer_Default_SpoolService()
     {
-        return $this->services['swiftmailer.spool'] = new \Swift_MemorySpool();
+        return $this->services['swiftmailer.mailer.default.spool'] = new \Swift_MemorySpool();
     }
 
     /**
-     * Gets the 'swiftmailer.transport' service.
+     * Gets the 'swiftmailer.mailer.default.transport' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
      * @return Swift_Transport_SpoolTransport A Swift_Transport_SpoolTransport instance.
      */
-    protected function getSwiftmailer_TransportService()
+    protected function getSwiftmailer_Mailer_Default_TransportService()
     {
-        $this->services['swiftmailer.transport'] = $instance = new \Swift_Transport_SpoolTransport($this->get('swiftmailer.transport.eventdispatcher'), $this->get('swiftmailer.spool'));
+        $this->services['swiftmailer.mailer.default.transport'] = $instance = new \Swift_Transport_SpoolTransport($this->get('swiftmailer.mailer.default.transport.eventdispatcher'), $this->get('swiftmailer.mailer.default.spool'));
 
-        $instance->registerPlugin($this->get('swiftmailer.plugin.messagelogger'));
+        $instance->registerPlugin($this->get('swiftmailer.mailer.default.plugin.messagelogger'));
 
         return $instance;
     }
 
     /**
-     * Gets the 'swiftmailer.transport.real' service.
+     * Gets the 'swiftmailer.mailer.default.transport.real' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
      * @return Swift_Transport_EsmtpTransport A Swift_Transport_EsmtpTransport instance.
      */
-    protected function getSwiftmailer_Transport_RealService()
+    protected function getSwiftmailer_Mailer_Default_Transport_RealService()
     {
-        $this->services['swiftmailer.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), $this->get('swiftmailer.transport.eventdispatcher'));
+        $this->services['swiftmailer.mailer.default.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), $this->get('swiftmailer.mailer.default.transport.eventdispatcher'));
 
         $instance->setHost('127.0.0.1');
         $instance->setPort(25);
@@ -2843,6 +2971,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.cs.xlf', 'cs', 'security');
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.da.xlf', 'da', 'security');
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.de.xlf', 'de', 'security');
+        $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.el.xlf', 'el', 'security');
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.en.xlf', 'en', 'security');
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.es.xlf', 'es', 'security');
         $instance->addResource('xlf', 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Security\\Core\\Exception/../../Resources/translations\\security.fa.xlf', 'fa', 'security');
@@ -2896,9 +3025,12 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Twig_Extension_Debug());
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
+        $instance->addExtension($this->get('knp_paginator.twig.extension.pagination'));
         $instance->addGlobal('app', $this->get('templating.globals'));
         $instance->addGlobal('webmaster_nom', 'Vincent Mauget');
         $instance->addGlobal('webmaster_email', 'vincent.mauget@gmail.com');
+        $instance->addGlobal('auteur_nom', 'Patrice Mauget');
+        $instance->addGlobal('auteur_email', 'pathrv@free.fr');
 
         return $instance;
     }
@@ -2947,6 +3079,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('C:\\wamp\\www\\Sitepatrice\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views', 'Doctrine');
         $instance->addPath('C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views', 'VMBlog');
+        $instance->addPath('C:\\wamp\\www\\Sitepatrice\\vendor\\knplabs\\knp-paginator-bundle\\Knp\\Bundle\\PaginatorBundle/Resources/views', 'KnpPaginator');
         $instance->addPath('C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\wamp\\www\\Sitepatrice\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('C:/wamp/www/Sitepatrice/app/Resources/views');
@@ -3017,7 +3150,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getWebProfiler_Controller_ProfilerService()
     {
-        return $this->services['web_profiler.controller.profiler'] = new \Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController($this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('profiler', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('twig'), array('data_collector.config' => array(0 => 'config', 1 => '@WebProfiler/Collector/config.html.twig'), 'data_collector.request' => array(0 => 'request', 1 => '@WebProfiler/Collector/request.html.twig'), 'data_collector.exception' => array(0 => 'exception', 1 => '@WebProfiler/Collector/exception.html.twig'), 'data_collector.events' => array(0 => 'events', 1 => '@WebProfiler/Collector/events.html.twig'), 'data_collector.logger' => array(0 => 'logger', 1 => '@WebProfiler/Collector/logger.html.twig'), 'data_collector.time' => array(0 => 'time', 1 => '@WebProfiler/Collector/time.html.twig'), 'data_collector.memory' => array(0 => 'memory', 1 => '@WebProfiler/Collector/memory.html.twig'), 'data_collector.router' => array(0 => 'router', 1 => '@WebProfiler/Collector/router.html.twig'), 'data_collector.security' => array(0 => 'security', 1 => 'SecurityBundle:Collector:security'), 'swiftmailer.data_collector' => array(0 => 'swiftmailer', 1 => 'SwiftmailerBundle:Collector:swiftmailer'), 'data_collector.doctrine' => array(0 => 'db', 1 => 'DoctrineBundle:Collector:db')), 'bottom');
+        return $this->services['web_profiler.controller.profiler'] = new \Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController($this->get('router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('profiler', ContainerInterface::NULL_ON_INVALID_REFERENCE), $this->get('twig'), array('data_collector.config' => array(0 => 'config', 1 => '@WebProfiler/Collector/config.html.twig'), 'data_collector.request' => array(0 => 'request', 1 => '@WebProfiler/Collector/request.html.twig'), 'data_collector.exception' => array(0 => 'exception', 1 => '@WebProfiler/Collector/exception.html.twig'), 'data_collector.events' => array(0 => 'events', 1 => '@WebProfiler/Collector/events.html.twig'), 'data_collector.logger' => array(0 => 'logger', 1 => '@WebProfiler/Collector/logger.html.twig'), 'data_collector.time' => array(0 => 'time', 1 => '@WebProfiler/Collector/time.html.twig'), 'data_collector.memory' => array(0 => 'memory', 1 => '@WebProfiler/Collector/memory.html.twig'), 'data_collector.router' => array(0 => 'router', 1 => '@WebProfiler/Collector/router.html.twig'), 'data_collector.security' => array(0 => 'security', 1 => 'SecurityBundle:Collector:security'), 'swiftmailer.data_collector' => array(0 => 'swiftmailer', 1 => '@Swiftmailer/Collector/swiftmailer.html.twig'), 'data_collector.doctrine' => array(0 => 'db', 1 => 'DoctrineBundle:Collector:db')), 'bottom');
     }
 
     /**
@@ -3246,7 +3379,7 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'swiftmailer.transport.eventdispatcher' service.
+     * Gets the 'swiftmailer.mailer.default.transport.eventdispatcher' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
@@ -3257,9 +3390,9 @@ class appDevDebugProjectContainer extends Container
      *
      * @return Swift_Events_SimpleEventDispatcher A Swift_Events_SimpleEventDispatcher instance.
      */
-    protected function getSwiftmailer_Transport_EventdispatcherService()
+    protected function getSwiftmailer_Mailer_Default_Transport_EventdispatcherService()
     {
-        return $this->services['swiftmailer.transport.eventdispatcher'] = new \Swift_Events_SimpleEventDispatcher();
+        return $this->services['swiftmailer.mailer.default.transport.eventdispatcher'] = new \Swift_Events_SimpleEventDispatcher();
     }
 
     /**
@@ -3362,7 +3495,9 @@ class appDevDebugProjectContainer extends Container
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
+                'DoctrineFixturesBundle' => 'Doctrine\\Bundle\\FixturesBundle\\DoctrineFixturesBundle',
                 'VMBlogBundle' => 'VM\\BlogBundle\\VMBlogBundle',
+                'KnpPaginatorBundle' => 'Knp\\Bundle\\PaginatorBundle\\KnpPaginatorBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
@@ -3381,10 +3516,10 @@ class appDevDebugProjectContainer extends Container
             'mailer_password' => NULL,
             'locale' => 'fr',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
-            'webmaster_nom' => 'Vincent Mauget',
-            'webmaster_email' => 'vincent.mauget@gmail.com',
             'auteur_nom' => 'Patrice Mauget',
             'auteur_email' => 'pathrv@free.fr',
+            'webmaster_nom' => 'Vincent Mauget',
+            'webmaster_email' => 'vincent.mauget@gmail.com',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -3435,6 +3570,9 @@ class appDevDebugProjectContainer extends Container
             'debug.controller_resolver.class' => 'Symfony\\Component\\HttpKernel\\Controller\\TraceableControllerResolver',
             'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
             'kernel.http_method_override' => true,
+            'kernel.trusted_hosts' => array(
+
+            ),
             'kernel.trusted_proxies' => array(
 
             ),
@@ -3700,28 +3838,32 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.plugin.impersonate.class' => 'Swift_Plugins_ImpersonatePlugin',
             'swiftmailer.plugin.messagelogger.class' => 'Swift_Plugins_MessageLogger',
             'swiftmailer.plugin.antiflood.class' => 'Swift_Plugins_AntiFloodPlugin',
-            'swiftmailer.plugin.antiflood.threshold' => 99,
-            'swiftmailer.plugin.antiflood.sleep' => 0,
-            'swiftmailer.data_collector.class' => 'Symfony\\Bridge\\Swiftmailer\\DataCollector\\MessageDataCollector',
             'swiftmailer.transport.smtp.class' => 'Swift_Transport_EsmtpTransport',
-            'swiftmailer.transport.smtp.encryption' => NULL,
-            'swiftmailer.transport.smtp.port' => 25,
-            'swiftmailer.transport.smtp.host' => '127.0.0.1',
-            'swiftmailer.transport.smtp.username' => NULL,
-            'swiftmailer.transport.smtp.password' => NULL,
-            'swiftmailer.transport.smtp.auth_mode' => NULL,
-            'swiftmailer.transport.smtp.timeout' => 30,
-            'swiftmailer.transport.smtp.source_ip' => NULL,
             'swiftmailer.plugin.blackhole.class' => 'Swift_Plugins_BlackholePlugin',
+            'swiftmailer.spool.file.class' => 'Swift_FileSpool',
             'swiftmailer.spool.memory.class' => 'Swift_MemorySpool',
             'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
-            'swiftmailer.spool.memory.path' => 'C:/wamp/www/Sitepatrice/app/cache/dev/swiftmailer/spool',
+            'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
+            'swiftmailer.mailer.default.transport.name' => 'smtp',
+            'swiftmailer.mailer.default.delivery.enabled' => true,
+            'swiftmailer.mailer.default.transport.smtp.encryption' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.port' => 25,
+            'swiftmailer.mailer.default.transport.smtp.host' => '127.0.0.1',
+            'swiftmailer.mailer.default.transport.smtp.username' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.password' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
+            'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
+            'swiftmailer.spool.default.memory.path' => 'C:/wamp/www/Sitepatrice/app/cache/dev/swiftmailer/spool/default',
+            'swiftmailer.mailer.default.spool.enabled' => true,
+            'swiftmailer.mailer.default.single_address' => NULL,
             'swiftmailer.spool.enabled' => true,
-            'swiftmailer.sender_address' => NULL,
+            'swiftmailer.delivery.enabled' => true,
             'swiftmailer.single_address' => NULL,
-            'swiftmailer.delivery_whitelist' => array(
-
+            'swiftmailer.mailers' => array(
+                'default' => 'swiftmailer.mailer.default',
             ),
+            'swiftmailer.default_mailer' => 'default',
             'assetic.asset_factory.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\AssetFactory',
             'assetic.asset_manager.class' => 'Assetic\\Factory\\LazyAssetManager',
             'assetic.asset_manager_cache_warmer.class' => 'Symfony\\Bundle\\AsseticBundle\\CacheWarmer\\AssetManagerCacheWarmer',
@@ -3754,7 +3896,7 @@ class appDevDebugProjectContainer extends Container
             'assetic.variables' => array(
 
             ),
-            'assetic.java.bin' => 'C:\\Windows\\system32\\java.EXE',
+            'assetic.java.bin' => '/usr/bin/java',
             'assetic.node.bin' => '/usr/bin/node',
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
@@ -3835,6 +3977,13 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+            'knp_paginator.class' => 'Knp\\Component\\Pager\\Paginator',
+            'knp_paginator.templating.helper.pagination.class' => 'Knp\\Bundle\\PaginatorBundle\\Templating\\PaginationHelper',
+            'knp_paginator.helper.processor.class' => 'Knp\\Bundle\\PaginatorBundle\\Helper\\Processor',
+            'knp_paginator.template.pagination' => 'KnpPaginatorBundle:Pagination:sliding.html.twig',
+            'knp_paginator.template.filtration' => 'KnpPaginatorBundle:Pagination:filtration.html.twig',
+            'knp_paginator.template.sortable' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig',
+            'knp_paginator.page_range' => 5,
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',
@@ -3882,7 +4031,7 @@ class appDevDebugProjectContainer extends Container
                 ),
                 'swiftmailer.data_collector' => array(
                     0 => 'swiftmailer',
-                    1 => 'SwiftmailerBundle:Collector:swiftmailer',
+                    1 => '@Swiftmailer/Collector/swiftmailer.html.twig',
                 ),
                 'data_collector.doctrine' => array(
                     0 => 'db',

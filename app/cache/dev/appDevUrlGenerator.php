@@ -32,6 +32,8 @@ class appDevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         '_configurator_final' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/_configurator/final',    ),  ),  4 =>   array (  ),),
         'vm_blog_homepage' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::indexAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/',    ),  ),  4 =>   array (  ),),
         'vm_blog_biographie' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::bioAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/biographie',    ),  ),  4 =>   array (  ),),
+        'vm_blog_commentaire_list' => array (  0 =>   array (  ),  1 =>   array (    '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'text',      1 => '/commentaire',    ),  ),  4 =>   array (  ),),
+        'vm_blog_commentaire_show' => array (  0 =>   array (    0 => 'id',  ),  1 =>   array (    '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comshowAction',  ),  2 =>   array (  ),  3 =>   array (    0 =>     array (      0 => 'variable',      1 => '/',      2 => '[^/]++',      3 => 'id',    ),    1 =>     array (      0 => 'text',      1 => '/commentaire',    ),  ),  4 =>   array (  ),),
     );
 
     /**

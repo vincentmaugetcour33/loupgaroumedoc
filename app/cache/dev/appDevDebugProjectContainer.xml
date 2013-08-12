@@ -16,7 +16,9 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="VMBlogBundle">VM\BlogBundle\VMBlogBundle</parameter>
+      <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -35,10 +37,10 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
-    <parameter key="webmaster_nom">Vincent Mauget</parameter>
-    <parameter key="webmaster_email">vincent.mauget@gmail.com</parameter>
     <parameter key="auteur_nom">Patrice Mauget</parameter>
     <parameter key="auteur_email">pathrv@free.fr</parameter>
+    <parameter key="webmaster_nom">Vincent Mauget</parameter>
+    <parameter key="webmaster_email">vincent.mauget@gmail.com</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -89,6 +91,7 @@
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
+    <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.trusted_proxies" type="collection"/>
     <parameter key="kernel.default_locale">fr</parameter>
     <parameter key="session.class">Symfony\Component\HttpFoundation\Session\Session</parameter>
@@ -346,26 +349,32 @@
     <parameter key="swiftmailer.plugin.impersonate.class">Swift_Plugins_ImpersonatePlugin</parameter>
     <parameter key="swiftmailer.plugin.messagelogger.class">Swift_Plugins_MessageLogger</parameter>
     <parameter key="swiftmailer.plugin.antiflood.class">Swift_Plugins_AntiFloodPlugin</parameter>
-    <parameter key="swiftmailer.plugin.antiflood.threshold">99</parameter>
-    <parameter key="swiftmailer.plugin.antiflood.sleep">0</parameter>
-    <parameter key="swiftmailer.data_collector.class">Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.transport.smtp.class">Swift_Transport_EsmtpTransport</parameter>
-    <parameter key="swiftmailer.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.auth_mode">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.timeout">30</parameter>
-    <parameter key="swiftmailer.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.plugin.blackhole.class">Swift_Plugins_BlackholePlugin</parameter>
+    <parameter key="swiftmailer.spool.file.class">Swift_FileSpool</parameter>
     <parameter key="swiftmailer.spool.memory.class">Swift_MemorySpool</parameter>
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
-    <parameter key="swiftmailer.spool.memory.path">C:/wamp/www/Sitepatrice/app/cache/dev/swiftmailer/spool</parameter>
+    <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
+    <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
+    <parameter key="swiftmailer.spool.default.memory.path">C:/wamp/www/Sitepatrice/app/cache/dev/swiftmailer/spool/default</parameter>
+    <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
     <parameter key="swiftmailer.spool.enabled">true</parameter>
-    <parameter key="swiftmailer.sender_address">null</parameter>
+    <parameter key="swiftmailer.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.single_address">null</parameter>
-    <parameter key="swiftmailer.delivery_whitelist" type="collection"/>
+    <parameter key="swiftmailer.mailers" type="collection">
+      <parameter key="default">swiftmailer.mailer.default</parameter>
+    </parameter>
+    <parameter key="swiftmailer.default_mailer">default</parameter>
     <parameter key="assetic.asset_factory.class">Symfony\Bundle\AsseticBundle\Factory\AssetFactory</parameter>
     <parameter key="assetic.asset_manager.class">Assetic\Factory\LazyAssetManager</parameter>
     <parameter key="assetic.asset_manager_cache_warmer.class">Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer</parameter>
@@ -392,7 +401,7 @@
     <parameter key="assetic.read_from">C:/wamp/www/Sitepatrice/app/../web</parameter>
     <parameter key="assetic.write_to">C:/wamp/www/Sitepatrice/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
-    <parameter key="assetic.java.bin">C:\Windows\system32\java.EXE</parameter>
+    <parameter key="assetic.java.bin">/usr/bin/java</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
@@ -469,6 +478,13 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
+    <parameter key="knp_paginator.templating.helper.pagination.class">Knp\Bundle\PaginatorBundle\Templating\PaginationHelper</parameter>
+    <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
+    <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -516,7 +532,7 @@
       </parameter>
       <parameter key="swiftmailer.data_collector" type="collection">
         <parameter>swiftmailer</parameter>
-        <parameter>SwiftmailerBundle:Collector:swiftmailer</parameter>
+        <parameter>@Swiftmailer/Collector/swiftmailer.html.twig</parameter>
       </parameter>
       <parameter key="data_collector.doctrine" type="collection">
         <parameter>db</parameter>
@@ -547,6 +563,46 @@
     <service id="event_dispatcher" class="Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher">
       <argument type="service" id="service_container"/>
       <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sortable</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.filtration</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument>data_collector.router</argument>
@@ -574,6 +630,14 @@
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>assetic.request_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
@@ -1335,6 +1399,12 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>C:\wamp\www\Sitepatrice\vendor\symfony\symfony\src\Symfony\Component\Security\Core\Exception/../../Resources/translations\security.el.xlf</argument>
+        <argument>el</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>C:\wamp\www\Sitepatrice\vendor\symfony\symfony\src\Symfony\Component\Security\Core\Exception/../../Resources/translations\security.en.xlf</argument>
         <argument>en</argument>
         <argument>security</argument>
@@ -2067,10 +2137,9 @@
       </call>
       <call method="add">
         <argument type="service">
-          <service class="Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector" public="false">
-            <tag name="data_collector" template="SwiftmailerBundle:Collector:swiftmailer" id="swiftmailer"/>
+          <service class="Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector" public="false">
+            <tag name="data_collector" template="@Swiftmailer/Collector/swiftmailer.html.twig" id="swiftmailer"/>
             <argument type="service" id="service_container"/>
-            <argument>true</argument>
           </service>
         </argument>
       </call>
@@ -2672,6 +2741,9 @@
           </service>
         </argument>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="knp_paginator.twig.extension.pagination"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
@@ -2683,6 +2755,14 @@
       <call method="addGlobal">
         <argument>webmaster_email</argument>
         <argument>vincent.mauget@gmail.com</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>auteur_nom</argument>
+        <argument>Patrice Mauget</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>auteur_email</argument>
+        <argument>pathrv@free.fr</argument>
       </call>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">
@@ -2714,13 +2794,16 @@
       <argument>200</argument>
       <argument>true</argument>
     </service>
-    <service id="swiftmailer.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
-    <service id="swiftmailer.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
-      <tag name="swiftmailer.plugin"/>
-    </service>
     <service id="swiftmailer.email_sender.listener" class="Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="service_container"/>
+    </service>
+    <service id="swiftmailer.mailer.default.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
+    <service id="swiftmailer.mailer.default" class="Swift_Mailer">
+      <argument type="service" id="swiftmailer.mailer.default.transport"/>
+    </service>
+    <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
+      <tag name="swiftmailer.default.plugin"/>
     </service>
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
@@ -2991,6 +3074,51 @@
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_subscriber"/>
     </service>
+    <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
+      <argument type="service" id="event_dispatcher"/>
+      <call method="setDefaultPaginatorOptions">
+        <argument type="collection">
+          <argument key="pageParameterName">page</argument>
+          <argument key="sortFieldParameterName">sort</argument>
+          <argument key="sortDirectionParameterName">direction</argument>
+          <argument key="filterFieldParameterName">filterField</argument>
+          <argument key="filterValueParameterName">filterValue</argument>
+          <argument key="distinct">true</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="knp_paginator.subscriber.paginate" class="Knp\Component\Pager\Event\Subscriber\Paginate\PaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sortable" class="Knp\Component\Pager\Event\Subscriber\Sortable\SortableSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.filtration" class="Knp\Component\Pager\Event\Subscriber\Filtration\FiltrationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+    </service>
+    <service id="knp_paginator.subscriber.sliding_pagination" class="Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber">
+      <tag name="knp_paginator.subscriber"/>
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="collection">
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
+        <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
+        <argument key="defaultPageRange">5</argument>
+      </argument>
+    </service>
+    <service id="knp_paginator.helper.processor" class="Knp\Bundle\PaginatorBundle\Helper\Processor">
+      <argument type="service" id="templating.helper.router"/>
+      <argument type="service" id="translator.default"/>
+    </service>
+    <service id="knp_paginator.templating.helper.pagination" class="Knp\Bundle\PaginatorBundle\Templating\PaginationHelper">
+      <tag name="templating.helper" alias="knp_pagination"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+      <argument type="service" id="debug.templating.engine.php"/>
+    </service>
+    <service id="knp_paginator.twig.extension.pagination" class="Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="knp_paginator.helper.processor"/>
+    </service>
     <service id="web_profiler.controller.profiler" class="Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController">
       <argument type="service" id="router" on-invalid="null"/>
       <argument type="service" id="profiler" on-invalid="null"/>
@@ -3034,7 +3162,7 @@
         </argument>
         <argument key="swiftmailer.data_collector" type="collection">
           <argument>swiftmailer</argument>
-          <argument>SwiftmailerBundle:Collector:swiftmailer</argument>
+          <argument>@Swiftmailer/Collector/swiftmailer.html.twig</argument>
         </argument>
         <argument key="data_collector.doctrine" type="collection">
           <argument>db</argument>
@@ -3231,6 +3359,7 @@
           <argument key="logout_url">templating.helper.logout_url</argument>
           <argument key="security">templating.helper.security</argument>
           <argument key="assetic">assetic.helper.dynamic</argument>
+          <argument key="knp_pagination">knp_paginator.templating.helper.pagination</argument>
         </argument>
       </call>
     </service>
@@ -3313,6 +3442,10 @@
         <argument>VMBlog</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp\www\Sitepatrice\vendor\knplabs\knp-paginator-bundle\Knp\Bundle\PaginatorBundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp\www\Sitepatrice\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
@@ -3342,17 +3475,15 @@
         <argument type="service" id="monolog.handler.debug"/>
       </call>
     </service>
-    <service id="swiftmailer.transport" class="Swift_Transport_SpoolTransport">
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.spool"/>
+    <service id="swiftmailer.mailer.default.transport" class="Swift_Transport_SpoolTransport">
+      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
+      <argument type="service" id="swiftmailer.mailer.default.spool"/>
       <call method="registerPlugin">
-        <argument type="service" id="swiftmailer.plugin.messagelogger"/>
+        <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
       </call>
     </service>
-    <service id="mailer" class="Swift_Mailer">
-      <argument type="service" id="swiftmailer.transport"/>
-    </service>
-    <service id="swiftmailer.transport.real" class="Swift_Transport_EsmtpTransport">
+    <service id="swiftmailer.mailer.default.spool" class="Swift_MemorySpool"/>
+    <service id="swiftmailer.mailer.default.transport.real" class="Swift_Transport_EsmtpTransport">
       <argument type="service">
         <service class="Swift_Transport_StreamBuffer" public="false">
           <argument type="service">
@@ -3377,7 +3508,7 @@
           </service>
         </argument>
       </argument>
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
+      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
         <argument>127.0.0.1</argument>
       </call>
@@ -3403,10 +3534,15 @@
         <argument>null</argument>
       </call>
     </service>
-    <service id="swiftmailer.spool" class="Swift_MemorySpool"/>
     <service id="session.storage" alias="session.storage.native"/>
     <service id="translator" alias="translator.default"/>
     <service id="debug.templating.engine.twig" alias="templating"/>
+    <service id="swiftmailer.spool" alias="swiftmailer.mailer.default.spool"/>
+    <service id="swiftmailer.transport.real" alias="swiftmailer.mailer.default.transport.real"/>
+    <service id="swiftmailer.plugin.messagelogger" alias="swiftmailer.mailer.default.plugin.messagelogger"/>
+    <service id="swiftmailer.mailer" alias="swiftmailer.mailer.default"/>
+    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport"/>
+    <service id="mailer" alias="swiftmailer.mailer.default"/>
     <service id="database_connection" alias="doctrine.dbal.default_connection"/>
     <service id="doctrine.orm.entity_manager" alias="doctrine.orm.default_entity_manager"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>

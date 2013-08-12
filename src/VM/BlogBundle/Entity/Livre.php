@@ -42,7 +42,6 @@ class Livre
      */
     private $resume;
 
-
     /**
      * Get id
      *
