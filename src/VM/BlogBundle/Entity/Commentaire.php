@@ -62,8 +62,7 @@ class Commentaire
   {
     $this->date = new \Datetime(); // Par défaut, la date du commentaire est la date d'aujourd'hui
     $this->statut= "modere"; // par défaut, le commentaire est en état de modération avant d'être validé par l'administrateur.
-    
-    
+   
   }
  
     /**

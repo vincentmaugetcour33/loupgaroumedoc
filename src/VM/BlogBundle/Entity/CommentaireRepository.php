@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class CommentaireRepository extends EntityRepository
 {
     /**
-     * 
+     * Get commentairesacceptes1
      * @return Commentaire
      */
     public function getCommentairesAcceptes()
@@ -24,9 +24,27 @@ class CommentaireRepository extends EntityRepository
      
      //$this->_em->createQueryBuilder()->select('c')->from($this->_entityName, 'c');
      //$query_builder->join('c.livre', 'l', 'ON', 'l.titre like "Le monstre du%"');
-     $query_builder->where($query_builder->expr()->like('c.statut', "'accepte%'"))->orderBy('c.date', 'DESC');
+     $query_builder->where($query_builder->expr()->like('c.statut', "'modere%'"))->orderBy('c.date', 'DESC');
      return $query_builder->getQuery()->getResult();
      }   
 
+     /**
+     * Get commentairesacceptes2
+     * @return Commentaire
+     */
+    public function getCommentairesAcceptes_pagine($page,$commentaires_per_page)
+    {
+        
+     $query_builder = $this->createQueryBuilder('c');
+     $query_builder->leftJoin('c.livre', 'l')
+                   ->addSelect('l')->where( $query_builder->expr()->like('l.titre', '"le monstre du Médoc%"'))
+                   ->where($query_builder->expr()->like('c.statut', "'modere%'"))->orderBy('c.date', 'DESC');
+     
+     $query_builder->setFirstResult(($page * $commentaires_per_page) - $commentaires_per_page)
+                   ->setMaxResults($commentaires_per_page);
+            
+    
+     return $query_builder->getQuery()->getResult();
+     }  
 
 }

@@ -1,0 +1,73 @@
+{% extends "VMBlogBundle::base.html.twig" %}
+
+{% block vmblog_body %}
+ 
+<div class="articles"><h2 > Commentaires
+        <a href="#" id="ajouter_commentaire">Ajout</a>
+        {#{{ render(controller("VMBlogBundle:Commentaire:ajoutcommentaire")) }}#}
+        <div id="form"></div>
+
+<div id="list_articles"><ul>
+ {% if entities is not empty %}
+ {% for key, entity in entities %}
+<ul>
+    <li><a href="#">{{ entity.contenu }}</a></li>
+</ul>
+ {% endfor %}
+ {% else %}
+ Résultat vide
+ {% endif %}
+ {% if last_page > 1 %}
+<div class="pagination_sector">
+ <a href="{{ path('vm_blog_com_list', { 'page': 1 }) }}"> &<span> prec </span> </a> <a href="{{ path('vm_blog_com_list', { 'page': previous_page }) }}"> &<span> prec </span> </a>
+<ol>
+<ol>{% for page in 1..last_page %}</ol>
+</ol>
+<ol>
+<ol>{% if page == current_page %}</ol>
+</ol>
+<ol>
+<ol>
+    <li>{{ page }}</li>
+</ol>
+</ol>
+<ol>
+<ol>{% else %}</ol>
+</ol>
+<ol>
+<ol>
+    <li><a href="{{ path('vm_blog_com_list', { 'page': page }) }}">{{ page }}</a></li>
+</ol>
+</ol>
+<ol>
+<ol>{% endif %}</ol>
+</ol>
+<ol>{% endfor %}</ol>
+ <a href="{{ path('vm_blog_com_list', { 'page': next_page }) }}"> <span> suiv </span>& </a> <a href="{{ path('vm_blog_com_list', { 'page': last_page }) }}"> <span> suiv </span>&</a></div>
+ {% endif %}
+<div class="pagination_desc"><strong>{{ total_commentaires }}</strong> commentaires dans la page
+ {% if last_page > 1 %}
+ - page <strong>{{ current_page }}/{{ last_page }}</strong> {% endif %}</div>
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+       $(document).ready(function() {   
+        $("body").on("click", "#ajouter_commentaire", (function()
+        {
+         $.ajax({
+            type: "POST",
+            url: "{{ path('vm_blog_commentaire_ajout')}}",
+            cache: false,
+            success: function(data) {
+                $("#form").html(data);
+                 }
+                 
+             });
+        }));
+    });
+</script>    
+
+{% endblock %}
+
+

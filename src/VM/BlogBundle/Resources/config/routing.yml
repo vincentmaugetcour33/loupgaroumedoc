@@ -6,15 +6,18 @@ vm_blog_biographie:
     path:  /biographie
     defaults: { _controller: VMBlogBundle:Default:bio }
 
+vm_blog_com_list:
+  path:  /commentaire/{page}
+  defaults: { _controller: VMBlogBundle:Commentaire:comlist, page:1 }
     
-vm_blog_commentaire_list:
-   path:  /commentaire
-   defaults: { _controller: VMBlogBundle:Default:com }
-
-#vm_blog_commentaire_list:
-#    path:  /commentaire/{page}
- #    defaults: { _controller: VMBlogBundle:Default:comlist }
+vm_blog_commentaire_ajout:
+    path:  /commentaire_ajout
+    defaults: { _controller: VMBlogBundle:Commentaire:ajoutcommentaire }
     
 vm_blog_commentaire_show:
     path:  /commentaire/{id}
-    defaults: { _controller: VMBlogBundle:Default:comshow }
+    defaults: { _controller: VMBlogBundle:Commentaire:comshow }
+   
+#vm_blog_commentaire_list:
+#   path:  /commentaire
+#   defaults: { _controller: VMBlogBundle:Default:com }

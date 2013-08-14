@@ -12,3 +12,6 @@ parameters:
     mailer_password: null
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    webmaster_nom : Vincent Mauget
+    webmaster_email : vincent.mauget@gmail.com

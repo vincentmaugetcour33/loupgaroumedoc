@@ -1,0 +1,10 @@
+{% if form is defined %}
+<div class="well">
+   
+   <form action="{{ path('vm_blog_commentaire_ajout') }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" />
+    <input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />
+  </form>
+</div>
+{% endif %}

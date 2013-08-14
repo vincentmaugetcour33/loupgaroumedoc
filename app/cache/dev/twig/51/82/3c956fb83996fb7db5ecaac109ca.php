@@ -12,8 +12,8 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
-            'body' => array($this, 'block_body'),
             'javascripts' => array($this, 'block_javascripts'),
+            'body' => array($this, 'block_body'),
         );
     }
 
@@ -35,7 +35,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
-    </head>
+        ";
+        // line 10
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 15
+        echo "    </head>
     <body>
            <div class=\"container\">
                 <div id=\"header\" class=\"hero-unit\">
@@ -50,12 +54,13 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                 <li class=\"active \"><a href=\"/\">Accueil</a></li>
                                 <li><a href=\"\">Galleries</a></li>
                                 <li><a href=\"";
-        // line 24
+        // line 29
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
-                                <li><a href=\"";
-        // line 25
-        echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
+                              ";
+        // line 31
+        echo "                                <li><a href=\"";
+        echo $this->env->getExtension('routing')->getPath("vm_blog_com_list");
         echo "\">Commentaires</a></li>
                               </ul>
                                       </div>
@@ -64,15 +69,15 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                           
                      <div id=\"content\" class=\"span9\">
                         ";
-        // line 32
+        // line 38
         $this->displayBlock('body', $context, $blocks);
-        // line 34
+        // line 40
         echo "                     </div>
                      
                 <div id=\"footer\" class=\"hero-unit\">
                     <h1>Pied-de-page du site Le monstre du Médoc</h1>
                     <h3>WEBMESTRE : ";
-        // line 38
+        // line 44
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</h3>
                 </div>  
@@ -81,11 +86,8 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         
             </div>
              
-               ";
-        // line 45
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 50
-        echo "                
+               
+                
                 
        
     </body>
@@ -104,30 +106,32 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
     {
         // line 7
         echo "            <link rel=\"stylesheet\" href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/bootstrap.css"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/css/bootstrap.css"), "html", null, true);
         echo "\" type=\"text/css\" />
         ";
     }
 
-    // line 32
-    public function block_body($context, array $blocks = array())
-    {
-        // line 33
-        echo "                        ";
-    }
-
-    // line 45
+    // line 10
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 46
+        // line 11
         echo "                ";
-        // line 47
-        echo "                <!--<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js\"></script>-->
+        // line 12
+        echo "                <script type=\"text/javascript\" src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
+        echo "\"></script>
                 <script type=\"text/javascript\" src=\"";
-        // line 48
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootstrap.js"), "html", null, true);
+        // line 13
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.js"), "html", null, true);
         echo "\"></script>
               ";
+    }
+
+    // line 38
+    public function block_body($context, array $blocks = array())
+    {
+        // line 39
+        echo "                        ";
     }
 
     public function getTemplateName()
@@ -142,6 +146,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  128 => 48,  125 => 47,  123 => 46,  120 => 45,  116 => 33,  113 => 32,  106 => 7,  103 => 6,  97 => 5,  88 => 50,  86 => 45,  76 => 38,  70 => 34,  68 => 32,  58 => 25,  54 => 24,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  134 => 39,  131 => 38,  125 => 13,  120 => 12,  118 => 11,  115 => 10,  108 => 7,  105 => 6,  99 => 5,  81 => 44,  75 => 40,  73 => 38,  62 => 31,  58 => 29,  42 => 15,  40 => 10,  35 => 9,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

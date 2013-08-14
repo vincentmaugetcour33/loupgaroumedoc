@@ -148,14 +148,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/commentaire')) {
-            // vm_blog_commentaire_list
-            if ($pathinfo === '/commentaire') {
-                return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comAction',  '_route' => 'vm_blog_commentaire_list',);
+            // vm_blog_com_list
+            if (preg_match('#^/commentaire(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_com_list')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::comlistAction',  'page' => 1,));
+            }
+
+            // vm_blog_commentaire_ajout
+            if ($pathinfo === '/commentaire_ajout') {
+                return array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::ajoutcommentaireAction',  '_route' => 'vm_blog_commentaire_ajout',);
             }
 
             // vm_blog_commentaire_show
             if (preg_match('#^/commentaire/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::comshowAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::comshowAction',));
             }
 
         }
