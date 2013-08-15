@@ -33,11 +33,11 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
         // line 5
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
         echo "\" alt=\"photo patrice mauget\" />
-    <h3>Auteur : ";
+    Auteur : ";
         // line 6
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
-        echo "</h3>
-    <h3>Biographie :</h3>
+        echo " <br/>
+    Biographie :
     ";
         // line 8
         echo $this->env->getExtension('translator')->getTranslator()->trans("biographie.vie_auteur", array(), "messages");

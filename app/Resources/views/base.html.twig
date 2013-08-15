@@ -5,22 +5,27 @@
         <title>{% block title %}Patrice Mauget - Monstre du Médoc{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />
+             <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% block javascripts %}
-                {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+                {# pour le routage en ajax #}
+                <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/jquery.js') }}"></script>
+                {# pour le rendu dynamique en twitter #}
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.js') }}"></script>
-              {% endblock %}
+                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/popup.js') }}"></script>          
+        {% endblock %}
     </head>
     <body>
-           <div class="container">
-                <div id="header" class="hero-unit">
-                 <h1>En-tête du site Le monstre du Médoc</h1>
-                 </div>
-               
-                 <!--<div class="container">-->
-                      <nav class="navbar ">
+      
+        <div class="container-fluid">
+               <!-- En-tête du layout -->
+               <div class="page-header">En-tête du site Le monstre du Médoc</div>
+                          
+               <!-- Menu principal du layout -->
+                          <div class="navbar ">
                           <div class="navbar-inner">
                               <div class="container">
                               <ul class="nav nav-pills nav-justified">
@@ -28,22 +33,35 @@
                                 <li><a href="">Galleries</a></li>
                                 <li><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
                               {#<li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>#}
-                                <li><a href="{{ path('vm_blog_com_list') }}">Commentaires</a></li>
+                                <li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
                               </ul>
                                       </div>
                            </div>
-                       </nav>                     
-                          
-                     <div id="content" class="span9">
+                       </div>                     
+             
+               <!-- Centre de la page -->    
+               <div class="row-fluid">    
+                       <div class="span9">
                         {% block body %}
-                        {% endblock %}
-                     </div>
+                       {% endblock %}
+                       </div>
+                       
+                       <div class="span3">
+                           Test2
+                       
+                      </div>
+                           
+                </div>             
                      
-                <div id="footer" class="hero-unit">
-                    <h1>Pied-de-page du site Le monstre du Médoc</h1>
-                    <h3>WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</h3>
-                </div>  
-                 <!--</div>-->
+
+                       
+                       
+                <div class="page-footer">   
+                
+                    Pied-de-page du site Le monstre du Médoc
+                    WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}
+                
+               </div>
               
         
             </div>

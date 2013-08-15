@@ -148,21 +148,39 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/commentaire')) {
-            // vm_blog_com_list
+            // vm_blog_commentaire_list
             if (preg_match('#^/commentaire(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_com_list')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::comlistAction',  'page' => 1,));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_list')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::listcommentaireAction',  'page' => 1,));
             }
 
-            // vm_blog_commentaire_ajout
-            if ($pathinfo === '/commentaire_ajout') {
-                return array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::ajoutcommentaireAction',  '_route' => 'vm_blog_commentaire_ajout',);
+            if (0 === strpos($pathinfo, '/commentaire_')) {
+                // vm_blog_commentaire_ajout
+                if ($pathinfo === '/commentaire_ajout') {
+                    return array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::ajoutcommentaireAction',  '_route' => 'vm_blog_commentaire_ajout',);
+                }
+
+                // vm_blog_commentaire_show
+                if (0 === strpos($pathinfo, '/commentaire_show') && preg_match('#^/commentaire_show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::showcommentaireAction',));
+                }
+
+                // vm_blog_commentaire_edit
+                if (0 === strpos($pathinfo, '/commentaire_edit') && preg_match('#^/commentaire_edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_edit')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::editcommentaireAction',));
+                }
+
+                // vm_blog_commentaire_supprime
+                if (0 === strpos($pathinfo, '/commentaire_supprime') && preg_match('#^/commentaire_supprime/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_supprime')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::supprimecommentaireAction',));
+                }
+
             }
 
-            // vm_blog_commentaire_show
-            if (preg_match('#^/commentaire/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::comshowAction',));
-            }
+        }
 
+        // fos_js_routing_js
+        if (0 === strpos($pathinfo, '/js/routing') && preg_match('#^/js/routing(?:\\.(?P<_format>js|json))?$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_js_routing_js')), array (  '_controller' => 'fos_js_routing.controller:indexAction',  '_format' => 'js',));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

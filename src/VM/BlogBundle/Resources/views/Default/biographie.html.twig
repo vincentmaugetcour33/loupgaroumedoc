@@ -3,8 +3,8 @@
 {% block vmblog_body %}
  
     <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="photo patrice mauget" />
-    <h3>Auteur : {{ auteur_nom }}</h3>
-    <h3>Biographie :</h3>
+    Auteur : {{ auteur_nom }} <br/>
+    Biographie :
     {% trans %}biographie.vie_auteur{% endtrans %}
     <br/>
     <a href="mailto:{{ auteur_email }}">{% trans %}biographie.mail_auteur{% endtrans %}</a>

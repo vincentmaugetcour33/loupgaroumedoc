@@ -29,14 +29,14 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
     {
         // line 4
         echo " 
-    <h1>";
+   ";
         // line 5
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "titre"), "html", null, true);
-        echo "</h1>
-    <h4>";
+        echo "<br/>
+   ";
         // line 6
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "resume"), "html", null, true);
-        echo "</h4>
+        echo "
    
  
  

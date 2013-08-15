@@ -2,24 +2,29 @@
 
 {% block vmblog_body %}
  
-<div class="articles"><h2 > Commentaires
-        <a href="#" id="ajouter_commentaire">Ajout</a>
-        {#{{ render(controller("VMBlogBundle:Commentaire:ajoutcommentaire")) }}#}
-        <div id="form"></div>
+<div class="">Commentaires
+         <a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>
+  <div id="form" ></div>
 
-<div id="list_articles"><ul>
+<div id=""><ul>
  {% if entities is not empty %}
  {% for key, entity in entities %}
-<ul>
-    <li><a href="#">{{ entity.contenu }}</a></li>
+
+ <ul style="list-style-type:none;">
+    <li id={{entity.id}}>
+        <a href="#" id="montrer_commentaire">{{ entity.contenu | truncate(80,"\n", true)}}</a>
+        <a href="#" class="btn btn-info " id="editer_commentaire">Editer</a>
+        <a href="#" class="btn btn-info" id="supprimer_commentaire">Supprimer</a>
+    </li>
 </ul>
+        
  {% endfor %}
  {% else %}
  Résultat vide
  {% endif %}
  {% if last_page > 1 %}
-<div class="pagination_sector">
- <a href="{{ path('vm_blog_com_list', { 'page': 1 }) }}"> &<span> prec </span> </a> <a href="{{ path('vm_blog_com_list', { 'page': previous_page }) }}"> &<span> prec </span> </a>
+<div class="">
+ <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> &<span> prec </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"> &<span> prec </span> </a>
 <ol>
 <ol>{% for page in 1..last_page %}</ol>
 </ol>
@@ -36,14 +41,14 @@
 </ol>
 <ol>
 <ol>
-    <li><a href="{{ path('vm_blog_com_list', { 'page': page }) }}">{{ page }}</a></li>
+    <li><a href="{{ path('vm_blog_commentaire_list', { 'page': page }) }}">{{ page }}</a></li>
 </ol>
 </ol>
 <ol>
 <ol>{% endif %}</ol>
 </ol>
 <ol>{% endfor %}</ol>
- <a href="{{ path('vm_blog_com_list', { 'page': next_page }) }}"> <span> suiv </span>& </a> <a href="{{ path('vm_blog_com_list', { 'page': last_page }) }}"> <span> suiv </span>&</a></div>
+ <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}"> <span> suiv </span>& </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> suiv </span>&</a></div>
  {% endif %}
 <div class="pagination_desc"><strong>{{ total_commentaires }}</strong> commentaires dans la page
  {% if last_page > 1 %}
@@ -53,18 +58,86 @@
 
 <script language="javascript" type="text/javascript">
        $(document).ready(function() {   
-        $("body").on("click", "#ajouter_commentaire", (function()
+          $.data(document.body, 'popup',0);
+        $("body").on("click", "#ajouter_commentaire", (function(event)
         {
+         
+         if ($.data(document.body, 'popup') == 0) 
+         {    
          $.ajax({
             type: "POST",
             url: "{{ path('vm_blog_commentaire_ajout')}}",
             cache: false,
             success: function(data) {
-                $("#form").html(data);
+                $("#ajouter_commentaire").popover({'content':data,html:true,placement:'bottom'});
+                $.data(document.body, 'popup',1);
+                 $("#ajouter_commentaire").click();
                  }
-                 
-             });
+         });
+        }
+        else { $.data(document.body, 'popup', 0); }
         }));
+        
+        
+          $("body").on("click", "#editer_commentaire", (function()
+          {
+             if ($.data(document.body, 'popup') == 0) 
+                  {  
+            var identifiant = parseInt($(this).parent().attr("id"));
+            $.ajax({
+               type: "POST",
+               url: Routing.generate('vm_blog_commentaire_edit', { id: identifiant }),
+               cache:false,
+               success: function(data)
+               {
+               $("#"+identifiant+" > #editer_commentaire").popover({'content':data,html:true,placement:'bottom'});
+               $.data(document.body, 'popup',1);
+               $("#"+identifiant+" #editer_commentaire").click();
+               }
+             });
+             }
+            else { $.data(document.body, 'popup', 0); }
+          }));
+          
+              
+          $("body").on("click", "#montrer_commentaire", (function()
+          { 
+            if ($.data(document.body, 'popup') == 0) 
+                  {
+            var identifiant = parseInt($(this).parent().attr("id"));
+            $.ajax({
+               type: "POST",
+               url: Routing.generate('vm_blog_commentaire_show', { id: identifiant }),
+               cache:false,
+               success: function(data)
+               {
+               $("#"+identifiant+" >#montrer_commentaire").popover({'content':data,html:true,placement:'bottom'});
+               $.data(document.body, 'popup',1);
+               $("#"+identifiant+" > #montrer_commentaire").click();
+               }
+             });
+             }
+            else { $.data(document.body, 'popup', 0); }
+          }));
+          
+          $("body").on("click", "#supprimer_commentaire", (function()
+          { 
+            if (confirm("Souhaitez-vous réellement supprimer ce commentaire ?")) 
+            {
+                var identifiant = parseInt($(this).parent().attr("id"));
+                $.ajax({
+                   type: "POST",
+                   url: Routing.generate('vm_blog_commentaire_supprime', { id: identifiant }),
+                   cache:false,
+                   success: function(data)
+                   {
+                    alert("Commentaire supprimé");
+                   }
+                 });
+             }
+             
+          }));
+        
     });
 </script>    
 

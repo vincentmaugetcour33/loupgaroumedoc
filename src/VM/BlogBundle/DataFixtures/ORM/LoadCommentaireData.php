@@ -20,7 +20,7 @@ class LoadCommentaireData implements FixtureInterface
   $commentaire = new Commentaire();
   $commentaire->setAuteur('Vincent Mauget');
   $commentaire->setContenu('Ceci est un test '.$i);
-  $commentaire->setStatut('accepte');
+  $commentaire->setStatut('modere');
   $commentaire->setLivre($livre_principal);
   $manager->persist($commentaire);
   }

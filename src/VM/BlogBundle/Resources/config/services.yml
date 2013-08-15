@@ -2,6 +2,9 @@ parameters:
 #    vm_blog.example.class: VM\BlogBundle\Example
 
 services:
-#    vm_blog.example:
-#        class: %vm_blog.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+  # activation des filtres text de twig pour les chaines de caracteres.
+  twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+            - { name: twig.extension }
+ 

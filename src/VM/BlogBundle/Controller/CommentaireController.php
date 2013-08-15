@@ -26,7 +26,7 @@ class CommentaireController extends Controller
         }
 
      # action de la page commentaires paginée sans bundle
-     public function comlistAction($page)
+     public function listcommentaireAction($page)
      {
       $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Commentaire');
       $liste_commentaires = $repository->getCommentairesAcceptes();
@@ -50,7 +50,20 @@ class CommentaireController extends Controller
         ));
       }
      
+      /**
+        * Show commentaire
+        *
+        * @param integer $id
+        */
+      public function showcommentaireAction(Commentaire $commentaire)
+      {
+        return $this->render('VMBlogBundle:Commentaire:comshow.html.twig', 
+                array('commentaire' => $commentaire));  
+      }
       
+      /**
+        * Ajout commentaire
+        */
       public function ajoutcommentaireAction()
       {
        // analyse de la route
@@ -58,7 +71,8 @@ class CommentaireController extends Controller
        
        // creation du formulaire
        $commentaire = new Commentaire();
-       $repository =$this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
+       $manager =$this->getDoctrine()->getManager();
+       $repository = $manager->getRepository('VMBlogBundle:Livre');
        $livre_principal = $repository->findOneByTitre('Le monstre du Médoc');
        $commentaire->setLivre($livre_principal);
        $form = $this->createForm(new CommentaireType, $commentaire);
@@ -67,7 +81,7 @@ class CommentaireController extends Controller
        if($request->isXmlHttpRequest())
        {
          return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig", array(
-           'form' => $form->createView()
+                  'form' => $form->createView()
            ));
         } 
        else 
@@ -77,10 +91,9 @@ class CommentaireController extends Controller
             $form->bind($request);
              if ($form->isValid())
              {
-              $manager = $this->getDoctrine()->getManager();
               $manager->persist($commentaire);
               $manager->flush();   
-              return $this->redirect($this->generateUrl('vm_blog_com_list'));
+              return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
              }
           }  
          else
@@ -90,7 +103,69 @@ class CommentaireController extends Controller
        }    
          
       }
- 
+      
+      /**
+        * Supprime commentaire
+        *
+        * @param integer $commentaire
+        */
+      public function supprimecommentaireAction(Commentaire $commentaire)
+      {
+          $manager =$this->getDoctrine()->getManager();
+          $manager->remove($commentaire);
+          $manager->flush();
+          return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+       }
+      
+      /**
+        * Edit commentaire
+        *
+        * @param integer $commentaire
+        */ 
+      public function editcommentaireAction(Commentaire $commentaire)
+      {
+       //$repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Commentaire');   
+        //$commentaire = $repository->find($id);
+        // analyse de la route
+       $request = $this->get('request');
+       
+       // creation du formulaire
+       //$repository =$this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
+       //$livre_principal = $repository->findOneByTitre('Le monstre du Médoc');
+       //$commentaire->setLivre($livre_principal);
+       $form = $this->createForm(new CommentaireType, $commentaire);
+      
+       // traitement daffichage du formulaire après clic sur le bouton d'ajout de commentaire
+       if($request->isXmlHttpRequest())
+       {
+         return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig", array(
+             'commentaire' => $commentaire, 
+             'form' => $form->createView()
+           ));
+        } 
+       else 
+       {
+         if ($request->getMethod() == 'POST')
+         {
+            $form->bind($request);
+             if ($form->isValid() AND !$manager->contains($commentaire))
+             {
+              $manager = $this->getDoctrine()->getManager();
+              $manager->persist($commentaire);
+              $manager->flush();   
+              
+             }
+            return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+               
+          }  
+         else
+            {
+            return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig");  
+            }    
+       }    
+       
+         
+      }
     
     
     
