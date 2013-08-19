@@ -1,0 +1,17 @@
+/* 
+    Document   : commentaire
+    Created on : 19 août 2013, 18:28:47
+    Author     : Vincent
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+ul {
+   list-style:none;
+   display : block;
+   float : left;
+ }

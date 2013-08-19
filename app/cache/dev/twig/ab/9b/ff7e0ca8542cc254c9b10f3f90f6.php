@@ -34,7 +34,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
         if ((!twig_test_empty($this->getContext($context, "images")))) {
             // line 6
             echo "    <table id=\"\" class=\"\">
-        <caption>GALLERY</caption>
+        <caption>GALLERIE</caption>
         <tbody>
         <tr>
     ";
@@ -56,8 +56,8 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
             }
             foreach ($context['_seq'] as $context["key"] => $context["image"]) {
                 // line 11
-                echo "        <td><img class=\"\" id=\"";
-                echo twig_escape_filter($this->env, $this->getContext($context, "key"), "html", null, true);
+                echo "        <td><img style=\"cursor: pointer;\" class=\"\" id=\"";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "description"), "html", null, true);
                 echo "\" src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmblog/images/" . $this->getAttribute($this->getContext($context, "image"), "url"))), "html", null, true);
                 echo "\" rel=\"popover\" alt=\"";
@@ -68,7 +68,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
         ";
                 // line 13
                 echo "        ";
-                if ((($this->getAttribute($this->getContext($context, "loop"), "index") % 4) == 0)) {
+                if ((($this->getAttribute($this->getContext($context, "loop"), "index") % 6) == 0)) {
                     echo "</tr><tr>";
                 }
                 echo "    
@@ -94,8 +94,8 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
 <script language=\"javascript\" type=\"text/javascript\">
  \$(document).ready(function() 
  {
-    \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"230px\" src=\"'+\$(this).attr('src')+'\"/>'; }, delay: { show: 500, hide: 10} });
- });\$.data(document.body, 'popup',1);
+    \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"250px;\" src=\"'+\$(this).attr('src')+'\"/><div>'+\$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
+ });//\$.data(document.body, 'popup',1);
 </script>
 
 

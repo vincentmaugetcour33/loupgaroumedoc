@@ -24,6 +24,7 @@ class LoadImageData implements FixtureInterface
             $image = new Image();
             $image->setUrl($fichier_image);
             $image->setAlt('Legende Image '.substr($fichier_image,5));
+            $image->setDescription('Description test edefdfdfsdfdsfsdfsdfsdf');
             $image->setLivre($livre_principal);
             $manager->persist($image);   
             }

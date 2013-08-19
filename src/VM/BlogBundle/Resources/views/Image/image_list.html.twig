@@ -4,13 +4,13 @@
  
  {% if images is not empty %}
     <table id="" class="">
-        <caption>GALLERY</caption>
+        <caption>GALLERIE</caption>
         <tbody>
         <tr>
     {% for key, image in images %}
-        <td><img class="" id="{{ key }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
+        <td><img style="cursor: pointer;" class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
         {# le tableau comporte 4 colonnes #}
-        {% if loop.index % 4 == 0 %}</tr><tr>{% endif %}    
+        {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
     {% endfor %}
     </tbody></table>
 {% endif %}
@@ -18,7 +18,7 @@
 <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
-    $("img").popover({trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="230px" src="'+$(this).attr('src')+'"/>'; }, delay: { show: 500, hide: 10} });
+    $("img").popover({trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="250px;" src="'+$(this).attr('src')+'"/><div>'+$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
  });//$.data(document.body, 'popup',1);
 </script>
 

@@ -1,4 +1,8 @@
 {% extends "VMBlogBundle::base.html.twig" %}
+{% block vmblog_stylesheet %}
+     {{ parent() }}
+      <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/commentaire.css') }}" type="text/css" media="all" />
+{% endblock %}                
 
 {% block vmblog_body %}
  
@@ -26,29 +30,29 @@
  {% if last_page > 1 %}
 <div class="">
  <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> <span> << </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"><span> < </span> </a>
-<ol>
-<ol>{% for page in 1..last_page %}</ol>
-</ol>
-<ol>
-<ol>{% if page == current_page %}</ol>
-</ol>
-<ol>
-<ol>
+<ul>
+    <ul>{% for page in 1..last_page %}</ul>
+</ul>
+<ul>
+<ul>{% if page == current_page %}</ul>
+</ul>
+
+<ul>
     <li>{{ page }}</li>
-</ol>
-</ol>
-<ol>
-<ol>{% else %}</ol>
-</ol>
-<ol>
-<ol>
+</ul>
+</ul>
+<ul>
+    <ul>{% else %}</ul>
+</ul>
+<ul>
+<ul>
     <li><a href="{{ path('vm_blog_commentaire_list', { 'page': page }) }}">{{ page }}</a></li>
-</ol>
-</ol>
-<ol>
-<ol>{% endif %}</ol>
-</ol>
-<ol>{% endfor %}</ol>
+</ul>
+    </ul>
+<ul>
+<ul>{% endif %}</ul>
+</ul>
+<ul>{% endfor %}</ul>
  <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}"> <span> > </span></a> <a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> >> </span></a></div>
  {% endif %}
 <div class="pagination_desc"><strong>{{ total_commentaires }}</strong> commentaires dans la page

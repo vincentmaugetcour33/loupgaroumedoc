@@ -11,6 +11,8 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'stylesheet' => array($this, 'block_stylesheet'),
+            'vmblog_stylesheet' => array($this, 'block_vmblog_stylesheet'),
             'body' => array($this, 'block_body'),
             'vmblog_body' => array($this, 'block_vmblog_body'),
         );
@@ -26,34 +28,52 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 4
+    // line 3
     public function block_title($context, array $blocks = array())
     {
-        // line 5
+        // line 4
         echo "  Blog - ";
         $this->displayParentBlock("title", $context, $blocks);
         echo "
 ";
     }
 
-    // line 8
+    // line 7
+    public function block_stylesheet($context, array $blocks = array())
+    {
+        // line 8
+        echo "    ";
+        $this->displayParentBlock("stylesheet", $context, $blocks);
+        echo " 
+    ";
+        // line 9
+        $this->displayBlock('vmblog_stylesheet', $context, $blocks);
+    }
+
+    public function block_vmblog_stylesheet($context, array $blocks = array())
+    {
+        // line 10
+        echo "    ";
+    }
+
+    // line 13
     public function block_body($context, array $blocks = array())
     {
-        // line 9
+        // line 14
         echo " <h1>Blog - Le monstre du Médoc</h1>
   ";
-        // line 11
+        // line 16
         echo "  ";
         $this->displayBlock('vmblog_body', $context, $blocks);
-        // line 13
+        // line 18
         echo " 
 ";
     }
 
-    // line 11
+    // line 16
     public function block_vmblog_body($context, array $blocks = array())
     {
-        // line 12
+        // line 17
         echo "  ";
     }
 
@@ -69,6 +89,6 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  57 => 12,  54 => 11,  49 => 13,  46 => 11,  43 => 9,  40 => 8,  33 => 5,  30 => 4,  38 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  77 => 17,  74 => 16,  69 => 18,  66 => 16,  63 => 14,  60 => 13,  56 => 10,  50 => 9,  45 => 8,  42 => 7,  35 => 4,  32 => 3,);
     }
 }

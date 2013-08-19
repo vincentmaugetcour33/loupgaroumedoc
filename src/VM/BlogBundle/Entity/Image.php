@@ -29,20 +29,26 @@ class Image
      */
     private $id;
 
-    /**
+  /**
    * @var string $url
    *
    * @ORM\Column(name="url", type="string", length=255)
    */
     private $url;
   
-    /**
+  /**
    * @var string $alt
    *
-   * @ORM\Column(name="alt", type="string", length=255)
+   * @ORM\Column(name="alt", type="string", length=200)
    */
     private $alt;
     
+   /**
+   * @var string $alt
+   *
+   * @ORM\Column(name="description", type="text")
+   */
+    private $description;
     
     /**
      * Get id
@@ -54,7 +60,7 @@ class Image
         return $this->id;
     }
 
-    /**
+  /**
    * @param string $url
    * @return Image
    */
@@ -113,4 +119,27 @@ class Image
         return $this->livre;
     } 
     
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Image
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 }

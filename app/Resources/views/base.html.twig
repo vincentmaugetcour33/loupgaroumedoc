@@ -6,8 +6,9 @@
         {% block stylesheets %}
             {#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />#}
              <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" media="screen" />
+             
         {% endblock %}
-            {% block javascripts %}
+        {% block javascripts %}
                 {# pour le routage en ajax #}
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
@@ -23,7 +24,10 @@
       
         <div class="container-fluid">
                <!-- En-tête du layout -->
-               <div class="page-header">En-tête du site Le monstre du Médoc</div>
+               <div class="page-header">
+                   {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
+                   En-tête du site Le monstre du Médoc
+               </div>
                           
                <!-- Menu principal du layout -->
                           <div class="navbar ">
@@ -42,7 +46,8 @@
                <!-- Centre de la page -->    
                <div class="row-fluid">    
                    <div class="span2 offset1">
-                          Bloc latéral gauche
+                          {# Génère aléatoirement un extrait du livre#}
+                           {{ render(controller("VMBlogBundle:Extrait:index")) }} {#Bloc latéral gauche#}
                        </div>
                       
                        <div class="span9">
