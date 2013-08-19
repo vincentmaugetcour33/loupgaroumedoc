@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    # action de la page d'accueil
+    /**
+     * Index
+     */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');

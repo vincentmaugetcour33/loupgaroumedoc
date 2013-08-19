@@ -2,14 +2,18 @@ vm_blog_homepage:
     path:  /
     defaults: { _controller: VMBlogBundle:Default:index }
 
+vm_blog_image_list:
+    path:  /image
+    defaults: { _controller: VMBlogBundle:Image:listimage}
+
 vm_blog_biographie:
     path:  /biographie
-    defaults: { _controller: VMBlogBundle:Default:bio }
-
+    defaults: { _controller: VMBlogBundle:Default:bio}
+    
 vm_blog_commentaire_list:
   path:  /commentaire/{page}
   defaults: { _controller: VMBlogBundle:Commentaire:listcommentaire, page:1 }
-    
+  
 vm_blog_commentaire_ajout:
     path:  /commentaire_ajout
     defaults: { _controller: VMBlogBundle:Commentaire:ajoutcommentaire }
@@ -26,7 +30,7 @@ vm_blog_commentaire_edit:
     options:
         expose: true   
     
- 
+    
 vm_blog_commentaire_supprime:
     path:  /commentaire_supprime/{id}
     defaults: { _controller: VMBlogBundle:Commentaire:supprimecommentaire}

@@ -3,19 +3,20 @@
 {% block vmblog_body %}
  
 <div class="">Commentaires
-         <a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>
-  <div id="form" ></div>
-
+     {#<a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>#}
+     {% include 'VMBlogBundle:Commentaire:formulaire.html.twig' with {'form': form} %}   
+  
 <div id=""><ul>
  {% if entities is not empty %}
  {% for key, entity in entities %}
 
  <ul style="list-style-type:none;">
     <li id={{entity.id}}>
-        <a href="#" id="montrer_commentaire">{{ entity.contenu | truncate(80,"\n", true)}}</a>
-        <a href="#" class="btn btn-info " id="editer_commentaire">Editer</a>
-        <a href="#" class="btn btn-info" id="supprimer_commentaire">Supprimer</a>
-    </li>
+        <a href="#">{{ entity.auteur }} : {{ entity.contenu }}</a>
+        {#<a href="#" class="btn " id="montrer_commentaire">Montrer</a>#}
+        <a href="#" class="btn " id="editer_commentaire"> <i class="icon-edit"></i>Editer</a>
+        <a href="#" class="btn " id="supprimer_commentaire"> <i class="icon-trash"></i>Supprimer</a>
+     </li>
 </ul>
         
  {% endfor %}
@@ -24,7 +25,7 @@
  {% endif %}
  {% if last_page > 1 %}
 <div class="">
- <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> &<span> prec </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"> &<span> prec </span> </a>
+ <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> <span> << </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"><span> < </span> </a>
 <ol>
 <ol>{% for page in 1..last_page %}</ol>
 </ol>
@@ -48,7 +49,7 @@
 <ol>{% endif %}</ol>
 </ol>
 <ol>{% endfor %}</ol>
- <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}"> <span> suiv </span>& </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> suiv </span>&</a></div>
+ <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}"> <span> > </span></a> <a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> >> </span></a></div>
  {% endif %}
 <div class="pagination_desc"><strong>{{ total_commentaires }}</strong> commentaires dans la page
  {% if last_page > 1 %}
@@ -59,26 +60,7 @@
 <script language="javascript" type="text/javascript">
        $(document).ready(function() {   
           $.data(document.body, 'popup',0);
-        $("body").on("click", "#ajouter_commentaire", (function(event)
-        {
          
-         if ($.data(document.body, 'popup') == 0) 
-         {    
-         $.ajax({
-            type: "POST",
-            url: "{{ path('vm_blog_commentaire_ajout')}}",
-            cache: false,
-            success: function(data) {
-                $("#ajouter_commentaire").popover({'content':data,html:true,placement:'bottom'});
-                $.data(document.body, 'popup',1);
-                 $("#ajouter_commentaire").click();
-                 }
-         });
-        }
-        else { $.data(document.body, 'popup', 0); }
-        }));
-        
-        
           $("body").on("click", "#editer_commentaire", (function()
           {
              if ($.data(document.body, 'popup') == 0) 
@@ -111,9 +93,10 @@
                cache:false,
                success: function(data)
                {
-               $("#"+identifiant+" >#montrer_commentaire").popover({'content':data,html:true,placement:'bottom'});
+               $("#"+identifiant+" >#montrer_commentaire").popover({'delay': { hide:500}, 'title':'Commentaire','trigger':'hover','content':data,html:true,placement:'bottom'});
                $.data(document.body, 'popup',1);
-               $("#"+identifiant+" > #montrer_commentaire").click();
+               $("#"+identifiant+" > #montrer_commentaire").mouseover();
+               
                }
              });
              }

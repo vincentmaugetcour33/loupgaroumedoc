@@ -4,19 +4,20 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Patrice Mauget - Monstre du Médoc{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />
-             <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" />
+            {#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />#}
+             <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" media="screen" />
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% block javascripts %}
+            {% block javascripts %}
                 {# pour le routage en ajax #}
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/jquery.js') }}"></script>
                 {# pour le rendu dynamique en twitter #}
-                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/popup.js') }}"></script>          
-        {% endblock %}
+        {% endblock %}  
+             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+          
     </head>
     <body>
       
@@ -28,28 +29,30 @@
                           <div class="navbar ">
                           <div class="navbar-inner">
                               <div class="container">
-                              <ul class="nav nav-pills nav-justified">
-                                <li class="active "><a href="/">Accueil</a></li>
-                                <li><a href="">Galleries</a></li>
-                                <li><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
-                              {#<li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>#}
-                                <li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
-                              </ul>
-                                      </div>
+                                    <ul class="nav nav-pills nav-justified">
+                                      <li class="active "><a href="/">Accueil</a></li>
+                                      <li><a href="{{ path('vm_blog_image_list') }}">Galleries</a></li>
+                                      <li><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
+                                      <li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
+                                    </ul>
+                                </div>
                            </div>
                        </div>                     
              
                <!-- Centre de la page -->    
                <div class="row-fluid">    
+                   <div class="span2 offset1">
+                          Bloc latéral gauche
+                       </div>
+                      
                        <div class="span9">
                         {% block body %}
                        {% endblock %}
                        </div>
                        
-                       <div class="span3">
-                           Test2
-                       
-                      </div>
+                       <!--<div class="span1 offset1">
+                          Bloc latéral droit
+                       </div>-->
                            
                 </div>             
                      
@@ -59,7 +62,7 @@
                 <div class="page-footer">   
                 
                     Pied-de-page du site Le monstre du Médoc
-                    WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}
+                    <p class="pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>
                 
                </div>
               
@@ -68,7 +71,7 @@
              
                
                 
-                
+        
        
     </body>
 </html>

@@ -142,6 +142,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::indexAction',  '_route' => 'vm_blog_homepage',);
         }
 
+        // vm_blog_image_list
+        if ($pathinfo === '/image') {
+            return array (  '_controller' => 'VM\\BlogBundle\\Controller\\ImageController::listimageAction',  '_route' => 'vm_blog_image_list',);
+        }
+
         // vm_blog_biographie
         if ($pathinfo === '/biographie') {
             return array (  '_controller' => 'VM\\BlogBundle\\Controller\\DefaultController::bioAction',  '_route' => 'vm_blog_biographie',);

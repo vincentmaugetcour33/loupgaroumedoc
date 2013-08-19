@@ -30,9 +30,12 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         // line 4
         echo " 
 <div class=\"\">Commentaires
-         <a href=\"#\" class=\"btn btn-info\" id=\"ajouter_commentaire\" >Ajouter</a>
-  <div id=\"form\" ></div>
-
+     ";
+        // line 7
+        echo "     ";
+        $this->env->loadTemplate("VMBlogBundle:Commentaire:formulaire.html.twig")->display(array_merge($context, array("form" => $this->getContext($context, "form"))));
+        echo "   
+  
 <div id=\"\"><ul>
  ";
         // line 10
@@ -49,14 +52,17 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
                 // line 14
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
                 echo ">
-        <a href=\"#\" id=\"montrer_commentaire\">";
+        <a href=\"#\">";
                 // line 15
-                echo twig_escape_filter($this->env, twig_truncate_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "contenu"), 80, "
-", true), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "auteur"), "html", null, true);
+                echo " : ";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "contenu"), "html", null, true);
                 echo "</a>
-        <a href=\"#\" class=\"btn btn-info \" id=\"editer_commentaire\">Editer</a>
-        <a href=\"#\" class=\"btn btn-info\" id=\"supprimer_commentaire\">Supprimer</a>
-    </li>
+        ";
+                // line 17
+                echo "        <a href=\"#\" class=\"btn \" id=\"editer_commentaire\"> <i class=\"icon-edit\"></i>Editer</a>
+        <a href=\"#\" class=\"btn \" id=\"supprimer_commentaire\"> <i class=\"icon-trash\"></i>Supprimer</a>
+     </li>
 </ul>
         
  ";
@@ -64,27 +70,27 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['entity'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 22
+            // line 23
             echo " ";
         } else {
-            // line 23
+            // line 24
             echo " Résultat vide
  ";
         }
-        // line 25
+        // line 26
         echo " ";
         if (($this->getContext($context, "last_page") > 1)) {
-            // line 26
+            // line 27
             echo "<div class=\"\">
  <a href=\"";
-            // line 27
+            // line 28
             echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => 1));
-            echo "\"> &<span> prec </span> </a> <a href=\"";
+            echo "\"> <span> << </span> </a> <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "previous_page"))), "html", null, true);
-            echo "\"> &<span> prec </span> </a>
+            echo "\"><span> < </span> </a>
 <ol>
 <ol>";
-            // line 29
+            // line 30
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(range(1, $this->getContext($context, "last_page")));
             foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
@@ -92,14 +98,14 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 </ol>
 <ol>
 <ol>";
-                // line 32
+                // line 33
                 if (($this->getContext($context, "page") == $this->getContext($context, "current_page"))) {
                     echo "</ol>
 </ol>
 <ol>
 <ol>
     <li>";
-                    // line 36
+                    // line 37
                     echo twig_escape_filter($this->env, $this->getContext($context, "page"), "html", null, true);
                     echo "</li>
 </ol>
@@ -107,13 +113,13 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 <ol>
 <ol>";
                 } else {
-                    // line 40
+                    // line 41
                     echo "</ol>
 </ol>
 <ol>
 <ol>
     <li><a href=\"";
-                    // line 44
+                    // line 45
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "page"))), "html", null, true);
                     echo "\">";
                     echo twig_escape_filter($this->env, $this->getContext($context, "page"), "html", null, true);
@@ -123,7 +129,7 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 <ol>
 <ol>";
                 }
-                // line 48
+                // line 49
                 echo "</ol>
 </ol>
 <ol>";
@@ -131,24 +137,24 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 50
+            // line 51
             echo "</ol>
  <a href=\"";
-            // line 51
+            // line 52
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "next_page"))), "html", null, true);
-            echo "\"> <span> suiv </span>& </a> <a href=\"";
+            echo "\"> <span> > </span></a> <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "last_page"))), "html", null, true);
-            echo "\"> <span> suiv </span>&</a></div>
+            echo "\"> <span> >> </span></a></div>
  ";
         }
-        // line 53
+        // line 54
         echo "<div class=\"pagination_desc\"><strong>";
         echo twig_escape_filter($this->env, $this->getContext($context, "total_commentaires"), "html", null, true);
         echo "</strong> commentaires dans la page
  ";
-        // line 54
+        // line 55
         if (($this->getContext($context, "last_page") > 1)) {
-            // line 55
+            // line 56
             echo " - page <strong>";
             echo twig_escape_filter($this->env, $this->getContext($context, "current_page"), "html", null, true);
             echo "/";
@@ -162,29 +168,7 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 <script language=\"javascript\" type=\"text/javascript\">
        \$(document).ready(function() {   
           \$.data(document.body, 'popup',0);
-        \$(\"body\").on(\"click\", \"#ajouter_commentaire\", (function(event)
-        {
          
-         if (\$.data(document.body, 'popup') == 0) 
-         {    
-         \$.ajax({
-            type: \"POST\",
-            url: \"";
-        // line 69
-        echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_ajout");
-        echo "\",
-            cache: false,
-            success: function(data) {
-                \$(\"#ajouter_commentaire\").popover({'content':data,html:true,placement:'bottom'});
-                \$.data(document.body, 'popup',1);
-                 \$(\"#ajouter_commentaire\").click();
-                 }
-         });
-        }
-        else { \$.data(document.body, 'popup', 0); }
-        }));
-        
-        
           \$(\"body\").on(\"click\", \"#editer_commentaire\", (function()
           {
              if (\$.data(document.body, 'popup') == 0) 
@@ -217,9 +201,10 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
                cache:false,
                success: function(data)
                {
-               \$(\"#\"+identifiant+\" >#montrer_commentaire\").popover({'content':data,html:true,placement:'bottom'});
+               \$(\"#\"+identifiant+\" >#montrer_commentaire\").popover({'delay': { hide:500}, 'title':'Commentaire','trigger':'hover','content':data,html:true,placement:'bottom'});
                \$.data(document.body, 'popup',1);
-               \$(\"#\"+identifiant+\" > #montrer_commentaire\").click();
+               \$(\"#\"+identifiant+\" > #montrer_commentaire\").mouseover();
+               
                }
              });
              }
@@ -262,6 +247,6 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  174 => 69,  152 => 55,  150 => 54,  145 => 53,  138 => 51,  135 => 50,  127 => 48,  117 => 44,  111 => 40,  103 => 36,  96 => 32,  88 => 29,  81 => 27,  78 => 26,  75 => 25,  71 => 23,  68 => 22,  54 => 15,  50 => 14,  46 => 12,  41 => 11,  39 => 10,  31 => 4,  28 => 3,);
+        return array (  158 => 56,  156 => 55,  151 => 54,  144 => 52,  141 => 51,  133 => 49,  123 => 45,  117 => 41,  109 => 37,  102 => 33,  94 => 30,  87 => 28,  84 => 27,  81 => 26,  77 => 24,  74 => 23,  63 => 17,  57 => 15,  53 => 14,  49 => 12,  44 => 11,  42 => 10,  35 => 7,  31 => 4,  28 => 3,);
     }
 }

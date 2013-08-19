@@ -1,9 +1,9 @@
 {% if form is defined %}
 <div class="well">
-   <form action="{% if commentaire is defined %}{{ path('vm_blog_commentaire_edit', {'id':commentaire.id}) }}{% else %}{{ path('vm_blog_commentaire_ajout') }}{% endif %}" method="post" {{ form_enctype(form) }}>
+   <form class="form-inline" action="{% if commentaire is defined %}{{ path('vm_blog_commentaire_edit', {'id':commentaire.id}) }}{% else %}{{ path('vm_blog_commentaire_list') }}{% endif %}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <input type="submit" class="btn btn-primary" />
-    <input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />
+    {#<input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />#}
   </form>
 </div>
 {% endif %}

@@ -32,14 +32,16 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 10
-        echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        echo "            ";
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 18
+        echo "  
+             <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        // line 19
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
-        ";
-        // line 11
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 20
-        echo "    </head>
+          
+    </head>
     <body>
       
         <div class=\"container-fluid\">
@@ -50,36 +52,41 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                           <div class=\"navbar \">
                           <div class=\"navbar-inner\">
                               <div class=\"container\">
-                              <ul class=\"nav nav-pills nav-justified\">
-                                <li class=\"active \"><a href=\"/\">Accueil</a></li>
-                                <li><a href=\"\">Galleries</a></li>
-                                <li><a href=\"";
+                                    <ul class=\"nav nav-pills nav-justified\">
+                                      <li class=\"active \"><a href=\"/\">Accueil</a></li>
+                                      <li><a href=\"";
         // line 34
+        echo $this->env->getExtension('routing')->getPath("vm_blog_image_list");
+        echo "\">Galleries</a></li>
+                                      <li><a href=\"";
+        // line 35
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
-                              ";
+                                      <li><a href=\"";
         // line 36
-        echo "                                <li><a href=\"";
         echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
         echo "\">Commentaires</a></li>
-                              </ul>
-                                      </div>
+                                    </ul>
+                                </div>
                            </div>
                        </div>                     
              
                <!-- Centre de la page -->    
                <div class=\"row-fluid\">    
+                   <div class=\"span2 offset1\">
+                          Bloc latéral gauche
+                       </div>
+                      
                        <div class=\"span9\">
                         ";
-        // line 45
+        // line 49
         $this->displayBlock('body', $context, $blocks);
-        // line 47
+        // line 51
         echo "                       </div>
                        
-                       <div class=\"span3\">
-                           Test2
-                       
-                      </div>
+                       <!--<div class=\"span1 offset1\">
+                          Bloc latéral droit
+                       </div>-->
                            
                 </div>             
                      
@@ -89,10 +96,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                 <div class=\"page-footer\">   
                 
                     Pied-de-page du site Le monstre du Médoc
-                    WEBMESTRE : ";
-        // line 62
+                    <p class=\"pull-right\">WEBMESTRE : ";
+        // line 65
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
-        echo "
+        echo "</p>
                 
                </div>
               
@@ -101,7 +108,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
              
                
                 
-                
+        
        
     </body>
 </html>
@@ -118,49 +125,47 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
     public function block_stylesheets($context, array $blocks = array())
     {
         // line 7
-        echo "            <link rel=\"stylesheet\" href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/css/bootstrap.css"), "html", null, true);
-        echo "\" type=\"text/css\" />
-             <link rel=\"stylesheet\" href=\"";
+        echo "            ";
         // line 8
+        echo "             <link rel=\"stylesheet\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/css/bootstrap.min.css"), "html", null, true);
-        echo "\" type=\"text/css\" />
+        echo "\" type=\"text/css\" media=\"screen\" />
         ";
     }
 
-    // line 11
+    // line 10
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 12
+        // line 11
         echo "                ";
-        // line 13
+        // line 12
         echo "                <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
         echo "\"></script>
                 <script src=\"";
-        // line 14
+        // line 13
         echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
         echo "\"></script>
                 <script type=\"text/javascript\" src=\"";
-        // line 15
+        // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
         echo "\"></script>
                 ";
-        // line 17
+        // line 16
         echo "                <script type=\"text/javascript\" src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.js"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
                 <script type=\"text/javascript\" src=\"";
-        // line 18
+        // line 17
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/popup.js"), "html", null, true);
         echo "\"></script>          
         ";
     }
 
-    // line 45
+    // line 49
     public function block_body($context, array $blocks = array())
     {
-        // line 46
+        // line 50
         echo "                       ";
     }
 
@@ -176,6 +181,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  164 => 46,  161 => 45,  155 => 18,  150 => 17,  146 => 15,  142 => 14,  137 => 13,  135 => 12,  132 => 11,  126 => 8,  121 => 7,  118 => 6,  112 => 5,  94 => 62,  77 => 47,  75 => 45,  62 => 36,  58 => 34,  42 => 20,  40 => 11,  35 => 10,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  169 => 50,  166 => 49,  160 => 17,  155 => 16,  151 => 14,  147 => 13,  142 => 12,  140 => 11,  137 => 10,  130 => 8,  128 => 7,  125 => 6,  119 => 5,  101 => 65,  85 => 51,  83 => 49,  67 => 36,  63 => 35,  59 => 34,  41 => 19,  38 => 18,  35 => 10,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

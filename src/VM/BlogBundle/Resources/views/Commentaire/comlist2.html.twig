@@ -1,0 +1,130 @@
+{% extends "VMBlogBundle::base.html.twig" %}
+
+{% block vmblog_body %}
+ 
+<div class="">Commentaires
+         <a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>
+  <div id="form" ></div>
+
+<div id=""><ul>
+ {% if commentaires is not empty %}
+ {% for key, commentaire in commentaires %}
+
+ <ul style="list-style-type:none;">
+    <li id={{commentaire.id}}>
+        <a href="#">{{ commentaire.auteur }} : {{ commentaire.contenu | truncate(80,"\n", true)}}</a>
+        <a href="#" class="btn btn-info" id="montrer_commentaire">Montrer</a>
+        <a href="#" class="btn btn-info " id="editer_commentaire">Editer</a>
+        <a href="#" class="btn btn-info" id="supprimer_commentaire">Supprimer</a>
+     </li>
+</ul>
+        
+ {% endfor %}
+ {% else %}
+ Résultat vide
+ {% endif %}
+ 
+    <div class="pagination">
+    <ul>
+      {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+      {% for p in range(1, nombrePage) %}
+        <li{% if p == page %} class="active"{% endif %}>
+          <a href="{{ path('vm_blog_commentaire_list', {'page': p}) }}">{{ p }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+ 
+
+</div>
+</div>
+
+<script language="javascript" type="text/javascript">
+       $(document).ready(function() {   
+          $.data(document.body, 'popup',0);
+        $("body").on("click", "#ajouter_commentaire", (function(event)
+        {
+         
+         if ($.data(document.body, 'popup') == 0) 
+         {    
+         $.ajax({
+            type: "POST",
+            url: "{{ path('vm_blog_commentaire_ajout')}}",
+            cache: false,
+            success: function(data) {
+                $("#ajouter_commentaire").popover({'content':data,html:true,placement:'bottom'});
+                $.data(document.body, 'popup',1);
+                 $("#ajouter_commentaire").click();
+                 }
+         });
+        }
+        else { $.data(document.body, 'popup', 0); }
+        }));
+        
+        
+          $("body").on("click", "#editer_commentaire", (function()
+          {
+             if ($.data(document.body, 'popup') == 0) 
+                  {  
+            var identifiant = parseInt($(this).parent().attr("id"));
+            $.ajax({
+               type: "POST",
+               url: Routing.generate('vm_blog_commentaire_edit', { id: identifiant }),
+               cache:false,
+               success: function(data)
+               {
+               $("#"+identifiant+" > #editer_commentaire").popover({'content':data,html:true,placement:'bottom'});
+               $.data(document.body, 'popup',1);
+               $("#"+identifiant+" #editer_commentaire").click();
+               }
+             });
+             }
+            else { $.data(document.body, 'popup', 0); }
+          }));
+          
+              
+          $("body").on("click", "#montrer_commentaire", (function()
+          { 
+            if ($.data(document.body, 'popup') == 0) 
+                  {
+            var identifiant = parseInt($(this).parent().attr("id"));
+            $.ajax({
+               type: "POST",
+               url: Routing.generate('vm_blog_commentaire_show', { id: identifiant }),
+               cache:false,
+               success: function(data)
+               {
+               $("#"+identifiant+" >#montrer_commentaire").popover({'delay': { hide:500}, 'title':'Commentaire','trigger':'hover','content':data,html:true,placement:'bottom'});
+               $.data(document.body, 'popup',1);
+               $("#"+identifiant+" > #montrer_commentaire").mouseover();
+               
+               }
+             });
+             }
+            else { $.data(document.body, 'popup', 0); }
+          }));
+          
+          $("body").on("click", "#supprimer_commentaire", (function()
+          { 
+            if (confirm("Souhaitez-vous réellement supprimer ce commentaire ?")) 
+            {
+                var identifiant = parseInt($(this).parent().attr("id"));
+                $.ajax({
+                   type: "POST",
+                   url: Routing.generate('vm_blog_commentaire_supprime', { id: identifiant }),
+                   cache:false,
+                   success: function(data)
+                   {
+                    alert("Commentaire supprimé");
+                   }
+                 });
+             }
+             
+          }));
+        
+    });
+</script>    
+
+{% endblock %}
+
+
