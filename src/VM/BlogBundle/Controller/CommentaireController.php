@@ -19,28 +19,30 @@ class CommentaireController extends Controller
       */
      public function listcommentaireAction($page)
      {      
-      
-      $request = $this->get('request');
       $manager =$this->getDoctrine()->getManager();
-    
-      // pour le formulaire d'ajout
+      $request = $this->get('request');
       $commentaire = new Commentaire();
-      $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Le monstre du Médoc');
-      $commentaire->setLivre($livre_principal);
-  
       $form = $this->createForm(new CommentaireType, $commentaire);
-       
-      if ($request->getMethod() == 'POST')
+      
+        if ($request->getMethod() == 'POST')
          {
+          $this->get('session')->getFlashBag()->add('info', 'Commentaire poste');
             $form->bind($request);
              if ($form->isValid())
              {
-           
+              $this->get('session')->getFlashBag()->add('info', 'Commentaire valdie');
+              $livre_principal = $manager->getRepository('VMBlogBundle:Commentaire')->findOneByTitre('Le monstre du Médoc');
+              $commentaire->setLivre($livre_principal);
               $manager->persist($commentaire);
               $manager->flush();   
+              
              }
              return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
-          }  
+          } 
+      
+      
+      
+      
       
       $commentaires_per_page = $this->container->getParameter('max_commentaires_on_listepage');
       $previous_page = $page > 1 ? $page - 1 : 1;
@@ -62,21 +64,10 @@ class CommentaireController extends Controller
        ));
       }
      
-      /**
-        * Show commentaire
-        *
-        * @param integer $id
-        */
-      public function showcommentaireAction(Commentaire $commentaire)
-      {
-        return $this->render('VMBlogBundle:Commentaire:comshow.html.twig', 
-                array('commentaire' => $commentaire));  
-      }
-      
-      /**
+          /**
         * Ajout commentaire
         */
-      /*public function ajoutcommentaireAction()
+      public function ajoutcommentaireAction()
       {
        // analyse de la route
        $request = $this->get('request');
@@ -89,33 +80,36 @@ class CommentaireController extends Controller
        $form = $this->createForm(new CommentaireType, $commentaire);
       
        // traitement daffichage du formulaire après clic sur le bouton d'ajout de commentaire
-       if($request->isXmlHttpRequest())
+       /*if($request->isXmlHttpRequest())
        {
          return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig", array(
                   'form' => $form->createView()
            ));
         } 
        else 
-       {
+       {*/
          if ($request->getMethod() == 'POST')
          {
-            $form->bind($request);
+             $this->get('session')->getFlashBag()->add('info', 'Commentaire poste');
+             $form->bind($request);
              if ($form->isValid())
              {
+              $this->get('session')->getFlashBag()->add('info', 'Commentaire valide');
               $livre_principal = $repository->findOneByTitre('Le monstre du Médoc');
               $commentaire->setLivre($livre_principal);
               $manager->persist($commentaire);
               $manager->flush();   
-              return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+              
              }
           }  
-         else
-            {
-            return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig");  
-            }    
-       }    
+         return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+            //else
+          //  {
+              
+           // }    
+      // }    
          
-      }*/
+      }
       
       /**
         * Supprime commentaire
@@ -138,16 +132,16 @@ class CommentaireController extends Controller
       public function editcommentaireAction(Commentaire $commentaire)
       {
        //$repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Commentaire');   
-        //$commentaire = $repository->find($id);
+       //$commentaire = $repository->find($id);
         // analyse de la route
-       $request = $this->get('request');
+       
        
        // creation du formulaire
        //$repository =$this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
        //$livre_principal = $repository->findOneByTitre('Le monstre du Médoc');
        //$commentaire->setLivre($livre_principal);
        $form = $this->createForm(new CommentaireType, $commentaire);
-      
+       $request = $this->getRequest();
        // traitement daffichage du formulaire après clic sur le bouton d'ajout de commentaire
        if($request->isXmlHttpRequest())
        {
@@ -155,30 +149,30 @@ class CommentaireController extends Controller
              'commentaire' => $commentaire, 
              'form' => $form->createView()
            ));
-        } 
-       else 
-       {
+        }
          if ($request->getMethod() == 'POST')
          {
+            
             $form->bind($request);
-             if ($form->isValid() AND !$manager->contains($commentaire))
+             if ($form->isValid() )
              {
               $manager = $this->getDoctrine()->getManager();
               $manager->persist($commentaire);
               $manager->flush();   
               
+               // On définit un message flash
+                 $this->get('session')->getFlashBag()->add('info', 'Commentaire bien modifié');
+                return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
              }
-            return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
-               
+                     
           }  
-         else
-            {
-            return $this->render("VMBlogBundle:Commentaire:formulaire.html.twig");  
-            }    
+        
+       
+            
        }    
        
          
-      }
+      
     
     
     

@@ -164,11 +164,6 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::ajoutcommentaireAction',  '_route' => 'vm_blog_commentaire_ajout',);
                 }
 
-                // vm_blog_commentaire_show
-                if (0 === strpos($pathinfo, '/commentaire_show') && preg_match('#^/commentaire_show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_show')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::showcommentaireAction',));
-                }
-
                 // vm_blog_commentaire_edit
                 if (0 === strpos($pathinfo, '/commentaire_edit') && preg_match('#^/commentaire_edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_edit')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::editcommentaireAction',));

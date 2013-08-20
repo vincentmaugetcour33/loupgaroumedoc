@@ -98,7 +98,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "                          </div>        
                        </div>
                       
-                       <div class=\"col-sm-9\">
+                       <div class=\"col-sm-offset-1 col-sm-8\">
                         ";
         // line 60
         $this->displayBlock('body', $context, $blocks);

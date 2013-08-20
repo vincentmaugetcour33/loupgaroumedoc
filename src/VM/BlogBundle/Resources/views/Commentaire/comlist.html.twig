@@ -7,20 +7,36 @@
 
 {% block vmblog_body %}
  
-<div class="">
+{% for message in app.session.flashbag.get('info') %} 
+    {{ message }}
+{% endfor %}
+    
+<div id="formulaire">
      {#<a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>#}
-     {% include 'VMBlogBundle:Commentaire:formulaire.html.twig' with {'form': form} %}   
-  
+     {#{% render(controller('VMBlogBundle:Commentaire:ajoutcommentaire')) %}   #}
+        {% if form is defined %}
+
+            <form class="form-inline" method="post" action="{{ path('vm_blog_commentaire_list') }}" {#{% if commentaire is defined %}{{ path('vm_blog_commentaire_edit', {'id':commentaire.id}) }}{% else %}{{ path('vm_blog_commentaire_list') }}{% endif %}"#} {{ form_enctype(form) }}>
+               <div class="form-group">{{ form_widget(form.auteur, { 'attr': {'class': 'form-control', 'placeholder': 'Auteur'} }) }}</div>
+               <div class="form-group">{{ form_widget(form.contenu, { 'attr': {'class': 'form-control input-sm', 'placeholder':'Commentaire'} }) }}</div>
+             <input type="submit" class="btn btn-default" />
+             {#<input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />#}
+           </form>
+        {% endif %}
+</div> 
+      
  <div id="liste_commentaire">
  
 {% if entities is not empty %}
  
     {% for key, entity in entities %}
 
-
-        <div class="row" id={{entity.id}}>
+          <div class="row" id={{entity.id}}>
            <div id="operations" class="input-group input-group-sm">
-                <input style="cursor:pointer;" type="text" rel="popover" id="montrer_commentaire" class="form-control input-lg" readonly value="{{ entity.contenu | truncate(115,true,'[...]') }}" placeholder="Commentaire">
+                <!--<textarea rows=10 id="montrer_commentaire" class="form-control input-xlarge" readonly>
+                    
+                   </textarea> -->
+                   <span class="input-xlarge uneditable-input" class="form-control">{{ entity.contenu }}</span>
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                     <ul class="dropdown-menu pull-right" id={{entity.id}}>
@@ -74,56 +90,23 @@
 
 <script language="javascript" type="text/javascript">
        $(document).ready(function() {   
-          $.data(document.body, 'popup',0);
-         
           $("body").on("click", "#editer_commentaire", (function()
           {
-             if ($.data(document.body, 'popup') == 0) 
-                  {  
-            var identifiant = parseInt($(this).parent().parent().attr("id"));
+           var identifiant = parseInt($(this).parent().parent().attr("id"));
+            
             $.ajax({
                type: "POST",
                url: Routing.generate('vm_blog_commentaire_edit', { id: identifiant }),
                cache:false,
                success: function(data)
                {
-               $("#"+identifiant+"> #edit > #editer_commentaire").popover({'content':data,html:true,placement:'bottom'});
-               $.data(document.body, 'popup',1);
-               $("#"+identifiant+" #edit > #editer_commentaire").click();
+               $("#formulaire").html(data);
                }
              });
-             }
-            else { $.data(document.body, 'popup', 0); }
+            
           }));
           
               
-          $("body").on("mouseover", "#montrer_commentaire", (function()
-          { 
-            if ($.data(document.body, 'popup') == 0) 
-                {
-            var identifiant = parseInt($(this).parent().parent().attr("id"));
-            $.ajax({
-               type: "POST",
-               url: Routing.generate('vm_blog_commentaire_show', { id: identifiant }),
-               cache:false,
-               success: function(data)
-               {
-               $("#"+identifiant+"> #operations > #montrer_commentaire").popover({html:true,delay: { show:500,hide:10}, 'title':'Commentaire',trigger:'click','content':data,html:true,placement:'bottom'});
-               $.data(document.body, 'popup',1);
-               $("#"+identifiant+"> #operations > #montrer_commentaire").click();
-               $("#"+identifiant+"> #operations > #montrer_commentaire").mouseout(function ()
-                {
-                    $(this).popover('destroy'); var int=setInterval(function(){
-                    $.data(document.body, 'popup',0);
-                    },3000);
-                });
-               
-               }
-             });
-             }
-           // else { $.data(document.body, 'popup', 0); }
-          }));
-          
           $("body").on("click", "#supprimer_commentaire", (function()
           { 
             if (confirm("Souhaitez-vous réellement supprimer ce commentaire ?")) 

@@ -18,19 +18,12 @@ vm_blog_commentaire_ajout:
     path:  /commentaire_ajout
     defaults: { _controller: VMBlogBundle:Commentaire:ajoutcommentaire }
     
-vm_blog_commentaire_show:
-    path:  /commentaire_show/{id}
-    defaults: { _controller: VMBlogBundle:Commentaire:showcommentaire}
-    options:
-       expose: true
-        
 vm_blog_commentaire_edit:
     path:  /commentaire_edit/{id}
     defaults: { _controller: VMBlogBundle:Commentaire:editcommentaire}
     options:
-        expose: true   
-    
-    
+       expose: true
+       
 vm_blog_commentaire_supprime:
     path:  /commentaire_supprime/{id}
     defaults: { _controller: VMBlogBundle:Commentaire:supprimecommentaire}
