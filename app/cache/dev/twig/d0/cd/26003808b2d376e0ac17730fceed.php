@@ -29,12 +29,9 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
     {
         // line 4
         echo " 
-    <img src=\"";
-        // line 5
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
-        echo "\" alt=\"photo patrice mauget\" />
-    Auteur : ";
+    ";
         // line 6
+        echo "    Auteur : ";
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
         echo " <br/>
     Biographie :
@@ -66,6 +63,6 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  48 => 10,  45 => 9,  43 => 8,  38 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  45 => 10,  42 => 9,  40 => 8,  34 => 6,  31 => 4,  28 => 3,);
     }
 }

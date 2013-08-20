@@ -18,7 +18,7 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
         // line 1
         if (array_key_exists("form", $context)) {
             // line 2
-            echo "<div class=\"well\">
+            echo "
    <form class=\"form-inline\" action=\"";
             // line 3
             if (array_key_exists("commentaire", $context)) {
@@ -30,15 +30,15 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getContext($context, "form"), 'enctype');
 ;
             echo ">
+      ";
+            // line 5
+            echo "      <div class=\"form-group\">";
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "contenu"), 'widget', array("attr" => array("class" => "form-control")));
+            echo "</div>
+    <input type=\"submit\" class=\"btn btn-default\" />
     ";
-            // line 4
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getContext($context, "form"), 'widget');
-            echo "
-    <input type=\"submit\" class=\"btn btn-primary\" />
-    ";
-            // line 7
+            // line 8
             echo "  </form>
-</div>
 ";
         }
     }
@@ -55,6 +55,6 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  40 => 7,  35 => 4,  24 => 3,  21 => 2,  22 => 2,  19 => 1,);
+        return array (  41 => 8,  35 => 5,  24 => 3,  21 => 2,  19 => 1,);
     }
 }

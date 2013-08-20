@@ -33,7 +33,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
         // line 5
         if ((!twig_test_empty($this->getContext($context, "images")))) {
             // line 6
-            echo "    <table id=\"\" class=\"\">
+            echo "    <table id=\"\" class=\"table table-striped\">
         <caption>GALLERIE</caption>
         <tbody>
         <tr>

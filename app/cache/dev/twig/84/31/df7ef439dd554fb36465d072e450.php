@@ -10,6 +10,7 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         $this->parent = $this->env->loadTemplate("VMBlogBundle::base.html.twig");
 
         $this->blocks = array(
+            'stylesheets' => array($this, 'block_stylesheets'),
             'vmblog_body' => array($this, 'block_vmblog_body'),
         );
     }
@@ -25,16 +26,29 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
     }
 
     // line 3
-    public function block_vmblog_body($context, array $blocks = array())
+    public function block_stylesheets($context, array $blocks = array())
     {
         // line 4
+        echo "    ";
+        $this->displayParentBlock("stylesheets", $context, $blocks);
+        echo "
+
+
+   
+";
+    }
+
+    // line 10
+    public function block_vmblog_body($context, array $blocks = array())
+    {
+        // line 11
         echo " 
    ";
-        // line 5
+        // line 12
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "titre"), "html", null, true);
         echo "<br/>
    ";
-        // line 6
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "resume"), "html", null, true);
         echo "
    
@@ -55,6 +69,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  38 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  52 => 13,  48 => 12,  45 => 11,  42 => 10,  32 => 4,  29 => 3,);
     }
 }

@@ -44,7 +44,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
     </head>
     <body>
       
-        <div class=\"container-fluid\">
+        <div class=\"container\">
                <!-- En-tête du layout -->
                <div class=\"page-header\">
                    ";
@@ -76,21 +76,33 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                        </div>                     
              
                <!-- Centre de la page -->    
-               <div class=\"row-fluid\">    
-                   <div class=\"span2 offset1\">
-                          ";
+               <div class=\"row\">    
+                       <div class=\"col-sm-2\">
+                           <div class=\"row\">
+                               Auteur : ";
         // line 50
+        echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
+        echo "
+                               <img src=\"";
+        // line 51
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
+        echo "\" alt=\"Patrice mauget\" />
+                           </div>
+                           <div class=\"row\">
+                           ";
+        // line 55
         echo "                           ";
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
         echo " ";
-        // line 51
-        echo "                       </div>
-                      
-                       <div class=\"span9\">
-                        ";
-        // line 54
-        $this->displayBlock('body', $context, $blocks);
         // line 56
+        echo "                          </div>        
+                       </div>
+                      
+                       <div class=\"col-sm-9\">
+                        ";
+        // line 60
+        $this->displayBlock('body', $context, $blocks);
+        // line 62
         echo "                       </div>
                        
                        <!--<div class=\"span1 offset1\">
@@ -106,7 +118,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                 
                     Pied-de-page du site Le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 70
+        // line 76
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -172,10 +184,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
     }
 
-    // line 54
+    // line 60
     public function block_body($context, array $blocks = array())
     {
-        // line 55
+        // line 61
         echo "                       ";
     }
 
@@ -191,6 +203,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  179 => 55,  176 => 54,  170 => 18,  165 => 17,  157 => 14,  152 => 13,  147 => 11,  139 => 8,  137 => 7,  128 => 5,  110 => 70,  92 => 54,  87 => 51,  83 => 50,  71 => 40,  67 => 39,  63 => 38,  41 => 20,  35 => 11,  33 => 6,  23 => 1,  175 => 62,  173 => 61,  168 => 60,  161 => 15,  158 => 57,  150 => 12,  140 => 51,  134 => 6,  126 => 43,  119 => 39,  111 => 36,  104 => 34,  101 => 33,  98 => 32,  94 => 56,  91 => 29,  80 => 23,  74 => 21,  70 => 20,  66 => 18,  61 => 17,  59 => 16,  52 => 29,  48 => 10,  45 => 9,  38 => 19,  32 => 3,  29 => 5,);
+        return array (  191 => 61,  188 => 60,  182 => 18,  177 => 17,  173 => 15,  169 => 14,  164 => 13,  162 => 12,  159 => 11,  151 => 8,  149 => 7,  146 => 6,  140 => 5,  122 => 76,  106 => 62,  104 => 60,  98 => 56,  94 => 55,  88 => 51,  84 => 50,  71 => 40,  67 => 39,  63 => 38,  52 => 29,  41 => 20,  38 => 19,  35 => 11,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

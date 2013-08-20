@@ -22,7 +22,7 @@
     </head>
     <body>
       
-        <div class="container-fluid">
+        <div class="container">
                <!-- En-tête du layout -->
                <div class="page-header">
                    {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
@@ -44,13 +44,19 @@
                        </div>                     
              
                <!-- Centre de la page -->    
-               <div class="row-fluid">    
-                   <div class="span2 offset1">
-                          {# Génère aléatoirement un extrait du livre#}
+               <div class="row">    
+                       <div class="col-sm-2">
+                           <div class="row">
+                               Auteur : {{ auteur_nom }}
+                               <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice mauget" />
+                           </div>
+                           <div class="row">
+                           {# Génère aléatoirement un extrait du livre#}
                            {{ render(controller("VMBlogBundle:Extrait:index")) }} {#Bloc latéral gauche#}
+                          </div>        
                        </div>
                       
-                       <div class="span9">
+                       <div class="col-sm-9">
                         {% block body %}
                        {% endblock %}
                        </div>
