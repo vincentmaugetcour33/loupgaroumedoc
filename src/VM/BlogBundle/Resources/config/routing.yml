@@ -15,8 +15,8 @@ vm_blog_commentaire_list:
   defaults: { _controller: VMBlogBundle:Commentaire:listcommentaire, page:1 }
   
 vm_blog_commentaire_ajout:
-    path:  /commentaire_ajout
-    defaults: { _controller: VMBlogBundle:Commentaire:ajoutcommentaire }
+    path:  /commentaire_ajout/
+    defaults: { _controller: VMBlogBundle:Commentaire:ajoutcommentaire }    
     
 vm_blog_commentaire_edit:
     path:  /commentaire_edit/{id}
