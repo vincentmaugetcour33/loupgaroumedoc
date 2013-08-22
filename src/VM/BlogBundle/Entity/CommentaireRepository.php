@@ -21,8 +21,10 @@ class CommentaireRepository extends EntityRepository
         
      $query_builder = $this->createQueryBuilder('c');
      return $query_builder->leftJoin('c.livre', 'l')
-                   ->addSelect('l')->where( $query_builder->expr()->like('l.titre', '"le monstre du Médoc%"'))
-                   ->where($query_builder->expr()->like('c.statut', "'modere%'"))->orderBy('c.date', 'DESC')
+                   ->addSelect('l')->where( $query_builder->expr()->like('l.titre', ':titre'))
+                   ->setParameter('titre', 'le monstre du Médoc')
+            // ->where($query_builder->expr()->like('c.statut', "'modere,accepte%'"))
+                   ->orderBy('c.date', 'DESC')
                    ->setFirstResult(($page * $commentaires_per_page) - $commentaires_per_page)
                    ->setMaxResults($commentaires_per_page)
                    ->getQuery()->getResult();

@@ -49,7 +49,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                <div class=\"page-header\">
                    ";
         // line 29
-        echo "                   En-tête du site Le monstre du Médoc
+        echo "                   En-tête du site Loup-garou, le monstre du Médoc
                </div>
                           
                <!-- Menu principal du layout -->
@@ -57,16 +57,16 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                           <div class=\"navbar-inner\">
                               <div class=\"container\">
                                     <ul class=\"nav nav-pills nav-justified\">
-                                      <li class=\"active \"><a href=\"/\">Accueil</a></li>
-                                      <li><a href=\"";
+                                      <li id=\"accueil\"><a href=\"/\">Accueil</a></li>
+                                      <li id=\"galleries\"><a href=\"";
         // line 38
         echo $this->env->getExtension('routing')->getPath("vm_blog_image_list");
         echo "\">Galleries</a></li>
-                                      <li><a href=\"";
+                                      <li id=\"biographie\"><a href=\"";
         // line 39
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
-                                      <li><a href=\"";
+                                      <li id=\"commentaires\"><a href=\"";
         // line 40
         echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
         echo "\">Commentaires</a></li>
@@ -78,31 +78,59 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                <!-- Centre de la page -->    
                <div class=\"row\">    
                        <div class=\"col-sm-2\">
+                       
+                           
                            <div class=\"row\">
-                               Auteur : ";
-        // line 50
+                              ";
+        // line 53
+        echo "                              <div class=\"span12 well\">
+                               <br>
+                               <div id=\"monaccordeon\">
+                                 <div class=\"accordion-group\">
+                                   <button disabled=\"disabled\" id=\"presentation\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#presentation\">Qui suis-je ?</button>
+                                   <div id=\"presentation\" class=\"accordion-body collapse in\">
+                                     <div class=\"accordion-inner\">  
+                                         Auteur : ";
+        // line 60
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
         echo "
-                               <img src=\"";
-        // line 51
+                                         <img src=\"";
+        // line 61
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
         echo "\" alt=\"Patrice mauget\" />
-                           </div>
-                           <div class=\"row\">
-                           ";
-        // line 55
-        echo "                           ";
-        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
-        echo " ";
-        // line 56
-        echo "                          </div>        
-                       </div>
+                                         
+                                    </div>
+                                   </div>
+                                 </div>
+                                 <div class=\"accordion-group\">
+                                   <button class=\"btn btn-sm btn-primary accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#coordonnees\">Mes coordonnéees</button>
+                                   <div id=\"coordonnees\" class=\"accordion-body collapse \">
+                                     <div class=\"accordion-inner\">
+                                        <br/><a href=\"mailto:";
+        // line 70
+        echo twig_escape_filter($this->env, $this->getContext($context, "auteur_email"), "html", null, true);
+        echo "\">";
+        echo $this->env->getExtension('translator')->getTranslator()->trans("biographie.mail_auteur", array(), "messages");
+        echo "</a>
+                                     </div>
+                                      </div>     
+                                 </div>
+                                 <div class=\"accordion-group\">
+                                   <button class=\"btn btn-sm btn-primary accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#liens_divers\">Mes liens divers</button>
+                                   <div id=\"liens_divers\" class=\"accordion-body collapse\">
+                                     <div class=\"accordion-inner\">Rajouter des liens sur d'autres sites (mollat,amazon,...)</div>
+                                    </div>
+                               </div>
+                            </div>
+                               
+                     </div>        
+                       </div></div>
                       
-                       <div class=\"col-sm-offset-1 col-sm-8\">
+                       <div class=\"col-sm-offset-1 col-sm-9\">
                         ";
-        // line 60
+        // line 86
         $this->displayBlock('body', $context, $blocks);
-        // line 62
+        // line 88
         echo "                       </div>
                        
                        <!--<div class=\"span1 offset1\">
@@ -116,9 +144,9 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                        
                 <div class=\"page-footer\">   
                 
-                    Pied-de-page du site Le monstre du Médoc
+                    Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 76
+        // line 102
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -126,8 +154,12 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
               
         
             </div>
-             
-               
+    
+        
+         ";
+        // line 121
+        echo "  
+        
                 
         
        
@@ -139,7 +171,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
     // line 5
     public function block_title($context, array $blocks = array())
     {
-        echo "Patrice Mauget - Monstre du Médoc";
+        echo "Patrice Mauget - Loup-garou, le monstre du Médoc";
     }
 
     // line 6
@@ -151,7 +183,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "             <link rel=\"stylesheet\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/css/bootstrap.min.css"), "html", null, true);
         echo "\" type=\"text/css\" media=\"screen\" />
-             
+             <!--<link href=\"//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css\" rel=\"stylesheet\">-->
         ";
     }
 
@@ -184,10 +216,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
     }
 
-    // line 60
+    // line 86
     public function block_body($context, array $blocks = array())
     {
-        // line 61
+        // line 87
         echo "                       ";
     }
 
@@ -203,6 +235,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  191 => 61,  188 => 60,  182 => 18,  177 => 17,  173 => 15,  169 => 14,  164 => 13,  162 => 12,  159 => 11,  151 => 8,  149 => 7,  146 => 6,  140 => 5,  122 => 76,  106 => 62,  104 => 60,  98 => 56,  94 => 55,  88 => 51,  84 => 50,  71 => 40,  67 => 39,  63 => 38,  52 => 29,  41 => 20,  38 => 19,  35 => 11,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  223 => 87,  220 => 86,  214 => 18,  209 => 17,  205 => 15,  201 => 14,  196 => 13,  194 => 12,  191 => 11,  183 => 8,  181 => 7,  178 => 6,  172 => 5,  161 => 121,  150 => 102,  134 => 88,  132 => 86,  111 => 70,  99 => 61,  95 => 60,  86 => 53,  71 => 40,  67 => 39,  63 => 38,  52 => 29,  41 => 20,  38 => 19,  35 => 11,  33 => 6,  29 => 5,  23 => 1,  157 => 77,  153 => 75,  149 => 73,  130 => 71,  119 => 69,  102 => 68,  96 => 64,  43 => 12,  36 => 6,  34 => 5,  31 => 4,  28 => 3,);
     }
 }

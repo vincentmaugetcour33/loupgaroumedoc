@@ -21,6 +21,8 @@ class ImageRepository extends EntityRepository
     $query_builder = $this->createQueryBuilder('i');
     $query_builder->leftJoin('i.livre', 'l');
     $query_builder->addSelect('l');//->where($query_builder->expr()->like('l.titre', '"le monstre du Médoc%"'));
+    $query_builder->where($query_builder->expr()->like('i.url', ':prefixe'))
+            ->setParameter('prefixe', 'image%');
     return $query_builder->getQuery()->getResult();
     }
      

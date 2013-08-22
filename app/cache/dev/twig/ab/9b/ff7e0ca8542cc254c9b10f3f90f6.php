@@ -33,12 +33,15 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
         // line 5
         if ((!twig_test_empty($this->getContext($context, "images")))) {
             // line 6
-            echo "    <table id=\"\" class=\"table table-striped\">
-        <caption>GALLERIE</caption>
+            echo "    
+ ";
+            // line 8
+            echo "<table id=\"\" class=\"table table-striped\">
+        <caption>GALERIE</caption>
         <tbody>
         <tr>
     ";
-            // line 10
+            // line 12
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getContext($context, "images"));
             $context['loop'] = array(
@@ -55,7 +58,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
                 $context['loop']['last'] = 1 === $length;
             }
             foreach ($context['_seq'] as $context["key"] => $context["image"]) {
-                // line 11
+                // line 13
                 echo "        <td><img style=\"cursor: pointer;\" class=\"\" id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "description"), "html", null, true);
                 echo "\" src=\"";
@@ -66,7 +69,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "alt"), "html", null, true);
                 echo "\" /></td>
         ";
-                // line 13
+                // line 15
                 echo "        ";
                 if ((($this->getAttribute($this->getContext($context, "loop"), "index") % 6) == 0)) {
                     echo "</tr><tr>";
@@ -85,17 +88,24 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['image'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 15
+            // line 17
             echo "    </tbody></table>
 ";
+        } else {
+            // line 19
+            echo "Il n'y a aucune image dans la galerie
+";
         }
-        // line 17
+        // line 21
         echo "
 <script language=\"javascript\" type=\"text/javascript\">
  \$(document).ready(function() 
  {
-    \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"250px;\" src=\"'+\$(this).attr('src')+'\"/><div>'+\$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
- });//\$.data(document.body, 'popup',1);
+    
+     
+   \$(\"ul.nav > li#galleries\").addClass('active');
+   \$(\"img\").popover({placement:'left',trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"250px;\" src=\"'+\$(this).attr('src')+'\"/><div>'+\$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
+ });
 </script>
 
 
@@ -114,6 +124,6 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  93 => 17,  89 => 15,  70 => 13,  59 => 11,  42 => 10,  36 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  100 => 21,  96 => 19,  92 => 17,  73 => 15,  62 => 13,  45 => 12,  39 => 8,  36 => 6,  34 => 5,  31 => 4,  28 => 3,);
     }
 }

@@ -25,7 +25,7 @@ class CommentaireController extends Controller
       $previous_page = $page > 1 ? $page - 1 : 1;
         
       $repository = $manager->getRepository('VMBlogBundle:Commentaire');
-      $total_commentaires = count($repository->findByStatut('modere'));
+      $total_commentaires = count($repository->findAll());
       $last_page = ceil($total_commentaires/$commentaires_per_page);
       $next_page = $page < $last_page ? $page + 1 : $last_page;
       $liste_commentaires = $repository->getCommentairesAcceptes($page,$commentaires_per_page);

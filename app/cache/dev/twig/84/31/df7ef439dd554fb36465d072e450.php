@@ -10,7 +10,7 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         $this->parent = $this->env->loadTemplate("VMBlogBundle::base.html.twig");
 
         $this->blocks = array(
-            'stylesheets' => array($this, 'block_stylesheets'),
+            'vmblog_stylesheets' => array($this, 'block_vmblog_stylesheets'),
             'vmblog_body' => array($this, 'block_vmblog_body'),
         );
     }
@@ -26,12 +26,10 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
     }
 
     // line 3
-    public function block_stylesheets($context, array $blocks = array())
+    public function block_vmblog_stylesheets($context, array $blocks = array())
     {
         // line 4
-        echo "    ";
-        $this->displayParentBlock("stylesheets", $context, $blocks);
-        echo "
+        echo "    
 
 
    
@@ -52,7 +50,22 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "resume"), "html", null, true);
         echo "
    
+   <hr/>
+   EXTRAIT (AU HASARD)
+   ";
+        // line 17
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
+        echo " 
  
+   
+ <script language=\"javascript\" type=\"text/javascript\">
+ \$(document).ready(function() 
+ {
+    \$(\"ul.nav > li#accueil\").addClass('active');  
+   });
+</script>  
+  
+   
  
 ";
     }
@@ -69,6 +82,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  52 => 13,  48 => 12,  45 => 11,  42 => 10,  32 => 4,  29 => 3,);
+        return array (  57 => 17,  50 => 13,  46 => 12,  43 => 11,  40 => 10,  32 => 4,  29 => 3,);
     }
 }

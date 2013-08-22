@@ -29,24 +29,28 @@
                     
                    </textarea> -->
                    <span class="input-xlarge uneditable-input" class="form-control">{{ entity.contenu }}</span>
-                <div class="input-group-btn">
+                
+                    {% if entity.statut == 'modere' %}
+                       <div class="input-group-btn"> 
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                     <ul class="dropdown-menu pull-right" id={{entity.id}}>
                         <li id="edit"><a href="#" rel="popover" id="editer_commentaire">Modifier</a></li>
                         <li class="divider"></li>
                         <li><a href="#" id="supprimer_commentaire">Supprimer</a></li>
                     </ul>
-                </div><!-- /btn-group -->
+                    </div><!-- /btn-group -->
+                    {% endif %}
+                
 
             </div>
             
-          </div>
+          </div><br/>
 
      {% endfor %}
 
 {% else %}
      
-    Résultat vide
+    Il n'y a aucun commentaire
     
  {% endif %}
  
@@ -54,7 +58,7 @@
     <div class="">
      <ul class="pagination">
         <li>
-           <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> <span> << </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"><span> < </span> </a>
+           <a href="{{ path('vm_blog_commentaire_list', { 'page': 1 }) }}"> <span> << </span> </a> <a href="{{ path('vm_blog_commentaire_list', { 'page': previous_page }) }}"><span> Précédent </span> </a>
         </li>
 
      {% for page in 1..last_page %}
@@ -69,7 +73,7 @@
           
    {% endfor %}
    <li>
-      <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}"> <span> > </span></a> <a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> >> </span></a>
+      <a href="{{ path('vm_blog_commentaire_list', { 'page': next_page }) }}">Suivant</a><a href="{{ path('vm_blog_commentaire_list', { 'page': last_page }) }}"> <span> >> </span></a>
    </li>
     </ul>
        </div>
@@ -82,6 +86,9 @@
 
 <script language="javascript" type="text/javascript">
        $(document).ready(function() {   
+          
+          $("ul.nav > li#commentaires").addClass('active');
+          
           $("body").on("click", "#editer_commentaire", (function()
           {
            var identifiant = parseInt($(this).parent().parent().attr("id"));

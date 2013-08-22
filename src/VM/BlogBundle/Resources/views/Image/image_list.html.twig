@@ -3,8 +3,10 @@
 {% block vmblog_body %}
  
  {% if images is not empty %}
-    <table id="" class="table table-striped">
-        <caption>GALLERIE</caption>
+    
+ {# Tableau general des images #}
+<table id="" class="table table-striped">
+        <caption>GALERIE</caption>
         <tbody>
         <tr>
     {% for key, image in images %}
@@ -13,13 +15,18 @@
         {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
     {% endfor %}
     </tbody></table>
+{% else %}
+Il n'y a aucune image dans la galerie
 {% endif %}
 
 <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
-    $("img").popover({trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="250px;" src="'+$(this).attr('src')+'"/><div>'+$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
- });//$.data(document.body, 'popup',1);
+    
+     
+   $("ul.nav > li#galleries").addClass('active');
+   $("img").popover({placement:'left',trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="250px;" src="'+$(this).attr('src')+'"/><div>'+$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
+ });
 </script>
 
 

@@ -12,18 +12,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class LivreRepository extends EntityRepository
 {
- public function findmonstremedoc($titre)
- {
-     $querybuilder = $this->_em->createQueryBuilder()
-                          ->select('l')->from($this->_entityName,'l')
-                          ->where('l.titre = :titre')
-                          ->setParameter('titre',$titre);
-     
-     $query = $querybuilder->getQuery();
-     $resultat = $query->getSingleResult();
-     return $resultat;
-             
-     
- }
-    
+    /**
+     * Find monstremedoc
+     * @param string $titre
+     * @return query
+     */
+    public function findmonstremedoc($titre)
+    {
+        $querybuilder = $this->_em->createQueryBuilder()
+                             ->select('l')->from($this->_entityName,'l')
+                             ->where('l.titre = :titre')
+                             ->setParameter('titre',$titre);
+
+        $query = $querybuilder->getQuery();
+        $resultat = $query->getSingleResult();
+        return $resultat;
+   }
+
+    /*
+     * Autres livres
+     */
+    public function findautreslivres()
+    {
+       return $this->_em->createQuery('SELECT l FROM VMBlogBundle:livre l
+            WHERE l.titre NOT LIKE :titre')->setParameter('titre', 'Le monstre du Médoc%')
+               ->getResult();
+       
+       //$query_builder->where(
+         //      $query_builder->expr()->like('l.titre', '"Le monstre du Médoc"'));
+     //  return $query_builder->getQuery()->getResult();
+    }
 }

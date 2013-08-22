@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Patrice Mauget - Monstre du Médoc{% endblock %}</title>
+        <title>{% block title %}Patrice Mauget - Loup-garou, le monstre du Médoc{% endblock %}</title>
         {% block stylesheets %}
             {#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />#}
              <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" media="screen" />
-             
+             <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
         {% endblock %}
         {% block javascripts %}
                 {# pour le routage en ajax #}
@@ -26,7 +26,7 @@
                <!-- En-tête du layout -->
                <div class="page-header">
                    {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
-                   En-tête du site Le monstre du Médoc
+                   En-tête du site Loup-garou, le monstre du Médoc
                </div>
                           
                <!-- Menu principal du layout -->
@@ -34,10 +34,10 @@
                           <div class="navbar-inner">
                               <div class="container">
                                     <ul class="nav nav-pills nav-justified">
-                                      <li class="active "><a href="/">Accueil</a></li>
-                                      <li><a href="{{ path('vm_blog_image_list') }}">Galleries</a></li>
-                                      <li><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
-                                      <li><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
+                                      <li id="accueil"><a href="/">Accueil</a></li>
+                                      <li id="galleries"><a href="{{ path('vm_blog_image_list') }}">Galleries</a></li>
+                                      <li id="biographie"><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
+                                      <li id="commentaires"><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
                                     </ul>
                                 </div>
                            </div>
@@ -46,17 +46,43 @@
                <!-- Centre de la page -->    
                <div class="row">    
                        <div class="col-sm-2">
+                       
+                           
                            <div class="row">
-                               Auteur : {{ auteur_nom }}
-                               <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice mauget" />
-                           </div>
-                           <div class="row">
-                           {# Génère aléatoirement un extrait du livre#}
-                           {{ render(controller("VMBlogBundle:Extrait:index")) }} {#Bloc latéral gauche#}
-                          </div>        
-                       </div>
+                              {#Bloc latéral gauche#}
+                              <div class="span12 well">
+                               <br>
+                               <div id="monaccordeon">
+                                 <div class="accordion-group">
+                                   <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
+                                   <div id="presentation" class="accordion-body collapse in">
+                                     <div class="accordion-inner">  
+                                         Auteur : {{ auteur_nom }}
+                                         <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice mauget" />
+                                         
+                                    </div>
+                                   </div>
+                                 </div>
+                                 <div class="accordion-group">
+                                   <button class="btn btn-sm btn-primary accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#coordonnees">Mes coordonnéees</button>
+                                   <div id="coordonnees" class="accordion-body collapse ">
+                                     <div class="accordion-inner">
+                                        <br/><a href="mailto:{{ auteur_email }}">{% trans %}biographie.mail_auteur{% endtrans %}</a>
+                                     </div>
+                                      </div>     
+                                 </div>
+                                 <div class="accordion-group">
+                                   <button class="btn btn-sm btn-primary accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#liens_divers">Mes liens divers</button>
+                                   <div id="liens_divers" class="accordion-body collapse">
+                                     <div class="accordion-inner">Rajouter des liens sur d'autres sites (mollat,amazon,...)</div>
+                                    </div>
+                               </div>
+                            </div>
+                               
+                     </div>        
+                       </div></div>
                       
-                       <div class="col-sm-offset-1 col-sm-8">
+                       <div class="col-sm-offset-1 col-sm-9">
                         {% block body %}
                        {% endblock %}
                        </div>
@@ -72,15 +98,28 @@
                        
                 <div class="page-footer">   
                 
-                    Pied-de-page du site Le monstre du Médoc
+                    Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class="pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>
                 
                </div>
               
         
             </div>
-             
-               
+    
+        
+         {#<script language="javascript" type="text/javascript">
+ $(document).ready(function() 
+ {
+    $('ul.nav > li').click(function (e) {
+            $('ul.nav').find('li.active').removeClass('active');
+            //$('ul.nav > li').removeClass('active');
+            $(this).addClass('active');                
+            //e.preventDefault();
+        });    
+    
+ });
+</script>#}  
+        
                 
         
        

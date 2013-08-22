@@ -160,7 +160,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             if (0 === strpos($pathinfo, '/commentaire_')) {
                 // vm_blog_commentaire_ajout
-                if ($pathinfo === '/commentaire_ajout') {
+                if (rtrim($pathinfo, '/') === '/commentaire_ajout') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'vm_blog_commentaire_ajout');
+                    }
+
                     return array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::ajoutcommentaireAction',  '_route' => 'vm_blog_commentaire_ajout',);
                 }
 

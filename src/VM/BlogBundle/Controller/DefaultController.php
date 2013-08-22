@@ -18,10 +18,16 @@ class DefaultController extends Controller
         return $this->render('VMBlogBundle:Default:index.html.twig', array('livre' => $livre_principal));
     }
     
-    # action de la page biographie
+    /**
+     * Biographie
+     */
     public function bioAction()
     {
-        return $this->render('VMBlogBundle:Default:biographie.html.twig');
+        $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
+        $livres_secondaires = $repository->findautreslivres();
+        
+        return $this->render('VMBlogBundle:Default:biographie.html.twig',
+                array ( 'livres_secondaires' => $livres_secondaires));
     }
 
            

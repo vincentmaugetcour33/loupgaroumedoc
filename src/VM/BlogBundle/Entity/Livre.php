@@ -28,12 +28,26 @@ class Livre
      */
     private $titre;
 
+     /**
+      * @var string $couverture
+      *
+      * @ORM\Column(name="couverture", type="string", length=150)
+      */
+     private $couverture;
+    
     /**
      * @var string
      *
      * @ORM\Column(name="auteur", type="string", length=50)
      */
     private $auteur;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=100)
+     */
+    private $url;
 
     /**
      * @var string
@@ -42,6 +56,14 @@ class Livre
      */
     private $resume;
 
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="edition", type="string", length=70)
+     */
+    private $edition;
+    
     /**
      * Get id
      *
@@ -119,5 +141,74 @@ class Livre
     public function getResume()
     {
         return $this->resume;
+    }
+
+    /**
+     * Set couverture
+     *
+     * @param string $couverture
+     * @return Livre
+     */
+    public function setCouverture($couverture)
+    {
+        $this->couverture = $couverture;
+    
+        return $this;
+    }
+
+    /**
+     * Get couverture
+     *
+     * @return string 
+     */
+    public function getCouverture()
+    {
+        return $this->couverture;
+    }
+
+    /**
+     * Set edition
+     *
+     * @param string $edition
+     * @return Livre
+     */
+    public function setEdition($edition)
+    {
+        $this->edition = $edition;
+    
+        return $this;
+    }
+
+    /**
+     * Get edition
+     *
+     * @return string 
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Livre
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

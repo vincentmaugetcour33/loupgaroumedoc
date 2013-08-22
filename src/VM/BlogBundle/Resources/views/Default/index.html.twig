@@ -1,7 +1,7 @@
 {% extends "VMBlogBundle::base.html.twig" %}
 
-{% block stylesheets %}
-    {{ parent() }}
+{% block vmblog_stylesheets %}
+    
 
 
    
@@ -12,6 +12,18 @@
    {{ livre.titre }}<br/>
    {{ livre.resume }}
    
+   <hr/>
+   EXTRAIT (AU HASARD)
+   {{ render(controller("VMBlogBundle:Extrait:index")) }} 
  
+   
+ <script language="javascript" type="text/javascript">
+ $(document).ready(function() 
+ {
+    $("ul.nav > li#accueil").addClass('active');  
+   });
+</script>  
+  
+   
  
 {% endblock %}

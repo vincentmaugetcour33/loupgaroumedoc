@@ -3,12 +3,47 @@
 {% block vmblog_body %}
  
     {#<img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="photo patrice mauget" />#}
-    Auteur : {{ auteur_nom }} <br/>
-    Biographie :
-    {% trans %}biographie.vie_auteur{% endtrans %}
-    <br/>
-    <a href="mailto:{{ auteur_email }}">{% trans %}biographie.mail_auteur{% endtrans %}</a>
+    {#Auteur : {{ auteur_nom }}#} <br/>
     
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#parcours" data-toggle="tab">Mon parcours</a></li>
+        <li><a href="#livres" data-toggle="tab">Mes livres</a></li>
+    </ul>
+    
+    <div class="tab-content">
+       <div class="tab-pane active" id="parcours">
+            {% trans %}biographie.vie_auteur{% endtrans %}
+       </div>
+       <div class="tab-pane" id="livres">
+            
+            {% for key, livre in livres_secondaires %}
+                   <div class="clearfix">
+                        <div style="width:80px;" class="thumbnail pull-left">
+                            <img title="{{livre.titre}}" width=100px style="cursor: pointer;" rel="popover" src="{{ asset('bundles/vmblog/images/'~livre.couverture) }}" alt="photo {{ livre.titre }}" />
+                            
+                        </div>
+                       
+                         <div style="">EDITION :       {{livre.edition }}    </div>
+                         <div style="">LIEN INTERNET :      <a href="{{livre.url }}" target="_blank">{{livre.url }} </a>   </div>
+                     </div>               
+            {% endfor %} 
+                 
+       </div>
+    </div>
+
+      
+    <br/>
+    
+  <script language="javascript" type="text/javascript">
+ $(document).ready(function() 
+ {
+    $("ul.nav > li#accueil").removeClass('active');  
+   $("ul.nav > li#biographie").addClass('active');
+   $("img").popover({trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="150px;" src="'+$(this).attr('src')+'"/>'; }, delay: { show: 500, hide: 10} });
+ });//$.data(document.body, 'popup',1);
+</script>  
+
+
  
 {% endblock %}
 

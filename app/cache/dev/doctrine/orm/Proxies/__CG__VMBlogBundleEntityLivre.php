@@ -87,10 +87,46 @@ class Livre extends \VM\BlogBundle\Entity\Livre implements \Doctrine\ORM\Proxy\P
         return parent::getResume();
     }
 
+    public function setCouverture($couverture)
+    {
+        $this->__load();
+        return parent::setCouverture($couverture);
+    }
+
+    public function getCouverture()
+    {
+        $this->__load();
+        return parent::getCouverture();
+    }
+
+    public function setEdition($edition)
+    {
+        $this->__load();
+        return parent::setEdition($edition);
+    }
+
+    public function getEdition()
+    {
+        $this->__load();
+        return parent::getEdition();
+    }
+
+    public function setUrl($url)
+    {
+        $this->__load();
+        return parent::setUrl($url);
+    }
+
+    public function getUrl()
+    {
+        $this->__load();
+        return parent::getUrl();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'titre', 'auteur', 'resume');
+        return array('__isInitialized__', 'id', 'titre', 'couverture', 'auteur', 'url', 'resume', 'edition');
     }
 
     public function __clone()

@@ -60,7 +60,7 @@ class __TwigTemplate_ff5215f94c313e9c1ae0748a27a571ad extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 14
-        echo " <h1>Blog - Le monstre du Médoc</h1>
+        echo " <h1>Blog - Loup-Garou, le monstre du Médoc</h1>
   ";
         // line 16
         echo "  ";
