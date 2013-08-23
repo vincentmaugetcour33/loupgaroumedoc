@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of SocialBarHelper
  *
@@ -18,7 +13,8 @@ use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Templating\EngineInterface;
 
 
-class SocialBarHelper extends Helper{
+class SocialBarHelper extends Helper
+{
    
    protected $templating;
    
@@ -29,17 +25,17 @@ class SocialBarHelper extends Helper{
     
     public function socialButtons($parameters)
     {
-      return $this->templating->render('AcmeDemoBundle:helper:socialButtons.html.twig', $parameters);
+      return $this->templating->render('VMBlogBundle:helper:socialButtons.html.twig', $parameters);
     }
     
     public function facebookButton($parameters)
     {
-      return $this->templating->render('AcmeDemoBundle:helper:facebookButton.html.twig', $parameters);
+      return $this->templating->render('VMBlogBundle:helper:facebookButton.html.twig', $parameters);
     }
 
     public function twitterButton($parameters)
     {
-      return $this->templating->render('AcmeDemoBundle:helper:twitterButton.html.twig', $parameters);
+      return $this->templating->render('VMBlogBundle:helper:twitterButton.html.twig', $parameters);
     }
     
     public function getName()
@@ -47,13 +43,6 @@ class SocialBarHelper extends Helper{
     return 'socialButtons';
    }
 
-
-
-
-
-
-
-
 }
 
-?>
+

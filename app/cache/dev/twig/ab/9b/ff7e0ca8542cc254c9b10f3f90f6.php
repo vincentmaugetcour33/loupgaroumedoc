@@ -28,7 +28,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
     public function block_vmblog_body($context, array $blocks = array())
     {
         // line 4
-        echo " 
+        echo "
  ";
         // line 5
         if ((!twig_test_empty($this->getContext($context, "images")))) {

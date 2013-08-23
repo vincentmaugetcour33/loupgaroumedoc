@@ -1,0 +1,14 @@
+{# src/VM/BlogBundle/Resources/views/helper/socialButtons.html.twig #}
+ <form class='pull-right form-inline'>
+{% if facebook is not sameas(false) %} 
+    <div class="form-group button facebookButton"> 
+        {{ facebookButton(facebook) }}
+    </div>
+{% endif %} 
+
+{% if twitter is not sameas(false) %} 
+    <div class="form-group button twitterButton"> 
+        {{ twitterButton(twitter) }} 
+    </div> 
+{% endif %} 
+         </form>

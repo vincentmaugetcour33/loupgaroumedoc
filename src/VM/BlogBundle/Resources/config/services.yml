@@ -1,10 +1,24 @@
-parameters:
-#    vm_blog.example.class: VM\BlogBundle\Example
 
 services:
-  # activation des filtres text de twig pour les chaines de caracteres.
+    
+  vm.socialbarhelper:
+    class: VM\BlogBundle\Templating\Helper\SocialBarHelper
+    arguments: [ '@templating' ]
+    tags: 
+        - { name: 'templating.helper', alias: 'social-buttons' } 
+    
+
+  twig.extension.vm_social_bar:
+    class: VM\BlogBundle\Twig\Extensions\VMTwigSocialBar
+    arguments : [ '@service_container' ]
+    tags:
+        - { name: 'twig.extension' }
+    
+  
+   # activation des filtres text de twig pour les chaines de caracteres.
   twig.extension.text:
        class: Twig_Extensions_Extension_Text
        tags:
-            - { name: twig.extension }
+            - {name: twig.extension}
+          
  

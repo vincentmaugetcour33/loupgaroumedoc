@@ -29,7 +29,15 @@
                     
                    </textarea> -->
                    <span class="input-xlarge uneditable-input" class="form-control">{{ entity.contenu }}</span>
-                
+                   
+                   <p class='pull-right input-sm'>
+                                {% if "now" | date("m/d/Y") == entity.date|date("m/d/Y") %}
+                                 aujourd'hui à {{ entity.date|date('h:m')}}
+                                {% else %}
+                                 Le {{ entity.date|date('d/m/Y à h:m')}}
+                                {% endif %}
+                   </p>
+                   
                     {% if entity.statut == 'modere' %}
                        <div class="input-group-btn"> 
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>

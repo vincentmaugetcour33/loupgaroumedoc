@@ -13,6 +13,7 @@ class ImageController extends Controller
      */
   public function listimageAction()
  {
+  //$mailer = $this->container->get('vm.socialbarhelper');
   $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Image');
   $liste_images = $repository->getImagesAcceptes();
   

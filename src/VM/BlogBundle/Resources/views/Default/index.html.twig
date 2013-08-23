@@ -8,7 +8,10 @@
 {% endblock %}
     
 {% block vmblog_body %}
- 
+    
+   {# insère la barre complète avec les valeurs par défaut #}
+  {{ socialButtons() }}
+   <br/>
    {{ livre.titre }}<br/>
    {{ livre.resume }}
    
