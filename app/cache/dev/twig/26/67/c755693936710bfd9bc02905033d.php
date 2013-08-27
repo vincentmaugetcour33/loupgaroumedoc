@@ -34,12 +34,9 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
             // line 4
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getContext($context, "form"), 'errors');
             echo "
-       <div class=\"form-group\">";
-            // line 5
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "auteur"), 'widget', array("attr" => array("class" => "form-control", "placeholder" => "Auteur")));
-            echo "</div>
-      <div class=\"form-group\">";
+       ";
             // line 6
+            echo "      <div class=\"form-group\">";
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "contenu"), 'widget', array("attr" => array("class" => "form-control input-sm", "placeholder" => "Commentaire")));
             echo "</div>
       <div class=\"form-group\">";
@@ -66,6 +63,6 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  52 => 10,  47 => 7,  39 => 5,  35 => 4,  24 => 3,  21 => 2,  19 => 1,  230 => 91,  228 => 90,  223 => 89,  213 => 84,  210 => 83,  203 => 81,  195 => 78,  192 => 77,  186 => 75,  184 => 74,  181 => 73,  177 => 72,  169 => 69,  164 => 66,  162 => 65,  159 => 64,  153 => 60,  149 => 58,  137 => 51,  127 => 44,  123 => 42,  121 => 41,  117 => 39,  111 => 37,  105 => 35,  103 => 34,  97 => 31,  89 => 26,  86 => 25,  82 => 24,  79 => 23,  77 => 22,  67 => 16,  63 => 13,  55 => 11,  49 => 10,  46 => 9,  43 => 6,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  49 => 10,  44 => 7,  39 => 6,  35 => 4,  24 => 3,  21 => 2,  19 => 1,);
     }
 }

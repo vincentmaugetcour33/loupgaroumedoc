@@ -60,112 +60,165 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 13
-        echo "    
-<div id=\"formulaire\">
-     ";
-        // line 16
-        echo "     ";
-        echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Commentaire:ajoutcommentaire"), array());
-        echo "   
-        
+        echo " 
+";
+        // line 14
+        if ($this->env->getExtension('security')->isGranted("ROLE_USER")) {
+            // line 15
+            echo "    <div id=\"formulaire\">
+         ";
+            // line 17
+            echo "         <div class=\"row\">";
+            echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Commentaire:ajoutcommentaire"), array());
+            echo "</div>   
     </div> 
-      
+";
+        }
+        // line 20
+        echo "      
  <div id=\"liste_commentaire\">
  
 ";
-        // line 22
+        // line 23
         if ((!twig_test_empty($this->getContext($context, "entities")))) {
-            // line 23
-            echo " 
-    ";
             // line 24
+            echo "     
+    ";
+            // line 26
+            echo "     <div class=\"row\">
+        <div class=\"pull-right\">
+            <a href=\"";
+            // line 28
+            echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("tri" => "asc"));
+            echo "\">Par  date croissante</a>
+            /
+            <a href=\"";
+            // line 30
+            echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("tri" => "desc"));
+            echo "\" >Par  date décroissante</a>
+        </div>
+     </div>        
+    ";
+            // line 33
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable($this->getContext($context, "entities"));
             foreach ($context['_seq'] as $context["key"] => $context["entity"]) {
-                // line 25
+                // line 34
                 echo "
           <div class=\"row\" id=";
-                // line 26
+                // line 35
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
                 echo ">
            <div id=\"operations\" class=\"input-group input-group-sm\">
-                <!--<textarea rows=10 id=\"montrer_commentaire\" class=\"form-control input-xlarge\" readonly>
-                    
-                   </textarea> -->
-                   <span class=\"input-xlarge uneditable-input\" class=\"form-control\">";
-                // line 31
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "contenu"), "html", null, true);
-                echo "</span>
-                   
-                   <p class='pull-right input-sm'>
-                                ";
-                // line 34
+                
+               
+                   <div class=\"panel panel-info\">       
+               ";
+                // line 41
+                echo "                       <div class=\"panel-heading\">
+                           <table>
+                               <tr>
+                                   <td><a href=\"";
+                // line 44
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_user", array("id" => $this->getAttribute($this->getContext($context, "entity"), "id"))), "html", null, true);
+                echo "\"><u>";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "user"), "html", null, true);
+                echo "</u></a></td>
+                                   <td style=\"text-align:right;\" class=\"col-sm-offset-9 pull-right\">
+                                       ";
+                // line 46
                 if ((twig_date_format_filter($this->env, "now", "m/d/Y") == twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "date"), "m/d/Y"))) {
-                    // line 35
-                    echo "                                 aujourd'hui à ";
+                    // line 47
+                    echo "                                              aujourd'hui à ";
                     echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "date"), "h:m"), "html", null, true);
                     echo "
-                                ";
+                                      ";
                 } else {
-                    // line 37
-                    echo "                                 Le ";
+                    // line 49
+                    echo "                                              Le ";
                     echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "date"), "d/m/Y à h:m"), "html", null, true);
                     echo "
-                                ";
-                }
-                // line 39
-                echo "                   </p>
-                   
-                    ";
-                // line 41
-                if (($this->getAttribute($this->getContext($context, "entity"), "statut") == "modere")) {
-                    // line 42
-                    echo "                       <div class=\"input-group-btn\"> 
-                    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">Action <span class=\"caret\"></span></button>
-                    <ul class=\"dropdown-menu pull-right\" id=";
-                    // line 44
-                    echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
-                    echo ">
-                        <li id=\"edit\"><a href=\"#\" rel=\"popover\" id=\"editer_commentaire\">Modifier</a></li>
-                        <li class=\"divider\"></li>
-                        <li><a href=\"#\" id=\"supprimer_commentaire\">Supprimer</a></li>
-                    </ul>
-                    </div><!-- /btn-group -->
-                    ";
+                                      ";
                 }
                 // line 51
-                echo "                
+                echo "                                   </td>
+                                   <td>
+                                       ";
+                // line 53
+                if ($this->getAttribute($this->getContext($context, "app"), "user")) {
+                    // line 54
+                    echo "                    ";
+                    if (($this->getAttribute($this->getContext($context, "entity"), "statut") == "modere")) {
+                        // line 55
+                        echo "                        ";
+                        if (($this->getAttribute($this->getContext($context, "entity"), "user") == $this->getAttribute($this->getContext($context, "app"), "user"))) {
+                            // line 56
+                            echo "                           
+                      <div class=\"input-group-btn\"> 
+                         <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">Action <span class=\"caret\"></span></button>
+                          <ul class=\"dropdown-menu pull-right\" id=";
+                            // line 59
+                            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "id"), "html", null, true);
+                            echo ">
+                            <li id=\"edit\"><a href=\"#\" rel=\"popover\" id=\"editer_commentaire\">Modifier</a></li>
+                            <li class=\"divider\"></li>
+                            <li><a href=\"#\" id=\"supprimer_commentaire\">Supprimer</a></li>
+                        </ul>
+                    </div><!-- /btn-group -->
+                         ";
+                        }
+                        // line 66
+                        echo "                    ";
+                    }
+                    // line 67
+                    echo "                 ";
+                }
+                // line 68
+                echo "                                   </td>    
+                               </tr>
+                            </table>
+                              
+                       
+                       </div>
+                       <div class=\"panel-body \" >";
+                // line 74
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "entity"), "contenu"), "html", null, true);
+                echo "</div>
+                   </div>
+                
+                   
+                   
 
             </div>
             
-          </div><br/>
+          </div>
 
      ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['entity'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 58
+            // line 85
             echo "
 ";
         } else {
-            // line 60
+            // line 87
             echo "     
     Il n'y a aucun commentaire
     
  ";
         }
-        // line 64
+        // line 91
         echo " 
 ";
-        // line 65
+        // line 92
         if (($this->getContext($context, "last_page") > 1)) {
-            // line 66
+            // line 93
             echo "    <div class=\"\">
      <ul class=\"pagination\">
         <li>
            <a href=\"";
-            // line 69
+            // line 96
             echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => 1));
             echo "\"> <span> << </span> </a> <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "previous_page"))), "html", null, true);
@@ -173,25 +226,25 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         </li>
 
      ";
-            // line 72
+            // line 99
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(range(1, $this->getContext($context, "last_page")));
             foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
-                // line 73
+                // line 100
                 echo "       
         ";
-                // line 74
+                // line 101
                 if (($this->getContext($context, "page") == $this->getContext($context, "current_page"))) {
-                    // line 75
+                    // line 102
                     echo "           <li class=\"active\"><a href=\"#\">";
                     echo twig_escape_filter($this->env, $this->getContext($context, "page"), "html", null, true);
                     echo "</a></li>
        ";
                 } else {
-                    // line 77
+                    // line 104
                     echo "           <li>
                <a href=\"";
-                    // line 78
+                    // line 105
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "page"))), "html", null, true);
                     echo "\">";
                     echo twig_escape_filter($this->env, $this->getContext($context, "page"), "html", null, true);
@@ -199,17 +252,17 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
             </li>
        ";
                 }
-                // line 81
+                // line 108
                 echo "          
    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 83
+            // line 110
             echo "   <li>
       <a href=\"";
-            // line 84
+            // line 111
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "next_page"))), "html", null, true);
             echo "\">Suivant</a><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => $this->getContext($context, "last_page"))), "html", null, true);
@@ -219,14 +272,14 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
        </div>
  ";
         }
-        // line 89
+        // line 116
         echo "<div class=\"pagination_desc\"><strong>";
         echo twig_escape_filter($this->env, $this->getContext($context, "total_commentaires"), "html", null, true);
         echo "</strong> commentaires dans la page
  ";
-        // line 90
+        // line 117
         if (($this->getContext($context, "last_page") > 1)) {
-            // line 91
+            // line 118
             echo " - page <strong>";
             echo twig_escape_filter($this->env, $this->getContext($context, "current_page"), "html", null, true);
             echo "/";
@@ -296,6 +349,6 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  230 => 91,  228 => 90,  223 => 89,  213 => 84,  210 => 83,  203 => 81,  195 => 78,  192 => 77,  186 => 75,  184 => 74,  181 => 73,  177 => 72,  169 => 69,  164 => 66,  162 => 65,  159 => 64,  153 => 60,  149 => 58,  137 => 51,  127 => 44,  123 => 42,  121 => 41,  117 => 39,  111 => 37,  105 => 35,  103 => 34,  97 => 31,  89 => 26,  86 => 25,  82 => 24,  79 => 23,  77 => 22,  67 => 16,  63 => 13,  55 => 11,  49 => 10,  46 => 9,  43 => 8,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  283 => 118,  281 => 117,  276 => 116,  266 => 111,  263 => 110,  256 => 108,  248 => 105,  245 => 104,  239 => 102,  237 => 101,  234 => 100,  230 => 99,  222 => 96,  217 => 93,  215 => 92,  212 => 91,  206 => 87,  202 => 85,  185 => 74,  177 => 68,  174 => 67,  171 => 66,  161 => 59,  156 => 56,  153 => 55,  150 => 54,  148 => 53,  144 => 51,  138 => 49,  132 => 47,  130 => 46,  123 => 44,  118 => 41,  110 => 35,  107 => 34,  103 => 33,  97 => 30,  92 => 28,  88 => 26,  85 => 24,  83 => 23,  78 => 20,  71 => 17,  68 => 15,  66 => 14,  63 => 13,  55 => 11,  49 => 10,  46 => 9,  43 => 8,  37 => 5,  32 => 4,  29 => 3,);
     }
 }

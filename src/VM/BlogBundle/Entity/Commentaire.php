@@ -31,10 +31,10 @@ class Commentaire
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="auteur", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="VM\UserBundle\Entity\User")
+     
      */
-    private $auteur;
+    private $user;
 
     /**
      * @var string
@@ -76,26 +76,26 @@ class Commentaire
     }
 
     /**
-     * Set auteur
+     * Set user
      *
-     * @param string $auteur
-     * @return Commentaire
+     * @param string $user
+     * @return User
      */
-    public function setAuteur($auteur)
+    public function setUser(\VM\UserBundle\Entity\User $user)
     {
-        $this->auteur = $auteur;
+        $this->user = $user;
     
         return $this;
     }
 
     /**
-     * Get auteur
+     * Get user
      *
      * @return string 
      */
-    public function getAuteur()
+    public function getUser()
     {
-        return $this->auteur;
+        return $this->user;
     }
 
     /**

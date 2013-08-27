@@ -50,8 +50,50 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                    ";
         // line 29
         echo "                   En-tête du site Loup-garou, le monstre du Médoc
-               </div>
-                          
+                    
+                    ";
+        // line 31
+        if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            // line 32
+            echo "                       <div class=\"col-sm-offset-8 col-sm-4\">
+                       Bonjour <a href=\"";
+            // line 33
+            echo $this->env->getExtension('routing')->getPath("fos_user_profile_show");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
+            echo "</a> - <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
+            echo "\">Déconnexion</a>
+                       
+                       </div>
+                      ";
+        } else {
+            // line 37
+            echo "                        ";
+            echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("FOSUserBundle:Security:login"), array());
+            // line 38
+            echo "                           ";
+            echo "         
+                  ";
+            // line 39
+            echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("FOSUserBundle:Registration:register"), array());
+            // line 40
+            echo "                        <div class=\"col-sm-offset-11 col-sm-1\">
+                            
+                       ";
+            // line 43
+            echo "                        </div>
+                      ";
+        }
+        // line 45
+        echo "               </div>
+               
+               <!-- Bloc pour la connexion/déconnexion des utilisateurs -->
+              ";
+        // line 59
+        echo " 
+               
+               
                <!-- Menu principal du layout -->
                           <div class=\"navbar \">
                           <div class=\"navbar-inner\">
@@ -59,15 +101,15 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                     <ul class=\"nav nav-pills nav-justified\">
                                       <li id=\"accueil\"><a href=\"/\">Accueil</a></li>
                                       <li id=\"galleries\"><a href=\"";
-        // line 38
+        // line 68
         echo $this->env->getExtension('routing')->getPath("vm_blog_image_list");
         echo "\">Galleries</a></li>
                                       <li id=\"biographie\"><a href=\"";
-        // line 39
+        // line 69
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
                                       <li id=\"commentaires\"><a href=\"";
-        // line 40
+        // line 70
         echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
         echo "\">Commentaires</a></li>
                                     </ul>
@@ -82,20 +124,39 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                            
                            <div class=\"row\">
                               ";
-        // line 53
+        // line 83
         echo "                              <div class=\"span12 well\">
                                <br>
                                <div id=\"monaccordeon\">
-                                 <div class=\"accordion-group\">
+                                  ";
+        // line 86
+        if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
+            // line 87
+            echo "                                   <div class=\"accordion-group\">
+                                   <button disabled=\"disabled\" id=\"administration\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#administration\">Vous êtes administrateur</button>
+                                   <div id=\"administration\" class=\"accordion-body collapse in\">
+                                     <div class=\"accordion-inner\">  
+                                       Vous êtes administrateur, cliquer <a href=\"";
+            // line 91
+            echo $this->env->getExtension('routing')->getPath("admin");
+            echo "\">ici</a>
+                                    </div>
+                                   </div>
+                                 </div>
+                                   ";
+        }
+        // line 95
+        echo "    
+                                  <div class=\"accordion-group\">
                                    <button disabled=\"disabled\" id=\"presentation\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#presentation\">Qui suis-je ?</button>
                                    <div id=\"presentation\" class=\"accordion-body collapse in\">
                                      <div class=\"accordion-inner\">  
                                          Auteur : ";
-        // line 60
+        // line 100
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
         echo "
                                          <img src=\"";
-        // line 61
+        // line 101
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
         echo "\" alt=\"Patrice mauget\" />
                                          
@@ -107,7 +168,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                    <div id=\"coordonnees\" class=\"accordion-body collapse \">
                                      <div class=\"accordion-inner\">
                                         <br/><a href=\"mailto:";
-        // line 70
+        // line 110
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_email"), "html", null, true);
         echo "\">";
         echo $this->env->getExtension('translator')->getTranslator()->trans("biographie.mail_auteur", array(), "messages");
@@ -124,13 +185,18 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                             </div>
                                
                      </div>        
-                       </div></div>
+                       </div>
+                           
+                        <!-- Bloc pour la connexion utilisateur -->
+                        
+                       
+                      </div>
                       
                        <div class=\"col-sm-offset-1 col-sm-9\">
                         ";
-        // line 86
+        // line 131
         $this->displayBlock('body', $context, $blocks);
-        // line 88
+        // line 133
         echo "                       </div>
                        
                        <!--<div class=\"span1 offset1\">
@@ -146,7 +212,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 102
+        // line 147
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -156,9 +222,16 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
             </div>
     
         
-         ";
-        // line 121
-        echo "  
+         <script language=\"javascript\" type=\"text/javascript\">
+ \$(document).ready(function() 
+ {
+   \$(\"a#registre\").popover({placement:'bottom',trigger: 'click',html:true, content: function() { return ";
+        // line 158
+        echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("FOSUserBundle:Registration:register"), array());
+        echo " }, delay: { show: 500, hide: 10} });
+    
+ });
+</script>  
         
                 
         
@@ -216,10 +289,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
     }
 
-    // line 86
+    // line 131
     public function block_body($context, array $blocks = array())
     {
-        // line 87
+        // line 132
         echo "                       ";
     }
 
@@ -235,6 +308,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  223 => 87,  220 => 86,  214 => 18,  209 => 17,  205 => 15,  201 => 14,  196 => 13,  194 => 12,  191 => 11,  183 => 8,  181 => 7,  178 => 6,  172 => 5,  161 => 121,  150 => 102,  134 => 88,  132 => 86,  111 => 70,  99 => 61,  95 => 60,  86 => 53,  71 => 40,  67 => 39,  41 => 20,  38 => 19,  33 => 6,  23 => 1,  77 => 17,  74 => 16,  69 => 18,  66 => 16,  60 => 13,  50 => 9,  45 => 8,  42 => 7,  35 => 11,  63 => 38,  56 => 10,  52 => 29,  46 => 13,  43 => 11,  40 => 10,  32 => 3,  29 => 5,);
+        return array (  296 => 132,  293 => 131,  287 => 18,  282 => 17,  278 => 15,  274 => 14,  269 => 13,  267 => 12,  264 => 11,  256 => 8,  254 => 7,  251 => 6,  245 => 5,  230 => 158,  216 => 147,  200 => 133,  198 => 131,  172 => 110,  160 => 101,  156 => 100,  149 => 95,  141 => 91,  135 => 87,  133 => 86,  128 => 83,  113 => 70,  109 => 69,  105 => 68,  94 => 59,  89 => 45,  85 => 43,  81 => 40,  79 => 39,  75 => 38,  72 => 37,  61 => 33,  58 => 32,  56 => 31,  52 => 29,  41 => 20,  38 => 19,  35 => 11,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

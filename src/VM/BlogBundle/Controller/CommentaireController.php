@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+//use JMS\SecurityExtraBundle\Annotation\Secure;
+
 use VM\BlogBundle\Entity\Commentaire;
 use VM\BlogBundle\Form\CommentaireType;
 
@@ -17,8 +19,11 @@ class CommentaireController extends Controller
       * 
       * @param integer page
       */
-     public function listcommentaireAction($page)
+    
+     public function listcommentaireAction($page,$tri='desc')
      {      
+      $tri = $this->getRequest()->query->get('tri');
+      
       $manager =$this->getDoctrine()->getManager();
       
       $commentaires_per_page = $this->container->getParameter('max_commentaires_on_listepage');
@@ -28,7 +33,7 @@ class CommentaireController extends Controller
       $total_commentaires = count($repository->findAll());
       $last_page = ceil($total_commentaires/$commentaires_per_page);
       $next_page = $page < $last_page ? $page + 1 : $last_page;
-      $liste_commentaires = $repository->getCommentairesAcceptes($page,$commentaires_per_page);
+      $liste_commentaires = $repository->getCommentairesAcceptes($page,$commentaires_per_page,$tri);
       
       return $this->render('VMBlogBundle:Commentaire:comlist.html.twig', array(
          'entities' => $liste_commentaires,
@@ -43,11 +48,15 @@ class CommentaireController extends Controller
       /**
        * Ajout commentaire
        */ 
+    
       public function ajoutcommentaireAction()
       {
-      $request = $this->get('request');
-     
-      $commentaire = new Commentaire();
+     $request = $this->get('request');
+     $commentaire = new Commentaire();
+     //$user = $this->container->get('security.context')->getToken()->getUser();
+      $commentaire->setUser($this->getUser());
+      
+      //$commentaire->setAuteur();
       $form = $this->createForm(new CommentaireType, $commentaire);    
       
       $manager =$this->getDoctrine()->getManager();
@@ -113,17 +122,25 @@ class CommentaireController extends Controller
               $manager =$this->getDoctrine()->getManager();
               $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Le monstre du Médoc');
               $commentaire->setLivre($livre_principal);
+              $commentaire->setDate(new \DateTime());
               $manager->persist($commentaire); 
               $manager->flush();   
-              $this->get('session')->getFlashBag()->add('info', 'Commentaire modifié');
+              $this->get('session')->getFlashBag()->add('info', 'Votre commentaire a été modifié');
              }
-             return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+             return $this->redirect($this->generateUrl('vm_blog_commentaire_list', array('page' => 1, 'tri' => 'desc')));
           } 
         
        }    
        
-         
-      
+      /**
+       * Profile commentaire
+       * @param Commentaire $commentaire
+       */
+       public function profilecommentaireAction(Commentaire $commentaire)
+       {
+          return $this->render("VMBlogBundle:Commentaire:profilecommentaire.html.twig", array(
+                              'membre' => $commentaire->getUser()) );   
+       }
     
     
     

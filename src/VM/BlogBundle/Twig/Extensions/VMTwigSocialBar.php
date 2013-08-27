@@ -72,11 +72,11 @@ class VMTwigSocialBar extends \Twig_Extension
     {
        // valeurs par défaut. Vous pouvez les surcharger en les définissant
        $parameters = $parameters + array(
-            'url' => "https://www.facebook.com/pages/Loup-Garou/155969484598860?fref=ts",
+            'url' => null,
             'locale' => 'fr_FR',
-            'send' => true,
+            'send' => false,
             'width' => 300,
-            'showFaces' => true,
+            'showFaces' => false,
             'layout' => 'button_count'
         );
 

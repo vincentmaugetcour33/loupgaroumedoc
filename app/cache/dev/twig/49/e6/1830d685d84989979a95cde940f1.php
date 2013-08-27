@@ -30,8 +30,22 @@ class __TwigTemplate_49e61830d685d84989979a95cde940f1 extends Twig_Template
         // line 7
         ob_start();
         // line 8
-        echo " ";
-        // line 9
+        echo "     <a href=\"#\" 
+  onclick=\"
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(
+        '";
+        // line 12
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "request"), "uri"), "html", null, true);
+        echo "'), 
+      'facebook-share-dialog', 
+      'width=626,height=436'); 
+    return false;\">
+   <div class=\"facebookButton\">Partager commentaire</div>
+    </a>
+
+ ";
+        // line 20
         echo " <div id=\"fb-root\"></div>
 
  <script>
@@ -40,16 +54,15 @@ class __TwigTemplate_49e61830d685d84989979a95cde940f1 extends Twig_Template
    if (d.getElementById(id)) return;
    js = d.createElement(s); js.id = id;
    js.src = \"//connect.facebook.net/";
-        // line 16
+        // line 27
         echo twig_escape_filter($this->env, $this->getContext($context, "locale"), "html", null, true);
         echo "/all.js#xfbml=1\";
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
  </script>
 
-
  <div class=\"fb-like\" data-href=\"";
-        // line 22
+        // line 32
         echo twig_escape_filter($this->env, $this->getContext($context, "url"), "html", null, true);
         echo "\" data-send=\"";
         echo twig_escape_filter($this->env, $this->getContext($context, "send"), "html", null, true);
@@ -78,6 +91,6 @@ class __TwigTemplate_49e61830d685d84989979a95cde940f1 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  53 => 22,  44 => 16,  31 => 7,  28 => 6,  24 => 4,  48 => 13,  37 => 9,  27 => 5,  22 => 3,  19 => 2,  223 => 87,  220 => 86,  214 => 18,  209 => 17,  205 => 15,  201 => 14,  196 => 13,  194 => 12,  191 => 11,  183 => 8,  181 => 7,  178 => 6,  172 => 5,  161 => 121,  150 => 102,  134 => 88,  132 => 86,  111 => 70,  99 => 61,  95 => 60,  86 => 53,  71 => 40,  67 => 39,  41 => 20,  38 => 19,  33 => 8,  23 => 1,  77 => 17,  74 => 16,  69 => 18,  66 => 16,  60 => 13,  50 => 9,  45 => 8,  42 => 11,  35 => 9,  63 => 38,  56 => 10,  52 => 29,  46 => 13,  43 => 11,  40 => 10,  32 => 3,  29 => 5,);
+        return array (  58 => 27,  49 => 20,  39 => 12,  31 => 7,  28 => 6,  24 => 4,  48 => 13,  37 => 9,  27 => 5,  22 => 3,  19 => 2,  223 => 87,  220 => 86,  214 => 18,  209 => 17,  205 => 15,  201 => 14,  196 => 13,  194 => 12,  191 => 11,  183 => 8,  181 => 7,  178 => 6,  172 => 5,  161 => 121,  150 => 102,  134 => 88,  132 => 86,  111 => 70,  99 => 61,  95 => 60,  86 => 53,  71 => 40,  67 => 39,  41 => 20,  38 => 19,  33 => 8,  23 => 1,  77 => 17,  74 => 16,  69 => 18,  66 => 32,  60 => 13,  50 => 9,  45 => 8,  42 => 11,  35 => 11,  63 => 38,  56 => 10,  52 => 29,  46 => 13,  43 => 11,  40 => 10,  32 => 3,  29 => 5,);
     }
 }

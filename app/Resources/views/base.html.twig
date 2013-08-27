@@ -27,8 +27,38 @@
                <div class="page-header">
                    {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
                    En-tête du site Loup-garou, le monstre du Médoc
+                    
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                       <div class="col-sm-offset-8 col-sm-4">
+                       Bonjour <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a> - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                       
+                       </div>
+                      {% else %}
+                        {% render(controller('FOSUserBundle:Security:login')) %}
+                           {#Nouveau ? <a style="cursor: pointer;"  rel="popover" title="INSCRIPTION MEMBRE" href="#" id="registre">Inscrivez-vous</a> #}         
+                  {% render(controller('FOSUserBundle:Registration:register')) %}
+                        <div class="col-sm-offset-11 col-sm-1">
+                            
+                       {#<a href="{{ path('fos_user_security_login') }}">Connexion</a>#}
+                        </div>
+                      {% endif %}
                </div>
-                          
+               
+               <!-- Bloc pour la connexion/déconnexion des utilisateurs -->
+              {#<div class="row"> 
+                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                       <div class="col-sm-offset-9 col-sm-3">
+                       Bonjour {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                       </div>
+                      {% else %}
+                        <div class="col-sm-offset-11 col-sm-1">
+                       <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                        </div>
+                      {% endif %}
+               </div>
+              #} 
+               
+               
                <!-- Menu principal du layout -->
                           <div class="navbar ">
                           <div class="navbar-inner">
@@ -53,7 +83,17 @@
                               <div class="span12 well">
                                <br>
                                <div id="monaccordeon">
-                                 <div class="accordion-group">
+                                  {% if is_granted('ROLE_ADMIN') %}
+                                   <div class="accordion-group">
+                                   <button disabled="disabled" id="administration" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#administration">Vous êtes administrateur</button>
+                                   <div id="administration" class="accordion-body collapse in">
+                                     <div class="accordion-inner">  
+                                       Vous êtes administrateur, cliquer <a href="{{ path('admin') }}">ici</a>
+                                    </div>
+                                   </div>
+                                 </div>
+                                   {% endif %}    
+                                  <div class="accordion-group">
                                    <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
                                    <div id="presentation" class="accordion-body collapse in">
                                      <div class="accordion-inner">  
@@ -80,7 +120,12 @@
                             </div>
                                
                      </div>        
-                       </div></div>
+                       </div>
+                           
+                        <!-- Bloc pour la connexion utilisateur -->
+                        
+                       
+                      </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
                         {% block body %}
@@ -107,18 +152,13 @@
             </div>
     
         
-         {#<script language="javascript" type="text/javascript">
+         <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
-    $('ul.nav > li').click(function (e) {
-            $('ul.nav').find('li.active').removeClass('active');
-            //$('ul.nav > li').removeClass('active');
-            $(this).addClass('active');                
-            //e.preventDefault();
-        });    
+   $("a#registre").popover({placement:'bottom',trigger: 'click',html:true, content: function() { return {% render(controller('FOSUserBundle:Registration:register')) %} }, delay: { show: 500, hide: 10} });
     
  });
-</script>#}  
+</script>  
         
                 
         

@@ -16,15 +16,16 @@ class CommentaireRepository extends EntityRepository
      * Get commentairesacceptes
      * @return Commentaire
      */
-    public function getCommentairesAcceptes($page,$commentaires_per_page)
+    public function getCommentairesAcceptes($page,$commentaires_per_page,$tri)
     {
         
      $query_builder = $this->createQueryBuilder('c');
      return $query_builder->leftJoin('c.livre', 'l')
                    ->addSelect('l')->where( $query_builder->expr()->like('l.titre', ':titre'))
                    ->setParameter('titre', 'le monstre du Médoc')
-            // ->where($query_builder->expr()->like('c.statut', "'modere,accepte%'"))
-                   ->orderBy('c.date', 'DESC')
+                   //->andwhere($query_builder->expr()->like('c.statut', ":statut"))
+                   //->setParameter('statut', 'accepte')
+                   ->orderBy('c.date', $tri)
                    ->setFirstResult(($page * $commentaires_per_page) - $commentaires_per_page)
                    ->setMaxResults($commentaires_per_page)
                    ->getQuery()->getResult();

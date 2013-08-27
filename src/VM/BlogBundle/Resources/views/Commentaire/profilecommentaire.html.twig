@@ -1,0 +1,21 @@
+{% extends "VMBlogBundle::base.html.twig" %}
+
+        
+
+{% block vmblog_body %}
+  <ul>
+  <li>Identifiant : {{ membre.username  }} </li>
+  
+  {# <li>Nom/prénom  :{% if membre.realname|length > 0 %} {{ membre.realname  }} {%else%} non renseigné{% endif %}</li>#}
+ 
+  <li>     Sexe : {% if membre.sexe|length > 0 %}       {{ membre.sexe  }}    {%else%} non renseigné{% endif %}</li> 
+ 
+  <li>  Age  : {% if membre.age > 0 %}          {{ membre.age   }}     {%else%} non renseigné{% endif %}</li>
+ 
+  <li> Ville :    {% if membre.ville|length > 0 %}      {{ membre.ville  }}    {%else%} non renseigné{% endif %}</li>
+ 
+  <li> Email :{% if membre.email|length > 0 %}          {{ membre.email  }}    {%else%} non renseigné{% endif %}</li>
+  </ul>
+  <hr/> <a href="{{ path('vm_blog_commentaire_list', { tri: 'asc' }) }}">Retour</a>   
+
+{% endblock %}

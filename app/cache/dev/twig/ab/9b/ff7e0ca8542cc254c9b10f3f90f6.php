@@ -101,8 +101,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
 <script language=\"javascript\" type=\"text/javascript\">
  \$(document).ready(function() 
  {
-    
-     
+   
    \$(\"ul.nav > li#galleries\").addClass('active');
    \$(\"img\").popover({placement:'left',trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"250px;\" src=\"'+\$(this).attr('src')+'\"/><div>'+\$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
  });
