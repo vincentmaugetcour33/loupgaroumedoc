@@ -30,16 +30,28 @@
                     
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                        <div class="col-sm-offset-8 col-sm-4">
-                       Bonjour <a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a> - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                      <div class='thumbnail'>
+                          <img width=30px style="float:left;padding-right:5px;" class=""  src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+                         
+                          <div  class="input-group-btn" "> 
+                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
+                          <ul style="float:left;position: absolute;z-index:1000;margin-top:-10px;" class="dropdown-menu pull-left" id={{app.user.id}}>
+                            <li id="visualiser"><a href="#" id="">Votre profil</a></li> 
+                            <li class="divider"/>
+                            <li id="edit"><a href="#" id="">Modifier</a></li>
+                            <li><a href="#" id="supprimer_profil">Supprimer</a></li>
+                        </ul>
+                         </div> <a style="float:right;" href="{{ path('logout') }}">Déconnexion
+                      
+                      </div>
+                     {#<a href="{{ path('fos_user_profile_show') }}">#}
                        
                        </div>
                       {% else %}
-                        {% render(controller('FOSUserBundle:Security:login')) %}
-                           {#Nouveau ? <a style="cursor: pointer;"  rel="popover" title="INSCRIPTION MEMBRE" href="#" id="registre">Inscrivez-vous</a> #}         
-                  {% render(controller('FOSUserBundle:Registration:register')) %}
-                        <div class="col-sm-offset-11 col-sm-1">
+                        {% render(controller('VMUserBundle:Security:login')) %}
+                            <div class="col-sm-offset-11 col-sm-1">
                             
-                       {#<a href="{{ path('fos_user_security_login') }}">Connexion</a>#}
+                      
                         </div>
                       {% endif %}
                </div>
@@ -83,7 +95,7 @@
                               <div class="span12 well">
                                <br>
                                <div id="monaccordeon">
-                                  {% if is_granted('ROLE_ADMIN') %}
+                                 {# {% if is_granted('ROLE_ADMIN') %}
                                    <div class="accordion-group">
                                    <button disabled="disabled" id="administration" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#administration">Vous êtes administrateur</button>
                                    <div id="administration" class="accordion-body collapse in">
@@ -93,7 +105,7 @@
                                    </div>
                                  </div>
                                    {% endif %}    
-                                  <div class="accordion-group">
+                                  #}<div class="accordion-group">
                                    <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
                                    <div id="presentation" class="accordion-body collapse in">
                                      <div class="accordion-inner">  
@@ -129,8 +141,11 @@
                       
                        <div class="col-sm-offset-1 col-sm-9">
                         {% block body %}
-                       {% endblock %}
+                       {% endblock body %}
+                        
+                      
                        </div>
+                       
                        
                        <!--<div class="span1 offset1">
                           Bloc latéral droit
@@ -155,7 +170,7 @@
          <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
-   $("a#registre").popover({placement:'bottom',trigger: 'click',html:true, content: function() { return {% render(controller('FOSUserBundle:Registration:register')) %} }, delay: { show: 500, hide: 10} });
+   {#$("a#registre").popover({placement:'bottom',trigger: 'click',html:true, content: function() { return {% render(controller('FOSUserBundle:Registration:register')) %} }, delay: { show: 500, hide: 10} });#}
     
  });
 </script>  

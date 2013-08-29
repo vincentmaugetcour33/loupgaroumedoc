@@ -43,6 +43,13 @@
                        <div class="panel-heading">
                            <table>
                                <tr>
+                                   <td>
+                                       
+                                           <div class='thumbnail'>
+                                            <img width="30px" src="{{ asset('bundles/vmuser/photo/'~entity.user.photo) }}" />
+                                           </div>
+                                          
+                                   </td>
                                    <td><a href="{{ path('vm_blog_commentaire_user', { 'id': entity.id }) }}"><u>{{ entity.user }}</u></a></td>
                                    <td style="text-align:right;" class="col-sm-offset-9 pull-right">
                                        {% if "now" | date("m/d/Y") == entity.date|date("m/d/Y") %}
@@ -51,11 +58,11 @@
                                               Le {{ entity.date|date('d/m/Y à h:m')}}
                                       {% endif %}
                                    </td>
-                                   <td>
+                                   
                                        {% if app.user %}
                     {% if entity.statut == 'modere' %}
                         {% if entity.user == app.user %}
-                           
+                           <td>
                       <div class="input-group-btn"> 
                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                           <ul class="dropdown-menu pull-right" id={{entity.id}}>
@@ -63,11 +70,12 @@
                             <li class="divider"></li>
                             <li><a href="#" id="supprimer_commentaire">Supprimer</a></li>
                         </ul>
-                    </div><!-- /btn-group -->
+                     </div><!-- /btn-group -->
+                    
                          {% endif %}
                     {% endif %}
                  {% endif %}
-                                   </td>    
+                                   
                                </tr>
                             </table>
                               

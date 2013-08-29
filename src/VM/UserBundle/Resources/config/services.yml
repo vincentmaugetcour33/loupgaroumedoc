@@ -2,6 +2,14 @@ parameters:
 #    vm_user.example.class: VM\UserBundle\Example
 
 services:
-#    vm_user.example:
-#        class: %vm_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+   #vm_userstore.registration.form.type:
+    #    class: VM\UserBundle\Form\Type\RegistrationFormType
+    #    arguments: [%fos_user.model.user.class%]
+     #   tags:
+       #     - { name: form.type, alias: vm_userstore_registration}
+    
+   #vm_userbundle.profile.form.type:
+    #    class: MyApp\UserBundle\Form\Type\ProfileFormType
+     #   arguments: [%fos_user.model.user.class%]
+      #  tags:
+         #   - { name: form.type, alias: store_user_profile}

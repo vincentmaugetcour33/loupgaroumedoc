@@ -3,77 +3,104 @@
  
 namespace VM\UserBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser; 
+#use FOS\UserBundle\Entity\User as BaseUser; 
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
- 
+ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="VM\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User implements UserInterface #extends BaseUser
 {
   /**
    * @ORM\Column(name="id", type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
    */
-  //private $id;
- protected $id;
+  private $id;
+ //protected $id;
   
-  
-  /**
-   * @ORM\Column(name="ville", type="string")
+   /**
+   * @ORM\Column(name="username", type="string", length=255, unique=true)
    */
-  protected $ville;
+  private $username;
+  /**
+   * @ORM\Column(name="ville", type="string", nullable=true)
+   */
+  private $ville;
     
     
   /**
-     * @ORM\Column(name="sexe",type="text")
+     * @ORM\Column(name="sexe",type="string")
    * @Assert\Choice(choices= {"homme", "femme"}, message="Vous ne pouvez choisir qu'une des deux valeurs.")
    */
-    protected $sexe;  
+    private $sexe;  
     
     /**
-     * @ORM\Column(name="age",type="integer")
+     * @ORM\Column(name="age",type="integer", nullable=true)
      */
-    protected $age;  
+    private $age;  
     
      /**
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
-    protected $photo; 
+    private $photo; 
     
  /**
-   * @ORM\Column(name="realname", type="string", length=255)
+   * @ORM\Column(name="realname", type="string", length=255, nullable=true)
    */
-  protected $realname;
+  private $realname;
  
   /**
    * @ORM\Column(name="password", type="string", length=255)
    */
-  //private $password;
+  private $password;
  
   /**
    * @ORM\Column(name="salt", type="string", length=255)
    */
-  //private $salt;
+  private $salt;
  
   /**
    * @ORM\Column(name="roles", type="array")
    */
-  //private $roles;
+  private $roles;
  
   /**
    * 
    */
     public function __construct()
     {
-     parent::__construct();
-     $this->addRole('ROLE_USER');
+  
+     $this->roles=array('ROLE_USER');
+     $this->sexe="homme";
+     $this->setPhoto("member_default.png");
      }
+    
+    
+    public function setUsername($username)
+  {
+    $this->username = $username;
+    return $this;
+  }
  
+  public function getUsername()
+  {
+    return $this->username;
+  }
+ 
+  public function setPassword($password)
+  {
+    $this->password = $password;
+    return $this;
+  }
+ 
+  public function getPassword()
+  {
+    return $this->password;
+  }    
   
   public function setRealname($realname)
   {
@@ -187,4 +214,30 @@ class User extends BaseUser
     {
         return $this->photo;
     }
+    
+     public function setRoles(array $roles)
+  {
+    $this->roles = $roles;
+    return $this;
+  }
+ 
+  public function getRoles()
+  {
+    return $this->roles;
+  }
+
+   public function setSalt($salt)
+  {
+    $this->salt = $salt;
+    return $this;
+  }
+ 
+  public function getSalt()
+  {
+    return $this->salt;
+  }
+  
+   public function eraseCredentials()
+  {
+  }
 }

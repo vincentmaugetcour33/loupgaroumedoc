@@ -65,14 +65,25 @@ doctrine:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 
-fos_user:
-    db_driver:     orm                        # Le type de BDD utilisé
-    firewall_name: main                       # Le nom du firewall qui utilise les utilisateurs
-    user_class:    VM\UserBundle\Entity\User  # La classe de l'entité User utilisée
+#fos_user:
+ #   db_driver:     orm                        # Le type de BDD utilisé
+  #  firewall_name: main                       # Le nom du firewall qui utilise les utilisateurs
+   # user_class:    VM\UserBundle\Entity\User  # La classe de l'entité User utilisée
+    #service:
+     #   mailer: fos_user.mailer.twig_swift
     #registration:
-    # form: 
-    #   type: vm_userbundle_usertype
-    
+     # form: 
+      #  type: vm_userstore_registration
+      #confirmation:
+      #  enabled:    true
+       # template: VMBlogBundle:User:registration.email.twig 
+        #from_email:
+         #  address:        noreply@monstredumedoc.net
+          # sender_name:    Vincent Mauget
+      
+               
+
+         
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%

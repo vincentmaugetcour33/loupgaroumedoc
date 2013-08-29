@@ -3,8 +3,19 @@
         
 
 {% block vmblog_body %}
-  <ul>
-  <li>Identifiant : {{ membre.username  }} </li>
+<div class="panel panel-info"> 
+      <div class="panel-heading">
+          <table><tr>
+          <td><div style="float:left;" class='thumbnail'>
+          <img align="center" width="30px" src="{{ asset('bundles/vmuser/photo/'~membre.photo) }}" />
+        </div>
+          INFORMATIONS MEMBRE {{ membre.username  }}
+          </td></tr></table>
+          </div>
+      
+          <div class="panel-body">
+          <ul>
+  {#<li>Identifiant : {{ membre.username  }} </li>#}
   
   {# <li>Nom/prénom  :{% if membre.realname|length > 0 %} {{ membre.realname  }} {%else%} non renseigné{% endif %}</li>#}
  
@@ -14,8 +25,11 @@
  
   <li> Ville :    {% if membre.ville|length > 0 %}      {{ membre.ville  }}    {%else%} non renseigné{% endif %}</li>
  
-  <li> Email :{% if membre.email|length > 0 %}          {{ membre.email  }}    {%else%} non renseigné{% endif %}</li>
-  </ul>
-  <hr/> <a href="{{ path('vm_blog_commentaire_list', { tri: 'asc' }) }}">Retour</a>   
+ {# <li> Email :{% if membre.email|length > 0 %}          {{ membre.email  }}    {%else%} non renseigné{% endif %}</li>
+  #}</ul>
+                    </div>
+</div>
+          
+          {#<hr/> <a href="{{ path('vm_blog_commentaire_list', { tri: 'asc' }) }}">Retour</a>   #}
 
 {% endblock %}
