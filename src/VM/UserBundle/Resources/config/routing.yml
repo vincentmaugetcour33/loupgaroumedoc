@@ -1,0 +1,15 @@
+vm_user_profile:
+    path:  /profile
+    defaults: { _controller: VMUserBundle:Profile:showprofile }
+    
+vm_user_supprime:
+   path:  /profile_supprime
+   defaults: { _controller: VMUserBundle:Profile:supprimeprofile }
+
+vm_user_ajout:
+   path:  /profile_ajout
+   defaults: { _controller: VMUserBundle:Profile:ajoutprofile }
+   
+vm_user_edit:
+   path:  /profile_edit
+   defaults: { _controller: VMUserBundle:Profile:editprofile }   

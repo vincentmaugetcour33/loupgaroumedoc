@@ -179,8 +179,34 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
 
                 // vm_blog_commentaire_user
-                if (0 === strpos($pathinfo, '/commentaire_profile') && preg_match('#^/commentaire_profile/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_user')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::profilecommentaireAction',));
+                if (0 === strpos($pathinfo, '/commentaire_profile') && preg_match('#^/commentaire_profile/(?P<id>[^/]++)(?:/(?P<page>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'vm_blog_commentaire_user')), array (  '_controller' => 'VM\\BlogBundle\\Controller\\CommentaireController::profilecommentaireAction',  'page' => 1,));
+                }
+
+            }
+
+        }
+
+        if (0 === strpos($pathinfo, '/profile')) {
+            // vm_user_profile
+            if ($pathinfo === '/profile') {
+                return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::showprofileAction',  '_route' => 'vm_user_profile',);
+            }
+
+            if (0 === strpos($pathinfo, '/profile_')) {
+                // vm_user_supprime
+                if ($pathinfo === '/profile_supprime') {
+                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::supprimeprofileAction',  '_route' => 'vm_user_supprime',);
+                }
+
+                // vm_user_ajout
+                if ($pathinfo === '/profile_ajout') {
+                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::ajoutprofileAction',  '_route' => 'vm_user_ajout',);
+                }
+
+                // vm_user_edit
+                if ($pathinfo === '/profile_edit') {
+                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::editprofileAction',  '_route' => 'vm_user_edit',);
                 }
 
             }
@@ -192,25 +218,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_js_routing_js')), array (  '_controller' => 'fos_js_routing.controller:indexAction',  '_format' => 'js',));
         }
 
-        if (0 === strpos($pathinfo, '/log')) {
-            if (0 === strpos($pathinfo, '/login')) {
-                // login
-                if ($pathinfo === '/login') {
-                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
-                }
-
-                // login_check
-                if ($pathinfo === '/login_check') {
-                    return array('_route' => 'login_check');
-                }
-
+        if (0 === strpos($pathinfo, '/login')) {
+            // login
+            if ($pathinfo === '/login') {
+                return array (  '_controller' => 'VM\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
             }
 
-            // logout
-            if ($pathinfo === '/logout') {
-                return array('_route' => 'logout');
+            // login_check
+            if ($pathinfo === '/login_check') {
+                return array('_route' => 'login_check');
             }
 
+        }
+
+        // vm_userblog_profile_show
+        if ($pathinfo === '/profile') {
+            return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::showprofileAction',  '_route' => 'vm_userblog_profile_show',);
+        }
+
+        // logout
+        if ($pathinfo === '/logout') {
+            return array('_route' => 'logout');
         }
 
         // admin

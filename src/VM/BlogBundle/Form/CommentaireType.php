@@ -16,7 +16,7 @@ class CommentaireType extends AbstractType
     {
         $builder
             //->add('user', 'text', array('label' => 'Auteur'))
-            ->add('contenu', 'textarea', array('label' => 'Commentaire'));
+            ->add('contenu', 'textarea', array('label' => 'Commentaire', 'required'=>true));
             //->add('date', 'date',);
             //->add('statut', )
             //->add('livre');

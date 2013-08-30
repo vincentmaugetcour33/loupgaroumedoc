@@ -15,9 +15,9 @@ class LivreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('auteur')
-            ->add('resume');
+            ->add('titre',       'text')
+            ->add('auteur',      'text')
+            ->add('resume',     'textarea');
     }
 
     /**

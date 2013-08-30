@@ -1,0 +1,35 @@
+{% extends "::base.html.twig" %}
+
+        
+{% block body %}
+
+<div class="panel panel-info"> 
+      <div class="panel-heading">
+          <table><tr>
+          <td><div style="float:left;" class='thumbnail'>
+          <img align="center" width="30px" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+        </div>
+          INFORMATIONS PROFIL {{ app.user.username  }}
+          </td></tr></table>
+          </div>
+      
+          <div class="panel-body">
+          <ul>
+  {#<li>Identifiant : {{ app.user.username  }} </li>#}
+  
+  {# <li>Nom/prénom  :{% if app.user.realname|length > 0 %} {{ app.user.realname  }} {%else%} non renseigné{% endif %}</li>#}
+ 
+  <li>     Sexe : {% if app.user.sexe|length > 0 %}       {{ app.user.sexe  }}    {%else%} non renseigné{% endif %}</li> 
+ 
+  <li>  Age  : {% if app.user.age > 0 %}          {{ app.user.age   }}     {%else%} non renseigné{% endif %}</li>
+ 
+  <li> Ville :    {% if app.user.ville|length > 0 %}      {{ app.user.ville  }}    {%else%} non renseigné{% endif %}</li>
+ 
+ {# <li> Email :{% if app.user.email|length > 0 %}          {{ app.user.email  }}    {%else%} non renseigné{% endif %}</li>
+  #}</ul>
+                    </div>
+</div>
+          
+           <a href="{{ path('vm_blog_homepage') }}">Retour</a>   
+
+{% endblock body%}

@@ -50,7 +50,7 @@
                                            </div>
                                           
                                    </td>
-                                   <td><a href="{{ path('vm_blog_commentaire_user', { 'id': entity.id }) }}"><u>{{ entity.user }}</u></a></td>
+                                   <td><a href="{{ path('vm_blog_commentaire_user', { 'id': entity.id, 'page' : current_page }) }}"><u>{{ entity.user.username }}</u></a></td>
                                    <td style="text-align:right;" class="col-sm-offset-9 pull-right">
                                        {% if "now" | date("m/d/Y") == entity.date|date("m/d/Y") %}
                                               aujourd'hui à {{ entity.date|date('h:m')}}

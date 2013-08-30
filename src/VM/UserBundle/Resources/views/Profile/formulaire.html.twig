@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+
+        
+{% block body %}
+
+{% if form is defined %}
+    
+        // personnalisation des labels ajout d'un astérisque pour les champs obligatoires
+    
+{#{% form_theme form _self %}
+    {% use 'form_div_layout.html.twig' with form_label as base_form_label %}
+
+    {% block form_label %}
+        {{ block('base_form_label') }}
+
+        {% if required %}
+            <span class="required" title="Ce champ est obligatoire">*</span>
+        {% endif %}
+    {% endblock %}
+#}
+
+    <div class="panel panel-info"> 
+      <div class="panel-heading">
+          ENREGISTREMENT PROFIL
+       </div>
+            
+      <div class="panel-body">      
+   <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" {{ form_enctype(form) }}>
+      {{ form_errors(form) }}
+      {{ form_label(form) }}
+     {{ form_widget(form) }}
+      {{ form_rest(form) }}
+      <input type="submit" class="btn btn-default" />
+      <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
+  </form>
+              </div></div>
+              
+{% endif %}
+
+{% endblock body %}

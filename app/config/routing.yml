@@ -2,7 +2,12 @@
 vm_blog:
     resource: "@VMBlogBundle/Resources/config/routing.yml"
     prefix:   /
- 
+    
+ # Routes pour le module utilisateur
+vm_user:
+    resource: "@VMUserBundle/Resources/config/routing.yml"
+    prefix:   /
+    
 # Routes ajax 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
@@ -15,6 +20,10 @@ login:
 login_check:
   pattern:   /login_check  
 
+vm_userblog_profile_show:
+  pattern: /profile
+  defaults: { _controller: VMUserBundle:Profile:showprofile }
+  
 logout:
   pattern:   /logout    
 

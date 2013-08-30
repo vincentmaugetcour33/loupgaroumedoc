@@ -30,29 +30,27 @@
                     
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                        <div class="col-sm-offset-8 col-sm-4">
-                      <div class='thumbnail'>
-                          <img width=30px style="float:left;padding-right:5px;" class=""  src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+                      <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
+                          <img width=40px style="float:left;" class="img-rounded"  src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
                          
-                          <div  class="input-group-btn" "> 
-                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
-                          <ul style="float:left;position: absolute;z-index:1000;margin-top:-10px;" class="dropdown-menu pull-left" id={{app.user.id}}>
-                            <li id="visualiser"><a href="#" id="">Votre profil</a></li> 
+                          <div class="input-group-btn" > 
+                         <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
+                          <ul style="margin-top:30px;" class="dropdown-menu pull-right" id={{app.user.id}}>
+                            <li id="visualiser"><a href="{{path('vm_user_profile')}}" id="">Votre profil</a></li> 
                             <li class="divider"/>
-                            <li id="edit"><a href="#" id="">Modifier</a></li>
+                            <li id="edit"><a href="{{path('vm_user_edit')}}" id="">Modifier</a></li>
                             <li><a href="#" id="supprimer_profil">Supprimer</a></li>
-                        </ul>
-                         </div> <a style="float:right;" href="{{ path('logout') }}">Déconnexion
+                            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                          </ul>
+                         </div> 
                       
                       </div>
-                     {#<a href="{{ path('fos_user_profile_show') }}">#}
-                       
+                   
+                      
                        </div>
                       {% else %}
                         {% render(controller('VMUserBundle:Security:login')) %}
-                            <div class="col-sm-offset-11 col-sm-1">
-                            
-                      
-                        </div>
+                        Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
                       {% endif %}
                </div>
                
@@ -140,6 +138,7 @@
                       </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
+                           
                         {% block body %}
                        {% endblock body %}
                         
@@ -170,7 +169,24 @@
          <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
-   {#$("a#registre").popover({placement:'bottom',trigger: 'click',html:true, content: function() { return {% render(controller('FOSUserBundle:Registration:register')) %} }, delay: { show: 500, hide: 10} });#}
+     $("body").on("click", "#supprimer_profil", (function()
+          { 
+            if (confirm("Souhaitez-vous réellement supprimer votre profil de connexion ? ")) 
+            {
+                $.ajax({
+                   type: "GET",
+                   url: Routing.generate('vm_user_supprime'),
+                   cache:false,
+                   success: function(data)
+                   {
+                    alert("Vous n'avez plus de profil. Pour vous connecter, il faudra vous réinscrire.");
+                    
+                   }
+                 });
+             }
+             
+          }));
+  
     
  });
 </script>  

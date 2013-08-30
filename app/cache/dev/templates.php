@@ -89,6 +89,7 @@
   'VMBlogBundle:helper:twitterButton.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/helper/twitterButton.html.twig',
   'VMBlogBundle:Image:image_list.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Image/image_list.html.twig',
   'VMBlogBundle:User:registration.email.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/User/registration.email.twig',
+  'VMUserBundle:Profile:profileshow.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\UserBundle/Resources/views/Profile/profileshow.html.twig',
   'VMUserBundle:Security:login.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\UserBundle/Resources/views/Security/login.html.twig',
   'WebProfilerBundle:Collector:config.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/config.html.twig',
   'WebProfilerBundle:Collector:events.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/events.html.twig',

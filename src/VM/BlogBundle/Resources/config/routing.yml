@@ -31,7 +31,7 @@ vm_blog_commentaire_supprime:
         expose: true    
         
 vm_blog_commentaire_user:
-     path:  /commentaire_profile/{id}
-     defaults: { _controller: VMBlogBundle:Commentaire:profilecommentaire}
+     path:  /commentaire_profile/{id}/{page}
+     defaults: { _controller: VMBlogBundle:Commentaire:profilecommentaire, page:1}
      options:
         expose: true    

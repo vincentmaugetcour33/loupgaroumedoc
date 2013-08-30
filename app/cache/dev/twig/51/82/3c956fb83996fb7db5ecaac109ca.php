@@ -56,54 +56,59 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
             // line 32
             echo "                       <div class=\"col-sm-offset-8 col-sm-4\">
-                      <div class='thumbnail'>
-                          <img width=30px style=\"float:left;padding-right:5px;\" class=\"\"  src=\"";
+                      <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
+                          <img width=40px style=\"float:left;\" class=\"img-rounded\"  src=\"";
             // line 34
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmuser/photo/" . $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photo"))), "html", null, true);
             echo "\" />
                          
-                          <div  class=\"input-group-btn\" \"> 
-                         <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">";
+                          <div class=\"input-group-btn\" > 
+                         <button style=\"margin-left:-10px;\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">";
             // line 37
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
             echo "<span class=\"caret\"></span></button>
-                          <ul style=\"float:left;position: absolute;z-index:1000;margin-top:-10px;\" class=\"dropdown-menu pull-left\" id=";
+                          <ul style=\"margin-top:30px;\" class=\"dropdown-menu pull-right\" id=";
             // line 38
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "id"), "html", null, true);
             echo ">
-                            <li id=\"visualiser\"><a href=\"#\" id=\"\">Votre profil</a></li> 
+                            <li id=\"visualiser\"><a href=\"";
+            // line 39
+            echo $this->env->getExtension('routing')->getPath("vm_user_profile");
+            echo "\" id=\"\">Votre profil</a></li> 
                             <li class=\"divider\"/>
-                            <li id=\"edit\"><a href=\"#\" id=\"\">Modifier</a></li>
+                            <li id=\"edit\"><a href=\"";
+            // line 41
+            echo $this->env->getExtension('routing')->getPath("vm_user_edit");
+            echo "\" id=\"\">Modifier</a></li>
                             <li><a href=\"#\" id=\"supprimer_profil\">Supprimer</a></li>
-                        </ul>
-                         </div> <a style=\"float:right;\" href=\"";
-            // line 44
+                            <li><a href=\"";
+            // line 43
             echo $this->env->getExtension('routing')->getPath("logout");
-            echo "\">Déconnexion
+            echo "\">Déconnexion</a></li>
+                          </ul>
+                         </div> 
                       
                       </div>
-                     ";
-            // line 48
-            echo "                       
+                   
+                      
                        </div>
                       ";
         } else {
-            // line 51
+            // line 52
             echo "                        ";
             echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("VMUserBundle:Security:login"), array());
-            // line 52
-            echo "                            <div class=\"col-sm-offset-11 col-sm-1\">
-                            
-                      
-                        </div>
+            // line 53
+            echo "                        Nouveau ? Pour vous enregistrer, cliquer <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("vm_user_ajout");
+            echo "\">ici</a>     
                       ";
         }
-        // line 57
+        // line 55
         echo "               </div>
                
                <!-- Bloc pour la connexion/déconnexion des utilisateurs -->
               ";
-        // line 71
+        // line 69
         echo " 
                
                
@@ -114,15 +119,15 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                     <ul class=\"nav nav-pills nav-justified\">
                                       <li id=\"accueil\"><a href=\"/\">Accueil</a></li>
                                       <li id=\"galleries\"><a href=\"";
-        // line 80
+        // line 78
         echo $this->env->getExtension('routing')->getPath("vm_blog_image_list");
         echo "\">Galleries</a></li>
                                       <li id=\"biographie\"><a href=\"";
-        // line 81
+        // line 79
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
                                       <li id=\"commentaires\"><a href=\"";
-        // line 82
+        // line 80
         echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list");
         echo "\">Commentaires</a></li>
                                     </ul>
@@ -137,22 +142,22 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                            
                            <div class=\"row\">
                               ";
-        // line 95
+        // line 93
         echo "                              <div class=\"span12 well\">
                                <br>
                                <div id=\"monaccordeon\">
                                  ";
-        // line 108
+        // line 106
         echo "<div class=\"accordion-group\">
                                    <button disabled=\"disabled\" id=\"presentation\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#presentation\">Qui suis-je ?</button>
                                    <div id=\"presentation\" class=\"accordion-body collapse in\">
                                      <div class=\"accordion-inner\">  
                                          Auteur : ";
-        // line 112
+        // line 110
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
         echo "
                                          <img src=\"";
-        // line 113
+        // line 111
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
         echo "\" alt=\"Patrice mauget\" />
                                          
@@ -164,7 +169,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                    <div id=\"coordonnees\" class=\"accordion-body collapse \">
                                      <div class=\"accordion-inner\">
                                         <br/><a href=\"mailto:";
-        // line 122
+        // line 120
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_email"), "html", null, true);
         echo "\">";
         echo $this->env->getExtension('translator')->getTranslator()->trans("biographie.mail_auteur", array(), "messages");
@@ -189,10 +194,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                       </div>
                       
                        <div class=\"col-sm-offset-1 col-sm-9\">
+                           
                         ";
-        // line 143
+        // line 142
         $this->displayBlock('body', $context, $blocks);
-        // line 145
+        // line 144
         echo "                        
                       
                        </div>
@@ -211,7 +217,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 162
+        // line 161
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -224,9 +230,25 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
          <script language=\"javascript\" type=\"text/javascript\">
  \$(document).ready(function() 
  {
-   ";
-        // line 174
-        echo "    
+     \$(\"body\").on(\"click\", \"#supprimer_profil\", (function()
+          { 
+            if (confirm(\"Souhaitez-vous réellement supprimer votre profil de connexion ? \")) 
+            {
+                \$.ajax({
+                   type: \"GET\",
+                   url: Routing.generate('vm_user_supprime'),
+                   cache:false,
+                   success: function(data)
+                   {
+                    alert(\"Vous n'avez plus de profil. Pour vous connecter, il faudra vous réinscrire.\");
+                    
+                   }
+                 });
+             }
+             
+          }));
+  
+    
  });
 </script>  
         
@@ -286,10 +308,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
     }
 
-    // line 143
+    // line 142
     public function block_body($context, array $blocks = array())
     {
-        // line 144
+        // line 143
         echo "                       ";
     }
 
@@ -305,6 +327,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  293 => 144,  290 => 143,  284 => 18,  279 => 17,  275 => 15,  271 => 14,  266 => 13,  261 => 11,  253 => 8,  251 => 7,  248 => 6,  242 => 5,  215 => 162,  194 => 143,  152 => 112,  146 => 108,  126 => 82,  118 => 80,  81 => 44,  58 => 32,  23 => 1,  76 => 16,  480 => 162,  474 => 161,  469 => 158,  461 => 155,  457 => 153,  453 => 151,  444 => 149,  440 => 148,  437 => 147,  435 => 146,  430 => 144,  427 => 143,  423 => 142,  413 => 134,  409 => 132,  407 => 131,  402 => 130,  398 => 129,  393 => 126,  387 => 122,  384 => 121,  381 => 120,  379 => 119,  374 => 116,  368 => 112,  365 => 111,  362 => 110,  360 => 109,  355 => 106,  341 => 105,  337 => 103,  322 => 101,  314 => 99,  312 => 98,  309 => 97,  305 => 95,  298 => 91,  294 => 90,  285 => 89,  283 => 88,  278 => 86,  268 => 85,  264 => 12,  258 => 81,  252 => 80,  247 => 78,  241 => 77,  229 => 174,  220 => 70,  214 => 69,  177 => 65,  169 => 60,  140 => 55,  132 => 51,  128 => 49,  107 => 71,  61 => 13,  273 => 96,  269 => 94,  254 => 92,  243 => 88,  240 => 86,  238 => 85,  235 => 74,  230 => 82,  227 => 81,  224 => 71,  221 => 77,  219 => 76,  217 => 75,  208 => 68,  204 => 72,  179 => 69,  159 => 61,  143 => 56,  135 => 53,  119 => 42,  102 => 57,  71 => 19,  67 => 15,  63 => 14,  59 => 14,  38 => 19,  94 => 28,  89 => 20,  85 => 25,  75 => 17,  68 => 37,  56 => 31,  87 => 48,  21 => 2,  26 => 6,  93 => 28,  88 => 6,  78 => 21,  46 => 7,  27 => 4,  44 => 12,  31 => 5,  28 => 3,  201 => 92,  196 => 145,  183 => 82,  171 => 61,  166 => 71,  163 => 62,  158 => 67,  156 => 113,  151 => 63,  142 => 59,  138 => 54,  136 => 56,  121 => 46,  117 => 44,  105 => 40,  91 => 27,  62 => 34,  49 => 19,  24 => 4,  25 => 3,  19 => 1,  79 => 17,  72 => 38,  69 => 18,  47 => 9,  40 => 8,  37 => 10,  22 => 2,  246 => 90,  157 => 56,  145 => 46,  139 => 45,  131 => 52,  123 => 47,  120 => 40,  115 => 43,  111 => 37,  108 => 36,  101 => 32,  98 => 31,  96 => 31,  83 => 25,  74 => 14,  66 => 16,  55 => 15,  52 => 29,  50 => 9,  43 => 8,  41 => 20,  35 => 11,  32 => 3,  29 => 5,  209 => 82,  203 => 78,  199 => 67,  193 => 73,  189 => 71,  187 => 84,  182 => 66,  176 => 64,  173 => 65,  168 => 122,  164 => 59,  162 => 57,  154 => 58,  149 => 51,  147 => 58,  144 => 49,  141 => 95,  133 => 55,  130 => 41,  125 => 44,  122 => 81,  116 => 41,  112 => 42,  109 => 34,  106 => 36,  103 => 32,  99 => 31,  95 => 52,  92 => 51,  86 => 28,  82 => 22,  80 => 19,  73 => 19,  64 => 17,  60 => 13,  57 => 11,  54 => 10,  51 => 14,  48 => 13,  45 => 8,  42 => 7,  39 => 9,  36 => 5,  33 => 6,  30 => 7,);
+        return array (  315 => 143,  312 => 142,  306 => 18,  301 => 17,  297 => 15,  293 => 14,  288 => 13,  286 => 12,  283 => 11,  275 => 8,  273 => 7,  270 => 6,  264 => 5,  221 => 161,  202 => 144,  200 => 142,  173 => 120,  161 => 111,  157 => 110,  151 => 106,  146 => 93,  131 => 80,  127 => 79,  123 => 78,  112 => 69,  107 => 55,  101 => 53,  98 => 52,  86 => 43,  81 => 41,  76 => 39,  72 => 38,  68 => 37,  62 => 34,  58 => 32,  56 => 31,  52 => 29,  41 => 20,  38 => 19,  35 => 11,  33 => 6,  29 => 5,  23 => 1,);
     }
 }

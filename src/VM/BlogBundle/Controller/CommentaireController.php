@@ -136,10 +136,10 @@ class CommentaireController extends Controller
        * Profile commentaire
        * @param Commentaire $commentaire
        */
-       public function profilecommentaireAction(Commentaire $commentaire)
+       public function profilecommentaireAction(Commentaire $commentaire, $page)
        {
           return $this->render("VMBlogBundle:Commentaire:profilecommentaire.html.twig", array(
-                              'membre' => $commentaire->getUser()) );   
+                              'membre' => $commentaire->getUser(), 'current_page' => $page) );   
        }
     
     

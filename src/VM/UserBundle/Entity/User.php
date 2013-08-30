@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="VM\UserBundle\Entity\UserRepository")
  */
 class User implements UserInterface #extends BaseUser
@@ -59,7 +60,7 @@ class User implements UserInterface #extends BaseUser
   private $password;
  
   /**
-   * @ORM\Column(name="salt", type="string", length=255)
+   * @ORM\Column(name="salt", type="string", length=255,nullable=true)
    */
   private $salt;
  
@@ -73,12 +74,23 @@ class User implements UserInterface #extends BaseUser
    */
     public function __construct()
     {
-  
      $this->roles=array('ROLE_USER');
      $this->sexe="homme";
-     $this->setPhoto("member_default.png");
+     //$this->setPhoto("member_default.png");
      }
     
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+     public function image_profile()
+     {
+      if (is_null($this->photo))
+      {
+          if ($this->sexe == "homme") { $this->setPhoto("member_default.png"); }
+          if ($this->sexe == "femme") { $this->setPhoto("member_default_femme.jpg"); }
+      }
+     }
     
     public function setUsername($username)
   {
