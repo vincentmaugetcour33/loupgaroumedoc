@@ -7,9 +7,15 @@ namespace VM\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
- use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="search_userx", columns={"username", "email"})})
+ * @UniqueEntity(fields="email", message="Cet email existe déjà")
+ * @UniqueEntity(fields="username", message="Ce username existe déjà")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="VM\UserBundle\Entity\UserRepository")
  */
@@ -27,6 +33,13 @@ class User implements UserInterface #extends BaseUser
    * @ORM\Column(name="username", type="string", length=255, unique=true)
    */
   private $username;
+  
+   /**
+   * @ORM\Column(name="email", length=150, type="string", unique=true)
+   * @Assert\Email(message="L'adresse email n'est pas valide.") 
+   */
+  private $email;
+  
   /**
    * @ORM\Column(name="ville", type="string", nullable=true)
    */
@@ -252,4 +265,27 @@ class User implements UserInterface #extends BaseUser
    public function eraseCredentials()
   {
   }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 }

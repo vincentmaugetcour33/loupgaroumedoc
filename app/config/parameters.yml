@@ -6,12 +6,17 @@ parameters:
     database_name: blogmonstremedoc
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    #smtp
+    mailer_transport: gmail 
+    #mailer_host: 127.0.0.1
+    gmail_username: vincent.mauget@gmail.com
+    gmail_password: A12&Bbc1
+    #mailer_user: null
+    #mailer_password: null
+    
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 
+    site_nom : Loup-Garou, le monstre du Médoc
     webmaster_nom : Vincent Mauget
     webmaster_email : vincent.mauget@gmail.com

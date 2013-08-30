@@ -209,6 +209,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::editprofileAction',  '_route' => 'vm_user_edit',);
                 }
 
+                // vm_user_trouve
+                if ($pathinfo === '/profile_trouve') {
+                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::trouveprofileAction',  '_route' => 'vm_user_trouve',);
+                }
+
             }
 
         }
@@ -218,27 +223,25 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_js_routing_js')), array (  '_controller' => 'fos_js_routing.controller:indexAction',  '_format' => 'js',));
         }
 
-        if (0 === strpos($pathinfo, '/login')) {
-            // login
-            if ($pathinfo === '/login') {
-                return array (  '_controller' => 'VM\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
+        if (0 === strpos($pathinfo, '/log')) {
+            if (0 === strpos($pathinfo, '/login')) {
+                // login
+                if ($pathinfo === '/login') {
+                    return array (  '_controller' => 'VM\\UserBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
+                }
+
+                // login_check
+                if ($pathinfo === '/login_check') {
+                    return array('_route' => 'login_check');
+                }
+
             }
 
-            // login_check
-            if ($pathinfo === '/login_check') {
-                return array('_route' => 'login_check');
+            // logout
+            if ($pathinfo === '/logout') {
+                return array('_route' => 'logout');
             }
 
-        }
-
-        // vm_userblog_profile_show
-        if ($pathinfo === '/profile') {
-            return array (  '_controller' => 'VM\\UserBundle\\Controller\\ProfileController::showprofileAction',  '_route' => 'vm_userblog_profile_show',);
-        }
-
-        // logout
-        if ($pathinfo === '/logout') {
-            return array('_route' => 'logout');
         }
 
         // admin

@@ -10,7 +10,7 @@
         <tbody>
         <tr>
     {% for key, image in images %}
-        <td><img style="cursor: pointer;" class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
+        <td><img style="cursor: pointer;border: 2px solid {{ cycle(['blue','green'],loop.index0)}}" class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
         {# le tableau comporte 4 colonnes #}
         {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
     {% endfor %}

@@ -34,7 +34,7 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
         if (array_key_exists("form", $context)) {
             // line 7
             echo "    
-        // personnalisation des labels ajout d'un astérisque pour les champs obligatoires
+        Les champs marqués d'un astérisque sont obligatoires.
     
 ";
             // line 21

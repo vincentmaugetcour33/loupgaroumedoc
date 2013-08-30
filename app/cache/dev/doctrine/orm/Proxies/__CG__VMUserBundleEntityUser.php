@@ -171,10 +171,22 @@ class User extends \VM\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
         return parent::eraseCredentials();
     }
 
+    public function setEmail($email)
+    {
+        $this->__load();
+        return parent::setEmail($email);
+    }
+
+    public function getEmail()
+    {
+        $this->__load();
+        return parent::getEmail();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'ville', 'sexe', 'age', 'photo', 'realname', 'password', 'salt', 'roles');
+        return array('__isInitialized__', 'id', 'username', 'email', 'ville', 'sexe', 'age', 'photo', 'realname', 'password', 'salt', 'roles');
     }
 
     public function __clone()

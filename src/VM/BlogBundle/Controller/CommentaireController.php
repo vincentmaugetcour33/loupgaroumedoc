@@ -124,7 +124,8 @@ class CommentaireController extends Controller
               $commentaire->setLivre($livre_principal);
               $commentaire->setDate(new \DateTime());
               $manager->persist($commentaire); 
-              $manager->flush();   
+              $manager->flush(); 
+              
               $this->get('session')->getFlashBag()->add('info', 'Votre commentaire a été modifié');
              }
              return $this->redirect($this->generateUrl('vm_blog_commentaire_list', array('page' => 1, 'tri' => 'desc')));

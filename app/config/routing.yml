@@ -20,9 +20,9 @@ login:
 login_check:
   pattern:   /login_check  
 
-vm_userblog_profile_show:
-  pattern: /profile
-  defaults: { _controller: VMUserBundle:Profile:showprofile }
+#m_userblog_profile_show:
+ # pattern: /profile
+  #defaults: { _controller: VMUserBundle:Profile:showprofile }
   
 logout:
   pattern:   /logout    

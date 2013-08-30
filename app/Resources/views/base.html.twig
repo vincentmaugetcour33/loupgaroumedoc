@@ -31,14 +31,14 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                        <div class="col-sm-offset-8 col-sm-4">
                       <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
-                          <img width=40px style="float:left;" class="img-rounded"  src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+                          <img width=40 style="float:left;" class="img-rounded" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}"/>
                          
                           <div class="input-group-btn" > 
                          <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
                           <ul style="margin-top:30px;" class="dropdown-menu pull-right" id={{app.user.id}}>
-                            <li id="visualiser"><a href="{{path('vm_user_profile')}}" id="">Votre profil</a></li> 
+                            <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
                             <li class="divider"/>
-                            <li id="edit"><a href="{{path('vm_user_edit')}}" id="">Modifier</a></li>
+                            <li id="edit"><a href="{{path('vm_user_edit')}}">Modifier</a></li>
                             <li><a href="#" id="supprimer_profil">Supprimer</a></li>
                             <li><a href="{{ path('logout') }}">Déconnexion</a></li>
                           </ul>
@@ -50,24 +50,20 @@
                        </div>
                       {% else %}
                         {% render(controller('VMUserBundle:Security:login')) %}
-                        Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
+                           <p>
+                               Vous avez oublié votre mot de passe ? Cliquer <a href="{{path('vm_user_trouve')}}">ici</a> 
+                            </p>
+                            Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
                       {% endif %}
                </div>
                
-               <!-- Bloc pour la connexion/déconnexion des utilisateurs -->
-              {#<div class="row"> 
-                      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                       <div class="col-sm-offset-9 col-sm-3">
-                       Bonjour {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-                       </div>
-                      {% else %}
-                        <div class="col-sm-offset-11 col-sm-1">
-                       <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-                        </div>
-                      {% endif %}
-               </div>
-              #} 
-               
+               <!-- Message flash pour les notifications utilisateurs -->       
+                 <div id="flashmessage">
+                    
+                {% for message in app.session.flashbag.get('info') %} 
+                  {{ message }}
+                {% endfor %}
+                 </div>
                
                <!-- Menu principal du layout -->
                           <div class="navbar ">
@@ -93,7 +89,7 @@
                               <div class="span12 well">
                                <br>
                                <div id="monaccordeon">
-                                 {# {% if is_granted('ROLE_ADMIN') %}
+                                 {% if is_granted('ROLE_ADMIN') %}
                                    <div class="accordion-group">
                                    <button disabled="disabled" id="administration" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#administration">Vous êtes administrateur</button>
                                    <div id="administration" class="accordion-body collapse in">
@@ -103,7 +99,7 @@
                                    </div>
                                  </div>
                                    {% endif %}    
-                                  #}<div class="accordion-group">
+                                  <div class="accordion-group">
                                    <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
                                    <div id="presentation" class="accordion-body collapse in">
                                      <div class="accordion-inner">  
@@ -174,7 +170,7 @@
             if (confirm("Souhaitez-vous réellement supprimer votre profil de connexion ? ")) 
             {
                 $.ajax({
-                   type: "GET",
+                   type: "POST",
                    url: Routing.generate('vm_user_supprime'),
                    cache:false,
                    success: function(data)

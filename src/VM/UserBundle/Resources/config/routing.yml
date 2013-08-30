@@ -5,7 +5,9 @@ vm_user_profile:
 vm_user_supprime:
    path:  /profile_supprime
    defaults: { _controller: VMUserBundle:Profile:supprimeprofile }
-
+   options:
+       expose: true
+        
 vm_user_ajout:
    path:  /profile_ajout
    defaults: { _controller: VMUserBundle:Profile:ajoutprofile }
@@ -13,3 +15,10 @@ vm_user_ajout:
 vm_user_edit:
    path:  /profile_edit
    defaults: { _controller: VMUserBundle:Profile:editprofile }   
+   
+vm_user_trouve:
+   path:  /profile_trouve
+   defaults: { _controller: VMUserBundle:Profile:trouveprofile }   
+ 
+logout:
+  pattern:   /logout 

@@ -41,48 +41,28 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
     {
         // line 11
         echo "   
-        <div id=\"flashmessage\">
-        ";
-        // line 13
-        $context['_parent'] = (array) $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flashbag"), "get", array(0 => "info"), "method"));
-        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 14
-            echo "                <div class=\"alert\">
-                ";
-            // line 15
-            echo twig_escape_filter($this->env, $this->getContext($context, "message"), "html", null, true);
-            echo "
-                </div> 
-        ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 17
-        echo "        
-        </div>
+      
 
 
    ";
-        // line 22
+        // line 16
         echo "  ";
         echo $this->env->getExtension('vm_social_bar')->getSocialButtons();
         echo "
    <br/>
    ";
-        // line 24
+        // line 18
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "titre"), "html", null, true);
         echo "<br/>
    ";
-        // line 25
+        // line 19
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "resume"), "html", null, true);
         echo "
    
    <hr/>
    EXTRAIT (AU HASARD)
    ";
-        // line 29
+        // line 23
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
         echo " 
  
@@ -111,6 +91,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  86 => 29,  79 => 25,  75 => 24,  69 => 22,  63 => 17,  54 => 15,  51 => 14,  47 => 13,  43 => 11,  40 => 10,  32 => 4,  29 => 3,);
+        return array (  66 => 23,  59 => 19,  55 => 18,  49 => 16,  43 => 11,  40 => 10,  32 => 4,  29 => 3,);
     }
 }

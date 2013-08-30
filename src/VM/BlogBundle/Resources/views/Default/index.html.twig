@@ -9,13 +9,7 @@
     
 {% block vmblog_body %}
    
-        <div id="flashmessage">
-        {% for message in app.session.flashbag.get('info') %}
-                <div class="alert">
-                {{ message }}
-                </div> 
-        {% endfor %}        
-        </div>
+      
 
 
    {# insère la barre complète avec les valeurs par défaut #}

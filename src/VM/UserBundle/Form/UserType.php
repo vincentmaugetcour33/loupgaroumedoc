@@ -15,14 +15,15 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username',       'text', array('label' => 'Votre pseudo* : ', 'required'=>true))
+            ->add('username',      'text', array('label' => 'Votre pseudo* : ', 'required'=>true))
             ->add('password',      'text', array('label' => 'Votre mot de passe* : ', 'required'=>true))
-            ->add('realname',       'text', array('label' => 'Votre nom : ', 'required'=>false))
-            ->add('ville',       'text', array('label' => 'Votre ville : ', 'required'=>false))
-            ->add('sexe', 'choice', array(
-                 'choices'   => array('homme' => 'Masculin', 'femmme' => 'Féminin'),
-                'empty_value' => 'Vous êtes ?'))
-            ->add('age',      'integer', array('label' => 'Votre âge : ', 'required'=>false));
+            ->add('email',         'email', array('label' => 'Votre email* :', 'required'=>true))
+            ->add('realname',      'text', array('label' => 'Votre nom : ', 'required'=>false))
+            ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
+            ->add('sexe',          'choice', array(
+                                     'choices'   => array('homme' => 'Masculin', 'femmme' => 'Féminin'),
+                                     'empty_value' => 'Vous êtes ?'))
+            ->add('age',           'integer', array('label' => 'Votre âge : ', 'required'=>false));
             //->add('photo')
             
             //->add('salt')

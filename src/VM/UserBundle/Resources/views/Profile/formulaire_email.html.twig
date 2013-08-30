@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+        
+{% block body %}
+
+    <div class="panel panel-info"> 
+      <div class="panel-heading">
+          RECUPERATION PROFIL
+       </div>
+            
+      <div class="panel-body">      
+   <form class="form-inline" method="post" action="{{ path('vm_user_trouve') }}">
+      <input type='email' name='email' required="required" value='Votre adresse e-mail*'/>
+      <input type="submit" class="btn btn-default" />
+      <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
+  </form>
+              </div></div>
+              
+
+
+{% endblock body %}
