@@ -35,12 +35,12 @@
                          
                           <div class="input-group-btn" > 
                          <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
-                          <ul style="margin-top:30px;" class="dropdown-menu pull-right" id={{app.user.id}}>
+                          <ul style="margin-top:30px;" class="dropdown-menu pull-right" id="{{app.user.id}}">
                             <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
                             <li class="divider"/>
                             <li id="edit"><a href="{{path('vm_user_edit')}}">Modifier</a></li>
                             <li><a href="#" id="supprimer_profil">Supprimer</a></li>
-                            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                            <li><a href="{{ path('logout') }}" id="logout">Déconnexion</a></li>
                           </ul>
                          </div> 
                       
@@ -50,9 +50,9 @@
                        </div>
                       {% else %}
                         {% render(controller('VMUserBundle:Security:login')) %}
-                           <p>
+                           {#<p>
                                Vous avez oublié votre mot de passe ? Cliquer <a href="{{path('vm_user_trouve')}}">ici</a> 
-                            </p>
+                            </p>#}
                             Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
                       {% endif %}
                </div>
@@ -61,7 +61,11 @@
                  <div id="flashmessage">
                     
                 {% for message in app.session.flashbag.get('info') %} 
-                  {{ message }}
+                 <span class="label label-info">{{ message }}</span>
+                {% endfor %}
+                
+                 {% for message in app.session.flashbag.get('erreur') %} 
+                  <span class="label label-warning">{{ message }}</span>
                 {% endfor %}
                  </div>
                
@@ -71,9 +75,9 @@
                               <div class="container">
                                     <ul class="nav nav-pills nav-justified">
                                       <li id="accueil"><a href="/">Accueil</a></li>
-                                      <li id="galleries"><a href="{{ path('vm_blog_image_list') }}">Galleries</a></li>
+                                      <li id="galleries"><a href="{{ path('vm_blog_image_list') }}">Galerie</a></li>
                                       <li id="biographie"><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
-                                      <li id="commentaires"><a href="{{ path('vm_blog_commentaire_list') }}">Commentaires</a></li>
+                                      <li id="commentaires"><a href="{{ path('vm_blog_commentaire_list', { tri: 'desc' }) }}">Commentaires</a></li>
                                     </ul>
                                 </div>
                            </div>
@@ -134,7 +138,12 @@
                       </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
-                           
+                         <div id="notes" style="color:red;">
+                             Ce site constitue une vitrine pour le livre intitulé Loup-Garou, le monstre du Médoc.
+                             Il peut contenir quelques défaillances dans la gestion utilisateurs/commentaires.
+                             Je m'applique à rectifier et améliorer le site. Ce message ne sera plus présent une fois le
+                             site pleinement fonctionnel.
+                         </div>  
                         {% block body %}
                        {% endblock body %}
                         
@@ -175,8 +184,8 @@
                    cache:false,
                    success: function(data)
                    {
-                    alert("Vous n'avez plus de profil. Pour vous connecter, il faudra vous réinscrire.");
-                    
+                    //alert("Vous n'avez plus de profil. Pour vous connecter, il faudra vous réinscrire.");
+                    alert($("a#logout").html()); //click();
                    }
                  });
              }

@@ -7,9 +7,9 @@ parameters:
     database_user: root
     database_password: null
     #smtp
-    mailer_transport: gmail 
-    #mailer_host: 127.0.0.1
-    gmail_username: vincent.mauget@gmail.com
+    mailer_transport: mail 
+    mailer_host: 127.0.0.1
+    gmail_username: vincent.mauget@hotmail.fr
     gmail_password: A12&Bbc1
     #mailer_user: null
     #mailer_password: null

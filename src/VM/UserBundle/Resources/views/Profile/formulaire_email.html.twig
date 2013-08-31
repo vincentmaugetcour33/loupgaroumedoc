@@ -9,9 +9,13 @@
        </div>
             
       <div class="panel-body">      
-   <form class="form-inline" method="post" action="{{ path('vm_user_trouve') }}">
-      <input type='email' name='email' required="required" value='Votre adresse e-mail*'/>
-      <input type="submit" class="btn btn-default" />
+   <form class="form-inline" method="post" action="{{ path('vm_user_trouve') }}" {{form_enctype(form)}} >
+      {#{{ form_errors(form.email) }}#}
+      {{ form_label(form.email) }}
+     {{ form_widget(form.email) }}
+          {{ form_widget(form._token) }} {# {{ form_rest(form) }}#}
+       {#<input type='email' name='email' required="required" onfocus="this.value='';" value='Votre adresse e-mail*'/>
+      #}<input type="submit" class="btn btn-default" />
       <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
   </form>
               </div></div>

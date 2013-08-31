@@ -31,7 +31,7 @@ class Commentaire
 
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity="VM\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="VM\UserBundle\Entity\User", inversedBy="commentaires")
      
      */
     private $user;
@@ -84,7 +84,7 @@ class Commentaire
     public function setUser(\VM\UserBundle\Entity\User $user)
     {
         $this->user = $user;
-    
+        //$this->user->addCommentaire($this);//$user->addCommentaire($this);
         return $this;
     }
 

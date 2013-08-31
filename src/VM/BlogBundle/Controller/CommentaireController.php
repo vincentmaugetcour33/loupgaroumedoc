@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use VM\BlogBundle\Entity\Commentaire;
 use VM\BlogBundle\Form\CommentaireType;
-
+use  VM\UserBundle\Entity\User;
 
 class CommentaireController extends Controller
 {
@@ -54,7 +54,10 @@ class CommentaireController extends Controller
      $request = $this->get('request');
      $commentaire = new Commentaire();
      //$user = $this->container->get('security.context')->getToken()->getUser();
-      $commentaire->setUser($this->getUser());
+     $user=new \VM\UserBundle\Entity\User();
+     $user=$this->getUser();
+     
+     
       
       //$commentaire->setAuteur();
       $form = $this->createForm(new CommentaireType, $commentaire);    
@@ -62,17 +65,20 @@ class CommentaireController extends Controller
       $manager =$this->getDoctrine()->getManager();
         if ($request->getMethod() == 'POST')
          {
-         
+            
             $form->bind($request);
              if ($form->isValid())
              {
               $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Le monstre du Médoc');
               $commentaire->setLivre($livre_principal);
-              $manager->persist($commentaire); 
+              $commentaire->setUser($user);
+              $user->addCommentaire($commentaire);
+              $manager->persist($commentaire);
+              $manager->persist($user);
               $manager->flush();   
               $this->get('session')->getFlashBag()->add('info', 'Commentaire ajouté');
              }
-             return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+             return $this->redirect($this->generateUrl('vm_blog_commentaire_list', array('tri' => 'desc')));
           } 
       return $this->render('VMBlogBundle:Commentaire:formulaire.html.twig', array(
                            'form' => $form->createView()));
@@ -87,10 +93,14 @@ class CommentaireController extends Controller
         */
       public function supprimecommentaireAction(Commentaire $commentaire)
       {
-          $manager =$this->getDoctrine()->getManager();
+          $manager = $this->getDoctrine()->getManager();
+          //user = new User();
+          $user = new \VM\UserBundle\Entity\User($this->getUser());
+          $user->removeCommentaire($commentaire);
+          //$manager->persist($user);
           $manager->remove($commentaire);
           $manager->flush();
-          return $this->redirect($this->generateUrl('vm_blog_commentaire_list'));
+          return $this->redirect($this->generateUrl('vm_blog_commentaire_list', array('tri' => 'desc')));
        }
       
       /**

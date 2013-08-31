@@ -5,6 +5,7 @@ namespace VM\UserBundle\Entity;
 
 #use FOS\UserBundle\Entity\User as BaseUser; 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -29,7 +30,15 @@ class User implements UserInterface #extends BaseUser
   private $id;
  //protected $id;
   
-   /**
+  /**
+     * @var ArrayCollection $commentaires
+     *
+     * @ORM\OneToMany(targetEntity="VM\BlogBundle\Entity\Commentaire", mappedBy="user", cascade={"all"}   )
+     */
+    private $commentaires;
+  
+  
+  /**
    * @ORM\Column(name="username", type="string", length=255, unique=true)
    */
   private $username;
@@ -47,7 +56,7 @@ class User implements UserInterface #extends BaseUser
     
     
   /**
-     * @ORM\Column(name="sexe",type="string")
+     * @ORM\Column(name="sexe",type="string", nullable=true)
    * @Assert\Choice(choices= {"homme", "femme"}, message="Vous ne pouvez choisir qu'une des deux valeurs.")
    */
     private $sexe;  
@@ -89,6 +98,8 @@ class User implements UserInterface #extends BaseUser
     {
      $this->roles=array('ROLE_USER');
      $this->sexe="homme";
+     $this->setPhoto("membre_default_homme.jpg");
+     $this->commentaires = new ArrayCollection();
      //$this->setPhoto("member_default.png");
      }
     
@@ -98,13 +109,44 @@ class User implements UserInterface #extends BaseUser
      */
      public function image_profile()
      {
-      if (is_null($this->photo))
-      {
-          if ($this->sexe == "homme") { $this->setPhoto("member_default.png"); }
-          if ($this->sexe == "femme") { $this->setPhoto("member_default_femme.jpg"); }
-      }
+     
+         if ($this->getSexe() == "femme") { $this->setPhoto("membre_default_femme.jpg"); }
+          if ($this->getSexe() == "homme") { $this->setPhoto("membre_default_homme.jpg"); }
+         
      }
     
+      /**
+     * @param Commentaire $commentaire
+     */
+    public function addCommentaire(\VM\BlogBundle\Entity\Commentaire $commentaire) {
+        //$commentaire->setUser($this);
+ 
+        // Si l'objet fait déjà partie de la collection on ne l'ajoute pas
+        //if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[]=$commentaire;
+        //}
+        return $this;
+    }
+ 
+    /**
+   * @param VM\USerBundle\Entity\Commentaire $commentaire
+   */
+  public function removeCommentaire(\VM\BlogBundle\Entity\Commentaire $commentaire)
+  {
+    $this->commentaires->removeElement($commentaire);
+    return $this;
+  }
+  
+    /**
+     * @return ArrayCollection $commentaires
+     */
+    public function getCommentaires() {
+        return $this->commentaires;
+    }
+ 
+     
+     
+     
     public function setUsername($username)
   {
     $this->username = $username;

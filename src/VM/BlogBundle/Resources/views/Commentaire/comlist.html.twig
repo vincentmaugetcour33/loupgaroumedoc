@@ -46,7 +46,7 @@
                                    <td>
                                        
                                            <div class='thumbnail'>
-                                            <img width="30px" src="{{ asset('bundles/vmuser/photo/'~entity.user.photo) }}" />
+                                            <img width="30" src="{{ asset('bundles/vmuser/photo/'~entity.user.photo) }}" />
                                            </div>
                                           
                                    </td>
@@ -65,7 +65,7 @@
                            <td>
                       <div class="input-group-btn"> 
                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                          <ul class="dropdown-menu pull-right" id={{entity.id}}>
+                          <ul style="margin-top:-70px;" class="dropdown-menu pull-right" id={{entity.id}}>
                             <li id="edit"><a href="#" rel="popover" id="editer_commentaire">Modifier</a></li>
                             <li class="divider"></li>
                             <li><a href="#" id="supprimer_commentaire">Supprimer</a></li>

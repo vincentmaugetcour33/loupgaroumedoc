@@ -8,7 +8,11 @@ use Symfony\Component\Security\Core\SecurityContext;
  
 class SecurityController extends Controller
 {
-  public function loginAction()
+  /**
+   * Security Login
+   * 
+    */
+   public function loginAction()
   {
     // Si le visiteur est déjà identifié, on le redirige vers l'accueil
     if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -32,4 +36,15 @@ class SecurityController extends Controller
       'error'         => $error,
     ));
   }
+
+  /**
+   * Security failure
+   */
+   public function failureAction()
+  {
+    $this->get('session')->getFlashBag()->add('erreur', 'Connexion erronée. Vérifier vos identifiants.');   
+    return $this->redirect($this->generateUrl('vm_blog_homepage'));  
+  }
+  
+  
 }

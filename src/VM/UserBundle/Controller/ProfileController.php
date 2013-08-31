@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 use VM\UserBundle\Entity\User;
 use VM\UserBundle\Form\UserType;
+use VM\UserBundle\Form\EmailType;
 
 class ProfileController extends Controller
 {
@@ -16,7 +17,12 @@ class ProfileController extends Controller
      */
     public function showprofileAction()
    {
-     return $this->render('VMUserBundle:Profile:profileshow.html.twig');
+      //$user=new User();
+      //$user=$this->getUser();
+      //$liste_commentaires =serialize($user->getCommentaires());
+        $liste_commentaires =$this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Commentaire')->findByUser($this->getUser());
+       //$liste_commentaires = $user->getCommentaires();
+     return $this->render('VMUserBundle:Profile:profileshow.html.twig', array('commentaires' => $liste_commentaires ));
    }
 
     /**
@@ -37,9 +43,24 @@ class ProfileController extends Controller
             $form->bind($request);
              if ($form->isValid())
              {
+              $post = $request->request->get('form');
+                 
+              //if ($user->getSexe()== "femme") { }
               $manager->persist($user); 
               $manager->flush();   
               $this->get('session')->getFlashBag()->add('info', 'Vous êtes enregistré. Vous pouvez vous connecter.');
+                  // Paramétrage et envoi d'un email de rappel des identifiants       
+                //$message = new \Swift_Message::newInstance()
+              $message = new \Swift_Message();              
+              $message//->setContentType("text/html")
+                  ->setSubject('Site Loup-Garou, Le monstre du Médoc')
+                  ->setFrom('vincent.mauget@hotmail.fr')
+                  ->setTo('vincent.mauget@hotmail.fr') //array($post['email']))
+                  ->setBody('text is going here'); 
+                      //$this->renderView('VMUserBundle:Profile:email.txt.twig', array('user' => $user), 'text/html'));
+              $this->get('mailer')->send($message);
+              $this->get('session')->getFlashBag()->add('info', 'Un email vous a été envoyé dans votre boîte.');
+              
              }
              return $this->redirect($this->generateUrl('vm_blog_homepage'));
           } 
@@ -86,12 +107,16 @@ class ProfileController extends Controller
         */
     public function supprimeprofileAction()
    {
-     $manager =$this->getDoctrine()->getManager();
-     $manager->remove($this->getUser());
-     $manager->flush();
-     
+    $manager =$this->getDoctrine()->getManager();
+    $commentaires = $manager->getRepository('VMBlogBundle:Commentaire')->findByUser($this->getUser());
+    
+    $manager->remove($this->getUser());
+    $manager->flush();
+    //$this->get('request')->get('session')->invalidate();
+    //$this->get('session')->getFlashBag()->add('info', 'Votre profil a été supprimé.');
+    return $this->redirect($this->generateUrl('vm_blog_homepage'));
      //$this->getUser()->logOut(); 
-      return $this->redirect($this->generateUrl('logout'));
+      //return $this->redirect($this->generateUrl('logout'));
    }
 
    /**
@@ -99,44 +124,46 @@ class ProfileController extends Controller
         */
     public function trouveprofileAction()
     {
-      $request = $this->getRequest();
+      $request = $this->get('request');
       $user = new User();
+      $form = $this->createForm(new EmailType, $user);
       
       if ($request->getMethod() == 'POST')
          {
-          $email = $request->request->get('email');
+          $form->bind($request);
+          if ($form->isValid())
+            {
           $manager = $this->getDoctrine()->getManager();
-          $user = $manager->getRepository('VMUserBundle:User')->findByEmail($email);
-          
-          if ($user)
-          {   
+          $destinataire = $manager->getRepository('VMUserBundle:User')->findByEmail($user->getEmail());
+           if ($destinataire != null)
+           {    
           // Paramétrage et envoi d'un email de rappel des identifiants       
-          $message = \Swift_Message::newInstance()
-                  ->setContentType("text/html")
-                  ->setSubject('Site Loup-Garou, Le monstre du Médoc')
-                  ->setFrom('vincent.mauget@example.com')
-                  ->setTo($user->getEmail())
-                  ->setBody($this->renderView('VMUserBundle:Profile:email.txt.twig', array('user' => $user), 'text/html'));
-          $this->get('mailer')->send($message);
-          
-           $this->get('session')->getFlashBag()->add('info', 'Vos identifiants ont été envoyés à votre adresse email.');
-           return $this->redirect($this->generateUrl('vm_blog_homepage'));
-           
+          //$message = \Swift_Message::newInstance()
+           //       ->setContentType("text/html")
+            //      ->setSubject('Site Loup-Garou, Le monstre du Médoc')
+             //    ->setFrom('vincent.mauget@example.com')
+              //   ->setTo($destinataire->getEmail())
+              //    ->setBody($this->renderView('VMUserBundle:Profile:email.txt.twig', array('user' => $destinataire), 'text/html'));
+          //$this->get('mailer')->send($message);
+          $this->get('session')->getFlashBag()->add('info', 'Vos identifiants ont été envoyés à votre adresse email.');
+           }
+           else
+           {
+           $this->get('session')->getFlashBag()->add('info', $destinataire." : Cette adresse n'existe pas dans nos données.");    
+           }    
           }
           else
           {
-           $this->get('session')->getFlashBag()->add('info', "Cette adresse n'est pas renseignée dans notre base, vérifier bien votre saisie.");  
-           return $this->redirect($this->generateUrl('vm_user_trouve'));
-           
-          }   
-           
-           
+          
+          $this->get('session')->getFlashBag()->add('info', $destinataire." : Problème de transfert du paramètre.");    
           }
-      
-         return $this->render("VMUserBundle:Profile:formulaire_email.html.twig");  
-      //$manager = $this->getDoctrine()->getManager();
-      //$repository = $manager->getRepository('VMUserBundle:User')->;
-    }
+         
+          return $this->redirect($this->generateUrl('vm_blog_homepage'));
+         } 
+                               
+         return $this->render("VMUserBundle:Profile:formulaire_email.html.twig",
+                 array(  'form' => $form->createView()));  
+       }
 }
 
 ?>

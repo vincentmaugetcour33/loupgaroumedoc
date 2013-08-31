@@ -21,7 +21,7 @@ class UserType extends AbstractType
             ->add('realname',      'text', array('label' => 'Votre nom : ', 'required'=>false))
             ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
             ->add('sexe',          'choice', array(
-                                     'choices'   => array('homme' => 'Masculin', 'femmme' => 'Féminin'),
+                                     'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),
                                      'empty_value' => 'Vous êtes ?'))
             ->add('age',           'integer', array('label' => 'Votre âge : ', 'required'=>false));
             //->add('photo')

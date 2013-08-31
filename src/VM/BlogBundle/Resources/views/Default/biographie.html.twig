@@ -19,8 +19,7 @@
             {% for key, livre in livres_secondaires %}
                    <div class="clearfix">
                         <div style="width:80px;" class="thumbnail pull-left">
-                            <img title="{{livre.titre}}" width=100px style="cursor: pointer;" rel="popover" src="{{ asset('bundles/vmblog/images/'~livre.couverture) }}" alt="photo {{ livre.titre }}" />
-                            
+                            <img title="{{livre.titre}}" width=100 style="cursor: pointer;" rel="popover" src="{{ asset('bundles/vmblog/images/'~livre.couverture) }}" alt="photo {{ livre.titre }}" />
                         </div>
                        
                          <div style="">EDITION :       {{livre.edition }}    </div>

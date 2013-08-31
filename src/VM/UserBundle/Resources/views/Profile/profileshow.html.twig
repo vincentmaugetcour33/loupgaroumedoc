@@ -7,13 +7,21 @@
       <div class="panel-heading">
           <table><tr>
           <td><div style="float:left;" class='thumbnail'>
-          <img align="center" width="30px" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+          <img align="center" width=30 src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
         </div>
           INFORMATIONS PROFIL {{ app.user.username  }}
           </td></tr></table>
           </div>
       
           <div class="panel-body">
+              
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#infos" data-toggle="tab">Mes caractéristiques</a></li>
+               <li><a href="#comment" data-toggle="tab">Mes commentaires</a></li>
+             </ul>
+              
+              <div class="tab-content">
+                  <div class="tab-pane active" id="infos">
           <ul>
   {#<li>Identifiant : {{ app.user.username  }} </li>#}
   
@@ -25,11 +33,22 @@
  
   <li> Ville :    {% if app.user.ville|length > 0 %}      {{ app.user.ville  }}    {%else%} non renseigné{% endif %}</li>
  
- {# <li> Email :{% if app.user.email|length > 0 %}          {{ app.user.email  }}    {%else%} non renseigné{% endif %}</li>
-  #}</ul>
+  <li> Email :{% if app.user.email|length > 0 %}          {{ app.user.email  }}    {%else%} non renseigné{% endif %}</li>
+  </ul>
                     </div>
-</div>
-          
-           <a href="{{ path('vm_blog_homepage') }}">Retour</a>   
+        
+              
+              <div class="tab-pane" id="comment">
+                {% if commentaires is empty %} Vous n'avez saisi aucun commentaire {% endif %}  
+                {% for key,com in commentaires %}
+                      <p>Commentaire n°{{key}} :{{ com.contenu }}</p>
+                  {% endfor %}
+                 
+                      
+              </div>
+          </div>
+              </div>
+        </div>
+           <a onclick="javascript:history.back();" href="#">Retour</a>   
 
 {% endblock body%}
