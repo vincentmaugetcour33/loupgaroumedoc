@@ -3,21 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Patrice Mauget - Loup-garou, le monstre du Médoc{% endblock %}</title>
-        {% block stylesheets %}
-            {#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.css') }}" type="text/css" />#}
-             <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/bootstrap.min.css') }}" type="text/css" media="screen" />
-             <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">-->
-        {% endblock %}
-        {% block javascripts %}
-                {# pour le routage en ajax #}
+      
+        {% stylesheets 'bundles/vmblog/css/bootstrap.min.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
+            
+        {% endstylesheets %}
+      
+            
+            {# pour le routage en ajax #}
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
                 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/jquery.js') }}"></script>
                 {# pour le rendu dynamique en twitter #}
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/popup.js') }}"></script>          
-        {% endblock %}  
-             <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
     </head>
     <body>
@@ -29,7 +30,7 @@
                    En-tête du site Loup-garou, le monstre du Médoc
                     
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                       <div class="col-sm-offset-8 col-sm-4">
+                       <div id="info_login" class="col-sm-offset-8 col-sm-4">
                       <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
                           <img width=40 style="float:left;" class="img-rounded" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}"/>
                          
@@ -39,7 +40,7 @@
                             <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
                             <li class="divider"/>
                             <li id="edit"><a href="{{path('vm_user_edit')}}">Modifier</a></li>
-                            <li><a href="#" id="supprimer_profil">Supprimer</a></li>
+                            <li><a href="#" id="supprimer_profil" >Supprimer</a></li>
                             <li><a href="{{ path('logout') }}" id="logout">Déconnexion</a></li>
                           </ul>
                          </div> 
@@ -49,12 +50,13 @@
                       
                        </div>
                       {% else %}
+                        <div id="bloc_login">
                         {% render(controller('VMUserBundle:Security:login')) %}
-                           {#<p>
-                               Vous avez oublié votre mot de passe ? Cliquer <a href="{{path('vm_user_trouve')}}">ici</a> 
-                            </p>#}
+                          
                             Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
-                      {% endif %}
+                            </div>
+                    {% endif %}
+                           
                </div>
                
                <!-- Message flash pour les notifications utilisateurs -->       
@@ -75,7 +77,7 @@
                               <div class="container">
                                     <ul class="nav nav-pills nav-justified">
                                       <li id="accueil"><a href="/">Accueil</a></li>
-                                      <li id="galleries"><a href="{{ path('vm_blog_image_list') }}">Galerie</a></li>
+                                      <li id="galleries"><a href="{{ path('vm_blog_image_list') }}" id="galleries1">Galerie</a></li>
                                       <li id="biographie"><a href="{{ path('vm_blog_biographie') }}">Biographie</a></li>
                                       <li id="commentaires"><a href="{{ path('vm_blog_commentaire_list', { tri: 'desc' }) }}">Commentaires</a></li>
                                     </ul>
@@ -159,7 +161,7 @@
                      
 
                        
-                       
+                 <!-- Bas de page -->      
                 <div class="page-footer">   
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
@@ -171,9 +173,11 @@
             </div>
     
         
+                
          <script language="javascript" type="text/javascript">
  $(document).ready(function() 
  {
+      
      $("body").on("click", "#supprimer_profil", (function()
           { 
             if (confirm("Souhaitez-vous réellement supprimer votre profil de connexion ? ")) 
@@ -184,8 +188,9 @@
                    cache:false,
                    success: function(data)
                    {
-                    //alert("Vous n'avez plus de profil. Pour vous connecter, il faudra vous réinscrire.");
-                    alert($("a#logout").html()); //click();
+                    $("#info_login").fadeOut();
+                    location.reload();
+                    //document.getElementById('logout').click()
                    }
                  });
              }

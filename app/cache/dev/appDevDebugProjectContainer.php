@@ -1871,7 +1871,7 @@ class appDevDebugProjectContainer extends Container
         $q = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $m, 'main', $p, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($f, $m, array('login_path' => 'login', 'failure_path' => 'login_failure', 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => 'login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $d);
         $q->setRememberMeServices($n);
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'main', $a, $d), 2 => $o, 3 => $q, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $n, $g, $a, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52221edd66ab4', $a), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $g, $a)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $m, 'login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'main', $a, $d), 2 => $o, 3 => $q, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $n, $g, $a, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '522497182aacd', $a), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $g, $a)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $m, 'login', false), NULL, NULL, $a));
     }
 
     /**
@@ -2214,13 +2214,22 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return Swift_Transport_MailTransport A Swift_Transport_MailTransport instance.
+     * @return Swift_Transport_EsmtpTransport A Swift_Transport_EsmtpTransport instance.
      */
     protected function getSwiftmailer_Mailer_Default_Transport_RealService()
     {
-        $a = new \Swift_Transport_SimpleMailInvoker();
+        $this->services['swiftmailer.mailer.default.transport.real'] = $instance = new \Swift_Transport_EsmtpTransport(new \Swift_Transport_StreamBuffer(new \Swift_StreamFilters_StringReplacementFilterFactory()), array(0 => new \Swift_Transport_Esmtp_AuthHandler(array(0 => new \Swift_Transport_Esmtp_Auth_CramMd5Authenticator(), 1 => new \Swift_Transport_Esmtp_Auth_LoginAuthenticator(), 2 => new \Swift_Transport_Esmtp_Auth_PlainAuthenticator()))), $this->get('swiftmailer.mailer.default.transport.eventdispatcher'));
 
-        return $this->services['swiftmailer.mailer.default.transport.real'] = new \Swift_Transport_MailTransport($a, $a, $this->get('swiftmailer.mailer.default.transport.eventdispatcher'));
+        $instance->setHost('smtp.gmail.com');
+        $instance->setPort(465);
+        $instance->setEncryption('ssl');
+        $instance->setUsername('vincent.mauget@gmail.com');
+        $instance->setPassword('A12&Bbc1');
+        $instance->setAuthMode('login');
+        $instance->setTimeout(30);
+        $instance->setSourceIp(NULL);
+
+        return $instance;
     }
 
     /**
@@ -3296,7 +3305,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = new \Symfony\Component\Security\Core\User\UserChecker();
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'ThisTokenIsNotSoSecretChangeIt', 'main'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52221edd66ab4')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'ThisTokenIsNotSoSecretChangeIt', 'main'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('522497182aacd')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3470,9 +3479,11 @@ class appDevDebugProjectContainer extends Container
             'database_name' => 'blogmonstremedoc',
             'database_user' => 'root',
             'database_password' => NULL,
-            'mailer_transport' => 'mail',
-            'mailer_host' => '127.0.0.1',
-            'gmail_username' => 'vincent.mauget@hotmail.fr',
+            'mailer_transport' => 'gmail',
+            'mailer_encryption' => 'ssl',
+            'mailer_authmode' => 'login',
+            'mailer_host' => 'smtp.gmail.com',
+            'gmail_username' => 'vincent.mauget@gmail.com',
             'gmail_password' => 'A12&Bbc1',
             'locale' => 'fr',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
@@ -3802,14 +3813,14 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.spool.memory.class' => 'Swift_MemorySpool',
             'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
             'swiftmailer.data_collector.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\DataCollector\\MessageDataCollector',
-            'swiftmailer.mailer.default.transport.name' => 'mail',
+            'swiftmailer.mailer.default.transport.name' => 'smtp',
             'swiftmailer.mailer.default.delivery.enabled' => true,
-            'swiftmailer.mailer.default.transport.smtp.encryption' => NULL,
-            'swiftmailer.mailer.default.transport.smtp.port' => 25,
-            'swiftmailer.mailer.default.transport.smtp.host' => '127.0.0.1',
-            'swiftmailer.mailer.default.transport.smtp.username' => 'vincent.mauget@hotmail.fr',
+            'swiftmailer.mailer.default.transport.smtp.encryption' => 'ssl',
+            'swiftmailer.mailer.default.transport.smtp.port' => 465,
+            'swiftmailer.mailer.default.transport.smtp.host' => 'smtp.gmail.com',
+            'swiftmailer.mailer.default.transport.smtp.username' => 'vincent.mauget@gmail.com',
             'swiftmailer.mailer.default.transport.smtp.password' => 'A12&Bbc1',
-            'swiftmailer.mailer.default.transport.smtp.auth_mode' => NULL,
+            'swiftmailer.mailer.default.transport.smtp.auth_mode' => 'login',
             'swiftmailer.mailer.default.transport.smtp.timeout' => 30,
             'swiftmailer.mailer.default.transport.smtp.source_ip' => NULL,
             'swiftmailer.spool.default.memory.path' => 'C:/wamp/www/Sitepatrice/app/cache/dev/swiftmailer/spool/default',

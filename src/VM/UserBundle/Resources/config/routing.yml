@@ -19,6 +19,3 @@ vm_user_edit:
 vm_user_trouve:
    path:  /profile_trouve
    defaults: { _controller: VMUserBundle:Profile:trouveprofile }   
- 
-logout:
-  pattern:   /logout 

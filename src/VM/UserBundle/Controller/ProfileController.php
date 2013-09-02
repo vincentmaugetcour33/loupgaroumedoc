@@ -17,11 +17,9 @@ class ProfileController extends Controller
      */
     public function showprofileAction()
    {
-      //$user=new User();
-      //$user=$this->getUser();
-      //$liste_commentaires =serialize($user->getCommentaires());
+      
         $liste_commentaires =$this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Commentaire')->findByUser($this->getUser());
-       //$liste_commentaires = $user->getCommentaires();
+       
      return $this->render('VMUserBundle:Profile:profileshow.html.twig', array('commentaires' => $liste_commentaires ));
    }
 
@@ -45,20 +43,33 @@ class ProfileController extends Controller
              {
               $post = $request->request->get('form');
                  
-              //if ($user->getSexe()== "femme") { }
-              $manager->persist($user); 
+             $manager->persist($user); 
               $manager->flush();   
               $this->get('session')->getFlashBag()->add('info', 'Vous êtes enregistré. Vous pouvez vous connecter.');
                   // Paramétrage et envoi d'un email de rappel des identifiants       
                 //$message = new \Swift_Message::newInstance()
-              $message = new \Swift_Message();              
-              $message//->setContentType("text/html")
-                  ->setSubject('Site Loup-Garou, Le monstre du Médoc')
-                  ->setFrom('vincent.mauget@hotmail.fr')
-                  ->setTo('vincent.mauget@hotmail.fr') //array($post['email']))
-                  ->setBody('text is going here'); 
+              $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+                            ->setUsername('vincent.mauget@gmail.com')
+                            ->setPassword('A12&Bbc1');
+              
+              $mailer= \Swift_Mailer::newInstance($transport);
+              $message = \Swift_Message::newInstance()
+                         ->setSubject('Site Loup-Garou, Le monstre du Médoc')
+                         ->setFrom('vincent.mauget@gmail.com')
+                         ->setTo($user->getEmail())
+                         ->setBody(
+                               $this->renderView('VMUserBundle:Profile:email.txt.twig', array('user' => $user), 'text/html')
+                                 );
+          
+              //$message = new \Swift_Message();              
+              //$message//->setContentType("text/html")
+               //   ->setSubject('Site Loup-Garou, Le monstre du Médoc')
+                 // ->setFrom('vincent.mauget@hotmail.fr')
+                 // ->setTo('vincent.mauget@hotmail.fr') //array($post['email']))
+                 // ->setBody('text is going here'); 
                       //$this->renderView('VMUserBundle:Profile:email.txt.twig', array('user' => $user), 'text/html'));
-              $this->get('mailer')->send($message);
+              $mailer->send($message);
+              //$this->get('mailer')->send($message);
               $this->get('session')->getFlashBag()->add('info', 'Un email vous a été envoyé dans votre boîte.');
               
              }
@@ -113,7 +124,9 @@ class ProfileController extends Controller
     $manager->remove($this->getUser());
     $manager->flush();
     //$this->get('request')->get('session')->invalidate();
-    //$this->get('session')->getFlashBag()->add('info', 'Votre profil a été supprimé.');
+    $this->get('security.context')->setToken(null);
+    $this->get('request')->getSession()->invalidate();
+    $this->get('session')->getFlashBag()->add('info', 'Votre profil a été supprimé.');
     return $this->redirect($this->generateUrl('vm_blog_homepage'));
      //$this->getUser()->logOut(); 
       //return $this->redirect($this->generateUrl('logout'));

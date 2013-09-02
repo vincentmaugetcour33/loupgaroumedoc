@@ -25,6 +25,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $allow = array();
         $pathinfo = rawurldecode($pathinfo);
 
+        if (0 === strpos($pathinfo, '/css/801634d')) {
+            // _assetic_801634d
+            if ($pathinfo === '/css/801634d.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '801634d',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_801634d',);
+            }
+
+            // _assetic_801634d_0
+            if ($pathinfo === '/css/801634d_bootstrap.min_1.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '801634d',  'pos' => 0,  '_format' => 'css',  '_route' => '_assetic_801634d_0',);
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
