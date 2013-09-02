@@ -129,8 +129,8 @@
 </div>
 </div>
 
-<script language="javascript" type="text/javascript">
-       $(document).ready(function() {   
+ <script language="javascript">
+       (function($) {   
           
           $("ul.nav > li#commentaires").addClass('active');
           
@@ -170,8 +170,8 @@
              
           }));
         
-    });
-</script>    
+    }(jQuery));
+ </script>   
 
 {% endblock %}
 

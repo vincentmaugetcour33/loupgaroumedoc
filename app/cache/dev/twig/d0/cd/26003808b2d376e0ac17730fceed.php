@@ -90,17 +90,13 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
 
       
     <br/>
-    
-  <script language=\"javascript\" type=\"text/javascript\">
- \$(document).ready(function() 
- {
+ <script language=\"javascript\">   
+ (function(\$) { 
     \$(\"ul.nav > li#accueil\").removeClass('active');  
    \$(\"ul.nav > li#biographie\").addClass('active');
-   \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"150px;\" src=\"'+\$(this).attr('src')+'\"/>'; }, delay: { show: 500, hide: 10} });
- });//\$.data(document.body, 'popup',1);
-</script>  
-
-
+    \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"150px;\" src=\"'+\$(this).attr('src')+'\"/>'; }, delay: { show: 500, hide: 10} });
+}(jQuery));
+</script>
  
 ";
     }

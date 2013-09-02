@@ -309,8 +309,8 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 </div>
 </div>
 
-<script language=\"javascript\" type=\"text/javascript\">
-       \$(document).ready(function() {   
+ <script language=\"javascript\">
+       (function(\$) {   
           
           \$(\"ul.nav > li#commentaires\").addClass('active');
           
@@ -350,8 +350,8 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
              
           }));
         
-    });
-</script>    
+    }(jQuery));
+ </script>   
 
 ";
     }

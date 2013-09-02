@@ -8,7 +8,7 @@
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
             
         {% endstylesheets %}
-      
+       {% block javascripts %}
             
             {# pour le routage en ajax #}
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
@@ -17,7 +17,7 @@
                 {# pour le rendu dynamique en twitter #}
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('bundles/vmblog/js/popup.js') }}"></script>          
-        
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
     </head>

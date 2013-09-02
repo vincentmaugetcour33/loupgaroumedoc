@@ -11,6 +11,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'javascripts' => array($this, 'block_javascripts'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -49,33 +50,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         }
         unset($context["asset_url"]);
         // line 11
-        echo "      
-            
-            ";
-        // line 14
-        echo "                <script src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
-        echo "\"></script>
-                <script src=\"";
-        // line 15
-        echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
-        echo "\"></script>
-                <script type=\"text/javascript\" src=\"";
-        // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
-        echo "\"></script>
-                ";
-        // line 18
-        echo "                <script type=\"text/javascript\" src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.min.js"), "html", null, true);
-        echo "\"></script>
-                <script type=\"text/javascript\" src=\"";
-        // line 19
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/popup.js"), "html", null, true);
-        echo "\"></script>          
-        
-        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        echo "       ";
+        $this->displayBlock('javascripts', $context, $blocks);
         // line 21
+        echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
           
@@ -367,6 +345,36 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "Patrice Mauget - Loup-garou, le monstre du Médoc";
     }
 
+    // line 11
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 12
+        echo "            
+            ";
+        // line 14
+        echo "                <script src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
+        echo "\"></script>
+                <script src=\"";
+        // line 15
+        echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
+        echo "\"></script>
+                <script type=\"text/javascript\" src=\"";
+        // line 16
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
+        echo "\"></script>
+                ";
+        // line 18
+        echo "                <script type=\"text/javascript\" src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.min.js"), "html", null, true);
+        echo "\"></script>
+                <script type=\"text/javascript\" src=\"";
+        // line 19
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/popup.js"), "html", null, true);
+        echo "\"></script>          
+        ";
+    }
+
     // line 149
     public function block_body($context, array $blocks = array())
     {
@@ -386,6 +394,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  374 => 150,  371 => 149,  365 => 5,  319 => 168,  300 => 151,  298 => 149,  266 => 122,  254 => 113,  250 => 112,  243 => 107,  235 => 103,  229 => 99,  227 => 98,  222 => 95,  207 => 82,  203 => 81,  199 => 80,  189 => 72,  181 => 70,  175 => 69,  172 => 68,  164 => 66,  158 => 65,  150 => 59,  144 => 56,  141 => 55,  139 => 54,  136 => 53,  124 => 44,  119 => 42,  114 => 40,  110 => 39,  106 => 38,  100 => 35,  96 => 33,  94 => 32,  90 => 30,  79 => 21,  74 => 19,  69 => 18,  65 => 16,  61 => 15,  56 => 14,  52 => 11,  36 => 8,  32 => 7,  27 => 5,  21 => 1,);
+        return array (  382 => 150,  379 => 149,  373 => 19,  368 => 18,  364 => 16,  360 => 15,  355 => 14,  352 => 12,  349 => 11,  343 => 5,  297 => 168,  278 => 151,  276 => 149,  244 => 122,  232 => 113,  228 => 112,  221 => 107,  213 => 103,  207 => 99,  205 => 98,  200 => 95,  185 => 82,  181 => 81,  177 => 80,  167 => 72,  159 => 70,  153 => 69,  150 => 68,  142 => 66,  136 => 65,  128 => 59,  122 => 56,  119 => 55,  117 => 54,  114 => 53,  102 => 44,  97 => 42,  92 => 40,  88 => 39,  84 => 38,  78 => 35,  74 => 33,  72 => 32,  68 => 30,  56 => 21,  53 => 11,  37 => 8,  33 => 7,  28 => 5,  22 => 1,);
     }
 }
