@@ -129,7 +129,15 @@
 </div>
 </div>
 
- <script language="javascript">
+     
+ 
+ 
+{% endblock vmblog_body %}
+
+
+{% block javascripts %}
+      {{ parent() }}
+      <script language="javascript" type="text/javascript">
        (function($) {   
           
           $("ul.nav > li#commentaires").addClass('active');
@@ -172,7 +180,4 @@
         
     }(jQuery));
  </script>   
-
-{% endblock %}
-
-
+{% endblock javascripts %}

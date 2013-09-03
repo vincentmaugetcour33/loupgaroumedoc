@@ -18,15 +18,18 @@
    EXTRAIT (AU HASARD)
    {{ render(controller("VMBlogBundle:Extrait:index")) }} 
  
+
    
- <script language="javascript" type="text/javascript">
- $(document).ready(function() 
+ 
+{% endblock vmblog_body %}
+
+    {% block javascripts %}  
+ {{ parent() }}
+   <script language="javascript" type="text/javascript">
+ (function($) 
  {
    
     $("ul.nav > li#accueil").addClass('active');  
-   });
+   }(jQuery));
 </script>  
-  
-   
- 
-{% endblock %}
+  {% endblock javascripts %}

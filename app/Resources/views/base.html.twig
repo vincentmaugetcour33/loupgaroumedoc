@@ -4,20 +4,14 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Patrice Mauget - Loup-garou, le monstre du Médoc{% endblock %}</title>
       
-        {% stylesheets 'bundles/vmblog/css/bootstrap.min.css' %}
+        {% stylesheets filter='cssrewrite, yui_css'
+                '@VMBlogBundle/Resources/public/css/bootstrap.min.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
             
         {% endstylesheets %}
-       {% block javascripts %}
             
-            {# pour le routage en ajax #}
-                <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-                <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/jquery.js') }}"></script>
-                {# pour le rendu dynamique en twitter #}
-                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/bootstrap.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('bundles/vmblog/js/popup.js') }}"></script>          
-        {% endblock %}
+        
+       
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
     </head>
@@ -32,7 +26,8 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                        <div id="info_login" class="col-sm-offset-8 col-sm-4">
                       <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
-                          <img width=40 style="float:left;" class="img-rounded" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}"/>
+                                                                
+                        <img width=40 style="float:left;" class="img-rounded" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}"/>
                          
                           <div class="input-group-btn" > 
                          <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
@@ -110,9 +105,12 @@
                                    <div id="presentation" class="accordion-body collapse in">
                                      <div class="accordion-inner">  
                                          Auteur : {{ auteur_nom }}
-                                         <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice mauget" />
-                                         
-                                    </div>
+                                         {#{% image '@VMBlogBundle/Resources/public/images/patricemauget.jpg' 
+                                                filter='jpegoptim' output='/images/patricemauget.jpg' %}
+                                            <img src="{{ asset_url }}" alt="Patrice Mauget - Ecrivain Loup Garou"/>
+                                         {% endimage %}#}
+                                      <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
+                                 </div>
                                    </div>
                                  </div>
                                  <div class="accordion-group">
@@ -142,9 +140,7 @@
                        <div class="col-sm-offset-1 col-sm-9">
                          <div id="notes" style="color:red;">
                              Ce site constitue une vitrine pour le livre intitulé Loup-Garou, le monstre du Médoc.
-                             Il peut contenir quelques défaillances dans la gestion utilisateurs/commentaires.
-                             Je m'applique à rectifier et améliorer le site. Ce message ne sera plus présent une fois le
-                             site pleinement fonctionnel.
+                            Je m'applique à améliorer le site. 
                          </div>  
                         {% block body %}
                        {% endblock body %}
@@ -172,34 +168,50 @@
         
             </div>
     
-        
-                
-         <script language="javascript" type="text/javascript">
- $(document).ready(function() 
- {
-      
-     $("body").on("click", "#supprimer_profil", (function()
-          { 
-            if (confirm("Souhaitez-vous réellement supprimer votre profil de connexion ? ")) 
-            {
-                $.ajax({
-                   type: "POST",
-                   url: Routing.generate('vm_user_supprime'),
-                   cache:false,
-                   success: function(data)
-                   {
-                    $("#info_login").fadeOut();
-                    location.reload();
-                    //document.getElementById('logout').click()
-                   }
-                 });
-             }
-             
-          }));
-  
-    
- });
-</script>  
+         {% block javascripts %}
+               
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            <script src="{{ asset('bundles/vmblog/js/jquery.js') }}"></script>
+          
+             <script language="javascript" type="text/javascript">
+                (function($) 
+                {
+
+                    $("body").on("click", "#supprimer_profil", (function()
+                         { 
+                           if (confirm("Souhaitez-vous réellement supprimer votre profil de connexion ? ")) 
+                           {
+                               $.ajax({
+                                  type: "POST",
+                                  url: Routing.generate('vm_user_supprime'),
+                                  cache:false,
+                                  success: function(data)
+                                  {
+                                   $("#info_login").fadeOut();
+                                   location.reload();
+                                   //document.getElementById('logout').click()
+                                  }
+                                });
+                            }
+
+                         }));
+
+
+                }(jQuery));
+             </script>
+
+            {% javascripts '@VMBlogBundle/Resources/public/js/bootstrap.min.js'
+                        '@VMBlogBundle/Resources/public/js/popup.js' filter='yui_js'
+                        %}
+                           <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}   
+            
+            
+                        
+            {% endblock javascripts %}
+
+
         
                 
         

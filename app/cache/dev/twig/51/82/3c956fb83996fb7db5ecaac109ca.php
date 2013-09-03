@@ -11,8 +11,8 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'javascripts' => array($this, 'block_javascripts'),
             'body' => array($this, 'block_body'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -31,17 +31,17 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
         // line 7
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
-            // asset "801634d_0"
-            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_801634d_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/801634d_bootstrap.min_1.css");
-            // line 8
+            // asset "9c381d9_0"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_9c381d9_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/9c381d9_bootstrap.min_1.css");
+            // line 9
             echo "            <link rel=\"stylesheet\" href=\"";
             echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
             echo "\" type=\"text/css\" />   
             
         ";
         } else {
-            // asset "801634d"
-            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_801634d") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/801634d.css");
+            // asset "9c381d9"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_9c381d9") : $this->env->getExtension('assets')->getAssetUrl("_controller/css/9c381d9.css");
             echo "            <link rel=\"stylesheet\" href=\"";
             echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
             echo "\" type=\"text/css\" />   
@@ -49,11 +49,12 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         ";
         }
         unset($context["asset_url"]);
-        // line 11
-        echo "       ";
-        $this->displayBlock('javascripts', $context, $blocks);
-        // line 21
-        echo "        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        // line 12
+        echo "            
+        
+       
+        <link rel=\"icon\" type=\"image/x-icon\" href=\"";
+        // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
           
@@ -64,41 +65,42 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                <!-- En-tête du layout -->
                <div class=\"page-header\">
                    ";
-        // line 30
+        // line 24
         echo "                   En-tête du site Loup-garou, le monstre du Médoc
                     
                     ";
-        // line 32
+        // line 26
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
-            // line 33
+            // line 27
             echo "                       <div id=\"info_login\" class=\"col-sm-offset-8 col-sm-4\">
                       <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
-                          <img width=40 style=\"float:left;\" class=\"img-rounded\" src=\"";
-            // line 35
+                                                                
+                        <img width=40 style=\"float:left;\" class=\"img-rounded\" src=\"";
+            // line 30
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmuser/photo/" . $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photo"))), "html", null, true);
             echo "\"/>
                          
                           <div class=\"input-group-btn\" > 
                          <button style=\"margin-left:-10px;\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 38
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
             echo "<span class=\"caret\"></span></button>
                           <ul style=\"margin-top:30px;\" class=\"dropdown-menu pull-right\" id=\"";
-            // line 39
+            // line 34
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "id"), "html", null, true);
             echo "\">
                             <li id=\"visualiser\"><a href=\"";
-            // line 40
+            // line 35
             echo $this->env->getExtension('routing')->getPath("vm_user_profile");
             echo "\">Votre profil</a></li> 
                             <li class=\"divider\"/>
                             <li id=\"edit\"><a href=\"";
-            // line 42
+            // line 37
             echo $this->env->getExtension('routing')->getPath("vm_user_edit");
             echo "\">Modifier</a></li>
                             <li><a href=\"#\" id=\"supprimer_profil\" >Supprimer</a></li>
                             <li><a href=\"";
-            // line 44
+            // line 39
             echo $this->env->getExtension('routing')->getPath("logout");
             echo "\" id=\"logout\">Déconnexion</a></li>
                           </ul>
@@ -110,21 +112,21 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                        </div>
                       ";
         } else {
-            // line 53
+            // line 48
             echo "                        <div id=\"bloc_login\">
                         ";
-            // line 54
+            // line 49
             echo $this->env->getExtension('actions')->renderUri($this->env->getExtension('http_kernel')->controller("VMUserBundle:Security:login"), array());
-            // line 55
+            // line 50
             echo "                          
                             Nouveau ? Pour vous enregistrer, cliquer <a href=\"";
-            // line 56
+            // line 51
             echo $this->env->getExtension('routing')->getPath("vm_user_ajout");
             echo "\">ici</a>     
                             </div>
                     ";
         }
-        // line 59
+        // line 54
         echo "                           
                </div>
                
@@ -132,13 +134,13 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                  <div id=\"flashmessage\">
                     
                 ";
-        // line 65
+        // line 60
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flashbag"), "get", array(0 => "info"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
             echo " 
                  <span class=\"label label-info\">";
-            // line 66
+            // line 61
             echo twig_escape_filter($this->env, $this->getContext($context, "message"), "html", null, true);
             echo "</span>
                 ";
@@ -146,16 +148,16 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 68
+        // line 63
         echo "                
                  ";
-        // line 69
+        // line 64
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "session"), "flashbag"), "get", array(0 => "erreur"), "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
             echo " 
                   <span class=\"label label-warning\">";
-            // line 70
+            // line 65
             echo twig_escape_filter($this->env, $this->getContext($context, "message"), "html", null, true);
             echo "</span>
                 ";
@@ -163,7 +165,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 72
+        // line 67
         echo "                 </div>
                
                <!-- Menu principal du layout -->
@@ -173,15 +175,15 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                     <ul class=\"nav nav-pills nav-justified\">
                                       <li id=\"accueil\"><a href=\"/\">Accueil</a></li>
                                       <li id=\"galleries\"><a href=\"";
-        // line 80
+        // line 75
         echo $this->env->getExtension('routing')->getPath("vm_blog_image_list");
         echo "\" id=\"galleries1\">Galerie</a></li>
                                       <li id=\"biographie\"><a href=\"";
-        // line 81
+        // line 76
         echo $this->env->getExtension('routing')->getPath("vm_blog_biographie");
         echo "\">Biographie</a></li>
                                       <li id=\"commentaires\"><a href=\"";
-        // line 82
+        // line 77
         echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("tri" => "desc"));
         echo "\">Commentaires</a></li>
                                     </ul>
@@ -196,20 +198,20 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                            
                            <div class=\"row\">
                               ";
-        // line 95
+        // line 90
         echo "                              <div class=\"span12 well\">
                                <br>
                                <div id=\"monaccordeon\">
                                  ";
-        // line 98
+        // line 93
         if ($this->env->getExtension('security')->isGranted("ROLE_ADMIN")) {
-            // line 99
+            // line 94
             echo "                                   <div class=\"accordion-group\">
                                    <button disabled=\"disabled\" id=\"administration\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#administration\">Vous êtes administrateur</button>
                                    <div id=\"administration\" class=\"accordion-body collapse in\">
                                      <div class=\"accordion-inner\">  
                                        Vous êtes administrateur, cliquer <a href=\"";
-            // line 103
+            // line 98
             echo $this->env->getExtension('routing')->getPath("admin");
             echo "\">ici</a>
                                     </div>
@@ -217,22 +219,22 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                  </div>
                                    ";
         }
-        // line 107
+        // line 102
         echo "    
                                   <div class=\"accordion-group\">
                                    <button disabled=\"disabled\" id=\"presentation\" class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"data-no-collapse\" data-parent=\"#monaccordeon\" data-target=\"#presentation\">Qui suis-je ?</button>
                                    <div id=\"presentation\" class=\"accordion-body collapse in\">
                                      <div class=\"accordion-inner\">  
                                          Auteur : ";
-        // line 112
+        // line 107
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_nom"), "html", null, true);
         echo "
-                                         <img src=\"";
-        // line 113
+                                         ";
+        // line 112
+        echo "                                      <img src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
-        echo "\" alt=\"Patrice mauget\" />
-                                         
-                                    </div>
+        echo "\" alt=\"Patrice Mauget - Ecrivain Loup Garou\" />
+                                 </div>
                                    </div>
                                  </div>
                                  <div class=\"accordion-group\">
@@ -240,7 +242,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                    <div id=\"coordonnees\" class=\"accordion-body collapse \">
                                      <div class=\"accordion-inner\">
                                         <br/><a href=\"mailto:";
-        // line 122
+        // line 120
         echo twig_escape_filter($this->env, $this->getContext($context, "auteur_email"), "html", null, true);
         echo "\">";
         echo $this->env->getExtension('translator')->getTranslator()->trans("biographie.mail_auteur", array(), "messages");
@@ -267,14 +269,12 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                        <div class=\"col-sm-offset-1 col-sm-9\">
                          <div id=\"notes\" style=\"color:red;\">
                              Ce site constitue une vitrine pour le livre intitulé Loup-Garou, le monstre du Médoc.
-                             Il peut contenir quelques défaillances dans la gestion utilisateurs/commentaires.
-                             Je m'applique à rectifier et améliorer le site. Ce message ne sera plus présent une fois le
-                             site pleinement fonctionnel.
+                            Je m'applique à améliorer le site. 
                          </div>  
                         ";
-        // line 149
+        // line 145
         $this->displayBlock('body', $context, $blocks);
-        // line 151
+        // line 147
         echo "                        
                       
                        </div>
@@ -293,7 +293,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 168
+        // line 164
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -302,34 +302,12 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         
             </div>
     
-        
-                
-         <script language=\"javascript\" type=\"text/javascript\">
- \$(document).ready(function() 
- {
-      
-     \$(\"body\").on(\"click\", \"#supprimer_profil\", (function()
-          { 
-            if (confirm(\"Souhaitez-vous réellement supprimer votre profil de connexion ? \")) 
-            {
-                \$.ajax({
-                   type: \"POST\",
-                   url: Routing.generate('vm_user_supprime'),
-                   cache:false,
-                   success: function(data)
-                   {
-                    \$(\"#info_login\").fadeOut();
-                    location.reload();
-                    //document.getElementById('logout').click()
-                   }
-                 });
-             }
-             
-          }));
-  
-    
- });
-</script>  
+         ";
+        // line 171
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 213
+        echo "
+
         
                 
         
@@ -345,41 +323,89 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "Patrice Mauget - Loup-garou, le monstre du Médoc";
     }
 
-    // line 11
-    public function block_javascripts($context, array $blocks = array())
-    {
-        // line 12
-        echo "            
-            ";
-        // line 14
-        echo "                <script src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
-        echo "\"></script>
-                <script src=\"";
-        // line 15
-        echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
-        echo "\"></script>
-                <script type=\"text/javascript\" src=\"";
-        // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
-        echo "\"></script>
-                ";
-        // line 18
-        echo "                <script type=\"text/javascript\" src=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/bootstrap.min.js"), "html", null, true);
-        echo "\"></script>
-                <script type=\"text/javascript\" src=\"";
-        // line 19
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/popup.js"), "html", null, true);
-        echo "\"></script>          
-        ";
-    }
-
-    // line 149
+    // line 145
     public function block_body($context, array $blocks = array())
     {
-        // line 150
+        // line 146
         echo "                       ";
+    }
+
+    // line 171
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 172
+        echo "               
+            <script src=\"";
+        // line 173
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
+        echo "\"></script>
+            <script src=\"";
+        // line 174
+        echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
+        echo "\"></script>
+            <script src=\"";
+        // line 175
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
+        echo "\"></script>
+          
+             <script language=\"javascript\" type=\"text/javascript\">
+                (function(\$) 
+                {
+
+                    \$(\"body\").on(\"click\", \"#supprimer_profil\", (function()
+                         { 
+                           if (confirm(\"Souhaitez-vous réellement supprimer votre profil de connexion ? \")) 
+                           {
+                               \$.ajax({
+                                  type: \"POST\",
+                                  url: Routing.generate('vm_user_supprime'),
+                                  cache:false,
+                                  success: function(data)
+                                  {
+                                   \$(\"#info_login\").fadeOut();
+                                   location.reload();
+                                   //document.getElementById('logout').click()
+                                  }
+                                });
+                            }
+
+                         }));
+
+
+                }(jQuery));
+             </script>
+
+            ";
+        // line 204
+        if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
+            // asset "ea73278_0"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_ea73278_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/ea73278_bootstrap.min_1.js");
+            // line 207
+            echo "                           <script type=\"text/javascript\" src=\"";
+            echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
+            echo "\"></script>
+            ";
+            // asset "ea73278_1"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_ea73278_1") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/ea73278_popup_2.js");
+            echo "                           <script type=\"text/javascript\" src=\"";
+            echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
+            echo "\"></script>
+            ";
+        } else {
+            // asset "ea73278"
+            $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_ea73278") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/ea73278.js");
+            echo "                           <script type=\"text/javascript\" src=\"";
+            echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
+            echo "\"></script>
+            ";
+        }
+        unset($context["asset_url"]);
+        // line 208
+        echo "   
+            
+            
+                        
+            ";
     }
 
     public function getTemplateName()
@@ -394,6 +420,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  382 => 150,  379 => 149,  373 => 19,  368 => 18,  364 => 16,  360 => 15,  355 => 14,  352 => 12,  349 => 11,  343 => 5,  297 => 168,  278 => 151,  276 => 149,  244 => 122,  232 => 113,  228 => 112,  221 => 107,  213 => 103,  207 => 99,  205 => 98,  200 => 95,  185 => 82,  181 => 81,  177 => 80,  167 => 72,  159 => 70,  153 => 69,  150 => 68,  142 => 66,  136 => 65,  128 => 59,  122 => 56,  119 => 55,  117 => 54,  114 => 53,  102 => 44,  97 => 42,  92 => 40,  88 => 39,  84 => 38,  78 => 35,  74 => 33,  72 => 32,  68 => 30,  56 => 21,  53 => 11,  37 => 8,  33 => 7,  28 => 5,  22 => 1,);
+        return array (  404 => 208,  384 => 207,  380 => 204,  348 => 175,  344 => 174,  340 => 173,  337 => 172,  334 => 171,  330 => 146,  327 => 145,  321 => 5,  309 => 213,  307 => 171,  297 => 164,  278 => 147,  276 => 145,  246 => 120,  234 => 112,  230 => 107,  223 => 102,  215 => 98,  209 => 94,  207 => 93,  202 => 90,  187 => 77,  183 => 76,  179 => 75,  169 => 67,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  124 => 51,  121 => 50,  119 => 49,  116 => 48,  104 => 39,  99 => 37,  94 => 35,  90 => 34,  86 => 33,  80 => 30,  75 => 27,  73 => 26,  69 => 24,  58 => 15,  53 => 12,  37 => 9,  33 => 7,  28 => 5,  22 => 1,);
     }
 }

@@ -390,7 +390,9 @@
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
     <parameter key="assetic.cache_dir">C:/wamp/www/Sitepatrice/app/cache/dev/assetic</parameter>
-    <parameter key="assetic.bundles" type="collection"/>
+    <parameter key="assetic.bundles" type="collection">
+      <parameter>VMBlogBundle</parameter>
+    </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
     <parameter key="assetic.helper.dynamic.class">Symfony\Bundle\AsseticBundle\Templating\DynamicAsseticHelper</parameter>
@@ -402,12 +404,45 @@
     <parameter key="assetic.read_from">C:/wamp/www/Sitepatrice/app/../web</parameter>
     <parameter key="assetic.write_to">C:/wamp/www/Sitepatrice/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
-    <parameter key="assetic.java.bin">/usr/bin/java</parameter>
+    <parameter key="assetic.java.bin">C:\Program Files\Java\jre7\bin\java-rmi.exe</parameter>
     <parameter key="assetic.node.bin">/usr/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
-    <parameter key="assetic.twig_extension.functions" type="collection"/>
+    <parameter key="assetic.filter.yui_js.class">Assetic\Filter\Yui\JsCompressorFilter</parameter>
+    <parameter key="assetic.filter.yui_js.java">C:\Program Files\Java\jre7\bin\java-rmi.exe</parameter>
+    <parameter key="assetic.filter.yui_js.jar">C:/wamp/www/Sitepatrice/app/Resources/java/yuicompressor-2.4.7.jar</parameter>
+    <parameter key="assetic.filter.yui_js.charset">UTF-8</parameter>
+    <parameter key="assetic.filter.yui_js.stacksize">null</parameter>
+    <parameter key="assetic.filter.yui_js.timeout">null</parameter>
+    <parameter key="assetic.filter.yui_js.nomunge">null</parameter>
+    <parameter key="assetic.filter.yui_js.preserve_semi">null</parameter>
+    <parameter key="assetic.filter.yui_js.disable_optimizations">null</parameter>
+    <parameter key="assetic.filter.yui_css.class">Assetic\Filter\Yui\CssCompressorFilter</parameter>
+    <parameter key="assetic.filter.yui_css.java">C:\Program Files\Java\jre7\bin\java-rmi.exe</parameter>
+    <parameter key="assetic.filter.yui_css.jar">C:/wamp/www/Sitepatrice/app/Resources/java/yuicompressor-2.4.7.jar</parameter>
+    <parameter key="assetic.filter.yui_css.charset">UTF-8</parameter>
+    <parameter key="assetic.filter.yui_css.stacksize">null</parameter>
+    <parameter key="assetic.filter.yui_css.timeout">null</parameter>
+    <parameter key="assetic.filter.jpegoptim.class">Assetic\Filter\JpegoptimFilter</parameter>
+    <parameter key="assetic.filter.jpegoptim.bin">C:/wamp/www/Sitepatrice/app/Resources/jpegoptim/jpegoptim.exe</parameter>
+    <parameter key="assetic.filter.jpegoptim.timeout">null</parameter>
+    <parameter key="assetic.filter.jpegoptim.strip_all">true</parameter>
+    <parameter key="assetic.filter.jpegoptim.max">70</parameter>
+    <parameter key="assetic.filter.jpegtran.class">Assetic\Filter\JpegtranFilter</parameter>
+    <parameter key="assetic.filter.jpegtran.bin">C:/wamp/www/Sitepatrice/app/Resources/jpegtran/jpegtran.exe</parameter>
+    <parameter key="assetic.filter.jpegtran.timeout">null</parameter>
+    <parameter key="assetic.filter.jpegtran.copy">null</parameter>
+    <parameter key="assetic.filter.jpegtran.optimize">false</parameter>
+    <parameter key="assetic.filter.jpegtran.progressive">false</parameter>
+    <parameter key="assetic.filter.jpegtran.restart">null</parameter>
+    <parameter key="assetic.filter.jpegtran.optimisation">true</parameter>
+    <parameter key="assetic.twig_extension.functions" type="collection">
+      <parameter key="jpegoptim" type="collection">
+        <parameter key="output">images/*.jpg</parameter>
+      </parameter>
+      <parameter key="jpegtran" type="collection"/>
+    </parameter>
     <parameter key="assetic.controller.class">Symfony\Bundle\AsseticBundle\Controller\AsseticController</parameter>
     <parameter key="assetic.routing_loader.class">Symfony\Bundle\AsseticBundle\Routing\AsseticLoader</parameter>
     <parameter key="assetic.cache.class">Assetic\Cache\FilesystemCache</parameter>
@@ -2254,7 +2289,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>522497182aacd</argument>
+            <argument>5225d399b110d</argument>
           </service>
         </argument>
       </argument>
@@ -2604,7 +2639,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>522497182aacd</argument>
+            <argument>5225d399b110d</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2821,8 +2856,15 @@
             <argument type="service" id="assetic.asset_factory"/>
             <argument type="service" id="templating.name_parser"/>
             <argument>true</argument>
-            <argument type="collection"/>
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="jpegoptim" type="collection">
+                <argument key="output">images/*.jpg</argument>
+              </argument>
+              <argument key="jpegtran" type="collection"/>
+            </argument>
+            <argument type="collection">
+              <argument>VMBlogBundle</argument>
+            </argument>
             <argument type="service" id="assetic.value_supplier.default" on-invalid="null"/>
           </service>
         </argument>
@@ -2903,6 +2945,10 @@
       <argument type="service" id="service_container"/>
       <argument type="collection">
         <argument key="cssrewrite">assetic.filter.cssrewrite</argument>
+        <argument key="yui_js">assetic.filter.yui_js</argument>
+        <argument key="yui_css">assetic.filter.yui_css</argument>
+        <argument key="jpegoptim">assetic.filter.jpegoptim</argument>
+        <argument key="jpegtran">assetic.filter.jpegtran</argument>
       </argument>
     </service>
     <service id="assetic.asset_manager" class="Assetic\Factory\LazyAssetManager">
@@ -2929,6 +2975,33 @@
       </argument>
       <call method="addResource">
         <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>VMBlogBundle</argument>
+                  <argument>C:/wamp/www/Sitepatrice/app/Resources/VMBlogBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>VMBlogBundle</argument>
+                  <argument>C:\wamp\www\Sitepatrice\src\VM\BlogBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
             <tag name="assetic.templating.twig"/>
             <tag name="assetic.formula_resource" loader="twig"/>
@@ -2951,6 +3024,24 @@
       <argument>true</argument>
       <call method="addWorker">
         <argument type="service">
+          <service class="Assetic\Factory\Worker\EnsureFilterWorker" public="false">
+            <tag name="assetic.factory_worker"/>
+            <argument>/\.jpg$/</argument>
+            <argument type="service" id="assetic.filter.jpegoptim"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addWorker">
+        <argument type="service">
+          <service class="Assetic\Factory\Worker\EnsureFilterWorker" public="false">
+            <tag name="assetic.factory_worker"/>
+            <argument>/\.jpg$/</argument>
+            <argument type="service" id="assetic.filter.jpegtran"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addWorker">
+        <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker" public="false">
             <tag name="assetic.factory_worker"/>
           </service>
@@ -2962,6 +3053,75 @@
     </service>
     <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
       <tag name="assetic.filter" alias="cssrewrite"/>
+    </service>
+    <service id="assetic.filter.yui_js" class="Assetic\Filter\Yui\JsCompressorFilter">
+      <tag name="assetic.filter" alias="yui_js"/>
+      <argument>C:/wamp/www/Sitepatrice/app/Resources/java/yuicompressor-2.4.7.jar</argument>
+      <argument>C:\Program Files\Java\jre7\bin\java-rmi.exe</argument>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setStackSize">
+        <argument>null</argument>
+      </call>
+      <call method="setNomunge">
+        <argument>null</argument>
+      </call>
+      <call method="setPreserveSemi">
+        <argument>null</argument>
+      </call>
+      <call method="setDisableOptimizations">
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="assetic.filter.yui_css" class="Assetic\Filter\Yui\CssCompressorFilter">
+      <tag name="assetic.filter" alias="yui_css"/>
+      <argument>C:/wamp/www/Sitepatrice/app/Resources/java/yuicompressor-2.4.7.jar</argument>
+      <argument>C:\Program Files\Java\jre7\bin\java-rmi.exe</argument>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setStackSize">
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="assetic.filter.jpegoptim" class="Assetic\Filter\JpegoptimFilter">
+      <tag name="assetic.filter" alias="jpegoptim"/>
+      <argument>C:/wamp/www/Sitepatrice/app/Resources/jpegoptim/jpegoptim.exe</argument>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setStripAll">
+        <argument>true</argument>
+      </call>
+      <call method="setMax">
+        <argument>70</argument>
+      </call>
+    </service>
+    <service id="assetic.filter.jpegtran" class="Assetic\Filter\JpegtranFilter">
+      <tag name="assetic.filter" alias="jpegtran"/>
+      <argument>C:/wamp/www/Sitepatrice/app/Resources/jpegtran/jpegtran.exe</argument>
+      <call method="setTimeout">
+        <argument>null</argument>
+      </call>
+      <call method="setCopy">
+        <argument>null</argument>
+      </call>
+      <call method="setOptimize">
+        <argument>false</argument>
+      </call>
+      <call method="setProgressive">
+        <argument>false</argument>
+      </call>
+      <call method="setRestart">
+        <argument>null</argument>
+      </call>
     </service>
     <service id="assetic.controller" class="Symfony\Bundle\AsseticBundle\Controller\AsseticController" scope="prototype">
       <argument type="service" id="request"/>

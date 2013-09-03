@@ -11,6 +11,7 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
 
         $this->blocks = array(
             'vmblog_body' => array($this, 'block_vmblog_body'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -55,23 +56,25 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
         foreach ($context['_seq'] as $context["key"] => $context["livre"]) {
             // line 20
             echo "                   <div class=\"clearfix\">
-                        <div style=\"width:80px;\" class=\"thumbnail pull-left\">
-                            <img title=\"";
+                        <div id=\"couverture\" style=\"width:80px;\" class=\"thumbnail pull-left\">
+                                <img title=\"";
             // line 22
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "titre"), "html", null, true);
-            echo "\" width=100 style=\"cursor: pointer;\" rel=\"popover\" src=\"";
+            echo "\" width=100 style=\"cursor: pointer;\" rel=\"popover\" 
+                                 src=\"";
+            // line 23
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmblog/images/" . $this->getAttribute($this->getContext($context, "livre"), "couverture"))), "html", null, true);
             echo "\" alt=\"photo ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "titre"), "html", null, true);
             echo "\" />
-                        </div>
+                       </div>
                        
                          <div style=\"\">EDITION :       ";
-            // line 25
+            // line 26
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "edition"), "html", null, true);
             echo "    </div>
                          <div style=\"\">LIEN INTERNET :      <a href=\"";
-            // line 26
+            // line 27
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "url"), "html", null, true);
             echo "\" target=\"_blank\">";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "livre"), "url"), "html", null, true);
@@ -82,7 +85,7 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['key'], $context['livre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 28
+        // line 29
         echo " 
                  
        </div>
@@ -90,14 +93,28 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
 
       
     <br/>
- <script language=\"javascript\">   
+
+  
+ 
+";
+    }
+
+    // line 42
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 43
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo " 
+    <script language=\"javascript\" type=\"text/javascript\"> 
  (function(\$) { 
     \$(\"ul.nav > li#accueil\").removeClass('active');  
    \$(\"ul.nav > li#biographie\").addClass('active');
-    \$(\"img\").popover({trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"150px;\" src=\"'+\$(this).attr('src')+'\"/>'; }, delay: { show: 500, hide: 10} });
+   \$(\"img\").popover({trigger: 'hover',html:true, content: function() { var couverture=\$(this).attr('src');
+           return \"<img class='img-rounded' width=150 src='\"+couverture+\"' />\"; },
+            delay: { show: 500, hide: 10} });
 }(jQuery));
 </script>
- 
+
 ";
     }
 
@@ -113,6 +130,6 @@ class __TwigTemplate_d0cd26003808b2d376e0ac17730fceed extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  86 => 28,  75 => 26,  71 => 25,  61 => 22,  57 => 20,  53 => 19,  48 => 16,  46 => 15,  34 => 6,  31 => 4,  28 => 3,);
+        return array (  106 => 43,  103 => 42,  89 => 29,  78 => 27,  74 => 26,  66 => 23,  62 => 22,  58 => 20,  54 => 19,  49 => 16,  47 => 15,  35 => 6,  32 => 4,  29 => 3,);
     }
 }

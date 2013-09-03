@@ -10,7 +10,9 @@
         <tbody>
         <tr>
     {% for key, image in images %}
-        <td><img style="cursor: pointer;border: 2px solid {{ cycle(['blue','green'],loop.index0)}}" class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
+        <td><img style="cursor: pointer;border: 2px solid {{ cycle(['blue','green'],loop.index0)}}" 
+                 class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" 
+                 rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
         {# le tableau comporte 4 colonnes #}
         {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
     {% endfor %}
@@ -19,14 +21,24 @@
 Il n'y a aucune image dans la galerie
 {% endif %}
 
+
+
+
+<!--</script>-->
+
+
+{% endblock vmblog_body%}                
+
+{% block javascripts %}
+   {{ parent() }}
 <script language="javascript" type="text/javascript">
- $(document).ready(function() 
+(function($) 
  {
    
    $("ul.nav > li#galleries").addClass('active');
-   $("img").popover({placement:'left',trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="250px;" src="'+$(this).attr('src')+'"/><div>'+$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
- });
-</script>
-
-
-{% endblock %}                
+   $("img").popover({placement:'left',trigger: 'hover',html:true, content: function() { 
+    return "<img class='img-rounded' width=250 src='"+$(this).attr('src')+"' /><div>"+$(this).attr('id')+"</div>"; },
+    delay: { show: 500, hide: 10} });
+ }(jQuery));
+ </script>
+ {%endblock javascripts %}

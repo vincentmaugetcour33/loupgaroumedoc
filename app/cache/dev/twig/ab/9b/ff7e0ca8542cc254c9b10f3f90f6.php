@@ -11,6 +11,7 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
 
         $this->blocks = array(
             'vmblog_body' => array($this, 'block_vmblog_body'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -61,17 +62,21 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
                 // line 13
                 echo "        <td><img style=\"cursor: pointer;border: 2px solid ";
                 echo twig_escape_filter($this->env, twig_cycle(array(0 => "blue", 1 => "green"), $this->getAttribute($this->getContext($context, "loop"), "index0")), "html", null, true);
-                echo "\" class=\"\" id=\"";
+                echo "\" 
+                 class=\"\" id=\"";
+                // line 14
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "description"), "html", null, true);
                 echo "\" src=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmblog/images/" . $this->getAttribute($this->getContext($context, "image"), "url"))), "html", null, true);
-                echo "\" rel=\"popover\" alt=\"";
+                echo "\" 
+                 rel=\"popover\" alt=\"";
+                // line 15
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "alt"), "html", null, true);
                 echo "\" title=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "image"), "alt"), "html", null, true);
                 echo "\" /></td>
         ";
-                // line 15
+                // line 17
                 echo "        ";
                 if ((($this->getAttribute($this->getContext($context, "loop"), "index") % 6) == 0)) {
                     echo "</tr><tr>";
@@ -90,27 +95,43 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['image'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 17
+            // line 19
             echo "    </tbody></table>
 ";
         } else {
-            // line 19
+            // line 21
             echo "Il n'y a aucune image dans la galerie
 ";
         }
-        // line 21
+        // line 23
         echo "
-<script language=\"javascript\" type=\"text/javascript\">
- \$(document).ready(function() 
- {
-   
-   \$(\"ul.nav > li#galleries\").addClass('active');
-   \$(\"img\").popover({placement:'left',trigger: 'hover',html:true, content: function() { return '<img class=\"img-rounded\" width=\"250px;\" src=\"'+\$(this).attr('src')+'\"/><div>'+\$(this).attr('id')+'</div>'; }, delay: { show: 500, hide: 10} });
- });
-</script>
+
+
+
+<!--</script>-->
 
 
 ";
+    }
+
+    // line 32
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 33
+        echo "   ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+<script language=\"javascript\" type=\"text/javascript\">
+(function(\$) 
+ {
+   
+   \$(\"ul.nav > li#galleries\").addClass('active');
+   \$(\"img\").popover({placement:'left',trigger: 'hover',html:true, content: function() { 
+    return \"<img class='img-rounded' width=250 src='\"+\$(this).attr('src')+\"' /><div>\"+\$(this).attr('id')+\"</div>\"; },
+    delay: { show: 500, hide: 10} });
+ }(jQuery));
+ </script>
+ ";
     }
 
     public function getTemplateName()
@@ -125,6 +146,6 @@ class __TwigTemplate_ab9bff7e0ca8542cc254c9b10f3f90f6 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  102 => 21,  98 => 19,  94 => 17,  75 => 15,  62 => 13,  45 => 12,  39 => 8,  36 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  121 => 33,  118 => 32,  107 => 23,  103 => 21,  99 => 19,  80 => 17,  74 => 15,  68 => 14,  63 => 13,  46 => 12,  40 => 8,  37 => 6,  35 => 5,  32 => 4,  29 => 3,);
     }
 }

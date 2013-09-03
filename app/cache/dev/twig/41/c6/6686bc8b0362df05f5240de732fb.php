@@ -34,14 +34,16 @@ MOT DE PASSE : ";
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "user"), "password"), "html", null, true);
         echo "
 
+En vous disant à bientôt,
+
 Cordialement,
 
 ";
-        // line 13
+        // line 15
         echo twig_escape_filter($this->env, $this->getContext($context, "webmaster_nom"), "html", null, true);
         echo "
 Responsable du site ";
-        // line 14
+        // line 16
         echo twig_escape_filter($this->env, $this->getContext($context, "site_nom"), "html", null, true);
     }
 
@@ -57,6 +59,6 @@ Responsable du site ";
 
     public function getDebugInfo()
     {
-        return array (  45 => 14,  41 => 13,  34 => 9,  29 => 7,  19 => 1,);
+        return array (  47 => 16,  43 => 15,  34 => 9,  29 => 7,  19 => 1,);
     }
 }

@@ -12,6 +12,7 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         $this->blocks = array(
             'vmblog_stylesheets' => array($this, 'block_vmblog_stylesheets'),
             'vmblog_body' => array($this, 'block_vmblog_body'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -62,18 +63,28 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
         echo " 
  
-   
- <script language=\"javascript\" type=\"text/javascript\">
- \$(document).ready(function() 
- {
-   
-    \$(\"ul.nav > li#accueil\").addClass('active');  
-   });
-</script>  
-  
+
    
  
 ";
+    }
+
+    // line 26
+    public function block_javascripts($context, array $blocks = array())
+    {
+        echo "  
+ ";
+        // line 27
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+   <script language=\"javascript\" type=\"text/javascript\">
+ (function(\$) 
+ {
+   
+    \$(\"ul.nav > li#accueil\").addClass('active');  
+   }(jQuery));
+</script>  
+  ";
     }
 
     public function getTemplateName()
@@ -88,6 +99,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  62 => 19,  55 => 15,  51 => 14,  45 => 12,  43 => 11,  40 => 10,  32 => 4,  29 => 3,);
+        return array (  78 => 27,  73 => 26,  63 => 19,  56 => 15,  52 => 14,  46 => 12,  44 => 11,  41 => 10,  33 => 4,  30 => 3,);
     }
 }

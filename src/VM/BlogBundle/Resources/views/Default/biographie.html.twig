@@ -18,9 +18,10 @@
             
             {% for key, livre in livres_secondaires %}
                    <div class="clearfix">
-                        <div style="width:80px;" class="thumbnail pull-left">
-                            <img title="{{livre.titre}}" width=100 style="cursor: pointer;" rel="popover" src="{{ asset('bundles/vmblog/images/'~livre.couverture) }}" alt="photo {{ livre.titre }}" />
-                        </div>
+                        <div id="couverture" style="width:80px;" class="thumbnail pull-left">
+                                <img title="{{livre.titre}}" width=100 style="cursor: pointer;" rel="popover" 
+                                 src="{{ asset('bundles/vmblog/images/'~livre.couverture) }}" alt="photo {{ livre.titre }}" />
+                       </div>
                        
                          <div style="">EDITION :       {{livre.edition }}    </div>
                          <div style="">LIEN INTERNET :      <a href="{{livre.url }}" target="_blank">{{livre.url }} </a>   </div>
@@ -32,14 +33,22 @@
 
       
     <br/>
- <script language="javascript">   
+
+  
+ 
+{% endblock vmblog_body %}
+
+
+   {% block javascripts %}
+{{ parent() }} 
+    <script language="javascript" type="text/javascript"> 
  (function($) { 
     $("ul.nav > li#accueil").removeClass('active');  
    $("ul.nav > li#biographie").addClass('active');
-    $("img").popover({trigger: 'hover',html:true, content: function() { return '<img class="img-rounded" width="150px;" src="'+$(this).attr('src')+'"/>'; }, delay: { show: 500, hide: 10} });
+   $("img").popover({trigger: 'hover',html:true, content: function() { var couverture=$(this).attr('src');
+           return "<img class='img-rounded' width=150 src='"+couverture+"' />"; },
+            delay: { show: 500, hide: 10} });
 }(jQuery));
 </script>
- 
-{% endblock %}
 
-
+{% endblock javascripts %}

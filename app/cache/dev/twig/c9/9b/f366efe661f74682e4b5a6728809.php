@@ -12,6 +12,7 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         $this->blocks = array(
             'vmblog_stylesheet' => array($this, 'block_vmblog_stylesheet'),
             'vmblog_body' => array($this, 'block_vmblog_body'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -309,7 +310,20 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 </div>
 </div>
 
- <script language=\"javascript\">
+     
+ 
+ 
+";
+    }
+
+    // line 138
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 139
+        echo "      ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+      <script language=\"javascript\" type=\"text/javascript\">
        (function(\$) {   
           
           \$(\"ul.nav > li#commentaires\").addClass('active');
@@ -352,7 +366,6 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         
     }(jQuery));
  </script>   
-
 ";
     }
 
@@ -368,6 +381,6 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  302 => 128,  300 => 127,  295 => 126,  285 => 121,  282 => 120,  275 => 118,  267 => 115,  264 => 114,  258 => 112,  256 => 111,  253 => 110,  249 => 109,  241 => 106,  236 => 103,  234 => 102,  231 => 101,  225 => 97,  221 => 95,  204 => 84,  196 => 78,  193 => 77,  190 => 76,  179 => 68,  174 => 65,  171 => 64,  168 => 63,  166 => 62,  162 => 60,  156 => 58,  150 => 56,  148 => 55,  141 => 53,  134 => 49,  126 => 43,  122 => 41,  118 => 39,  116 => 38,  110 => 35,  107 => 34,  103 => 33,  97 => 30,  92 => 28,  88 => 26,  85 => 24,  83 => 23,  78 => 20,  71 => 17,  68 => 15,  66 => 14,  63 => 13,  55 => 11,  49 => 10,  46 => 9,  43 => 8,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  323 => 139,  320 => 138,  303 => 128,  301 => 127,  296 => 126,  286 => 121,  283 => 120,  276 => 118,  268 => 115,  265 => 114,  259 => 112,  257 => 111,  254 => 110,  250 => 109,  242 => 106,  237 => 103,  235 => 102,  232 => 101,  226 => 97,  222 => 95,  205 => 84,  197 => 78,  194 => 77,  191 => 76,  180 => 68,  175 => 65,  172 => 64,  169 => 63,  167 => 62,  163 => 60,  157 => 58,  151 => 56,  149 => 55,  142 => 53,  135 => 49,  127 => 43,  123 => 41,  119 => 39,  117 => 38,  111 => 35,  108 => 34,  104 => 33,  98 => 30,  93 => 28,  89 => 26,  86 => 24,  84 => 23,  79 => 20,  72 => 17,  69 => 15,  67 => 14,  64 => 13,  56 => 11,  50 => 10,  47 => 9,  44 => 8,  38 => 5,  33 => 4,  30 => 3,);
     }
 }
