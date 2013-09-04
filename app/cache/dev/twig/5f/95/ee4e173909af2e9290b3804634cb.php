@@ -34,7 +34,7 @@ class __TwigTemplate_5f95ee4e173909af2e9290b3804634cb extends Twig_Template
           <td><div style=\"float:left;\" class='thumbnail'>
           <img align=\"center\" width=\"30px\" src=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmuser/photo/" . $this->getAttribute($this->getContext($context, "membre"), "photo"))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute($this->getContext($context, "membre"), "photoPath")), "html", null, true);
         echo "\" />
         </div>
           INFORMATIONS MEMBRE ";

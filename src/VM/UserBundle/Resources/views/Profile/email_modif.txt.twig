@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Patrice Mauget - Loup-garou, le monstre du Médoc{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/vmblog/css/bootstrap.min.css')}}">
+      
+    </head>
+      
+    
+    <body>
+    
+    <p>
+        Bonjour {{ user.realname }},
+        Vous avez modifié des paramètres de vote compte sur le site Loup-Garou, le monstre du Médoc.
+    </p>
+
+ <div class="panel panel-info"> 
+        <div class="panel-heading">
+             Vos identifiants de connexion :
+        </div>
+
+        <div class="panel-body">        
+            <p>LOGIN : {{ user.username }}</p>
+
+            <p>MOT DE PASSE : {{ user.password }}</p>
+        </div>
+  </div>        
+
+    <p>
+       Vous pouvez désormais vous connecter en allant sur notre site :
+       
+       <a href="{{url_site}}">{{ url_site }}</a>
+    </p>
+    
+
+    <p>
+       En vous disant à bientôt.
+       Cordialement,
+     </p>      
+      
+        <address>
+            {{ webmaster_nom }}
+            Responsable du site {{ site_nom }}
+        </address>
+   
+     
+</body></html>     

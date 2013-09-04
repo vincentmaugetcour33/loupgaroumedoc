@@ -5,7 +5,7 @@
 
 {% if form is defined %}
     
-        Les champs marqués d'un astérisque sont obligatoires.
+        
     
 {#{% form_theme form _self %}
     {% use 'form_div_layout.html.twig' with form_label as base_form_label %}
@@ -21,16 +21,22 @@
 
     <div class="panel panel-info"> 
       <div class="panel-heading">
-          ENREGISTREMENT PROFIL
+         {% if editer is defined %} MODIFICATION {% else %} ENREGISTREMENT {% endif %}PROFIL
        </div>
             
-      <div class="panel-body">      
+      <div class="panel-body"> <font color="red"> Les champs marqués d'un astérisque sont obligatoires.</font>  
+          {% if editer is defined %} Si vous ne saisissez pas un nouveau mot de passe, votre mot de
+                                     passe actuel est conservé. {% endif %}
    <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" {{ form_enctype(form) }}>
-      {{ form_errors(form) }}
-      {{ form_label(form) }}
-     {{ form_widget(form) }}
+      
+      {% if editer is defined %}
+            {{ form_errors(form.file) }}
+            {{ form_label(form.file) }} ( actuelle : {{app.user.photo}} )   
+            {{ form_widget(form.file) }}
+      {% endif %} 
+            
       {{ form_rest(form) }}
-      <input type="submit" class="btn btn-default" />
+      <input type="submit" value="{% if editer is defined %}Modifier{% else %}Ajouter{% endif %}" class="btn btn-default" />
       <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
   </form>
               </div></div>

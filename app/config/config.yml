@@ -30,6 +30,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
       site_nom : %site_nom%
+      url_site: %url_site%
       webmaster_nom : %webmaster_nom%
       webmaster_email : %webmaster_email%
       auteur_nom : %auteur_nom%

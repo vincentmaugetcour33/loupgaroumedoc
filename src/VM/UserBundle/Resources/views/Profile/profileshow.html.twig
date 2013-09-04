@@ -7,7 +7,7 @@
       <div class="panel-heading">
           <table><tr>
           <td><div style="float:left;" class='thumbnail'>
-          <img align="center" width=30 src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}" />
+          <img align="center" width=30 src="{{ asset(app.user.photoPath) }}" />
         </div>
           INFORMATIONS PROFIL {{ app.user.username  }}
           </td></tr></table>
@@ -41,7 +41,7 @@
               <div class="tab-pane" id="comment">
                 {% if commentaires is empty %} Vous n'avez saisi aucun commentaire {% endif %}  
                 {% for key,com in commentaires %}
-                      <p>Commentaire n°{{key}} :{{ com.contenu }}</p>
+                      <p>Commentaire n°{{key+1}} :{{ com.contenu }}</p>
                   {% endfor %}
                  
                       

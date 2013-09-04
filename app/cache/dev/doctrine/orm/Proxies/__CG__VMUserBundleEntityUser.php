@@ -42,10 +42,64 @@ class User extends \VM\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
     }
 
     
-    public function image_profile()
+    public function setFile(\Symfony\Component\HttpFoundation\File\UploadedFile $file)
     {
         $this->__load();
-        return parent::image_profile();
+        return parent::setFile($file);
+    }
+
+    public function getFile()
+    {
+        $this->__load();
+        return parent::getFile();
+    }
+
+    public function getTempfile()
+    {
+        $this->__load();
+        return parent::getTempfile();
+    }
+
+    public function setTempfile($tempfile)
+    {
+        $this->__load();
+        return parent::setTempfile($tempfile);
+    }
+
+    public function preUpload()
+    {
+        $this->__load();
+        return parent::preUpload();
+    }
+
+    public function upload()
+    {
+        $this->__load();
+        return parent::upload();
+    }
+
+    public function preRemoveUpload()
+    {
+        $this->__load();
+        return parent::preRemoveUpload();
+    }
+
+    public function postRemoveUpload()
+    {
+        $this->__load();
+        return parent::postRemoveUpload();
+    }
+
+    public function getUploadDir()
+    {
+        $this->__load();
+        return parent::getUploadDir();
+    }
+
+    public function getPhotoPath()
+    {
+        $this->__load();
+        return parent::getPhotoPath();
     }
 
     public function addCommentaire(\VM\BlogBundle\Entity\Commentaire $commentaire)

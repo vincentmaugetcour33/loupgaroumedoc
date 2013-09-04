@@ -41,6 +41,7 @@
     <parameter key="locale">fr</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="site_nom">Loup-Garou, le monstre du Médoc</parameter>
+    <parameter key="url_site">monstredumedoc.localhost/app_dev.php/</parameter>
     <parameter key="webmaster_nom">Vincent Mauget</parameter>
     <parameter key="webmaster_email">vincent.mauget@gmail.com</parameter>
     <parameter key="auteur_nom">Patrice Mauget</parameter>
@@ -2289,7 +2290,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5225d399b110d</argument>
+            <argument>5226dc5695ae5</argument>
           </service>
         </argument>
       </argument>
@@ -2639,7 +2640,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5225d399b110d</argument>
+            <argument>5226dc5695ae5</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2883,6 +2884,10 @@
       <call method="addGlobal">
         <argument>site_nom</argument>
         <argument>Loup-Garou, le monstre du Médoc</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>url_site</argument>
+        <argument>monstredumedoc.localhost/app_dev.php/</argument>
       </call>
       <call method="addGlobal">
         <argument>webmaster_nom</argument>

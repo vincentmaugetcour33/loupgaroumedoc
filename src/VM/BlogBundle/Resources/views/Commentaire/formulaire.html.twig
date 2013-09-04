@@ -3,9 +3,9 @@
    <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_blog_commentaire_edit', { 'id' : id_commentaire}) }}{% else %}{{ path('vm_blog_commentaire_ajout') }}{% endif %}" {{ form_enctype(form) }}>
       {{ form_errors(form) }}
        {#<div class="form-group">{{ form_widget(form.user, { 'attr': {'class': 'form-control', 'placeholder': 'Auteur'} }) }}</div>#}
-      <div class="form-group">{{ form_widget(form.contenu, { 'attr': {'class': 'form-control input-sm', 'placeholder':'Commentaire'} }) }}</div>
+      <div class="form-group">{{ form_widget(form.contenu, { 'attr': {'class': 'form-control input-sm col-sm-9', 'placeholder':'Saisissez votre commentaire'} }) }}</div>
       <div class="form-group">{{ form_rest(form) }}</div>
-      <input type="submit" class="btn btn-default" />
+      <input type="submit" value='Ajouter' class="btn btn-default" />
     {#<input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />#}
   </form>
 {% endif %}

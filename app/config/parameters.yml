@@ -20,5 +20,6 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     site_nom : Loup-Garou, le monstre du Médoc
+    url_site :  monstredumedoc.localhost/app_dev.php/
     webmaster_nom : Vincent Mauget
     webmaster_email : vincent.mauget@gmail.com

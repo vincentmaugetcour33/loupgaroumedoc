@@ -37,13 +37,13 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
        ";
             // line 6
             echo "      <div class=\"form-group\">";
-            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "contenu"), 'widget', array("attr" => array("class" => "form-control input-sm", "placeholder" => "Commentaire")));
+            echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "contenu"), 'widget', array("attr" => array("class" => "form-control input-sm col-sm-9", "placeholder" => "Saisissez votre commentaire")));
             echo "</div>
       <div class=\"form-group\">";
             // line 7
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getContext($context, "form"), 'rest');
             echo "</div>
-      <input type=\"submit\" class=\"btn btn-default\" />
+      <input type=\"submit\" value='Ajouter' class=\"btn btn-default\" />
     ";
             // line 10
             echo "  </form>
@@ -63,6 +63,6 @@ class __TwigTemplate_2667c755693936710bfd9bc02905033d extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  44 => 7,  39 => 6,  35 => 4,  24 => 3,  21 => 2,  19 => 1,  302 => 128,  300 => 127,  295 => 126,  285 => 121,  282 => 120,  275 => 118,  267 => 115,  264 => 114,  258 => 112,  256 => 111,  253 => 110,  249 => 109,  241 => 106,  236 => 103,  234 => 102,  231 => 101,  225 => 97,  221 => 95,  204 => 84,  196 => 78,  193 => 77,  190 => 76,  179 => 68,  174 => 65,  171 => 64,  168 => 63,  166 => 62,  162 => 60,  156 => 58,  150 => 56,  148 => 55,  141 => 53,  134 => 49,  126 => 43,  122 => 41,  118 => 39,  116 => 38,  110 => 35,  107 => 34,  103 => 33,  97 => 30,  92 => 28,  88 => 26,  85 => 24,  83 => 23,  78 => 20,  71 => 17,  68 => 15,  66 => 14,  63 => 13,  55 => 11,  49 => 10,  46 => 9,  43 => 8,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  49 => 10,  44 => 7,  39 => 6,  35 => 4,  24 => 3,  21 => 2,  19 => 1,);
     }
 }

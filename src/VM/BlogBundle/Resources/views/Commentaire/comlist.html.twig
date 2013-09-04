@@ -14,7 +14,11 @@
 {% if is_granted('ROLE_USER') %}
     <div id="formulaire">
          {#<a href="#" class="btn btn-info" id="ajouter_commentaire" >Ajouter</a>#}
-         <div class="row">{% render(controller('VMBlogBundle:Commentaire:ajoutcommentaire')) %}</div>   
+         <div class="row">
+                <div class="col-sm-9" style="margin-left:-15px;">
+                  {% render(controller('VMBlogBundle:Commentaire:ajoutcommentaire')) %}
+                </div>
+         </div>        
     </div> 
 {% endif %}
       
@@ -46,7 +50,7 @@
                                    <td>
                                        
                                            <div class='thumbnail'>
-                                            <img width="30" src="{{ asset('bundles/vmuser/photo/'~entity.user.photo) }}" />
+                                            <img width="30" src="{{ asset(entity.user.photoPath) }}" />
                                            </div>
                                           
                                    </td>

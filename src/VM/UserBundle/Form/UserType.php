@@ -16,14 +16,24 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username',      'text', array('label' => 'Votre pseudo* : ', 'required'=>true))
-            ->add('password',      'text', array('label' => 'Votre mot de passe* : ', 'required'=>true))
+            ->add('password',      'password', array('label' => 'Votre mot de passe* : ', 'required'=>true,
+                            'always_empty' => false))
+          /*->add('password', 'repeated', array(
+                    'type' => 'password',
+                    'invalid_message' => 'Les mots de passe entrés ne correspondent pas.',
+                    'options' => array('label' => 'Confirmer le mot de passe* :'),
+                    'first_name' => "password",
+                    'second_name' => "repassword",
+                ))*/
             ->add('email',         'email', array('label' => 'Votre email* :', 'required'=>true))
+            ->add('file',          'file',  array( 'label' => 'Votre photo'))
             ->add('realname',      'text', array('label' => 'Votre nom : ', 'required'=>false))
             ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
             ->add('sexe',          'choice', array(
                                      'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),
                                      'empty_value' => 'Vous êtes ?'))
             ->add('age',           'integer', array('label' => 'Votre âge : ', 'required'=>false));
+            
             //->add('photo')
             
             //->add('salt')

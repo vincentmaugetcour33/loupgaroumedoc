@@ -19,7 +19,7 @@
       
         <div class="container">
                <!-- En-tête du layout -->
-               <div class="page-header">
+               <div class="page-header" style="background-image: url('{{ asset('/image/banniere_haut.jpg')}}');">
                    {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
                    En-tête du site Loup-garou, le monstre du Médoc
                     
@@ -27,10 +27,10 @@
                        <div id="info_login" class="col-sm-offset-8 col-sm-4">
                       <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
                                                                 
-                        <img width=40 style="float:left;" class="img-rounded" src="{{ asset('bundles/vmuser/photo/'~app.user.photo) }}"/>
-                         
+                        <img width=40 style="float:left;" class="img-rounded" src="{{ asset(app.user.photoPath) }}"/>
+                               Bonjour {{ app.user.username }}
                           <div class="input-group-btn" > 
-                         <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ app.user.username }}<span class="caret"></span></button>
+                         <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Gestion<span class="caret"></span></button>
                           <ul style="margin-top:30px;" class="dropdown-menu pull-right" id="{{app.user.id}}">
                             <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
                             <li class="divider"/>
@@ -124,8 +124,22 @@
                                  <div class="accordion-group">
                                    <button class="btn btn-sm btn-primary accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#liens_divers">Mes liens divers</button>
                                    <div id="liens_divers" class="accordion-body collapse">
-                                     <div class="accordion-inner">Rajouter des liens sur d'autres sites (mollat,amazon,...)</div>
-                                    </div>
+                                     <div class="accordion-inner">
+                                         <p><a 
+                                          href="http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html"
+                                          target="_blank" >
+                                           Pluie de vers       
+                                         </a></p>
+                                         
+                                         <p><a 
+                                          href="http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html"
+                                          target="_blank" >
+                                           La Genèse Interdite       
+                                         </a></p>
+                                         
+                                         <p>Liens divers</p>
+                                     </div>
+                                   </div>
                                </div>
                             </div>
                                
@@ -139,7 +153,7 @@
                       
                        <div class="col-sm-offset-1 col-sm-9">
                          <div id="notes" style="color:red;">
-                             Ce site constitue une vitrine pour le livre intitulé Loup-Garou, le monstre du Médoc.
+                             Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
                             Je m'applique à améliorer le site. 
                          </div>  
                         {% block body %}
@@ -158,7 +172,7 @@
 
                        
                  <!-- Bas de page -->      
-                <div class="page-footer">   
+                <div class="page-footer" style="background-color:red;">   
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class="pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>

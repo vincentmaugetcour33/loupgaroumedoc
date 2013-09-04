@@ -63,7 +63,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
       
         <div class=\"container\">
                <!-- En-tête du layout -->
-               <div class=\"page-header\">
+               <div class=\"page-header\" style=\"background-image: url('";
+        // line 22
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("/image/banniere_haut.jpg"), "html", null, true);
+        echo "');\">
                    ";
         // line 24
         echo "                   En-tête du site Loup-garou, le monstre du Médoc
@@ -77,14 +80,14 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                                                 
                         <img width=40 style=\"float:left;\" class=\"img-rounded\" src=\"";
             // line 30
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmuser/photo/" . $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photo"))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photoPath")), "html", null, true);
             echo "\"/>
-                         
-                          <div class=\"input-group-btn\" > 
-                         <button style=\"margin-left:-10px;\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">";
-            // line 33
+                               Bonjour ";
+            // line 31
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
-            echo "<span class=\"caret\"></span></button>
+            echo "
+                          <div class=\"input-group-btn\" > 
+                         <button style=\"margin-left:-10px;\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">Gestion<span class=\"caret\"></span></button>
                           <ul style=\"margin-top:30px;\" class=\"dropdown-menu pull-right\" id=\"";
             // line 34
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "id"), "html", null, true);
@@ -253,8 +256,22 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                  <div class=\"accordion-group\">
                                    <button class=\"btn btn-sm btn-primary accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#liens_divers\">Mes liens divers</button>
                                    <div id=\"liens_divers\" class=\"accordion-body collapse\">
-                                     <div class=\"accordion-inner\">Rajouter des liens sur d'autres sites (mollat,amazon,...)</div>
-                                    </div>
+                                     <div class=\"accordion-inner\">
+                                         <p><a 
+                                          href=\"http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html\"
+                                          target=\"_blank\" >
+                                           Pluie de vers       
+                                         </a></p>
+                                         
+                                         <p><a 
+                                          href=\"http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html\"
+                                          target=\"_blank\" >
+                                           La Genèse Interdite       
+                                         </a></p>
+                                         
+                                         <p>Liens divers</p>
+                                     </div>
+                                   </div>
                                </div>
                             </div>
                                
@@ -268,13 +285,13 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                       
                        <div class=\"col-sm-offset-1 col-sm-9\">
                          <div id=\"notes\" style=\"color:red;\">
-                             Ce site constitue une vitrine pour le livre intitulé Loup-Garou, le monstre du Médoc.
+                             Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
                             Je m'applique à améliorer le site. 
                          </div>  
                         ";
-        // line 145
+        // line 159
         $this->displayBlock('body', $context, $blocks);
-        // line 147
+        // line 161
         echo "                        
                       
                        </div>
@@ -289,11 +306,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
                        
                  <!-- Bas de page -->      
-                <div class=\"page-footer\">   
+                <div class=\"page-footer\" style=\"background-color:red;\">   
                 
                     Pied-de-page du site Loup-garou, le monstre du Médoc
                     <p class=\"pull-right\">WEBMESTRE : ";
-        // line 164
+        // line 178
         echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
         echo "</p>
                 
@@ -303,9 +320,9 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
             </div>
     
          ";
-        // line 171
+        // line 185
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 213
+        // line 227
         echo "
 
         
@@ -323,28 +340,28 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "Patrice Mauget - Loup-garou, le monstre du Médoc";
     }
 
-    // line 145
+    // line 159
     public function block_body($context, array $blocks = array())
     {
-        // line 146
+        // line 160
         echo "                       ";
     }
 
-    // line 171
+    // line 185
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 172
+        // line 186
         echo "               
             <script src=\"";
-        // line 173
+        // line 187
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/fosjsrouting/js/router.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 174
+        // line 188
         echo $this->env->getExtension('routing')->getPath("fos_js_routing_js", array("callback" => "fos.Router.setData"));
         echo "\"></script>
             <script src=\"";
-        // line 175
+        // line 189
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
         echo "\"></script>
           
@@ -376,11 +393,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
              </script>
 
             ";
-        // line 204
+        // line 218
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "ea73278_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_ea73278_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/ea73278_bootstrap.min_1.js");
-            // line 207
+            // line 221
             echo "                           <script type=\"text/javascript\" src=\"";
             echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
             echo "\"></script>
@@ -400,7 +417,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
             ";
         }
         unset($context["asset_url"]);
-        // line 208
+        // line 222
         echo "   
             
             
@@ -420,6 +437,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  404 => 208,  384 => 207,  380 => 204,  348 => 175,  344 => 174,  340 => 173,  337 => 172,  334 => 171,  330 => 146,  327 => 145,  321 => 5,  309 => 213,  307 => 171,  297 => 164,  278 => 147,  276 => 145,  246 => 120,  234 => 112,  230 => 107,  223 => 102,  215 => 98,  209 => 94,  207 => 93,  202 => 90,  187 => 77,  183 => 76,  179 => 75,  169 => 67,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  124 => 51,  121 => 50,  119 => 49,  116 => 48,  104 => 39,  99 => 37,  94 => 35,  90 => 34,  86 => 33,  80 => 30,  75 => 27,  73 => 26,  69 => 24,  58 => 15,  53 => 12,  37 => 9,  33 => 7,  28 => 5,  22 => 1,);
+        return array (  421 => 222,  401 => 221,  397 => 218,  365 => 189,  361 => 188,  357 => 187,  354 => 186,  351 => 185,  347 => 160,  344 => 159,  338 => 5,  326 => 227,  324 => 185,  314 => 178,  295 => 161,  293 => 159,  249 => 120,  237 => 112,  233 => 107,  226 => 102,  218 => 98,  212 => 94,  210 => 93,  205 => 90,  190 => 77,  186 => 76,  182 => 75,  172 => 67,  164 => 65,  158 => 64,  155 => 63,  147 => 61,  141 => 60,  133 => 54,  127 => 51,  124 => 50,  122 => 49,  119 => 48,  107 => 39,  102 => 37,  97 => 35,  93 => 34,  87 => 31,  83 => 30,  78 => 27,  76 => 26,  72 => 24,  68 => 22,  58 => 15,  53 => 12,  37 => 9,  33 => 7,  28 => 5,  22 => 1,);
     }
 }

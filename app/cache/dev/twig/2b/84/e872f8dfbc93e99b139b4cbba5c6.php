@@ -35,7 +35,7 @@ class __TwigTemplate_2b84e872f8dfbc93e99b139b4cbba5c6 extends Twig_Template
           <td><div style=\"float:left;\" class='thumbnail'>
           <img align=\"center\" width=30 src=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmuser/photo/" . $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photo"))), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photoPath")), "html", null, true);
         echo "\" />
         </div>
           INFORMATIONS PROFIL ";
@@ -122,7 +122,7 @@ class __TwigTemplate_2b84e872f8dfbc93e99b139b4cbba5c6 extends Twig_Template
         foreach ($context['_seq'] as $context["key"] => $context["com"]) {
             // line 44
             echo "                      <p>Commentaire n°";
-            echo twig_escape_filter($this->env, $this->getContext($context, "key"), "html", null, true);
+            echo twig_escape_filter($this->env, ($this->getContext($context, "key") + 1), "html", null, true);
             echo " :";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "com"), "contenu"), "html", null, true);
             echo "</p>
