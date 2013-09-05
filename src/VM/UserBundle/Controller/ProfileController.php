@@ -84,33 +84,48 @@ class ProfileController extends Controller
       {
        $user = new User();
        $user = $this->getUser();
-         
+      
        $form = $this->createForm(new UserEditType, $user);
-       $request = $this->getRequest();
+       $request = $this->get('request');
          
         if ($request->getMethod() == 'POST')
          {
+            //$this->get('session')->getFlashBag()->add('info', 'methode valide');
             // on regarde si le mot de passe a changé
-            $ancien_password = $user->getPassword();
+            $ancien_mdp = $user->getPassword();
             $requete_user = $request->request->get($form->getName());
-            $is_newpassword = ($requete_user['password'] == '')? false : true ;
-            if(!$is_newpassword)
+            $is_nvmdp = ($requete_user['password'] == '')? false : true ;
+            if(!$is_nvmdp)
             {
 	        // réinjection de l'ancien mot de passe dans la requête
-	        $requete_user['password'] = $ancien_password;
+	        $requete_user['password'] = $ancien_mdp;
 	        $request->request->set($form->getName(), $requete_user);
 	    }
+            //$requete_user =$request->request->get('vm_userbundle_useredittype');
+            // on regarde si la photo a changé
+            //$ancienne_photo = $user->getPhoto();
+            //$requete_user = $request->request->get($form->getName());
+            //$is_nvphoto = ( $requete_user['file'] == '') ? false : true ;
+            //if(!$is_nvphoto)
+            //{
+               // réinjection de l'ancienne photo dans la requête
+	      //  $requete_user['file'] = $ancienne_photo;
+	       //$request->request->set($form->getName(), $requete_user); 
+            //}
             
             $form->bind($request);
              if ($form->isValid())
              {
-               //$is_newpassword = ($form['password'] == '')? false : true ;
+               //$user->preUpload();
+                //$this->get('session')->getFlashBag()->add('info', 'formulaire valide');
+                //$is_newpassword = ($form['password'] == '')? false : true ;
                //if($is_newpassword){
                 //   $user->setPassword($password)
                //}  
               $manager =$this->getDoctrine()->getManager();
               //$user->setFile($form['file']);           
               $manager->persist($user); 
+              //$user->upload();
               $manager->flush();   
               //$this->get('session')->getFlashBag()->add('info', 'Votre profil a été modifié');
             
@@ -148,10 +163,28 @@ class ProfileController extends Controller
    {
     $manager =$this->getDoctrine()->getManager();
     $commentaires = $manager->getRepository('VMBlogBundle:Commentaire')->findByUser($this->getUser());
+    // $user=$this->getUser();
+     
+   
     
     $manager->remove($this->getUser());
-    $manager->flush();
-   
+    $manager->flush();  
+    
+    /*$transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+                            ->setUsername('vincent.mauget@gmail.com')
+                            ->setPassword('A12&Bbc1');
+              
+              $mailer= \Swift_Mailer::newInstance($transport);
+              $message = \Swift_Message::newInstance()
+                         ->setSubject('Site Loup-Garou, Le monstre du Médoc')
+                         ->setFrom('noreply@gmail.com')
+                         ->setContentType('text/html')
+                         ->setTo($user->getEmail())
+                         ->setBody(
+                               $this->renderView('VMUserBundle:Profile:email_spprime.txt.twig', array('user' => $user), 'text/html')
+                                 );
+               $mailer->send($message);*/
+    
     $this->get('security.context')->setToken(null);
     $this->get('request')->getSession()->invalidate();
     $this->get('session')->getFlashBag()->add('info', 'Votre profil a été supprimé.');

@@ -1,12 +1,20 @@
 {% extends "VMBlogBundle::base.html.twig" %}
 
-{% block vmblog_stylesheet %}
-     {{ parent() }}
-      <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/commentaire.css') }}" type="text/css" media="all" />
-{% endblock %}                
+               
 
 {% block vmblog_body %}
  
+{% block vmblog_stylesheet %}
+     {{ parent() }}
+     
+     {% stylesheets filter='cssrewrite, yui_css'
+                '@VMBlogBundle/Resources/public/css/commentaire.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
+     {% endstylesheets %}
+
+{#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/commentaire.css') }}" type="text/css" media="all" />#}
+{% endblock %} 
+
 {% for message in app.session.flashbag.get('info') %} 
     {{ message }}
 {% endfor %}
@@ -36,7 +44,7 @@
      </div>        
     {% for key, entity in entities %}
 
-          <div class="row" id={{entity.id}}>
+          <div class="row" id="{{entity.id}}">
            <div id="operations" class="input-group input-group-sm">
                 
                 {% if entity.user == app.user %}
@@ -89,9 +97,9 @@
                    </div>
                 
                    
-                   
+                   </div>
 
-            </div>
+          
             
           </div>
 
@@ -133,13 +141,13 @@
 </div>
 </div>
 
-     
+ 
  
  
 {% endblock vmblog_body %}
 
 
-{% block javascripts %}
+ {% block javascripts %}
       {{ parent() }}
       <script language="javascript" type="text/javascript">
        (function($) {   
@@ -184,4 +192,4 @@
         
     }(jQuery));
  </script>   
-{% endblock javascripts %}
+{% endblock javascripts %}   

@@ -25,15 +25,15 @@
           <ul>
   {#<li>Identifiant : {{ app.user.username  }} </li>#}
   
-  {# <li>Nom/prénom  :{% if app.user.realname|length > 0 %} {{ app.user.realname  }} {%else%} non renseigné{% endif %}</li>#}
+  <li><b>Nom/prénom  :</b>{% if app.user.realname|length > 0 %} {{ app.user.realname  }} {%else%} non renseigné{% endif %}</li>
  
-  <li>     Sexe : {% if app.user.sexe|length > 0 %}       {{ app.user.sexe  }}    {%else%} non renseigné{% endif %}</li> 
+  <li>   <b>  Sexe :</b> {% if app.user.sexe|length > 0 %}       {{ app.user.sexe  }}    {%else%} non renseigné{% endif %}</li> 
  
-  <li>  Age  : {% if app.user.age > 0 %}          {{ app.user.age   }}     {%else%} non renseigné{% endif %}</li>
+  <li> <b> Age  :</b> {% if app.user.age > 0 %}          {{ app.user.age   }}     {%else%} non renseigné{% endif %}</li>
  
-  <li> Ville :    {% if app.user.ville|length > 0 %}      {{ app.user.ville  }}    {%else%} non renseigné{% endif %}</li>
+  <li> <b>Ville :   </b> {% if app.user.ville|length > 0 %}      {{ app.user.ville  }}    {%else%} non renseigné{% endif %}</li>
  
-  <li> Email :{% if app.user.email|length > 0 %}          {{ app.user.email  }}    {%else%} non renseigné{% endif %}</li>
+  <li><b> Email :</b>{% if app.user.email|length > 0 %}          {{ app.user.email  }}    {%else%} non renseigné{% endif %}</li>
   </ul>
                     </div>
         
@@ -41,7 +41,7 @@
               <div class="tab-pane" id="comment">
                 {% if commentaires is empty %} Vous n'avez saisi aucun commentaire {% endif %}  
                 {% for key,com in commentaires %}
-                      <p>Commentaire n°{{key+1}} :{{ com.contenu }}</p>
+                      <p><b>Commentaire n°{{key+1}} :</b>{{ com.contenu }}</p>
                   {% endfor %}
                  
                       

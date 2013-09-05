@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="VM\UserBundle\Entity\UserRepository")
  */
-class User implements UserInterface #extends BaseUser
+class User implements UserInterface #, \Serializable #extends BaseUser
 {
   /**
    * @ORM\Column(name="id", type="integer")
@@ -109,7 +109,16 @@ class User implements UserInterface #extends BaseUser
      //$this->setPhoto("member_default.png");
      }
     
-     
+//     public function serialize()
+//         {
+//                return serialize($this->username);
+//         }
+//
+//         public function unserialize($data)
+//         {
+//                $this->username = unserialize($data);
+//         }
+         
      public function setFile(UploadedFile $file)
         {
           $this->file = $file;
@@ -141,7 +150,8 @@ class User implements UserInterface #extends BaseUser
         return $this;   
       }   
       
-        /**
+  
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -197,6 +207,7 @@ class User implements UserInterface #extends BaseUser
              $this->getUploadRootDir(), // Le répertoire de destination
              $this->getId().'-'.$this->photo   // Le nom du fichier à créer, ici « id.extension »
            );
+           //unset($this->file);
          }     
    
           /**

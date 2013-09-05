@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Patrice Mauget - Loup-garou, le monstre du Médoc{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('bundles/vmblog/css/bootstrap.min.css')}}">
+      
+    </head>
+      
+    
+    <body>
+    
+    <p>
+        Bonjour {{user.username}},
+        Vous avez supprimé votre compte sur le site Loup-Garou, le monstre du Médoc.
+    </p>
+   
+
+    <p>
+       En vous disant au revoir et peut-être à bientôt.
+       Cordialement,
+     </p>      
+      
+        <address>
+            {{ webmaster_nom }}
+            Responsable du site {{ site_nom }}
+        </address>
+   
+     
+</body></html>     

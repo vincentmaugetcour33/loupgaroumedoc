@@ -17,9 +17,11 @@ class UserEditType extends UserType
         parent::buildForm($builder, $options);
         // on désactive le champ correspondant à l'ancien mot de passe
         //$builder->remove('password');
+     
         $builder->add('password', 'password', array('label'=>'Votre nouveau mot de passe :',
                                     'required' => false));
-        $builder->add('file',  'file',  array( 'label' => 'Votre nouvelle photo', 'required' => false));
+        $builder->remove('file');
+          //      ->add('file',  'file',  array( 'label' => 'Votre nouvelle photo', 'required' => false));
         // on ajoute un champ password pour le nouveau mot de passe
         //$builder->add('nvpassword', 'password', array('label'=>'Votre nouveau mot de passe :'));          
             

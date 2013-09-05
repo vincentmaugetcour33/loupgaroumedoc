@@ -12,7 +12,9 @@
     
     <div class="tab-content">
        <div class="tab-pane active" id="parcours">
-            {% trans %}biographie.vie_auteur{% endtrans %}
+            <p style="text-align:justify;text-indent:40px;">
+                {% trans %}biographie.vie_auteur{% endtrans %}
+            </p>    
        </div>
        <div class="tab-pane" id="livres">
             
@@ -31,15 +33,17 @@
        </div>
     </div>
 
-      
-    <br/>
+
 
   
+  
+    
+    
  
 {% endblock vmblog_body %}
 
 
-   {% block javascripts %}
+     {% block javascripts %}
 {{ parent() }} 
     <script language="javascript" type="text/javascript"> 
  (function($) { 

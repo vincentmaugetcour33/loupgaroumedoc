@@ -7,10 +7,7 @@
         {% stylesheets filter='cssrewrite, yui_css'
                 '@VMBlogBundle/Resources/public/css/bootstrap.min.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
-            
         {% endstylesheets %}
-            
-        
        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
@@ -19,19 +16,20 @@
       
         <div class="container">
                <!-- En-tête du layout -->
-               <div class="page-header" style="background-image: url('{{ asset('/image/banniere_haut.jpg')}}');">
+               <div class="page-header well" style="margin-bottom:55px;margin-top:0px;margin-left:-10px;">{#background-image: url('{{ asset('/image/banniere_haut.jpg')}}');#}
                    {#<img class="" id="" src="{{ asset('bundles/vmblog/images/image6.jpg') }}" />#}
-                   En-tête du site Loup-garou, le monstre du Médoc
-                    
+                   <!--En-tête du site Loup-garou, le monstre du Médoc-->
+                 
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                       <div id="info_login" class="col-sm-offset-8 col-sm-4">
-                      <div class='thumbnail' style='margin-top:-20px;display:inline-table;'>
+                       
+                        <div id="info_login" class="col-sm-offset-8 col-sm-4">
+                      <div class='thumbnail media' style='margin-top:-20px;display:inline-table;'>
                                                                 
-                        <img width=40 style="float:left;" class="img-rounded" src="{{ asset(app.user.photoPath) }}"/>
-                               Bonjour {{ app.user.username }}
+                        <img width=40 style="float:left;" class="img-rounded media-object" src="{{ asset(app.user.photoPath) }}"/>
+                          <div class="media-body">    Bonjour {{ app.user.username }}  </div>
                           <div class="input-group-btn" > 
                          <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Gestion<span class="caret"></span></button>
-                          <ul style="margin-top:30px;" class="dropdown-menu pull-right" id="{{app.user.id}}">
+                          <ul style="margin-top:-5px;" class="dropdown-menu pull-right" id="{{app.user.id}}">
                             <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
                             <li class="divider"/>
                             <li id="edit"><a href="{{path('vm_user_edit')}}">Modifier</a></li>
@@ -39,19 +37,21 @@
                             <li><a href="{{ path('logout') }}" id="logout">Déconnexion</a></li>
                           </ul>
                          </div> 
-                      
+                             
+                         
                       </div>
                    
                       
                        </div>
                       {% else %}
                         <div id="bloc_login">
+                            
                         {% render(controller('VMUserBundle:Security:login')) %}
                           
                             Nouveau ? Pour vous enregistrer, cliquer <a href="{{path('vm_user_ajout')}}">ici</a>     
                             </div>
                     {% endif %}
-                           
+                         
                </div>
                
                <!-- Message flash pour les notifications utilisateurs -->       
@@ -152,10 +152,10 @@
                       </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
-                         <div id="notes" style="color:red;">
+                         <p id="notes" class="text-warning">
                              Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
-                            Je m'applique à améliorer le site. 
-                         </div>  
+                             Il reste en phase d'amélioration et d'évolution. 
+                         </p>  
                         {% block body %}
                        {% endblock body %}
                         
@@ -172,10 +172,10 @@
 
                        
                  <!-- Bas de page -->      
-                <div class="page-footer" style="background-color:red;">   
+                <div class="well" style="height:60px;margin-left:-10px;">   
                 
-                    Pied-de-page du site Loup-garou, le monstre du Médoc
-                    <p class="pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>
+                   {#Pied-de-page du site Loup-garou, le monstre du Médoc#}
+                    <p class="text-info pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>
                 
                </div>
               

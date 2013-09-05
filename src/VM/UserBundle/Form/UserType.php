@@ -26,7 +26,7 @@ class UserType extends AbstractType
                     'second_name' => "repassword",
                 ))*/
             ->add('email',         'email', array('label' => 'Votre email* :', 'required'=>true))
-            ->add('file',          'file',  array( 'label' => 'Votre photo'))
+            ->add('file',          'file',  array( 'label' => 'Votre photo', 'required'=>false))
             ->add('realname',      'text', array('label' => 'Votre nom : ', 'required'=>false))
             ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
             ->add('sexe',          'choice', array(

@@ -27,14 +27,15 @@
       <div class="panel-body"> <font color="red"> Les champs marqués d'un astérisque sont obligatoires.</font>  
           {% if editer is defined %} Si vous ne saisissez pas un nouveau mot de passe, votre mot de
                                      passe actuel est conservé. {% endif %}
-   <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" {{ form_enctype(form) }}>
+   <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" enctype="multipart/form-data">
       
       {% if editer is defined %}
-            {{ form_errors(form.file) }}
-            {{ form_label(form.file) }} ( actuelle : {{app.user.photo}} )   
-            {{ form_widget(form.file) }}
+        ( actuelle : <a class="photo" id="{{app.user.id}}" href="#" style="cursor: pointer;" rel="popover" title="{{app.user.username}}" >{{app.user.photo}}</a> )
+           {# {{ form_errors(form.file) }}
+            {{ form_label(form.file) }} ( actuelle : <a class="photo" id="{{app.user.id}}" href="#" style="cursor: pointer;" rel="popover" title="{{app.user.username}}" >{{app.user.photo}}</a> )   
+            {{ form_widget(form.file) }} #}
       {% endif %} 
-            
+        {{ form_widget(form._token) }}    
       {{ form_rest(form) }}
       <input type="submit" value="{% if editer is defined %}Modifier{% else %}Ajouter{% endif %}" class="btn btn-default" />
       <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
@@ -44,3 +45,15 @@
 {% endif %}
 
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }} 
+        <script language="javascript" type="text/javascript"> 
+     (function($) { 
+        $("a.photo").popover({trigger: 'hover',html:true, content: function() { var photo=$(this).attr('id')+'-'+$(this).html();
+               return "<img class='img-rounded' width=50 src='/bundles/vmuser/photo/"+photo+"' />"; },
+                delay: { show: 500, hide: 10} });
+
+    }(jQuery));
+    </script>
+{% endblock javascripts %}
