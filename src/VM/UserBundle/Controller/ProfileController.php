@@ -67,7 +67,7 @@ class ProfileController extends Controller
                          ->setBody(
                                $this->renderView('VMUserBundle:Profile:email_ajout.txt.twig', array('user' => $user), 'text/html')
                                  );
-               //$mailer->send($message);
+               $mailer->send($message);
              
               $this->get('session')->getFlashBag()->add('info', 'Un email vous a été envoyé dans votre boîte.');
               return $this->redirect($this->generateUrl('vm_blog_homepage'));
