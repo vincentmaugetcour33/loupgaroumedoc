@@ -42,6 +42,7 @@ class ProfileController extends Controller
             $form->bind($request);
              if ($form->isValid())
              {
+              
               //$this->get('session')->getFlashBag()->add('info', 'formulaire valide');   
               //$post = $request->request->get('form');
               //$user->upload();

@@ -126,7 +126,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
     {
      $this->roles=array('ROLE_USER');
      $this->sexe="homme";
-     //$this->setPhoto("membre_default_homme.jpg");
+     $this->setPhoto("membre_default_homme.jpg");
      $this->commentaires = new ArrayCollection();
      //$this->setPhoto("member_default.png");
      }
@@ -184,13 +184,16 @@ class User implements UserInterface #, \Serializable #extends BaseUser
          $this->image_profile();
         return;
       }
-
+      else
+      {    
       // Le nom du fichier est son id, on doit juste stocker également son extension
       // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « url »
       //$this->url = $this->file->guessExtension();
 
       // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
       $this->photo = $this->file->getClientOriginalName();
+      }
+      
     }
     
        
@@ -199,10 +202,10 @@ class User implements UserInterface #, \Serializable #extends BaseUser
      {
          /* si aucune photo n'a été ajouté par l'utilisateur lors de son inscription (ou de la mise à jour
             de son profil) */ 
-         if ($this->getPhoto() == "") {
+         //if ($this->getPhoto() == "") {
           if ($this->getSexe() == "femme") { $this->setPhoto("membre_default_femme.jpg"); }
           if ($this->getSexe() == "homme") { $this->setPhoto("membre_default_homme.jpg"); }
-         }
+         //}
      }
     
           /**
