@@ -5,7 +5,7 @@
 
 {% if form is defined %}
     
-        
+    
     
 {#{% form_theme form _self %}
     {% use 'form_div_layout.html.twig' with form_label as base_form_label %}
@@ -24,19 +24,81 @@
          {% if editer is defined %} MODIFICATION {% else %} ENREGISTREMENT {% endif %}PROFIL
        </div>
             
-      <div class="panel-body"> <font color="red"> Les champs marqués d'un astérisque sont obligatoires.</font>  
-          {% if editer is defined %} Si vous ne saisissez pas un nouveau mot de passe, votre mot de
-                                     passe actuel est conservé. {% endif %}
-   <form class="form-inline" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" enctype="multipart/form-data">
-      
+      <div class="panel-body">
+          <p class="text-info">
+              Les champs marqués d'un astérisque sont obligatoires.
+              {% if editer is defined %}
+                  Si vous ne saisissez pas un nouveau mot de passe, votre mot de passe actuel est conservé. 
+              {% endif %}
+          </p>
+          
+          <p class="text-warning">
+              {% if editer is not defined %}
+                  <b>Attention</b>, pour le moment l'ajout d'une photo personalisée ne peut être modifiée
+                  ensuite. Sinon, il vous faudra supprimer votre compte et le recréer.
+                  Si vous ne sélectionnez aucune photo, une photo par défaut sera attribuée à votre profil.
+              {% endif %}
+          </p>
+        
+   <form class="" method="post" action="{% if editer is defined %}{{ path('vm_user_edit') }}{% else %}{{ path('vm_user_ajout') }}{% endif %}" {{ form_enctype(form) }} >
+     
       {% if editer is defined %}
         ( actuelle : <a class="photo" id="{{app.user.id}}" href="#" style="cursor: pointer;" rel="popover" title="{{app.user.username}}" >{{app.user.photo}}</a> )
            {# {{ form_errors(form.file) }}
             {{ form_label(form.file) }} ( actuelle : <a class="photo" id="{{app.user.id}}" href="#" style="cursor: pointer;" rel="popover" title="{{app.user.username}}" >{{app.user.photo}}</a> )   
             {{ form_widget(form.file) }} #}
       {% endif %} 
-        {{ form_widget(form._token) }}    
+        
+      
+      
+      {# username #}
+      {#{{ form_row(form.username) }}#}
+      {{ form_label(form.username) }}
+      <span class="text-warning">{{ form_errors(form.username) }}</span>
+      {{ form_widget(form.username) }} 
+       <br/>
+      
+        {# password #}
+      {#{{ form_row(form.password) }}#}
+      {{ form_label(form.password) }}
+      <span class="text-warning">{{ form_errors(form.password) }}</span>
+      {{ form_widget(form.password) }}        
+     <br/>
+     
+      {# email #}
+       {{ form_label(form.email) }}
+      <span class="text-warning">{{ form_errors(form.email) }}</span>
+      {{ form_widget(form.email) }}   
+     <br/>
+
+      
+      {# realname #}
+       {{ form_label(form.realname) }}
+       <span class="text-warning">{{ form_errors(form.realname) }}</span>
+      {{ form_widget(form.realname) }}
+      <br/>
+ 
+      
+       {# sexe #}
+      {{ form_label(form.sexe) }}
+        <span class="text-warning">{{ form_errors(form.sexe) }}</span>
+      {{ form_widget(form.sexe) }}
+      <br/>
+        
+      {# ville #}
+       {{ form_label(form.ville) }}
+         <span class="text-warning">{{ form_errors(form.ville) }}</span>
+      {{ form_widget(form.ville) }}   
+      <br/>
+      
+      {# age #}
+      {{ form_label(form.age) }}
+          <span class="text-warning">{{ form_errors(form.age) }}</span>
+      {{ form_widget(form.age) }}   
+      <br/>  
+      
       {{ form_rest(form) }}
+        
       <input type="submit" value="{% if editer is defined %}Modifier{% else %}Ajouter{% endif %}" class="btn btn-default" />
       <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
   </form>

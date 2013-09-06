@@ -15,8 +15,8 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username',      'text', array('label' => 'Votre pseudo* : ', 'required'=>true))
-            ->add('password',      'password', array('label' => 'Votre mot de passe* : ', 'required'=>true,
+            ->add('username',      'text', array('label' => 'Votre pseudo* (au moins 4 caractères) : ', 'required'=>true))
+            ->add('password',      'password', array('label' => 'Votre mot de passe* (uniquement des caractères alphanumériques) : ', 'required'=>true,
                             'always_empty' => false))
           /*->add('password', 'repeated', array(
                     'type' => 'password',
@@ -27,7 +27,7 @@ class UserType extends AbstractType
                 ))*/
             ->add('email',         'email', array('label' => 'Votre email* :', 'required'=>true))
             ->add('file',          'file',  array( 'label' => 'Votre photo', 'required'=>false))
-            ->add('realname',      'text', array('label' => 'Votre nom : ', 'required'=>false))
+            ->add('realname',      'text', array('label' => 'Votre prénom/nom : ', 'required'=>false))
             ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
             ->add('sexe',          'choice', array(
                                      'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),

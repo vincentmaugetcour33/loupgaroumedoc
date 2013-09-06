@@ -67,9 +67,9 @@ class ProfileController extends Controller
                $mailer->send($message);
              
               $this->get('session')->getFlashBag()->add('info', 'Un email vous a été envoyé dans votre boîte.');
-              
+              return $this->redirect($this->generateUrl('vm_blog_homepage'));
              }
-             return $this->redirect($this->generateUrl('vm_blog_homepage'));
+             
           } 
           return $this->render('VMUserBundle:Profile:formulaire.html.twig', array(
                            'form' => $form->createView()));
@@ -145,9 +145,9 @@ class ProfileController extends Controller
                $mailer->send($message);
              
               $this->get('session')->getFlashBag()->add('info', 'Après modification, un email vous a été envoyé dans votre boîte.');
-                       
+                return $this->redirect($this->generateUrl('vm_blog_homepage'));       
               }
-             return $this->redirect($this->generateUrl('vm_blog_homepage'));
+             
           } 
         
                return $this->render("VMUserBundle:Profile:formulaire.html.twig", array(

@@ -38,11 +38,17 @@ class User implements UserInterface #, \Serializable #extends BaseUser
      *
      * @ORM\OneToMany(targetEntity="VM\BlogBundle\Entity\Commentaire", mappedBy="user", cascade={"all"}   )
      */
-    private $commentaires;
+  private $commentaires;
   
   
   /**
-   * @ORM\Column(name="username", type="string", length=255, unique=true)
+   * @ORM\Column(name="username", type="string", unique=true)
+   * @Assert\Length(
+   *      min = "4",
+   *      max = "10",
+   *      minMessage = "Votre pseudo doit faire au moins {{ limit }} caractères",
+   *      maxMessage = "Votre pseudo ne peut pas être plus long que {{ limit }} caractères"
+   * )
    */
   private $username;
   
@@ -54,18 +60,29 @@ class User implements UserInterface #, \Serializable #extends BaseUser
   
   /**
    * @ORM\Column(name="ville", type="string", nullable=true)
+   * @Assert\Regex(
+   *     pattern="/\d/",
+   *     match=false,
+   *     message="Le nom de la ville contient des caractères erronés !"
+   *     )
    */
   private $ville;
     
     
   /**
-     * @ORM\Column(name="sexe",type="string", nullable=true)
+   * @ORM\Column(name="sexe",type="string", nullable=true)
    * @Assert\Choice(choices= {"homme", "femme"}, message="Vous ne pouvez choisir qu'une des deux valeurs.")
    */
     private $sexe;  
     
     /**
      * @ORM\Column(name="age",type="integer", nullable=true)
+     * @Assert\Range(
+     *      min = 8,
+     *      max = 125,
+     *      minMessage = "Seuil minimum : 8 ans",
+     *      maxMessage = "Seuil maximum : 125 ans"
+     * )
      */
     private $age;  
     
@@ -83,7 +100,12 @@ class User implements UserInterface #, \Serializable #extends BaseUser
   private $realname;
  
   /**
-   * @ORM\Column(name="password", type="string", length=255)
+   * @ORM\Column(name="password", type="string", length=5)
+   * @Assert\Regex(
+   *     pattern="/[a-zA-Z0-9]/",
+   *     match=true,
+   *     message="Votre mot de passe contient des caractères erronés !"
+   *     )
    */
   private $password;
  
