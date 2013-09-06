@@ -109,12 +109,12 @@
                                                 filter='jpegoptim' output='/images/patricemauget.jpg' %}
                                             <img src="{{ asset_url }}" alt="Patrice Mauget - Ecrivain Loup Garou"/>
                                          {% endimage %}#}
-                                      <img src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
+                                      <img style="width:auto;" src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
                                  </div>
                                    </div>
                                  </div>
                                  <div class="accordion-group">
-                                   <button class="btn btn-sm btn-primary accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#coordonnees">Mes coordonnéees</button>
+                                   <button class="btn btn-sm btn-info accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#coordonnees">Mes coordonnéees</button>
                                    <div id="coordonnees" class="accordion-body collapse ">
                                      <div class="accordion-inner">
                                         <br/><a href="mailto:{{ auteur_email }}">{% trans %}biographie.mail_auteur{% endtrans %}</a>
@@ -122,7 +122,7 @@
                                       </div>     
                                  </div>
                                  <div class="accordion-group">
-                                   <button class="btn btn-sm btn-primary accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#liens_divers">Mes liens divers</button>
+                                   <button class="btn btn-sm btn-info accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#liens_divers">Mes liens divers</button>
                                    <div id="liens_divers" class="accordion-body collapse">
                                      <div class="accordion-inner">
                                          <p><a 
@@ -175,8 +175,8 @@
                 <div class="well" style="height:60px;margin-left:-10px;">   
                 
                    {#Pied-de-page du site Loup-garou, le monstre du Médoc#}
-                    <p class="text-info pull-right">WEBMESTRE : {{ webmaster_nom ~" - "~ webmaster_email }}</p>
-                
+                    <p class="text-info pull-right">WEBMESTRE : {{ webmaster_nom }}</p>
+                    <p class="text-info ">Pour toute anomalie, contactez-moi <a href="mailto:{{ webmaster_email }}">{{ webmaster_email }}</a></p>
                </div>
               
         

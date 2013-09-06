@@ -231,14 +231,14 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         echo "
                                          ";
         // line 112
-        echo "                                      <img src=\"";
+        echo "                                      <img style=\"width:auto;\" src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/images/patricemauget.jpg"), "html", null, true);
         echo "\" alt=\"Patrice Mauget - Ecrivain Loup Garou\" />
                                  </div>
                                    </div>
                                  </div>
                                  <div class=\"accordion-group\">
-                                   <button class=\"btn btn-sm btn-primary accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#coordonnees\">Mes coordonnéees</button>
+                                   <button class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#coordonnees\">Mes coordonnéees</button>
                                    <div id=\"coordonnees\" class=\"accordion-body collapse \">
                                      <div class=\"accordion-inner\">
                                         <br/><a href=\"mailto:";
@@ -251,7 +251,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                                       </div>     
                                  </div>
                                  <div class=\"accordion-group\">
-                                   <button class=\"btn btn-sm btn-primary accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#liens_divers\">Mes liens divers</button>
+                                   <button class=\"btn btn-sm btn-info accordion-heading\" data-toggle=\"collapse\" data-parent=\"#monaccordeon\" data-target=\"#liens_divers\">Mes liens divers</button>
                                    <div id=\"liens_divers\" class=\"accordion-body collapse\">
                                      <div class=\"accordion-inner\">
                                          <p><a 
@@ -308,9 +308,14 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                    ";
         // line 178
         echo "                    <p class=\"text-info pull-right\">WEBMESTRE : ";
-        echo twig_escape_filter($this->env, (($this->getContext($context, "webmaster_nom") . " - ") . $this->getContext($context, "webmaster_email")), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getContext($context, "webmaster_nom"), "html", null, true);
         echo "</p>
-                
+                    <p class=\"text-info \">Pour toute anomalie, contactez-moi <a href=\"mailto:";
+        // line 179
+        echo twig_escape_filter($this->env, $this->getContext($context, "webmaster_email"), "html", null, true);
+        echo "\">";
+        echo twig_escape_filter($this->env, $this->getContext($context, "webmaster_email"), "html", null, true);
+        echo "</a></p>
                </div>
               
         
@@ -434,6 +439,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  418 => 222,  398 => 221,  394 => 218,  362 => 189,  358 => 188,  354 => 187,  351 => 186,  348 => 185,  344 => 160,  341 => 159,  335 => 5,  323 => 227,  321 => 185,  310 => 178,  292 => 161,  290 => 159,  246 => 120,  234 => 112,  230 => 107,  223 => 102,  215 => 98,  209 => 94,  207 => 93,  202 => 90,  187 => 77,  183 => 76,  179 => 75,  169 => 67,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  124 => 51,  121 => 50,  119 => 49,  115 => 47,  102 => 37,  97 => 35,  92 => 33,  88 => 32,  82 => 29,  78 => 28,  72 => 24,  70 => 23,  66 => 21,  64 => 20,  54 => 12,  51 => 11,  37 => 9,  33 => 7,  28 => 5,  22 => 1,);
+        return array (  423 => 222,  403 => 221,  399 => 218,  367 => 189,  363 => 188,  359 => 187,  356 => 186,  353 => 185,  349 => 160,  346 => 159,  340 => 5,  328 => 227,  326 => 185,  315 => 179,  310 => 178,  292 => 161,  290 => 159,  246 => 120,  234 => 112,  230 => 107,  223 => 102,  215 => 98,  209 => 94,  207 => 93,  202 => 90,  187 => 77,  183 => 76,  179 => 75,  169 => 67,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  124 => 51,  121 => 50,  119 => 49,  115 => 47,  102 => 37,  97 => 35,  92 => 33,  88 => 32,  82 => 29,  78 => 28,  72 => 24,  70 => 23,  66 => 21,  64 => 20,  54 => 12,  51 => 11,  37 => 9,  33 => 7,  28 => 5,  22 => 1,);
     }
 }
