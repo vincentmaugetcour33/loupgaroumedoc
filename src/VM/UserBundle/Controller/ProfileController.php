@@ -6,6 +6,8 @@ namespace VM\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+
+
 use VM\UserBundle\Entity\User;
 use VM\UserBundle\Form\UserType;
 use VM\UserBundle\Form\UserEditType;
@@ -42,7 +44,7 @@ class ProfileController extends Controller
             $form->bind($request);
              if ($form->isValid())
              {
-              
+             
               //$this->get('session')->getFlashBag()->add('info', 'formulaire valide');   
               //$post = $request->request->get('form');
               //$user->upload();
@@ -65,7 +67,7 @@ class ProfileController extends Controller
                          ->setBody(
                                $this->renderView('VMUserBundle:Profile:email_ajout.txt.twig', array('user' => $user), 'text/html')
                                  );
-               $mailer->send($message);
+               //$mailer->send($message);
              
               $this->get('session')->getFlashBag()->add('info', 'Un email vous a été envoyé dans votre boîte.');
               return $this->redirect($this->generateUrl('vm_blog_homepage'));

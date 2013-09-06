@@ -73,10 +73,10 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
                         <div id=\"info_login\" class=\"col-sm-offset-8 col-sm-4\">
                       <div class='thumbnail media' style='margin-top:-20px;display:inline-table;'>
                                                                 
-                        <img width=40 style=\"float:left;\" class=\"img-rounded media-object\" src=\"";
+                        <img width=40 style=\"float:left;\" class=\"img-rounded media-object\" src=\"/";
             // line 28
-            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl($this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photoPath")), "html", null, true);
-            echo "\"/>
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "photoPath"), "html", null, true);
+            echo "\" />
                           <div class=\"media-body\">    Bonjour ";
             // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);

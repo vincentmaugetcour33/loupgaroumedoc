@@ -91,6 +91,10 @@ class User implements UserInterface #, \Serializable #extends BaseUser
      */
     private $photo; 
     
+    /**
+     * @ORM\Column(name="photoperso", type="boolean")
+     */
+    private $photoperso;
    
     private $file;
     private $tempfile;
@@ -127,6 +131,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
      $this->roles=array('ROLE_USER');
      $this->sexe="homme";
      $this->setPhoto("membre_default_homme.jpg");
+     $this->photoperso=false;
      $this->commentaires = new ArrayCollection();
      //$this->setPhoto("member_default.png");
      }
@@ -192,6 +197,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
 
       // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
       $this->photo = $this->file->getClientOriginalName();
+      $this->setPhotoperso(true);
       }
       
     }
@@ -205,6 +211,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
          //if ($this->getPhoto() == "") {
           if ($this->getSexe() == "femme") { $this->setPhoto("membre_default_femme.jpg"); }
           if ($this->getSexe() == "homme") { $this->setPhoto("membre_default_homme.jpg"); }
+          
          //}
      }
     
@@ -221,7 +228,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
 
            // Si on avait un ancien fichier, on le supprime
            if (null !== $this->tempfile) {
-             $oldFile = $this->getUploadRootDir().'/'.$this->id.'-'.$this->tempfile;
+             $oldFile = $this->getUploadRootDir().'/'.$this->getId().'-'.$this->getTempfile();
              if (file_exists($oldFile)) {
                unlink($oldFile);
              }
@@ -230,7 +237,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
            // On déplace le fichier envoyé dans le répertoire de notre choix
            $this->file->move(
              $this->getUploadRootDir(), // Le répertoire de destination
-             $this->getId().'-'.$this->photo   // Le nom du fichier à créer, ici « id.extension »
+             $this->getId().'-'.$this->getPhoto()   // Le nom du fichier à créer, ici « id.extension »
            );
            //unset($this->file);
          }     
@@ -240,8 +247,12 @@ class User implements UserInterface #, \Serializable #extends BaseUser
            */
           public function preRemoveUpload()
           {
+            if ($this->photoperso == true)
+            {    
             // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-            $this->tempfile = $this->getUploadRootDir().'/'.$this->getId().'-'.$this->photo;
+            $this->tempfile = $this->getUploadRootDir().'/'.$this->getId().'-'.$this->getPhoto();
+            }
+            
           }    
      
           /**
@@ -249,11 +260,15 @@ class User implements UserInterface #, \Serializable #extends BaseUser
            */
            public function postRemoveUpload()
            {
-             // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
-             if (file_exists($this->tempfile)) {
-               // On supprime le fichier
-               unlink($this->tempfile);
-             }
+             if ($this->photoperso == true)
+                { 
+                    // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
+                    if (file_exists($this->tempfile)) {
+                      // On supprime le fichier
+                      unlink($this->tempfile);
+                             }
+                }       
+                      
            }
  
            public function getUploadDir()
@@ -262,7 +277,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
               return 'bundles/vmuser/photo';
             }
  
-            protected function getUploadRootDir()
+            public function getUploadRootDir()
             {
               // On retourne le chemin relatif vers l'image pour notre code PHP
               return __DIR__.'/../../../../web/'.$this->getUploadDir();
@@ -272,11 +287,17 @@ class User implements UserInterface #, \Serializable #extends BaseUser
                a ajouté une photo (fichier) ou non */
             public function getPhotoPath()
             {
-              return $this->getUploadDir().'/'.$this->getId().'-'.$this->getPhoto();
+              if ($this->photoperso == true)
+              {
+                return $this->getUploadDir().'/'.$this->getId().'-'.$this->getPhoto();
+              }
+              else
+              {
+              return $this->getUploadDir().'/'.$this->getPhoto();
+              }  
             }
 
-           
-           
+          
     /**
      * @param Commentaire $commentaire
      */
@@ -306,10 +327,7 @@ class User implements UserInterface #, \Serializable #extends BaseUser
         return $this->commentaires;
     }
  
-     
-     
-     
-    public function setUsername($username)
+  public function setUsername($username)
   {
     $this->username = $username;
     return $this;
@@ -444,7 +462,18 @@ class User implements UserInterface #, \Serializable #extends BaseUser
         return $this->photo;
     }
     
-     public function setRoles(array $roles)
+    public function getPhotoperso()
+      {
+         return $this->photoperso; 
+      }
+      
+      public function setPhotoperso($valeur)
+      {
+        $this->photoperso = $valeur;
+        return $this;   
+      }   
+     
+   public function setRoles(array $roles)
   {
     $this->roles = $roles;
     return $this;
