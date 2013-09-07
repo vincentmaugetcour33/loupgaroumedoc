@@ -87,10 +87,37 @@
                            
                            <div class="row">
                               {#Bloc latéral gauche#}
-                              <div class="span12 well">
+                              <div class="">
                                <br>
-                               <div id="monaccordeon">
-                                 {% if is_granted('ROLE_ADMIN') %}
+                               
+                               
+                               <div class="panel panel-info"> 
+                                 <div class="panel-heading">
+                                        <span class="btn btn-sm btn-info" disabled="disabled"> 
+                                            Auteur : {{ auteur_nom }}</span>
+                                 
+                                 
+                                 </div>
+                                 <div class="panel-body">  
+                                     <img style="margin-left:25%;width:auto;" src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
+                                        <hr/>
+                                <div id="monaccordeon">
+                                    {#        <div class="accordion-group">
+                                   <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
+                                   <div id="presentation" class="accordion-body collapse in">
+                                     <div class="accordion-inner">  
+                                         Auteur : {{ auteur_nom }}
+                                         {#{% image '@VMBlogBundle/Resources/public/images/patricemauget.jpg' 
+                                                filter='jpegoptim' output='/images/patricemauget.jpg' %}
+                                            <img src="{{ asset_url }}" alt="Patrice Mauget - Ecrivain Loup Garou"/>
+                                         {% endimage %}#}
+                                    {#  <img style="width:auto;" src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
+                                 </div>
+                                   </div>
+                                 </div> #} 
+
+
+                                {% if is_granted('ROLE_ADMIN') %}
                                    <div class="accordion-group">
                                    <button disabled="disabled" id="administration" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#administration">Vous êtes administrateur</button>
                                    <div id="administration" class="accordion-body collapse in">
@@ -100,19 +127,7 @@
                                    </div>
                                  </div>
                                    {% endif %}    
-                                  <div class="accordion-group">
-                                   <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
-                                   <div id="presentation" class="accordion-body collapse in">
-                                     <div class="accordion-inner">  
-                                         Auteur : {{ auteur_nom }}
-                                         {#{% image '@VMBlogBundle/Resources/public/images/patricemauget.jpg' 
-                                                filter='jpegoptim' output='/images/patricemauget.jpg' %}
-                                            <img src="{{ asset_url }}" alt="Patrice Mauget - Ecrivain Loup Garou"/>
-                                         {% endimage %}#}
-                                      <img style="width:auto;" src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
-                                 </div>
-                                   </div>
-                                 </div>
+                        
                                  <div class="accordion-group">
                                    <button class="btn btn-sm btn-info accordion-heading" data-toggle="collapse" data-parent="#monaccordeon" data-target="#coordonnees">Mes coordonnéees</button>
                                    <div id="coordonnees" class="accordion-body collapse ">
@@ -142,7 +157,8 @@
                                    </div>
                                </div>
                             </div>
-                               
+                            </div>                
+                               </div>
                      </div>        
                        </div>
                            
