@@ -4,21 +4,45 @@
 
  {% if images is not empty %}
     
+    {% block vmblog_stylesheet %}
+{{ parent() }}
+    {#{% stylesheets filter='cssrewrite, yui_css' 
+                '@VMBlogBundle/Resources/public/css/image.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
+     {% endstylesheets %}#}
+            <link rel="stylesheet" href="{{ asset('bundles/vmblog/css/image.css') }}" type="text/css" /> 
+     
+{%endblock vmblog_stylesheet %}
  {# Tableau general des images #}
-<table id="" class="table table-striped">
+{#<table id="" class="table table-striped">
         <caption>GALERIE</caption>
         <tbody>
         <tr>
-    {% for key, image in images %}
-        <td><img style="cursor: pointer;border: 2px solid {{ cycle(['blue','green'],loop.index0)}}" 
+    {% for key, image in images %}#}
+       {# <td><img style="cursor: pointer;border: 2px solid {{ cycle(['blue','green'],loop.index0)}}" 
                  class="" id="{{ image.description }}" src="{{ asset('bundles/vmblog/images/'~image.url) }}" 
                  rel="popover" alt="{{ image.alt}}" title="{{ image.alt}}" /></td>
         {# le tableau comporte 4 colonnes #}
-        {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
+     {#   {% if loop.index % 6 == 0 %}</tr><tr>{% endif %}    
     {% endfor %}
-    </tbody></table>
+    </tbody></table>#}
+
+
+<ul id="galerie"> 
+    {% for key, image in images %}
+    <li>
+        <a href="#">
+            <img src="{{ asset('bundles/vmblog/images/'~image.url) }}" alt="" /> 
+            <strong>{{ image.description }}</strong>
+        </a> 
+    </li> 
+    {% endfor %}
+</ul>
+
 {% else %}
+
 Il n'y a aucune image dans la galerie
+
 {% endif %}
 
 
@@ -29,7 +53,7 @@ Il n'y a aucune image dans la galerie
 
 {% endblock vmblog_body%}                
 
-{% block javascripts %}
+{#{% block javascripts %}
    {{ parent() }}
 <script language="javascript" type="text/javascript">
 (function($) 
@@ -41,4 +65,5 @@ Il n'y a aucune image dans la galerie
     delay: { show: 500, hide: 10} });
  }(jQuery));
  </script>
- {%endblock javascripts %}
+ {%endblock javascripts %}#}
+

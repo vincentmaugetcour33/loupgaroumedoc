@@ -100,7 +100,15 @@
                     </tr>        
        {% endif %}
         
-        
+                    {% if editer is not defined %}
+         <tr>
+      {# photo personnelle #}
+                <td>{{ form_label(form.file) }}</td>
+         <td><span class="text-warning">{{ form_errors(form.file) }}</span></td>
+         <td>{{ form_widget(form.file) }} </td>  
+      </tr>
+                {% endif %}
+      
         <tr>
       {# ville #}
                 <td>{{ form_label(form.ville) }}</td>

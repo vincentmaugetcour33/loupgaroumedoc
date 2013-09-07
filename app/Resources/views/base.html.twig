@@ -66,6 +66,13 @@
                 {% endfor %}
                  </div>
                
+                   <div class="well">
+                                <p id="notes" class="text-warning">
+                                 Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
+                                 En phase d'évolution, ce site présente des problèmes d'affichage sur Internet Explorer.
+                                 Il est donc conseillé d'utiliser le navigateur Firefox.
+                                </p> 
+                             </div>
                <!-- Menu principal du layout -->
                           <div class="navbar ">
                           <div class="navbar-inner">
@@ -99,9 +106,9 @@
                                  
                                  </div>
                                  <div class="panel-body">  
-                                     <img style="margin-left:25%;width:auto;" src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
+                                     <img height=160px; style="width: 80%;display: block;margin: 0 auto; " src="{{ asset('bundles/vmblog/images/patricemauget.jpg') }}" alt="Patrice Mauget - Ecrivain Loup Garou" />
                                         <hr/>
-                                <div id="monaccordeon">
+                                <div id="monaccordeon" style="text-align:justify;"  >
                                     {#        <div class="accordion-group">
                                    <button disabled="disabled" id="presentation" class="btn btn-sm btn-info accordion-heading" data-toggle="data-no-collapse" data-parent="#monaccordeon" data-target="#presentation">Qui suis-je ?</button>
                                    <div id="presentation" class="accordion-body collapse in">
@@ -168,10 +175,9 @@
                       </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
-                         <p id="notes" class="text-warning">
-                             Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
-                             Il reste en phase d'amélioration et d'évolution. 
-                         </p>  
+                         
+                           
+                          
                         {% block body %}
                        {% endblock body %}
                         

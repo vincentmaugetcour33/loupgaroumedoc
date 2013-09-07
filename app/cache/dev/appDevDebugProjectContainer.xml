@@ -19,6 +19,7 @@
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
       <parameter key="VMBlogBundle">VM\BlogBundle\VMBlogBundle</parameter>
       <parameter key="VMUserBundle">VM\UserBundle\VMUserBundle</parameter>
+      <parameter key="VMAdminBundle">VM\AdminBundle\VMAdminBundle</parameter>
       <parameter key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -1542,6 +1543,12 @@
         <argument>fr</argument>
         <argument>messages</argument>
       </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>C:\wamp\www\Sitepatrice\src\VM\AdminBundle/Resources/translations\messages.fr.xlf</argument>
+        <argument>fr</argument>
+        <argument>messages</argument>
+      </call>
     </service>
     <service id="translation.loader.php" class="Symfony\Component\Translation\Loader\PhpFileLoader">
       <tag name="translation.loader" alias="php"/>
@@ -2290,7 +2297,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5228510084b9c</argument>
+            <argument>522aeab911b50</argument>
           </service>
         </argument>
       </argument>
@@ -2640,7 +2647,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5228510084b9c</argument>
+            <argument>522aeab911b50</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3363,6 +3370,7 @@
         <argument key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</argument>
         <argument key="VMBlogBundle">VM\BlogBundle\VMBlogBundle</argument>
         <argument key="VMUserBundle">VM\UserBundle\VMUserBundle</argument>
+        <argument key="VMAdminBundle">VM\AdminBundle\VMAdminBundle</argument>
         <argument key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</argument>
         <argument key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</argument>
         <argument key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</argument>
@@ -3717,6 +3725,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\Sitepatrice\src\VM\UserBundle/Resources/views</argument>
         <argument>VMUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\Sitepatrice\src\VM\AdminBundle/Resources/views</argument>
+        <argument>VMAdmin</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\Sitepatrice\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>

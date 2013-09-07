@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Erreur site Loup-Garou, le monstre du Médoc</title>
+    </head>
+    <body>
+        <h1>Bonjour {{ app.user.username }},</h1>
+        <h2>Le serveur a rencontré l'erreur suivante : {{ status_text }}".</h2>
+
+        <div>
+            Si vous êtes véritablement bloqué, contactez-moi à cette adresse [{{ webmaster_mail }}] en formulant 
+            l'opération/actions que vous avez faite qui ont conduit à ce problème.
+            Je rectifierai cela le plus tôt possible.
+            
+            Décolé pour ce dysfonctionnement.
+            {{ webmaster_nom }}
+        </div>
+    </body>
+</html>
+

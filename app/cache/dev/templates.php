@@ -95,6 +95,7 @@
   'VMUserBundle:Profile:formulaire_email.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\UserBundle/Resources/views/Profile/formulaire_email.html.twig',
   'VMUserBundle:Profile:profileshow.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\UserBundle/Resources/views/Profile/profileshow.html.twig',
   'VMUserBundle:Security:login.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\UserBundle/Resources/views/Security/login.html.twig',
+  'VMAdminBundle:Default:index.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\AdminBundle/Resources/views/Default/index.html.twig',
   'WebProfilerBundle:Collector:config.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/config.html.twig',
   'WebProfilerBundle:Collector:events.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/events.html.twig',
   'WebProfilerBundle:Collector:exception.css.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views/Collector/exception.css.twig',

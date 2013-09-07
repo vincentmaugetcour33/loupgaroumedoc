@@ -233,47 +233,69 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
             }
             // line 102
             echo "        
-        
+                    ";
+            // line 103
+            if ((!array_key_exists("editer", $context))) {
+                // line 104
+                echo "         <tr>
+      ";
+                // line 106
+                echo "                <td>";
+                echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "file"), 'label');
+                echo "</td>
+         <td><span class=\"text-warning\">";
+                // line 107
+                echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "file"), 'errors');
+                echo "</span></td>
+         <td>";
+                // line 108
+                echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "file"), 'widget');
+                echo " </td>  
+      </tr>
+                ";
+            }
+            // line 111
+            echo "      
         <tr>
       ";
-            // line 106
+            // line 114
             echo "                <td>";
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "ville"), 'label');
             echo "</td>
          <td><span class=\"text-warning\">";
-            // line 107
+            // line 115
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "ville"), 'errors');
             echo "</span></td>
          <td>";
-            // line 108
+            // line 116
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "ville"), 'widget');
             echo " </td>  
       </tr>
       
       <tr>
       ";
-            // line 113
+            // line 121
             echo "      <td>";
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "age"), 'label');
             echo "</td>
       <td><span class=\"text-warning\">";
-            // line 114
+            // line 122
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "age"), 'errors');
             echo "</span></td>
       <td>";
-            // line 115
+            // line 123
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "age"), 'widget');
             echo "</td>   
       </tr>  
       
       </table>
       ";
-            // line 119
+            // line 127
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute($this->getContext($context, "form"), "_token"), 'widget');
             echo "
        
       <input type=\"submit\" value=\"";
-            // line 121
+            // line 129
             if (array_key_exists("editer", $context)) {
                 echo "Modifier";
             } else {
@@ -286,15 +308,15 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
               
 ";
         }
-        // line 127
+        // line 135
         echo "
 ";
     }
 
-    // line 130
+    // line 138
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 131
+        // line 139
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo " 
@@ -321,6 +343,6 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  298 => 131,  295 => 130,  290 => 127,  277 => 121,  272 => 119,  265 => 115,  261 => 114,  256 => 113,  249 => 108,  245 => 107,  240 => 106,  235 => 102,  229 => 99,  225 => 98,  221 => 97,  218 => 96,  215 => 95,  209 => 92,  205 => 91,  201 => 90,  198 => 89,  196 => 88,  193 => 87,  190 => 86,  183 => 81,  179 => 80,  174 => 79,  166 => 73,  162 => 72,  157 => 71,  150 => 66,  146 => 65,  141 => 64,  139 => 63,  132 => 58,  128 => 57,  123 => 56,  121 => 55,  115 => 50,  110 => 48,  100 => 47,  97 => 46,  95 => 45,  83 => 43,  79 => 41,  73 => 37,  71 => 36,  66 => 33,  62 => 31,  60 => 30,  47 => 24,  42 => 21,  37 => 7,  35 => 6,  32 => 5,  29 => 4,);
+        return array (  320 => 139,  317 => 138,  312 => 135,  299 => 129,  294 => 127,  287 => 123,  283 => 122,  278 => 121,  271 => 116,  267 => 115,  262 => 114,  258 => 111,  252 => 108,  248 => 107,  243 => 106,  240 => 104,  238 => 103,  235 => 102,  229 => 99,  225 => 98,  221 => 97,  218 => 96,  215 => 95,  209 => 92,  205 => 91,  201 => 90,  198 => 89,  196 => 88,  193 => 87,  190 => 86,  183 => 81,  179 => 80,  174 => 79,  166 => 73,  162 => 72,  157 => 71,  150 => 66,  146 => 65,  141 => 64,  139 => 63,  132 => 58,  128 => 57,  123 => 56,  121 => 55,  115 => 50,  110 => 48,  100 => 47,  97 => 46,  95 => 45,  83 => 43,  79 => 41,  73 => 37,  71 => 36,  66 => 33,  62 => 31,  60 => 30,  47 => 24,  42 => 21,  37 => 7,  35 => 6,  32 => 5,  29 => 4,);
     }
 }

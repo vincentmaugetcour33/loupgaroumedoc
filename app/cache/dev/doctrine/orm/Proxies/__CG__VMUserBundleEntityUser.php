@@ -96,6 +96,12 @@ class User extends \VM\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
         return parent::getUploadDir();
     }
 
+    public function getUploadRootDir()
+    {
+        $this->__load();
+        return parent::getUploadRootDir();
+    }
+
     public function getPhotoPath()
     {
         $this->__load();
@@ -213,6 +219,18 @@ class User extends \VM\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
         return parent::getPhoto();
     }
 
+    public function getPhotoperso()
+    {
+        $this->__load();
+        return parent::getPhotoperso();
+    }
+
+    public function setPhotoperso($valeur)
+    {
+        $this->__load();
+        return parent::setPhotoperso($valeur);
+    }
+
     public function setRoles(array $roles)
     {
         $this->__load();
@@ -258,7 +276,7 @@ class User extends \VM\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'username', 'email', 'ville', 'sexe', 'age', 'photo', 'realname', 'password', 'salt', 'roles', 'commentaires');
+        return array('__isInitialized__', 'id', 'username', 'email', 'ville', 'sexe', 'age', 'photo', 'photoperso', 'realname', 'password', 'salt', 'roles', 'commentaires');
     }
 
     public function __clone()

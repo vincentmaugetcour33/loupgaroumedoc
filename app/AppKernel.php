@@ -19,10 +19,12 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new VM\BlogBundle\VMBlogBundle(),
             new VM\UserBundle\VMUserBundle(),
+            new VM\AdminBundle\VMAdminBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle()
         
             
-            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle()
+            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,3 +1,8 @@
+vm_admin:
+    resource: "@VMAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # Routes pour le blog
 vm_blog:
     resource: "@VMBlogBundle/Resources/config/routing.yml"

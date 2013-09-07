@@ -17,7 +17,7 @@ class ImageController extends Controller
   $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Image');
   $liste_images = $repository->getImagesAcceptes();
   
-   return $this->render('VMBlogBundle:Image:image_list.html.twig', array('images' => $liste_images) );
+    return $this->render('VMBlogBundle:Image:image_list.html.twig', array('images' => $liste_images) );
  }
     
     
