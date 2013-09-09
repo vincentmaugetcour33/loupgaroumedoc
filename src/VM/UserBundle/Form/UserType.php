@@ -32,7 +32,7 @@ class UserType extends AbstractType
             ->add('sexe',          'choice', array('label' => 'Votre sexe : ',
                                      'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),
                                      'empty_value' => 'Vous êtes ?'))
-            ->add('age',           'integer', array('label' => 'Votre âge : ', 'required'=>false));
+            ->add('age',           new RangeType(), array('label' => 'Votre âge : ', 'required'=>false));
             
             //->add('photo')
             

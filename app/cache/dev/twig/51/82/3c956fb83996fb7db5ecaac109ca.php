@@ -341,7 +341,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
          ";
         // line 207
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 249
+        // line 251
         echo "
 
         
@@ -383,7 +383,8 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         // line 211
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
         echo "\"></script>
-          
+           
+         
              <script language=\"javascript\" type=\"text/javascript\">
                 (function(\$) 
                 {
@@ -412,11 +413,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
              </script>
 
             ";
-        // line 240
+        // line 241
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "ea73278_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_ea73278_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/ea73278_bootstrap.min_1.js");
-            // line 243
+            // line 245
             echo "                           <script type=\"text/javascript\" src=\"";
             echo twig_escape_filter($this->env, $this->getContext($context, "asset_url"), "html", null, true);
             echo "\"></script>
@@ -436,7 +437,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
             ";
         }
         unset($context["asset_url"]);
-        // line 244
+        // line 246
         echo "   
             
             
@@ -456,6 +457,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  440 => 244,  420 => 243,  416 => 240,  384 => 211,  380 => 210,  376 => 209,  373 => 208,  370 => 207,  366 => 182,  363 => 181,  357 => 5,  345 => 249,  343 => 207,  332 => 201,  327 => 200,  309 => 183,  307 => 181,  263 => 142,  255 => 136,  247 => 132,  241 => 128,  239 => 127,  234 => 124,  232 => 121,  226 => 109,  218 => 104,  209 => 97,  194 => 84,  190 => 83,  186 => 82,  169 => 67,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  124 => 51,  121 => 50,  119 => 49,  115 => 47,  102 => 37,  97 => 35,  92 => 33,  88 => 32,  82 => 29,  78 => 28,  72 => 24,  70 => 23,  64 => 20,  54 => 12,  51 => 11,  37 => 9,  33 => 7,  28 => 5,  22 => 1,  79 => 17,  76 => 16,  69 => 18,  66 => 21,  63 => 14,  60 => 13,  56 => 10,  50 => 9,  45 => 8,  42 => 7,  35 => 4,  32 => 3,);
+        return array (  441 => 246,  421 => 245,  417 => 241,  384 => 211,  380 => 210,  376 => 209,  373 => 208,  370 => 207,  366 => 182,  363 => 181,  357 => 5,  345 => 251,  343 => 207,  332 => 201,  327 => 200,  309 => 183,  307 => 181,  263 => 142,  255 => 136,  241 => 128,  226 => 109,  218 => 104,  209 => 97,  190 => 83,  186 => 82,  161 => 65,  155 => 64,  152 => 63,  144 => 61,  138 => 60,  130 => 54,  121 => 50,  119 => 49,  115 => 47,  102 => 37,  97 => 35,  92 => 33,  88 => 32,  82 => 29,  78 => 28,  72 => 24,  66 => 21,  54 => 12,  51 => 11,  37 => 9,  28 => 5,  22 => 1,  352 => 151,  349 => 150,  344 => 14,  330 => 12,  326 => 10,  320 => 8,  317 => 7,  300 => 140,  298 => 139,  293 => 138,  283 => 133,  280 => 132,  273 => 130,  265 => 127,  262 => 126,  256 => 124,  254 => 123,  251 => 122,  247 => 132,  239 => 127,  234 => 124,  232 => 121,  229 => 113,  223 => 109,  219 => 107,  202 => 96,  194 => 84,  191 => 89,  188 => 88,  177 => 80,  172 => 77,  169 => 67,  166 => 75,  164 => 74,  160 => 72,  154 => 70,  148 => 68,  146 => 67,  139 => 65,  132 => 61,  124 => 51,  120 => 53,  116 => 51,  114 => 50,  108 => 47,  105 => 46,  101 => 45,  95 => 42,  90 => 40,  86 => 38,  83 => 36,  81 => 35,  76 => 32,  70 => 23,  68 => 27,  64 => 20,  61 => 23,  59 => 22,  56 => 21,  48 => 19,  42 => 18,  38 => 16,  36 => 7,  33 => 7,  30 => 5,);
     }
 }

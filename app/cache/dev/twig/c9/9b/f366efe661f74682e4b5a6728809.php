@@ -394,6 +394,8 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
           }));
         
     }(jQuery));
+
+
  </script>   
 ";
     }

@@ -1,24 +1,40 @@
 {% extends "::base.html.twig" %}
 
+     
+    
+{% form_theme form _self %}
+    {% use 'form_div_layout.html.twig' with form_errors as base_form_errors %}
+   
         
+  {% block form_errors %}
+
+    {% spaceless %}
+    {% if errors is defined and errors|length > 0 %}
+    <ul>
+        {% for error in errors %}
+            <li>ERREUR : {{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}
+
+    {% block range_widget %}
+{% spaceless %}
+    <input type="range" id="vm_userbundle_usertype_age" value="0" min="8" name="vm_userbundle_usertype[age]" onchange="showValue(this.value)"/>
+     <span id="value_age" />  
+{% endspaceless %}
+{% endblock range_widget %}     
+     
+     
 {% block body %}
 
 {% if form is defined %}
     
-    
-    
-{#{% form_theme form _self %}
-    {% use 'form_div_layout.html.twig' with form_label as base_form_label %}
 
-    {% block form_label %}
-        {{ block('base_form_label') }}
 
-        {% if required %}
-            <span class="required" title="Ce champ est obligatoire">*</span>
-        {% endif %}
-    {% endblock %}
-#}
-
+    {% block content %} 
+            
     <div class="panel panel-info"> 
       <div class="panel-heading">
          {% if editer is defined %} MODIFICATION {% else %} ENREGISTREMENT {% endif %}PROFIL
@@ -49,13 +65,14 @@
 
       {% endif %} 
         
-      
+              {#<tr><td>{{ form_errors(form) }}</td></tr>#}
+                
       <tr>
       {# username #}
       {#{{ form_row(form.username) }}#}
       <td>{{ form_label(form.username) }}</td>
       <td><span class="text-warning">{{ form_errors(form.username) }}</span></td>
-      <td>{{ form_widget(form.username) }}</td> 
+      <td>{{ form_widget(form.username, {'help': 'foobar'}) }}</td> 
        </tr>
       
       <tr> 
@@ -76,8 +93,8 @@
       
         <tr>
        {# realname #}
-                <td>{{ form_label(form.realname) }}</td>
-       <td><span class="text-warning">{{ form_errors(form.realname) }}</span></td>
+       <td>{{ form_label(form.realname) }}</td>
+      <td><span class="text-warning">{{ form_errors(form.realname) }}</span></td>
       <td>{{ form_widget(form.realname) }}</td>
       </tr>
  
@@ -95,7 +112,7 @@
        {% else %}
               <tr>
                       <td>{{ form_label(form.sexe) }}</td>
-                      <td><span class="text-warning">{{ form_errors(form.sexe) }}</span></td>
+                     <td><span class="text-warning">{{ form_errors(form.sexe) }}</span></td>
                      <td>{{ form_widget(form.sexe) }}</td>
                     </tr>        
        {% endif %}
@@ -111,8 +128,8 @@
       
         <tr>
       {# ville #}
-                <td>{{ form_label(form.ville) }}</td>
-         <td><span class="text-warning">{{ form_errors(form.ville) }}</span></td>
+         <td>{{ form_label(form.ville) }}</td>
+        <td><span class="text-warning">{{ form_errors(form.ville) }}</span></td>
          <td>{{ form_widget(form.ville) }} </td>  
       </tr>
       
@@ -130,10 +147,12 @@
       <input type="button" value="annuler"  onclick="javascript:history.back()" class="btn btn-primary" />
   </form>
               </div></div>
-              
+           
+         {% endblock content %}   
+            
 {% endif %}
-
-{% endblock body %}
+      
+           {% endblock body %}
 
 {% block javascripts %}
     {{ parent() }} 
@@ -143,6 +162,13 @@
                return "<img class='img-rounded' width=50 src='/bundles/vmuser/photo/"+photo+"' />"; },
                 delay: { show: 500, hide: 10} });
 
-    }(jQuery));
+        $("#value_age").html("8 ans");            
+
+  }(jQuery));
+  
+    function showValue(value)
+    {
+    document.getElementById("value_age").innerHTML=value+" ans";    
+    }    
     </script>
 {% endblock javascripts %}
