@@ -8,5 +8,6 @@
       <input type="submit" value="{% if editer is defined %}Modifier ce commentaire{%else%}Ajouter{%endif%}" class="btn btn-default" />
     {#<input type="button" value="annuler"  onclick="document.location='/app_dev.php/commentaire/1'" class="btn btn-primary" />#}
   </form>
+ {{ tinymce_init() }}
 {% endif %}
 

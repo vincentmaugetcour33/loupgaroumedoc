@@ -20,9 +20,8 @@ class AppKernel extends Kernel
             new VM\BlogBundle\VMBlogBundle(),
             new VM\UserBundle\VMUserBundle(),
             new VM\AdminBundle\VMAdminBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
-        
-            
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
             //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
         );

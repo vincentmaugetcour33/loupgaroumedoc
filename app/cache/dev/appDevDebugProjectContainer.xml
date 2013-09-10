@@ -21,6 +21,7 @@
       <parameter key="VMUserBundle">VM\UserBundle\VMUserBundle</parameter>
       <parameter key="VMAdminBundle">VM\AdminBundle\VMAdminBundle</parameter>
       <parameter key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</parameter>
+      <parameter key="StfalconTinymceBundle">Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
@@ -518,6 +519,29 @@
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="fos_js_routing.extractor.class">FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor</parameter>
     <parameter key="fos_js_routing.controller.class">FOS\JsRoutingBundle\Controller\Controller</parameter>
+    <parameter key="stfalcon_tinymce.config" type="collection">
+      <parameter key="include_jquery">false</parameter>
+      <parameter key="tinymce_jquery">false</parameter>
+      <parameter key="language">null</parameter>
+      <parameter key="theme" type="collection">
+        <parameter key="advanced" type="collection">
+          <parameter key="theme">modern</parameter>
+          <parameter key="plugins" type="collection">
+            <parameter>advlist autolink lists link image charmap print preview hr anchor pagebreak</parameter>
+            <parameter>searchreplace wordcount visualblocks visualchars code fullscreen</parameter>
+            <parameter>insertdatetime media nonbreaking save table contextmenu directionality</parameter>
+            <parameter>emoticons template paste textcolor</parameter>
+          </parameter>
+          <parameter key="toolbar1">undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image</parameter>
+          <parameter key="toolbar2">print preview media | forecolor backcolor emoticons</parameter>
+          <parameter key="image_advtab">true</parameter>
+        </parameter>
+        <parameter key="simple" type="collection"/>
+      </parameter>
+      <parameter key="tinymce_buttons" type="collection"/>
+      <parameter key="external_plugins" type="collection"/>
+    </parameter>
+    <parameter key="stfalcon_tinymce.twig.extension.class">Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2297,7 +2321,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>522d51e34e679</argument>
+            <argument>522eb7f33a9fd</argument>
           </service>
         </argument>
       </argument>
@@ -2647,7 +2671,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>522d51e34e679</argument>
+            <argument>522eb7f33a9fd</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2883,6 +2907,9 @@
             <tag name="twig.extension"/>
           </service>
         </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.stfalcon_tinymce"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
@@ -3372,6 +3399,7 @@
         <argument key="VMUserBundle">VM\UserBundle\VMUserBundle</argument>
         <argument key="VMAdminBundle">VM\AdminBundle\VMAdminBundle</argument>
         <argument key="FOSJsRoutingBundle">FOS\JsRoutingBundle\FOSJsRoutingBundle</argument>
+        <argument key="StfalconTinymceBundle">Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle</argument>
         <argument key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</argument>
         <argument key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</argument>
         <argument key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</argument>
@@ -3393,6 +3421,10 @@
           <service class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
         </argument>
       </argument>
+    </service>
+    <service id="twig.extension.stfalcon_tinymce" class="Stfalcon\Bundle\TinymceBundle\Twig\Extension\StfalconTinymceExtension">
+      <tag name="twig.extension" alias="stfalcon_tinymce"/>
+      <argument type="service" id="service_container"/>
     </service>
     <service id="web_profiler.controller.profiler" class="Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController">
       <argument type="service" id="router" on-invalid="null"/>
@@ -3733,6 +3765,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\Sitepatrice\src\VM\AdminBundle/Resources/views</argument>
         <argument>VMAdmin</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\Sitepatrice\vendor\stfalcon\tinymce-bundle\Stfalcon\Bundle\TinymceBundle/Resources/views</argument>
+        <argument>StfalconTinymce</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\Sitepatrice\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>

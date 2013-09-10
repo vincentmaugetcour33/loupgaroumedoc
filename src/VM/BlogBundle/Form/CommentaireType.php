@@ -17,7 +17,7 @@ class CommentaireType extends AbstractType
         $builder
             //->add('user', 'text', array('label' => 'Auteur'))
             ->add('contenu', 'textarea', array('label' => 'Commentaire', 
-                    'attr'=> array('cols'=>'120'), 'required'=>true));
+                    'attr'=> array('class'=>"tinymce", 'cols'=>'120'), 'required'=>true));
             //->add('date', 'date',);
             //->add('statut', )
             //->add('livre');
