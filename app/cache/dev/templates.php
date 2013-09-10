@@ -51,7 +51,7 @@
   'SecurityBundle:Collector:security.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\SecurityBundle/Resources/views/Collector/security.html.twig',
   'TwigBundle:Exception:error.atom.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.atom.twig',
   'TwigBundle:Exception:error.css.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.css.twig',
-  'TwigBundle:Exception:error.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.html.twig',
+  'TwigBundle:Exception:error.html.twig' => 'C:/wamp/www/Sitepatrice/app/Resources/TwigBundle/views/Exception/error.html.twig',
   'TwigBundle:Exception:error.js.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.js.twig',
   'TwigBundle:Exception:error.json.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.json.twig',
   'TwigBundle:Exception:error.rdf.twig' => 'C:\\wamp\\www\\Sitepatrice\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle/Resources/views/Exception/error.rdf.twig',

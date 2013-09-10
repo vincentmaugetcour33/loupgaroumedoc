@@ -69,7 +69,7 @@ class CommentaireController extends Controller
             $form->bind($request);
              if ($form->isValid())
              {
-              $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Le monstre du Médoc');
+              $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Loup-Garou, le monstre du Médoc');
               $commentaire->setLivre($livre_principal);
               $commentaire->setUser($user);
               $user->addCommentaire($commentaire);
@@ -130,7 +130,7 @@ class CommentaireController extends Controller
              if ($form->isValid())
              {
               $manager =$this->getDoctrine()->getManager();
-              $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Le monstre du Médoc');
+              $livre_principal = $manager->getRepository('VMBlogBundle:Livre')->findOneByTitre('Loup-Garou, le monstre du Médoc');
               $commentaire->setLivre($livre_principal);
               $commentaire->setDate(new \DateTime());
               $manager->persist($commentaire); 

@@ -13,7 +13,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
-        $livre_principal = $repository->findOneByTitre('Le monstre du Médoc');
+        $livre_principal = $repository->findOneByTitre('Loup-Garou, le monstre du Médoc');
         
         return $this->render('VMBlogBundle:Default:index.html.twig', array('livre' => $livre_principal));
     }

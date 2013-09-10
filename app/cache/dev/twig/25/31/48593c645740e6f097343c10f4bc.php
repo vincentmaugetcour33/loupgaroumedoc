@@ -19,9 +19,9 @@ class __TwigTemplate_253148593c645740e6f097343c10f4bc extends Twig_Template
         echo "/*
 ";
         // line 2
-        echo twig_escape_filter($this->env, $this->getContext($context, "status_code"), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["status_code"]) ? $context["status_code"] : $this->getContext($context, "status_code")), "html", null, true);
         echo " ";
-        echo twig_escape_filter($this->env, $this->getContext($context, "status_text"), "html", null, true);
+        echo twig_escape_filter($this->env, (isset($context["status_text"]) ? $context["status_text"] : $this->getContext($context, "status_text")), "html", null, true);
         echo "
 
 */

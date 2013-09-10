@@ -8,6 +8,5 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class LivreController extends Controller
 {
-    use VM\BlogBundle\Entity\Livre;
-use VM\BlogBundle\Form\LivreType;
+
 }

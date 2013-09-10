@@ -140,6 +140,7 @@ if ($destroy) {
 $this->metadataBag->stampNew();
 }
 $ret = session_regenerate_id($destroy);
+if ('files'=== $this->getSaveHandler()->getSaveHandlerName()) {
 session_write_close();
 if (isset($_SESSION)) {
 $backup = $_SESSION;
@@ -147,6 +148,7 @@ session_start();
 $_SESSION = $backup;
 } else {
 session_start();
+}
 }
 return $ret;
 }
@@ -372,18 +374,6 @@ throw new \LogicException('Cannot change the name of an active session');
 }
 session_name($name);
 }
-}
-}
-namespace
-{
-interface SessionHandlerInterface
-{
-public function open($savePath, $sessionName);
-public function close();
-public function read($sessionId);
-public function write($sessionId, $data);
-public function destroy($sessionId);
-public function gc($lifetime);
 }
 }
 namespace Symfony\Component\HttpFoundation\Session\Storage\Proxy

@@ -35,7 +35,7 @@ class LivreRepository extends EntityRepository
     public function findautreslivres()
     {
        return $this->_em->createQuery('SELECT l FROM VMBlogBundle:livre l
-            WHERE l.titre NOT LIKE :titre')->setParameter('titre', 'Le monstre du Médoc%')
+            WHERE l.titre NOT LIKE :titre')->setParameter('titre', 'Loup-Garou, le monstre du Médoc%')
                ->getResult();
        
        //$query_builder->where(

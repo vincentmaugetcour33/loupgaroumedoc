@@ -22,7 +22,7 @@ class CommentaireRepository extends EntityRepository
      $query_builder = $this->createQueryBuilder('c');
      return $query_builder->leftJoin('c.livre', 'l')
                    ->addSelect('l')->where( $query_builder->expr()->like('l.titre', ':titre'))
-                   ->setParameter('titre', 'le monstre du Médoc')
+                   ->setParameter('titre', 'Loup-Garou, le monstre du Médoc')
                    //->andwhere($query_builder->expr()->like('c.statut', ":statut"))
                    //->setParameter('statut', 'accepte')
                    ->orderBy('c.date', $tri)
