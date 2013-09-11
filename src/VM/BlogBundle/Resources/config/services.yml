@@ -21,4 +21,7 @@ services:
        tags:
             - {name: twig.extension}
           
- 
+  twig.extension.html_decode:
+    class:  VM\BlogBundle\Twig\Extensions\HTMLDecodeTwigExtension
+    tags:
+      - { name: twig.extension }

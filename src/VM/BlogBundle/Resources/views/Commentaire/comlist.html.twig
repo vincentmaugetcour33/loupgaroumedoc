@@ -77,7 +77,7 @@
                            <td>
                       <div class="input-group-btn"> 
                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                          <ul style="margin-top:-70px;" class="dropdown-menu pull-right" id={{entity.id}}>
+                          <ul style="margin-top:inherit;" class="dropdown-menu pull-right" id={{entity.id}}>
                             <li id="edit"><a href="#" rel="popover" id="editer_commentaire">Modifier</a></li>
                             <li class="divider"></li>
                             <li><a href="#" id="supprimer_commentaire">Supprimer</a></li>
@@ -93,7 +93,9 @@
                               
                        
                        </div>
-                       <div class="panel-body " >{{ entity.contenu }}</div>
+                       <div class="panel-body " >
+                                    {% autoescape true %}{{ entity.contenu | raw  }}
+                                        {% endautoescape %}</div>
                    </div>
                 
                    

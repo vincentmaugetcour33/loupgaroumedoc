@@ -520,24 +520,22 @@
     <parameter key="fos_js_routing.extractor.class">FOS\JsRoutingBundle\Extractor\ExposedRoutesExtractor</parameter>
     <parameter key="fos_js_routing.controller.class">FOS\JsRoutingBundle\Controller\Controller</parameter>
     <parameter key="stfalcon_tinymce.config" type="collection">
-      <parameter key="include_jquery">false</parameter>
-      <parameter key="tinymce_jquery">false</parameter>
-      <parameter key="language">null</parameter>
+      <parameter key="include_jquery">true</parameter>
+      <parameter key="tinymce_jquery">true</parameter>
       <parameter key="theme" type="collection">
-        <parameter key="advanced" type="collection">
+        <parameter key="bbcode" type="collection">
           <parameter key="theme">modern</parameter>
           <parameter key="plugins" type="collection">
-            <parameter>advlist autolink lists link image charmap print preview hr anchor pagebreak</parameter>
-            <parameter>searchreplace wordcount visualblocks visualchars code fullscreen</parameter>
-            <parameter>insertdatetime media nonbreaking save table contextmenu directionality</parameter>
-            <parameter>emoticons template paste textcolor</parameter>
+            <parameter>bbcode, link, preview, charmap, emoticons</parameter>
           </parameter>
-          <parameter key="toolbar1">undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image</parameter>
-          <parameter key="toolbar2">print preview media | forecolor backcolor emoticons</parameter>
-          <parameter key="image_advtab">true</parameter>
+          <parameter key="menubar">false</parameter>
+          <parameter key="statusbar">false</parameter>
+          <parameter key="toolbar">bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons</parameter>
+          <parameter key="width">800</parameter>
+          <parameter key="content_css">/bundles/vmblog/css/bootstrap.min.css</parameter>
         </parameter>
-        <parameter key="simple" type="collection"/>
       </parameter>
+      <parameter key="language">null</parameter>
       <parameter key="tinymce_buttons" type="collection"/>
       <parameter key="external_plugins" type="collection"/>
     </parameter>
@@ -607,6 +605,9 @@
       <argument type="service" id="service_container"/>
     </service>
     <service id="twig.extension.text" class="Twig_Extensions_Extension_Text">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.html_decode" class="VM\BlogBundle\Twig\Extensions\HTMLDecodeTwigExtension">
       <tag name="twig.extension"/>
     </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
@@ -2321,7 +2322,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>522f3837943e0</argument>
+            <argument>523004bef3368</argument>
           </service>
         </argument>
       </argument>
@@ -2671,7 +2672,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>522f3837943e0</argument>
+            <argument>523004bef3368</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2780,6 +2781,9 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.text"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.html_decode"/>
       </call>
       <call method="addExtension">
         <argument type="service">

@@ -172,7 +172,7 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
                             echo "                           <td>
                       <div class=\"input-group-btn\"> 
                          <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">Action <span class=\"caret\"></span></button>
-                          <ul style=\"margin-top:-70px;\" class=\"dropdown-menu pull-right\" id=";
+                          <ul style=\"margin-top:inherit;\" class=\"dropdown-menu pull-right\" id=";
                             // line 80
                             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "id"), "html", null, true);
                             echo ">
@@ -197,9 +197,13 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
                               
                        
                        </div>
-                       <div class=\"panel-body \" >";
-                // line 96
-                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "contenu"), "html", null, true);
+                       <div class=\"panel-body \" >
+                                    ";
+                // line 97
+                echo $this->getAttribute((isset($context["entity"]) ? $context["entity"] : $this->getContext($context, "entity")), "contenu");
+                echo "
+                                        ";
+                // line 98
                 echo "</div>
                    </div>
                 
@@ -215,27 +219,27 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['entity'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 107
+            // line 109
             echo "
 ";
         } else {
-            // line 109
+            // line 111
             echo "     
     Il n'y a aucun commentaire
     
  ";
         }
-        // line 113
+        // line 115
         echo " 
 ";
-        // line 114
+        // line 116
         if (((isset($context["last_page"]) ? $context["last_page"] : $this->getContext($context, "last_page")) > 1)) {
-            // line 115
+            // line 117
             echo "    <div class=\"\">
      <ul class=\"pagination\">
         <li>
            <a href=\"";
-            // line 118
+            // line 120
             echo $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => 1));
             echo "\"> <span> << </span> </a> <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => (isset($context["previous_page"]) ? $context["previous_page"] : $this->getContext($context, "previous_page")))), "html", null, true);
@@ -243,25 +247,25 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
         </li>
 
      ";
-            // line 121
+            // line 123
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable(range(1, (isset($context["last_page"]) ? $context["last_page"] : $this->getContext($context, "last_page"))));
             foreach ($context['_seq'] as $context["_key"] => $context["page"]) {
-                // line 122
+                // line 124
                 echo "       
         ";
-                // line 123
+                // line 125
                 if (((isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")) == (isset($context["current_page"]) ? $context["current_page"] : $this->getContext($context, "current_page")))) {
-                    // line 124
+                    // line 126
                     echo "           <li class=\"active\"><a href=\"#\">";
                     echo twig_escape_filter($this->env, (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "html", null, true);
                     echo "</a></li>
        ";
                 } else {
-                    // line 126
+                    // line 128
                     echo "           <li>
                <a href=\"";
-                    // line 127
+                    // line 129
                     echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")))), "html", null, true);
                     echo "\">";
                     echo twig_escape_filter($this->env, (isset($context["page"]) ? $context["page"] : $this->getContext($context, "page")), "html", null, true);
@@ -269,17 +273,17 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
             </li>
        ";
                 }
-                // line 130
+                // line 132
                 echo "          
    ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['page'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 132
+            // line 134
             echo "   <li>
       <a href=\"";
-            // line 133
+            // line 135
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => (isset($context["next_page"]) ? $context["next_page"] : $this->getContext($context, "next_page")))), "html", null, true);
             echo "\">Suivant</a><a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vm_blog_commentaire_list", array("page" => (isset($context["last_page"]) ? $context["last_page"] : $this->getContext($context, "last_page")))), "html", null, true);
@@ -289,14 +293,14 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
        </div>
  ";
         }
-        // line 138
+        // line 140
         echo "<div class=\"pagination_desc\"><strong>";
         echo twig_escape_filter($this->env, (isset($context["total_commentaires"]) ? $context["total_commentaires"] : $this->getContext($context, "total_commentaires")), "html", null, true);
         echo "</strong> commentaires dans la page
  ";
-        // line 139
+        // line 141
         if (((isset($context["last_page"]) ? $context["last_page"] : $this->getContext($context, "last_page")) > 1)) {
-            // line 140
+            // line 142
             echo " - page <strong>";
             echo twig_escape_filter($this->env, (isset($context["current_page"]) ? $context["current_page"] : $this->getContext($context, "current_page")), "html", null, true);
             echo "/";
@@ -345,10 +349,10 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 ";
     }
 
-    // line 150
+    // line 152
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 151
+        // line 153
         echo "      ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
@@ -412,6 +416,6 @@ class __TwigTemplate_c99bf366efe661f74682e4b5a6728809 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  352 => 151,  349 => 150,  344 => 14,  330 => 12,  326 => 10,  320 => 8,  317 => 7,  300 => 140,  298 => 139,  293 => 138,  283 => 133,  280 => 132,  273 => 130,  265 => 127,  262 => 126,  256 => 124,  254 => 123,  251 => 122,  247 => 121,  239 => 118,  234 => 115,  232 => 114,  229 => 113,  223 => 109,  219 => 107,  202 => 96,  194 => 90,  191 => 89,  188 => 88,  177 => 80,  172 => 77,  169 => 76,  166 => 75,  164 => 74,  160 => 72,  154 => 70,  148 => 68,  146 => 67,  139 => 65,  132 => 61,  124 => 55,  120 => 53,  116 => 51,  114 => 50,  108 => 47,  105 => 46,  101 => 45,  95 => 42,  90 => 40,  86 => 38,  83 => 36,  81 => 35,  76 => 32,  70 => 28,  68 => 27,  64 => 25,  61 => 23,  59 => 22,  56 => 21,  48 => 19,  42 => 18,  38 => 16,  36 => 7,  33 => 6,  30 => 5,);
+        return array (  356 => 153,  353 => 152,  348 => 14,  334 => 12,  330 => 10,  324 => 8,  321 => 7,  304 => 142,  302 => 141,  297 => 140,  287 => 135,  284 => 134,  277 => 132,  269 => 129,  266 => 128,  260 => 126,  258 => 125,  255 => 124,  251 => 123,  243 => 120,  238 => 117,  236 => 116,  233 => 115,  227 => 111,  223 => 109,  207 => 98,  203 => 97,  194 => 90,  191 => 89,  188 => 88,  177 => 80,  172 => 77,  169 => 76,  166 => 75,  164 => 74,  160 => 72,  154 => 70,  148 => 68,  146 => 67,  139 => 65,  132 => 61,  124 => 55,  120 => 53,  116 => 51,  114 => 50,  108 => 47,  105 => 46,  101 => 45,  95 => 42,  90 => 40,  86 => 38,  83 => 36,  81 => 35,  76 => 32,  70 => 28,  68 => 27,  64 => 25,  61 => 23,  59 => 22,  56 => 21,  48 => 19,  42 => 18,  38 => 16,  36 => 7,  33 => 6,  30 => 5,);
     }
 }
