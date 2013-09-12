@@ -2,11 +2,12 @@
 
 // ::base.html.twig
 return array (
-  '9c381d9' => 
+  '868acfe' => 
   array (
     0 => 
     array (
       0 => '@VMBlogBundle/Resources/public/css/bootstrap.min.css',
+      1 => '@VMBlogBundle/Resources/public/css/bootstrap.icon-large.min.css',
     ),
     1 => 
     array (
@@ -15,8 +16,8 @@ return array (
     ),
     2 => 
     array (
-      'output' => '_controller/css/9c381d9.css',
-      'name' => '9c381d9',
+      'output' => '_controller/css/868acfe.css',
+      'name' => '868acfe',
       'debug' => NULL,
       'combine' => NULL,
       'vars' => 

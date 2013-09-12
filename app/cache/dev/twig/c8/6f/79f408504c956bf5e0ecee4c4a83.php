@@ -18,11 +18,24 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
 
         $_trait_0_blocks["base_form_errors"] = $_trait_0_blocks["form_errors"]; unset($_trait_0_blocks["form_errors"]);
 
-        $this->traits = $_trait_0_blocks;
+        $_trait_1 = $this->env->loadTemplate("form_div_layout.html.twig");
+        // line 7
+        if (!$_trait_1->isTraitable()) {
+            throw new Twig_Error_Runtime('Template "'."form_div_layout.html.twig".'" cannot be used as a trait.');
+        }
+        $_trait_1_blocks = $_trait_1->getBlocks();
+
+        $_trait_1_blocks["user_choice_widget_options"] = $_trait_1_blocks["choice_widget_options"]; unset($_trait_1_blocks["choice_widget_options"]);
+
+        $this->traits = array_merge(
+            $_trait_0_blocks,
+            $_trait_1_blocks
+        );
 
         $this->blocks = array_merge(
             $this->traits,
             array(
+                'user_choice_widget_options' => array($this, 'block_user_choice_widget_options'),
                 'form_errors' => array($this, 'block_form_errors'),
                 'range_widget' => array($this, 'block_range_widget'),
                 'body' => array($this, 'block_body'),
@@ -45,77 +58,160 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
     }
 
     // line 9
-    public function block_form_errors($context, array $blocks = array())
+    public function block_user_choice_widget_options($context, array $blocks = array())
     {
         // line 10
-        echo "
-    ";
-        // line 11
+        echo "            ";
         ob_start();
-        // line 12
-        echo "    ";
+        // line 11
+        echo "                ";
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["options"]) ? $context["options"] : $this->getContext($context, "options")));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
+        foreach ($context['_seq'] as $context["group_label"] => $context["choice"]) {
+            // line 12
+            echo "                    ";
+            if (twig_test_iterable((isset($context["choice"]) ? $context["choice"] : $this->getContext($context, "choice")))) {
+                // line 13
+                echo "                        <optgroup label=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans((isset($context["group_label"]) ? $context["group_label"] : $this->getContext($context, "group_label")), array(), (isset($context["translation_domain"]) ? $context["translation_domain"] : $this->getContext($context, "translation_domain"))), "html", null, true);
+                echo "\">
+                            ";
+                // line 14
+                $context["options"] = (isset($context["choice"]) ? $context["choice"] : $this->getContext($context, "choice"));
+                // line 15
+                echo "                            ";
+                $this->displayBlock("choice_widget_options", $context, $blocks);
+                echo "
+                        </optgroup>
+                    ";
+            } else {
+                // line 18
+                echo "                        <img src=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmuser/photo/membre_default_homme.jpg"), "html", null, true);
+                echo "\" />
+                        <option value=\"";
+                // line 19
+                echo twig_escape_filter($this->env, $this->getAttribute((isset($context["choice"]) ? $context["choice"] : $this->getContext($context, "choice")), "value"), "html", null, true);
+                echo "\"";
+                if ($this->env->getExtension('form')->isSelectedChoice((isset($context["choice"]) ? $context["choice"] : $this->getContext($context, "choice")), (isset($context["value"]) ? $context["value"] : $this->getContext($context, "value")))) {
+                    echo " selected=\"selected\"";
+                }
+                echo ">";
+                echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans($this->getAttribute((isset($context["choice"]) ? $context["choice"] : $this->getContext($context, "choice")), "label"), array(), (isset($context["translation_domain"]) ? $context["translation_domain"] : $this->getContext($context, "translation_domain"))), "html", null, true);
+                echo "</option>
+                    ";
+            }
+            // line 21
+            echo "                ";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['group_label'], $context['choice'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 22
+        echo "            ";
+        echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
+        // line 23
+        echo "            ";
+    }
+
+    // line 25
+    public function block_form_errors($context, array $blocks = array())
+    {
+        // line 26
+        echo "              ";
+        ob_start();
+        // line 27
+        echo "              ";
         if ((array_key_exists("errors", $context) && (twig_length_filter($this->env, (isset($context["errors"]) ? $context["errors"] : $this->getContext($context, "errors"))) > 0))) {
-            // line 13
-            echo "    <ul>
-        ";
-            // line 14
+            // line 28
+            echo "              <ul>
+                  ";
+            // line 29
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["errors"]) ? $context["errors"] : $this->getContext($context, "errors")));
             foreach ($context['_seq'] as $context["_key"] => $context["error"]) {
-                // line 15
-                echo "            <li>ERREUR : ";
+                // line 30
+                echo "                      <li>ERREUR : ";
                 echo twig_escape_filter($this->env, $this->getAttribute((isset($context["error"]) ? $context["error"] : $this->getContext($context, "error")), "message"), "html", null, true);
                 echo "</li>
-        ";
+                  ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['error'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 17
-            echo "    </ul>
-    ";
+            // line 32
+            echo "              </ul>
+              ";
         }
+        // line 34
+        echo "          ";
         echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
+        // line 35
+        echo "          ";
     }
 
-    // line 22
+    // line 38
     public function block_range_widget($context, array $blocks = array())
     {
-        // line 23
+        // line 39
+        echo "        ";
         ob_start();
-        // line 24
-        echo "    <input type=\"range\" id=\"vm_userbundle_usertype_age\" value=\"0\" min=\"8\" name=\"vm_userbundle_usertype[age]\" onchange=\"showValue(this.value)\"/>
-     <span id=\"value_age\" />  
-";
+        // line 40
+        echo "            <input type=\"range\" id=\"vm_userbundle_usertype_age\" value=\"0\" min=\"8\" name=\"vm_userbundle_usertype[age]\" onchange=\"showValue(this.value)\"/>
+             <span id=\"value_age\" />  
+        ";
         echo trim(preg_replace('/>\s+</', '><', ob_get_clean()));
+        // line 43
+        echo "        ";
     }
 
-    // line 30
+    // line 46
     public function block_body($context, array $blocks = array())
     {
-        // line 31
+        // line 47
         echo "
 ";
-        // line 32
+        // line 48
         if (array_key_exists("form", $context)) {
-            // line 33
+            // line 49
             echo "    
 
 
     ";
-            // line 36
+            // line 52
             $this->displayBlock('content', $context, $blocks);
-            // line 151
+            // line 171
             echo "   
             
 ";
         }
-        // line 154
+        // line 174
         echo "      
            ";
     }
 
-    // line 36
+    // line 52
     public function block_content($context, array $blocks = array())
     {
         echo " 
@@ -123,7 +219,7 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
     <div class=\"panel panel-info\"> 
       <div class=\"panel-heading\">
          ";
-        // line 40
+        // line 56
         if (array_key_exists("editer", $context)) {
             echo " MODIFICATION ";
         } else {
@@ -136,30 +232,30 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
           <p style=\"color:red;\">
               Les champs marqués d'un astérisque sont obligatoires.
               ";
-        // line 46
+        // line 62
         if (array_key_exists("editer", $context)) {
-            // line 47
+            // line 63
             echo "                  Si vous ne saisissez pas un nouveau mot de passe, votre mot de passe actuel est conservé. 
               ";
         }
-        // line 49
+        // line 65
         echo "          </p>
           
           <p class=\"text-info\">
               ";
-        // line 52
+        // line 68
         if ((!array_key_exists("editer", $context))) {
-            // line 53
+            // line 69
             echo "                  <b>Attention</b>, pour le moment l'ajout d'une photo personalisée ne peut être modifiée
                   ensuite. Sinon, il vous faudra supprimer votre compte et le recréer.
                   Si vous ne sélectionnez aucune photo, une photo par défaut sera attribuée à votre profil.
               ";
         }
-        // line 57
+        // line 73
         echo "          </p>
         
    <form class=\"\" method=\"post\" action=\"";
-        // line 59
+        // line 75
         if (array_key_exists("editer", $context)) {
             echo $this->env->getExtension('routing')->getPath("vm_user_edit");
         } else {
@@ -170,12 +266,12 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
         echo " >
        <table>
        ";
-        // line 61
+        // line 77
         if (array_key_exists("editer", $context)) {
-            // line 62
+            // line 78
             echo "                ";
             if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "photoperso") == true)) {
-                // line 63
+                // line 79
                 echo "                ( actuelle : <a class=\"photo\" id=\"";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "id"), "html", null, true);
                 echo "\" href=\"#\" style=\"cursor: pointer;\" rel=\"popover\" title=\"";
@@ -185,198 +281,202 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
                 echo "</a> )
                 ";
             }
-            // line 64
+            // line 80
             echo "  
 
       ";
         }
-        // line 66
+        // line 82
         echo " 
         
               ";
-        // line 69
+        // line 85
         echo "                
       <tr>
       ";
-        // line 72
+        // line 88
         echo "      ";
-        // line 73
+        // line 89
         echo "      <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username"), 'label');
         echo "</td>
       <td><span class=\"text-warning\">";
-        // line 74
+        // line 90
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username"), 'errors');
         echo "</span></td>
       <td>";
-        // line 75
+        // line 91
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "username"), 'widget', array("help" => "foobar"));
         echo "</td> 
        </tr>
       
       <tr> 
         ";
-        // line 80
+        // line 96
         echo "      ";
-        // line 81
+        // line 97
         echo "      <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password"), 'label');
         echo "</td>
       <td><span class=\"text-warning\">";
-        // line 82
+        // line 98
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password"), 'errors');
         echo "</span></td>
       <td>";
-        // line 83
+        // line 99
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password"), 'widget');
         echo "</td>      
      </tr>
      
       <tr>
       ";
-        // line 88
+        // line 104
         echo "       <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email"), 'label');
         echo "</td>
       <td><span class=\"text-warning\">";
-        // line 89
+        // line 105
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email"), 'errors');
         echo "</span></td>
-      <td>";
-        // line 90
+      <td>
+               ";
+        // line 107
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email"), 'widget');
-        echo "</td>   
+        echo "
+                <i class=\"icon-large icon-envelope\" style=\"margin-bottom:-5px;\"></i>
+         
+      </td>   
      </tr>
 
       
         <tr>
        ";
-        // line 96
+        // line 116
         echo "       <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "realname"), 'label');
         echo "</td>
       <td><span class=\"text-warning\">";
-        // line 97
+        // line 117
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "realname"), 'errors');
         echo "</span></td>
       <td>";
-        // line 98
+        // line 118
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "realname"), 'widget');
         echo "</td>
       </tr>
  
        
        ";
-        // line 103
+        // line 123
         echo "      ";
         if (array_key_exists("editer", $context)) {
-            // line 104
+            // line 124
             echo "      
                 ";
-            // line 105
+            // line 125
             if (($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "photoperso") == false)) {
-                // line 106
+                // line 126
                 echo "                    <tr>
                       <td>";
-                // line 107
+                // line 127
                 echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'label');
                 echo "</td>
                       <td><span class=\"text-warning\">";
-                // line 108
+                // line 128
                 echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'errors');
                 echo "</span></td>
                      <td>";
-                // line 109
+                // line 129
                 echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'widget');
                 echo "</td>
                     </tr>   
                 ";
             }
-            // line 112
+            // line 132
             echo "       ";
         } else {
-            // line 113
+            // line 133
             echo "              <tr>
                       <td>";
-            // line 114
+            // line 134
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'label');
             echo "</td>
                      <td><span class=\"text-warning\">";
-            // line 115
+            // line 135
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'errors');
             echo "</span></td>
                      <td>";
-            // line 116
+            // line 136
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "sexe"), 'widget');
             echo "</td>
                     </tr>        
        ";
         }
-        // line 119
+        // line 139
         echo "        
                     ";
-        // line 120
+        // line 140
         if ((!array_key_exists("editer", $context))) {
-            // line 121
+            // line 141
             echo "         <tr>
       ";
-            // line 123
+            // line 143
             echo "                <td>";
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "file"), 'label');
             echo "</td>
          <td><span class=\"text-warning\">";
-            // line 124
+            // line 144
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "file"), 'errors');
             echo "</span></td>
          <td>";
-            // line 125
+            // line 145
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "file"), 'widget');
             echo " </td>  
       </tr>
                 ";
         }
-        // line 128
+        // line 148
         echo "      
         <tr>
       ";
-        // line 131
+        // line 151
         echo "         <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "ville"), 'label');
         echo "</td>
         <td><span class=\"text-warning\">";
-        // line 132
+        // line 152
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "ville"), 'errors');
         echo "</span></td>
          <td>";
-        // line 133
+        // line 153
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "ville"), 'widget');
         echo " </td>  
       </tr>
       
       <tr>
       ";
-        // line 138
+        // line 158
         echo "      <td>";
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "age"), 'label');
         echo "</td>
       <td><span class=\"text-warning\">";
-        // line 139
+        // line 159
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "age"), 'errors');
         echo "</span></td>
       <td>";
-        // line 140
+        // line 160
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "age"), 'widget');
         echo "</td>   
       </tr>  
       
       </table>
       ";
-        // line 144
+        // line 164
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token"), 'widget');
         echo "
        
       <input type=\"submit\" value=\"";
-        // line 146
+        // line 166
         if (array_key_exists("editer", $context)) {
             echo "Modifier";
         } else {
@@ -390,10 +490,10 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
          ";
     }
 
-    // line 157
+    // line 177
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 158
+        // line 178
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo " 
@@ -427,6 +527,6 @@ class __TwigTemplate_c86f79f408504c956bf5e0ecee4c4a83 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  397 => 158,  394 => 157,  380 => 146,  375 => 144,  368 => 140,  364 => 139,  359 => 138,  352 => 133,  348 => 132,  343 => 131,  339 => 128,  333 => 125,  329 => 124,  324 => 123,  321 => 121,  319 => 120,  316 => 119,  310 => 116,  306 => 115,  302 => 114,  299 => 113,  296 => 112,  290 => 109,  286 => 108,  282 => 107,  279 => 106,  277 => 105,  274 => 104,  271 => 103,  264 => 98,  260 => 97,  255 => 96,  247 => 90,  243 => 89,  238 => 88,  231 => 83,  227 => 82,  222 => 81,  220 => 80,  213 => 75,  209 => 74,  204 => 73,  202 => 72,  198 => 69,  194 => 66,  189 => 64,  179 => 63,  176 => 62,  174 => 61,  163 => 59,  159 => 57,  153 => 53,  151 => 52,  146 => 49,  142 => 47,  140 => 46,  127 => 40,  119 => 36,  114 => 154,  109 => 151,  107 => 36,  102 => 33,  100 => 32,  97 => 31,  94 => 30,  87 => 24,  85 => 23,  82 => 22,  75 => 17,  66 => 15,  62 => 14,  59 => 13,  56 => 12,  54 => 11,  51 => 10,  48 => 9,  43 => 5,  14 => 6,);
+        return array (  497 => 178,  494 => 177,  480 => 166,  475 => 164,  468 => 160,  464 => 159,  459 => 158,  452 => 153,  448 => 152,  443 => 151,  439 => 148,  433 => 145,  429 => 144,  424 => 143,  421 => 141,  419 => 140,  416 => 139,  410 => 136,  406 => 135,  402 => 134,  399 => 133,  396 => 132,  390 => 129,  386 => 128,  382 => 127,  379 => 126,  377 => 125,  374 => 124,  371 => 123,  364 => 118,  360 => 117,  355 => 116,  344 => 107,  339 => 105,  334 => 104,  327 => 99,  323 => 98,  318 => 97,  316 => 96,  309 => 91,  305 => 90,  300 => 89,  298 => 88,  294 => 85,  290 => 82,  285 => 80,  275 => 79,  272 => 78,  270 => 77,  259 => 75,  255 => 73,  249 => 69,  247 => 68,  242 => 65,  238 => 63,  236 => 62,  223 => 56,  215 => 52,  210 => 174,  205 => 171,  203 => 52,  198 => 49,  196 => 48,  193 => 47,  190 => 46,  186 => 43,  181 => 40,  178 => 39,  175 => 38,  171 => 35,  168 => 34,  164 => 32,  155 => 30,  151 => 29,  148 => 28,  145 => 27,  142 => 26,  139 => 25,  135 => 23,  132 => 22,  118 => 21,  107 => 19,  102 => 18,  95 => 15,  93 => 14,  88 => 13,  85 => 12,  67 => 11,  64 => 10,  61 => 9,  56 => 5,  23 => 7,  14 => 6,);
     }
 }

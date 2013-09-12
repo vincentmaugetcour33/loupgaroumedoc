@@ -4,27 +4,43 @@
     
 {% form_theme form _self %}
     {% use 'form_div_layout.html.twig' with form_errors as base_form_errors %}
-   
+    {% use 'form_div_layout.html.twig' with choice_widget_options as user_choice_widget_options %}
+    
+            {% block user_choice_widget_options %}
+            {% spaceless %}
+                {% for group_label, choice in options %}
+                    {% if choice is iterable %}
+                        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                            {% set options = choice %}
+                            {{ block('choice_widget_options') }}
+                        </optgroup>
+                    {% else %}
+                        <img src="{{ asset('bundles/vmuser/photo/membre_default_homme.jpg') }}" />
+                        <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endspaceless %}
+            {% endblock user_choice_widget_options %}
         
-  {% block form_errors %}
+            {% block form_errors %}
+              {% spaceless %}
+              {% if errors is defined and errors|length > 0 %}
+              <ul>
+                  {% for error in errors %}
+                      <li>ERREUR : {{ error.message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
+          {% endspaceless %}
+          {% endblock form_errors %}
 
-    {% spaceless %}
-    {% if errors is defined and errors|length > 0 %}
-    <ul>
-        {% for error in errors %}
-            <li>ERREUR : {{ error.message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-{% endspaceless %}
-{% endblock form_errors %}
 
-    {% block range_widget %}
-{% spaceless %}
-    <input type="range" id="vm_userbundle_usertype_age" value="0" min="8" name="vm_userbundle_usertype[age]" onchange="showValue(this.value)"/>
-     <span id="value_age" />  
-{% endspaceless %}
-{% endblock range_widget %}     
+            {% block range_widget %}
+        {% spaceless %}
+            <input type="range" id="vm_userbundle_usertype_age" value="0" min="8" name="vm_userbundle_usertype[age]" onchange="showValue(this.value)"/>
+             <span id="value_age" />  
+        {% endspaceless %}
+        {% endblock range_widget %}     
      
      
 {% block body %}
@@ -87,7 +103,11 @@
       {# email #}
        <td>{{ form_label(form.email) }}</td>
       <td><span class="text-warning">{{ form_errors(form.email) }}</span></td>
-      <td>{{ form_widget(form.email) }}</td>   
+      <td>
+               {{ form_widget(form.email) }}
+                <i class="icon-large icon-envelope" style="margin-bottom:-5px;"></i>
+         
+      </td>   
      </tr>
 
       

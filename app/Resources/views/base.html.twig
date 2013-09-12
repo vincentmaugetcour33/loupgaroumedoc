@@ -5,10 +5,11 @@
         <title>{% block title %}Patrice Mauget - Loup-Garou, le monstre du Médoc{% endblock %}</title>
       
         {% stylesheets filter='cssrewrite, yui_css'
-                '@VMBlogBundle/Resources/public/css/bootstrap.min.css' %}
+                '@VMBlogBundle/Resources/public/css/bootstrap.min.css' 
+                '@VMBlogBundle/Resources/public/css/bootstrap.icon-large.min.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
         {% endstylesheets %}
-       
+        <link href="css/bootstrap.icon-large.min.css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
     </head>
@@ -30,11 +31,11 @@
                           <div class="input-group-btn" > 
                          <button style="margin-left:-10px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Gestion<span class="caret"></span></button>
                           <ul style="margin-top:-5px;" class="dropdown-menu pull-right" id="{{app.user.id}}">
-                            <li id="visualiser"><a href="{{path('vm_user_profile')}}">Votre profil</a></li> 
+                            <li id="visualiser"><a href="{{path('vm_user_profile')}}"><i class="icon-large icon-user icon-white"></i>Votre profil</a></li> 
                             <li class="divider"/>
-                            <li id="edit"><a href="{{path('vm_user_edit')}}">Modifier</a></li>
-                            <li><a href="#" id="supprimer_profil" >Supprimer</a></li>
-                            <li><a href="{{ path('logout') }}" id="logout">Déconnexion</a></li>
+                            <li id="edit"><a href="{{path('vm_user_edit')}}"><i class="icon-large icon-edit"></i>Modifier</a></li>
+                            <li><a href="#" id="supprimer_profil" ><i class="icon-large icon-remove"></i>Supprimer</a></li>
+                            <li><a href="{{ path('logout') }}" id="logout"><i class="icon-large icon-off"></i>Déconnexion</a></li>
                           </ul>
                          </div> 
                              
@@ -69,7 +70,7 @@
                    <div class="well">
                                 <p id="notes" class="text-warning">
                                  Ce site constitue une vitrine pour le livre de Patrice Mauget intitulé Loup-Garou, le monstre du Médoc.
-                                 En phase d'évolution, ce site présente des problèmes d'affichage sur Internet Explorer.
+                                 En phase d'évolution, ce site peut présenter des problèmes d'affichage sur Internet Explorer.
                                  Il est donc conseillé d'utiliser le navigateur Firefox.
                                 </p> 
                              </div>

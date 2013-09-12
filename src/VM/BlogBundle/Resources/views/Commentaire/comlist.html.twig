@@ -94,7 +94,7 @@
                        
                        </div>
                        <div class="panel-body " >
-                                    {% autoescape true %}{{ entity.contenu | raw  }}
+                                    {% autoescape true %}{{ entity.contenu | htmldecode()  }}
                                         {% endautoescape %}</div>
                    </div>
                 
@@ -123,10 +123,11 @@
      {% for page in 1..last_page %}
        
         {% if page == current_page %}
-           <li class="active"><a href="#">{{ page }}</a></li>
+           <li class="active" ><a style="color:red;" href="#">{{ page }}</a></li>
        {% else %}
            <li>
-               <a href="{{ path('vm_blog_commentaire_list', { 'page': page }) }}">{{ page }}</a>
+               <a  style="background-color:{{cycle(['#D2B48C','#9ACD32'], loop.index0) }}"
+                   href="{{ path('vm_blog_commentaire_list', { 'page': page }) }}">{{ page }}</a>
             </li>
        {% endif %}
           
