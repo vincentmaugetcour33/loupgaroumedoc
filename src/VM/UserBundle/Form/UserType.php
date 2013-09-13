@@ -31,7 +31,10 @@ class UserType extends AbstractType
             ->add('file',          'file',  array( 'label' => 'Votre photo :', 'required'=>false))
             ->add('realname',      'text', array('label' => 'Votre prénom/nom : ', 'required'=>false))
             ->add('ville',         'text', array('label' => 'Votre ville : ', 'required'=>false))
-            ->add('sexe',          'choice', array('label' => 'Votre sexe : ',
+            /*->add('sexe',          'choice', array('label' => 'Votre sexe : ',
+                                     'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),
+                                     'empty_value' => 'Vous êtes ?'))*/
+             ->add('sexe',        new SelectSexeType(), array('label' => 'Votre sexe : ',
                                      'choices'   => array('homme' => 'un homme', 'femme' => 'une femme'),
                                      'empty_value' => 'Vous êtes ?'))
             ->add('age',           new RangeType(), array('label' => 'Votre âge : ', 'required'=>false));

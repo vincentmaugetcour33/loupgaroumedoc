@@ -42,7 +42,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:  ['VMBlogBundle']
+    bundles:  ['VMBlogBundle', 'VMUserBundle']
     java: C:\Program Files\Java\jre7\bin\java-rmi.exe
     filters:
         cssrewrite: ~

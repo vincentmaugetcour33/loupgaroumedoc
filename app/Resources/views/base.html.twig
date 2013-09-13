@@ -6,10 +6,12 @@
       
         {% stylesheets filter='cssrewrite, yui_css'
                 '@VMBlogBundle/Resources/public/css/bootstrap.min.css' 
-                '@VMBlogBundle/Resources/public/css/bootstrap.icon-large.min.css' %}
+                '@VMBlogBundle/Resources/public/css/bootstrap.icon-large.min.css' 
+                '@VMUserBundle/Resources/public/css/bootstrap-select.min.css'
+                %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />   
         {% endstylesheets %}
-        <link href="css/bootstrap.icon-large.min.css" rel="stylesheet">
+        {#<link href="css/bootstrap.icon-large.min.css" rel="stylesheet">#}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
           
     </head>
@@ -241,6 +243,7 @@
 
             {% javascripts '@VMBlogBundle/Resources/public/js/bootstrap.min.js'
                         '@VMBlogBundle/Resources/public/js/popup.js'
+                        '@VMUserBundle/Resources/public/js/bootstrap-select.min.js'
                          filter='yui_js'
                         %}
                            <script type="text/javascript" src="{{ asset_url }}"></script>

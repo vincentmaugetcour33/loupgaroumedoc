@@ -4,24 +4,8 @@
     
 {% form_theme form _self %}
     {% use 'form_div_layout.html.twig' with form_errors as base_form_errors %}
-    {% use 'form_div_layout.html.twig' with choice_widget_options as user_choice_widget_options %}
     
-            {% block user_choice_widget_options %}
-            {% spaceless %}
-                {% for group_label, choice in options %}
-                    {% if choice is iterable %}
-                        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
-                            {% set options = choice %}
-                            {{ block('choice_widget_options') }}
-                        </optgroup>
-                    {% else %}
-                        <img src="{{ asset('bundles/vmuser/photo/membre_default_homme.jpg') }}" />
-                        <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
-                    {% endif %}
-                {% endfor %}
-            {% endspaceless %}
-            {% endblock user_choice_widget_options %}
-        
+                   
             {% block form_errors %}
               {% spaceless %}
               {% if errors is defined and errors|length > 0 %}
@@ -42,7 +26,37 @@
         {% endspaceless %}
         {% endblock range_widget %}     
      
+       {% block selectsexe_widget %}
+        {% spaceless %}
+             
+            {% if choices|length > 0 %}
+                {% set options = choices %}
+             <select {{ block('widget_attributes') }} 
+                 class="selectpicker" data-width="auto"
+                 data-header="Vous êtes ?" 
+                    style="height:100%;" >
+                  {#{% if empty_value is not none %}
+                     <option value="">{{ empty_value|trans({}, translation_domain) }}</option>
+                      <option data-divider="true"></option>
+                  {% endif %}#}
+                  
+                  {% for option in options %}
+                        <option {% if loop.first %}
+                                     data-icon="icon-large icon-user"
+                                {% else %}
+                                    data-icon="icon-large icon-girl"
+                                {% endif %}
+                             value="{{ option.value }}">
+                              {{ option.label }}
+                        </option>
+                  {% endfor %}   
+             </select>
+             {% endif %}
+               
+        {% endspaceless %}
+        {% endblock selectsexe_widget %}     
      
+             
 {% block body %}
 
 {% if form is defined %}
@@ -178,6 +192,9 @@
     {{ parent() }} 
         <script language="javascript" type="text/javascript"> 
      (function($) { 
+         // active le plugin pour la personalisation du champ select
+        $('.selectpicker').selectpicker('deselectAll');
+        
         $("a.photo").popover({trigger: 'hover',html:true, content: function() { var photo=$(this).attr('id')+'-'+$(this).html();
                return "<img class='img-rounded' width=50 src='/bundles/vmuser/photo/"+photo+"' />"; },
                 delay: { show: 500, hide: 10} });

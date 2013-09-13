@@ -395,6 +395,7 @@
     <parameter key="assetic.cache_dir">C:/wamp/www/Sitepatrice/app/cache/dev/assetic</parameter>
     <parameter key="assetic.bundles" type="collection">
       <parameter>VMBlogBundle</parameter>
+      <parameter>VMUserBundle</parameter>
     </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
@@ -2322,7 +2323,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>523004bef3368</argument>
+            <argument>5232ad4e6cfc0</argument>
           </service>
         </argument>
       </argument>
@@ -2672,7 +2673,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>523004bef3368</argument>
+            <argument>5232ad4e6cfc0</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2900,6 +2901,7 @@
             </argument>
             <argument type="collection">
               <argument>VMBlogBundle</argument>
+              <argument>VMUserBundle</argument>
             </argument>
             <argument type="service" id="assetic.value_supplier.default" on-invalid="null"/>
           </service>
@@ -3035,6 +3037,33 @@
                   <argument type="service" id="templating.loader"/>
                   <argument>VMBlogBundle</argument>
                   <argument>C:\wamp\www\Sitepatrice\src\VM\BlogBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>VMUserBundle</argument>
+                  <argument>C:/wamp/www/Sitepatrice/app/Resources/VMUserBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>VMUserBundle</argument>
+                  <argument>C:\wamp\www\Sitepatrice\src\VM\UserBundle/Resources/views</argument>
                   <argument>/\.[^.]+\.twig$/</argument>
                 </service>
               </argument>

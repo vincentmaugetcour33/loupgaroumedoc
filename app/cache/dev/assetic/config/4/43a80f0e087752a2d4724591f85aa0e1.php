@@ -2,12 +2,13 @@
 
 // ::base.html.twig
 return array (
-  '868acfe' => 
+  '77976db' => 
   array (
     0 => 
     array (
       0 => '@VMBlogBundle/Resources/public/css/bootstrap.min.css',
       1 => '@VMBlogBundle/Resources/public/css/bootstrap.icon-large.min.css',
+      2 => '@VMUserBundle/Resources/public/css/bootstrap-select.min.css',
     ),
     1 => 
     array (
@@ -16,8 +17,8 @@ return array (
     ),
     2 => 
     array (
-      'output' => '_controller/css/868acfe.css',
-      'name' => '868acfe',
+      'output' => '_controller/css/77976db.css',
+      'name' => '77976db',
       'debug' => NULL,
       'combine' => NULL,
       'vars' => 
@@ -25,12 +26,13 @@ return array (
       ),
     ),
   ),
-  'ea73278' => 
+  '540e3c5' => 
   array (
     0 => 
     array (
       0 => '@VMBlogBundle/Resources/public/js/bootstrap.min.js',
       1 => '@VMBlogBundle/Resources/public/js/popup.js',
+      2 => '@VMUserBundle/Resources/public/js/bootstrap-select.min.js',
     ),
     1 => 
     array (
@@ -38,8 +40,8 @@ return array (
     ),
     2 => 
     array (
-      'output' => '_controller/js/ea73278.js',
-      'name' => 'ea73278',
+      'output' => '_controller/js/540e3c5.js',
+      'name' => '540e3c5',
       'debug' => NULL,
       'combine' => NULL,
       'vars' => 
