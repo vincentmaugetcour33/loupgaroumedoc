@@ -353,7 +353,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
          ";
         // line 210
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 255
+        // line 257
         echo "
 
         
@@ -395,8 +395,19 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
         // line 214
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/vmblog/js/jquery.js"), "html", null, true);
         echo "\"></script>
+            <script src=\"";
+        // line 215
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/stfalcontinymce/js/init.jquery.js"), "html", null, true);
+        echo "\"></script>
+            <script src=\"";
+        // line 216
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/stfalcontinymce/js/init.standard.js"), "html", null, true);
+        echo "\"></script>
+            <script src=\"";
+        // line 217
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/stfalcontinymce/js/ready.min.js"), "html", null, true);
+        echo "\"></script>
             
-         
              <script language=\"javascript\" type=\"text/javascript\">
                 (function(\$) 
                 {
@@ -425,11 +436,11 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
              </script>
 
             ";
-        // line 244
+        // line 246
         if (isset($context['assetic']['debug']) && $context['assetic']['debug']) {
             // asset "540e3c5_0"
             $context["asset_url"] = isset($context['assetic']['use_controller']) && $context['assetic']['use_controller'] ? $this->env->getExtension('routing')->getPath("_assetic_540e3c5_0") : $this->env->getExtension('assets')->getAssetUrl("_controller/js/540e3c5_bootstrap.min_1.js");
-            // line 249
+            // line 251
             echo "                           <script type=\"text/javascript\" src=\"";
             echo twig_escape_filter($this->env, (isset($context["asset_url"]) ? $context["asset_url"] : $this->getContext($context, "asset_url")), "html", null, true);
             echo "\"></script>
@@ -455,7 +466,7 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
             ";
         }
         unset($context["asset_url"]);
-        // line 250
+        // line 252
         echo "   
             
             
@@ -475,6 +486,6 @@ class __TwigTemplate_51823c956fb83996fb7db5ecaac109ca extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  459 => 250,  433 => 249,  429 => 244,  396 => 214,  392 => 213,  388 => 212,  385 => 211,  382 => 210,  378 => 185,  375 => 184,  369 => 5,  357 => 255,  355 => 210,  344 => 204,  339 => 203,  321 => 186,  319 => 184,  275 => 145,  267 => 139,  259 => 135,  253 => 131,  251 => 130,  246 => 127,  244 => 124,  238 => 112,  230 => 107,  221 => 100,  206 => 87,  202 => 86,  198 => 85,  181 => 70,  173 => 68,  167 => 67,  164 => 66,  156 => 64,  150 => 63,  142 => 57,  136 => 54,  133 => 53,  131 => 52,  127 => 50,  114 => 40,  109 => 38,  104 => 36,  100 => 35,  94 => 32,  90 => 31,  84 => 27,  82 => 26,  78 => 24,  76 => 23,  65 => 15,  63 => 14,  37 => 12,  33 => 7,  28 => 5,  22 => 1,);
+        return array (  470 => 252,  444 => 251,  440 => 246,  408 => 217,  404 => 216,  400 => 215,  396 => 214,  392 => 213,  388 => 212,  378 => 185,  375 => 184,  369 => 5,  357 => 257,  355 => 210,  339 => 203,  321 => 186,  319 => 184,  275 => 145,  267 => 139,  259 => 135,  253 => 131,  246 => 127,  244 => 124,  230 => 107,  221 => 100,  206 => 87,  202 => 86,  198 => 85,  181 => 70,  173 => 68,  167 => 67,  156 => 64,  150 => 63,  142 => 57,  136 => 54,  133 => 53,  131 => 52,  127 => 50,  109 => 38,  104 => 36,  100 => 35,  94 => 32,  84 => 27,  82 => 26,  78 => 24,  65 => 15,  63 => 14,  37 => 12,  28 => 5,  22 => 1,  385 => 211,  382 => 210,  377 => 14,  363 => 12,  359 => 10,  353 => 8,  350 => 7,  344 => 204,  342 => 148,  329 => 143,  327 => 142,  322 => 141,  312 => 136,  309 => 135,  294 => 133,  286 => 130,  282 => 129,  279 => 128,  273 => 126,  271 => 125,  268 => 124,  251 => 130,  243 => 120,  238 => 112,  236 => 116,  233 => 115,  227 => 111,  223 => 109,  207 => 98,  203 => 97,  194 => 90,  191 => 89,  188 => 88,  177 => 80,  172 => 77,  169 => 76,  166 => 75,  164 => 66,  160 => 72,  154 => 70,  148 => 68,  146 => 67,  139 => 65,  132 => 61,  124 => 55,  120 => 53,  116 => 51,  114 => 40,  108 => 47,  105 => 46,  101 => 45,  95 => 42,  90 => 31,  86 => 38,  83 => 36,  81 => 35,  76 => 23,  70 => 28,  68 => 27,  64 => 25,  61 => 23,  59 => 22,  56 => 21,  48 => 19,  42 => 18,  38 => 16,  36 => 7,  33 => 7,  30 => 5,);
     }
 }
