@@ -24,10 +24,15 @@
    <span class="pull-right">
           
        <i class="icon-large icon-file"></i>
+       
        <a href="{{asset('bundles/vmblog/document/'~document.url)}}" target="_blank">
          {{ document.libelle }}
        </a>
-       
+       {% if "now" | date("m/d/Y") == document.date|date("m/d/Y") %}
+         aujourd'hui à {{ document.date|date('h:m')}}
+       {% else %}
+         Le {{ document.date|date('d/m/Y à h:m')}}
+       {% endif %}
    </span>
    {% endif %}
  
