@@ -12,10 +12,18 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getManager()->getRepository('VMBlogBundle:Livre');
+        $em = $this->getDoctrine()->getManager();
+        
+        $repository = $em->getRepository('VMBlogBundle:Livre');
         $livre_principal = $repository->findOneByTitre('Loup-Garou, le monstre du Médoc');
         
-        return $this->render('VMBlogBundle:Default:index.html.twig', array('livre' => $livre_principal));
+        // Recherche du document PDF à mettre sur la page d'accueil
+        $repository = $em->getRepository('VMBlogBundle:Document');
+        $document_principal = $repository->getTrouveDernierDocument();
+        
+        return $this->render('VMBlogBundle:Default:index.html.twig', array(
+            'document' => $document_principal,
+            'livre' => $livre_principal));
     }
     
     /**

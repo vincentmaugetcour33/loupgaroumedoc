@@ -23,3 +23,6 @@ parameters:
     url_site :  monstredumedoc.localhost/app_dev.php/
     webmaster_nom : Vincent Mauget
     webmaster_email : vincent.mauget@gmail.com
+    
+    genese_interdite_url : http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html
+    pluie_de_vers_url : http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html

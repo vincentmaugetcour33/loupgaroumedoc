@@ -60,18 +60,40 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
         echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("VMBlogBundle:Extrait:index"));
         echo " 
  
-
-   
- 
+   ";
+        // line 21
+        if (array_key_exists("document", $context)) {
+            // line 22
+            echo "    
+   ";
+            // line 24
+            echo "   <span class=\"pull-right\">
+          
+       <i class=\"icon-large icon-file\"></i>
+       <a href=\"";
+            // line 27
+            echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmblog/document/" . $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "url"))), "html", null, true);
+            echo "\" target=\"_blank\">
+         ";
+            // line 28
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "libelle"), "html", null, true);
+            echo "
+       </a>
+       
+   </span>
+   ";
+        }
+        // line 33
+        echo " 
 ";
     }
 
-    // line 26
+    // line 36
     public function block_javascripts($context, array $blocks = array())
     {
         echo "  
  ";
-        // line 27
+        // line 37
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
    <script language=\"javascript\" type=\"text/javascript\">
@@ -96,6 +118,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  75 => 27,  70 => 26,  60 => 19,  52 => 15,  46 => 12,  44 => 11,  41 => 10,  33 => 4,  30 => 3,);
+        return array (  97 => 37,  92 => 36,  87 => 33,  79 => 28,  75 => 27,  70 => 24,  67 => 22,  65 => 21,  60 => 19,  52 => 15,  46 => 12,  44 => 11,  41 => 10,  33 => 4,  30 => 3,);
     }
 }

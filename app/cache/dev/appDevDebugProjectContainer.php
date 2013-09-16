@@ -1962,7 +1962,7 @@ class appDevDebugProjectContainer extends Container
         $q = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $m, 'main', $p, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($f, $m, array('login_path' => 'login', 'failure_path' => 'login_failure', 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $a), array('check_path' => 'login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $d);
         $q->setRememberMeServices($n);
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'main', $a, $d), 2 => $o, 3 => $q, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $n, $g, $a, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5232ad4e6cfc0', $a), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $g, $a)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $m, 'login', false), NULL, NULL, $a));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'main', $a, $d), 2 => $o, 3 => $q, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $n, $g, $a, $d), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '52369898d6038', $a), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $g, $a)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $m, 'login', false), NULL, NULL, $a));
     }
 
     /**
@@ -3058,6 +3058,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addGlobal('webmaster_email', 'vincent.mauget@gmail.com');
         $instance->addGlobal('auteur_nom', 'Patrice Mauget');
         $instance->addGlobal('auteur_email', 'pathrv@free.fr');
+        $instance->addGlobal('pluie_de_vers_url', 'http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html');
+        $instance->addGlobal('genese_interdite_url', 'http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html');
 
         return $instance;
     }
@@ -3431,7 +3433,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = new \Symfony\Component\Security\Core\User\UserChecker();
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'ThisTokenIsNotSoSecretChangeIt', 'main'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5232ad4e6cfc0')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'ThisTokenIsNotSoSecretChangeIt', 'main'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('52369898d6038')), true);
 
         $instance->setEventDispatcher($this->get('event_dispatcher'));
 
@@ -3619,6 +3621,8 @@ class appDevDebugProjectContainer extends Container
             'url_site' => 'monstredumedoc.localhost/app_dev.php/',
             'webmaster_nom' => 'Vincent Mauget',
             'webmaster_email' => 'vincent.mauget@gmail.com',
+            'genese_interdite_url' => 'http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html',
+            'pluie_de_vers_url' => 'http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html',
             'auteur_nom' => 'Patrice Mauget',
             'auteur_email' => 'pathrv@free.fr',
             'max_commentaires_on_listepage' => 5,
@@ -4124,7 +4128,6 @@ class appDevDebugProjectContainer extends Container
                         'statusbar' => false,
                         'toolbar' => 'bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons',
                         'width' => 800,
-                        'content_css' => '/bundles/vmblog/css/bootstrap.min.css',
                     ),
                 ),
                 'language' => NULL,

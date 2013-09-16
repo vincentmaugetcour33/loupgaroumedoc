@@ -94,8 +94,10 @@
                        
                        </div>
                        <div class="panel-body " >
-                                    {% autoescape true %}{{ entity.contenu | raw  }}
-                                        {% endautoescape %}</div>
+                            
+                                {{ entity.contenu | raw }}
+                            
+                       </div>
                    </div>
                 
                    
@@ -144,16 +146,17 @@
 </div>
 </div>
 
- 
-{{ tinymce_init({plugins: "charmap"
-                  
-                }) }} 
+
  
 {% endblock vmblog_body %}
 
 
  {% block javascripts %}
       {{ parent() }}
+       
+{{ tinymce_init({plugins: "charmap"
+                  
+                }) }}       
       <script language="javascript" type="text/javascript">
        (function($) {   
           

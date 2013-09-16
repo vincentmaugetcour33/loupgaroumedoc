@@ -18,8 +18,18 @@
    EXTRAIT (AU HASARD)
    {{ render(controller("VMBlogBundle:Extrait:index")) }} 
  
-
-   
+   {% if document is defined %}
+    
+   {# Affichage du document Pdf #}
+   <span class="pull-right">
+          
+       <i class="icon-large icon-file"></i>
+       <a href="{{asset('bundles/vmblog/document/'~document.url)}}" target="_blank">
+         {{ document.libelle }}
+       </a>
+       
+   </span>
+   {% endif %}
  
 {% endblock vmblog_body %}
 

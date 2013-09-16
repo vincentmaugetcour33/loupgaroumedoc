@@ -46,6 +46,8 @@
     <parameter key="url_site">monstredumedoc.localhost/app_dev.php/</parameter>
     <parameter key="webmaster_nom">Vincent Mauget</parameter>
     <parameter key="webmaster_email">vincent.mauget@gmail.com</parameter>
+    <parameter key="genese_interdite_url">http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html</parameter>
+    <parameter key="pluie_de_vers_url">http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html</parameter>
     <parameter key="auteur_nom">Patrice Mauget</parameter>
     <parameter key="auteur_email">pathrv@free.fr</parameter>
     <parameter key="max_commentaires_on_listepage">5</parameter>
@@ -533,7 +535,6 @@
           <parameter key="statusbar">false</parameter>
           <parameter key="toolbar">bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons</parameter>
           <parameter key="width">800</parameter>
-          <parameter key="content_css">/bundles/vmblog/css/bootstrap.min.css</parameter>
         </parameter>
       </parameter>
       <parameter key="language">null</parameter>
@@ -2323,7 +2324,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5232ad4e6cfc0</argument>
+            <argument>52369898d6038</argument>
           </service>
         </argument>
       </argument>
@@ -2673,7 +2674,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5232ad4e6cfc0</argument>
+            <argument>52369898d6038</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -2944,6 +2945,14 @@
       <call method="addGlobal">
         <argument>auteur_email</argument>
         <argument>pathrv@free.fr</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>pluie_de_vers_url</argument>
+        <argument>http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>genese_interdite_url</argument>
+        <argument>http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html</argument>
       </call>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">

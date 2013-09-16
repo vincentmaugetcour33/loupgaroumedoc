@@ -151,13 +151,13 @@
                                    <div id="liens_divers" class="accordion-body collapse">
                                      <div class="accordion-inner">
                                          <p><a 
-                                          href="http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html"
+                                          href="{{pluie_de_vers_url}}"
                                           target="_blank" >
                                            Pluie de vers       
                                          </a></p>
                                          
                                          <p><a 
-                                          href="http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html"
+                                          href="{{genese_interdite_url}}"
                                           target="_blank" >
                                            La Genèse Interdite       
                                          </a></p>
@@ -178,14 +178,11 @@
                       </div>
                       
                        <div class="col-sm-offset-1 col-sm-9">
-                         
-                           
-                          
-                        {% block body %}
-                       {% endblock body %}
-                        
-                      
+                                     {% block body %}
+                                     {% endblock body %}
                        </div>
+                       
+                       
                        
                        
                        <!--<div class="span1 offset1">

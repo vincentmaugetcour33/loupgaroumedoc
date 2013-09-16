@@ -37,6 +37,8 @@ twig:
       webmaster_email : %webmaster_email%
       auteur_nom : %auteur_nom%
       auteur_email : %auteur_email%
+      pluie_de_vers_url : %pluie_de_vers_url%
+      genese_interdite_url : %genese_interdite_url%
       
 # Assetic Configuration
 assetic:
@@ -127,5 +129,5 @@ stfalcon_tinymce:
        toolbar: "bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons"
        #toolbar_location: "bottom"
        width: 800
-       content_css: "/bundles/vmblog/css/bootstrap.min.css"   
+       #content_css: "/bundles/vmblog/css/bootstrap.min.css"   
        
