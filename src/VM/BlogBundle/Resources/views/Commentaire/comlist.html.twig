@@ -14,7 +14,10 @@
 
 {#<link rel="stylesheet" href="{{ asset('bundles/vmblog/css/commentaire.css') }}" type="text/css" media="all" />#}
 {% endblock %} 
-
+<p id="notes" class="text-warning">
+                                 Pour le moment, la modification de commentaires n'affiche pas le champ avec les boutons.                En phase d'évolution, ce site peut présenter des problèmes d'affichage sur Internet Explorer.
+                                 Je m'applique à remédier à ce problème.
+                                </p> 
 {% for message in app.session.flashbag.get('info') %} 
     {{ message }}
 {% endfor %}
@@ -78,9 +81,9 @@
                       <div class="input-group-btn"> 
                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
                           <ul style="margin-top:inherit;" class="dropdown-menu pull-right" id={{entity.id}}>
-                            <li id="edit"><a href="#" rel="popover" id="editer_commentaire"><i class="icon-large icon-edit">Modifier</i></a></li>
+                            <li id="edit"><a href="#" rel="popover" id="editer_commentaire"><i class="icon-large icon-edit"></i>Modifier</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" id="supprimer_commentaire"><i class="icon-large icon-remove">Supprimer</i></a></li>
+                            <li><a href="#" id="supprimer_commentaire"><i class="icon-large icon-remove"></i>Supprimer</a></li>
                         </ul>
                      </div><!-- /btn-group -->
                     
@@ -154,9 +157,12 @@
  {% block javascripts %}
       {{ parent() }}
        
-{{ tinymce_init({plugins: "charmap"
-                  
-                }) }}       
+        {{ tinymce_init({
+                forced_root_block : 'p',
+                force_br_newlines : true,
+                force_p_newlines : false
+        }) }}       
+            
       <script language="javascript" type="text/javascript">
        (function($) {   
           
@@ -165,14 +171,20 @@
           $("body").on("click", "#editer_commentaire", (function()
           {
            var identifiant = parseInt($(this).parent().parent().attr("id"));
-            
+            tinyMCE.triggerSave();
             $.ajax({
                type: "POST",
                url: Routing.generate('vm_blog_commentaire_edit', { id: identifiant }),
                cache:false,
                success: function(data)
                {
-               $("#formulaire").html(data);
+                  // $("#formulaire").tinymce({ });   
+                  $("#formulaire").html(data);
+                  tinymce.init({selector:'textarea',width: 800,
+                      plugins: "emoticons preview advlist autolink lists link image charmap preview anchor searchreplace visualblocks fullscreen insertdatetime contextmenu paste",
+                      toolbar: "insertfile undo redo styleselect bold italic alignleft aligncenter alignright alignjustify bullist numlist outdent indent emoticons link image preview"
+
+                      });
                }
              });
             

@@ -70,30 +70,46 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
             echo "   <span class=\"pull-right\">
           
        <i class=\"icon-large icon-file\"></i>
+       
        <a href=\"";
-            // line 27
+            // line 28
             echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl(("bundles/vmblog/document/" . $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "url"))), "html", null, true);
             echo "\" target=\"_blank\">
          ";
-            // line 28
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "libelle"), "html", null, true);
             echo "
        </a>
-       
-   </span>
+       ";
+            // line 31
+            if ((twig_date_format_filter($this->env, "now", "m/d/Y") == twig_date_format_filter($this->env, $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "date"), "m/d/Y"))) {
+                // line 32
+                echo "         aujourd'hui à ";
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "date"), "h:m"), "html", null, true);
+                echo "
+       ";
+            } else {
+                // line 34
+                echo "         Le ";
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["document"]) ? $context["document"] : $this->getContext($context, "document")), "date"), "d/m/Y à h:m"), "html", null, true);
+                echo "
+       ";
+            }
+            // line 36
+            echo "   </span>
    ";
         }
-        // line 33
+        // line 38
         echo " 
 ";
     }
 
-    // line 36
+    // line 41
     public function block_javascripts($context, array $blocks = array())
     {
         echo "  
  ";
-        // line 37
+        // line 42
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
    <script language=\"javascript\" type=\"text/javascript\">
@@ -118,6 +134,6 @@ class __TwigTemplate_8431df7ef439dd554fb36465d072e450 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  97 => 37,  92 => 36,  87 => 33,  79 => 28,  75 => 27,  70 => 24,  67 => 22,  65 => 21,  60 => 19,  52 => 15,  46 => 12,  44 => 11,  41 => 10,  33 => 4,  30 => 3,);
+        return array (  113 => 42,  108 => 41,  103 => 38,  99 => 36,  93 => 34,  87 => 32,  85 => 31,  80 => 29,  76 => 28,  70 => 24,  67 => 22,  65 => 21,  60 => 19,  52 => 15,  46 => 12,  44 => 11,  41 => 10,  33 => 4,  30 => 3,);
     }
 }

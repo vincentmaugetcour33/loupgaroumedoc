@@ -83,6 +83,7 @@
   'VMBlogBundle:Commentaire:profilecommentaire.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Commentaire/profilecommentaire.html.twig',
   'VMBlogBundle:Default:biographie.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Default/biographie.html.twig',
   'VMBlogBundle:Default:index.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Default/index.html.twig',
+  'VMBlogBundle:Default:index_maintenance.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Default/index_maintenance.html.twig',
   'VMBlogBundle:Extrait:index.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/Extrait/index.html.twig',
   'VMBlogBundle:helper:facebookButton.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/helper/facebookButton.html.twig',
   'VMBlogBundle:helper:socialButtons.html.twig' => 'C:\\wamp\\www\\Sitepatrice\\src\\VM\\BlogBundle/Resources/views/helper/socialButtons.html.twig',

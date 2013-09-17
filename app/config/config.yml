@@ -119,14 +119,18 @@ swiftmailer:
 stfalcon_tinymce:
     include_jquery: true
     tinymce_jquery: true
+    selector: ".tinymce"
     
     theme:
       bbcode:
-       theme: "advanced" 
-       plugins: ["bbcode, link, preview, charmap, emoticons"]
-       menubar: false
+       #theme: "advanced" 
+       #plugins: ["bbcode, link, preview, charmap, emoticons"]
+       plugins: ["emoticons,preview,advlist, autolink, lists, link, image, charmap,preview, anchor,searchreplace, visualblocks, fullscreen,insertdatetime, contextmenu, paste"]
+       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons link image | preview"
+
+       #menubar: false
        statusbar: false
-       toolbar: "bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons"
+       #toolbar: "bold,italic,underline,undo,redo,link,unlink,removeformat,alignleft, aligncenter, alignright, alignjustify,preview,emoticons"
        #toolbar_location: "bottom"
        width: 800
        #content_css: "/bundles/vmblog/css/bootstrap.min.css"   

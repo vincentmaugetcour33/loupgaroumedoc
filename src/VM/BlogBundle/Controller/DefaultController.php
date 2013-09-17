@@ -12,6 +12,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        //return $this->render('VMBlogBundle:Default:index_maintenance.html.twig');
+        
         $em = $this->getDoctrine()->getManager();
         
         $repository = $em->getRepository('VMBlogBundle:Livre');

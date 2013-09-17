@@ -327,6 +327,15 @@ class User implements UserInterface #, \Serializable #extends BaseUser
         return $this->commentaires;
     }
  
+    /**
+     * GET NBCommentaires
+     * @return integer
+     */
+    public function getNbCommentaires() {
+        return count($this->commentaires);
+    }
+ 
+    
   public function setUsername($username)
   {
     $this->username = $username;

@@ -74,6 +74,13 @@ interface UserInterface
      * @return string The username
      */
     public function getUsername();
+    
+     /**
+     * Returns the nbcommentaires from the user.
+     *
+     * @return integer
+     */
+    public function getNbcommentaires();
 
     /**
      * Removes sensitive data from the user.

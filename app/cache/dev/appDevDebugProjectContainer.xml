@@ -525,15 +525,14 @@
     <parameter key="stfalcon_tinymce.config" type="collection">
       <parameter key="include_jquery">true</parameter>
       <parameter key="tinymce_jquery">true</parameter>
+      <parameter key="selector">.tinymce</parameter>
       <parameter key="theme" type="collection">
         <parameter key="bbcode" type="collection">
-          <parameter key="theme">modern</parameter>
           <parameter key="plugins" type="collection">
-            <parameter>bbcode, link, preview, charmap, emoticons</parameter>
+            <parameter>emoticons,preview,advlist, autolink, lists, link, image, charmap,preview, anchor,searchreplace, visualblocks, fullscreen,insertdatetime, contextmenu, paste</parameter>
           </parameter>
-          <parameter key="menubar">false</parameter>
+          <parameter key="toolbar">insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | emoticons link image | preview</parameter>
           <parameter key="statusbar">false</parameter>
-          <parameter key="toolbar">bold,italic,underline,undo,redo,link,unlink,removeformat,preview,emoticons</parameter>
           <parameter key="width">800</parameter>
         </parameter>
       </parameter>
@@ -2324,7 +2323,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>52369898d6038</argument>
+            <argument>5237f767d7618</argument>
           </service>
         </argument>
       </argument>
@@ -2674,7 +2673,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>52369898d6038</argument>
+            <argument>5237f767d7618</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
