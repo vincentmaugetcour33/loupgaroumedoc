@@ -5,7 +5,7 @@ parameters:
     database_port: null
     database_name: blogmonstremedoc
     database_user: #
-    database_password: null
+    database_password: #
     #smtp
     mailer_transport: gmail 
     mailer_encryption: ssl
