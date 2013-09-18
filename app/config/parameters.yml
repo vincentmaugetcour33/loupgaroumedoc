@@ -11,8 +11,8 @@ parameters:
     mailer_encryption: ssl
     mailer_authmode : login
     mailer_host: smtp.gmail.com
-    gmail_username: vincent.mauget@gmail.com
-    gmail_password: A12&Bbc1
+    gmail_username: #
+    gmail_password: #
     #mailer_user: null
     #mailer_password: null
     
@@ -22,7 +22,7 @@ parameters:
     site_nom : Loup-Garou, le monstre du Médoc
     url_site :  monstredumedoc.localhost/app_dev.php/
     webmaster_nom : Vincent Mauget
-    webmaster_email : vincent.mauget@gmail.com
+    webmaster_email : #
     
     genese_interdite_url : http://www.priceminister.com/offer/buy/188922655/la-genese-interdite-de-patrice-mauget.html
     pluie_de_vers_url : http://www.editions-pantheon.fr/patrice-mauget/poemes/pluie-de-vers.html
